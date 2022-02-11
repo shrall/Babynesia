@@ -13,4 +13,6 @@ class ProdukImage extends Model
     protected $fillable = [
         'id', 'produk_id', 'imageurl'
     ];
+    protected $primarykey = 'id';
+    // public $incrementing = false;
 }
