@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Code extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'code';
+    protected $fillable = [
+        'id',
+        'code',
+        'location'
+    ];
+    protected $primarykey = 'id';
+    // public $incrementing = false;
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Guestbook extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'guestbook';
+    protected $fillable = [
+        'guestbook_id', 'datum', 'name', 'location', 'email', 'message', 'accepted'
+    ];
+    protected $primarykey = 'guestbook_id';
+    // public $incrementing = false;
 }

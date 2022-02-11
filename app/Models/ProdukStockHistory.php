@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ProdukStockHistory extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'produk_stock_history';
+    protected $fillable = [
+        'id','trxdate','admin','product_id','amount','faktur_id','notes'
+    ];
+    protected $primarykey = 'id';
+    // public $incrementing = false;
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class DestinationCity extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'destination_city';
+    protected $fillable = [
+        'id', 'city'
+    ];
+    protected $primarykey = 'id';
+    // public $incrementing = false;
 }

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class KategoriChild extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'kategori_child';
+    protected $fillable = [
+        'child_id', 'child_name', 'kategori_id'
+    ];
+    protected $primarykey = 'child_id';
+    // public $incrementing = false;
 }

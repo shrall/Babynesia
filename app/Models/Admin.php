@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Admin extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'admin';
+    protected $fillable = [
+        'username',
+        'password',
+        'status',
+    ];
+    protected $primarykey = 'username';
+    public $incrementing = false;
 }

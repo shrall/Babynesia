@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class IndonesiaProvince extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'indonesia_province';
+    protected $fillable = [
+        'id','name'
+    ];
+    protected $primarykey = 'id';
+    // public $incrementing = false;
 }

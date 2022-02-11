@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Webconfig extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'webconfig';
+    protected $fillable = [
+        'name', 'showed_name', 'content', 'urutan', 'admin_status', 'type', 'isHidden'
+    ];
+    protected $primarykey = 'name';
+    public $incrementing = false;
 }

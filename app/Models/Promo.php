@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Promo extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $table = 'promo';
+    protected $fillable = [
+        'promo_kode', 'produk_kode', 'isi'
+    ];
+    protected $primarykey = 'promo_kode';
+    // public $incrementing = false;
 }
