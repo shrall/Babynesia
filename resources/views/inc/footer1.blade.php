@@ -1,10 +1,10 @@
-<footer class="bg-white shadow-sm pt-20">
-    <div class="container mx-auto px-40 flex justify-between">
-        <h1 class="text-center font-concert-one text-4xl mt-3 text-sky-500">
+<footer class="bg-white shadow-sm xl:pt-20 pt-8">
+    <div class="container mx-auto xl:px-40 px-3 xl:flex xl:justify-between">
+        <h1 class="font-concert-one text-4xl mt-3 text-sky-500">
             TokoBayiFiv
         </h1>
-        <div class="flex justify-end">
-            <ul class="mr-24">
+        <div class="flex xl:justify-end flex-wrap mt-5 xl:mt-0">
+            <ul class="mr-24 mb-4">
                 <li class="font-encode-sans font-bold mb-2">
                     TokobayiFiv
                 </li>
@@ -22,7 +22,7 @@
                         about us
                     </a> </li>
             </ul>
-            <ul class="mr-24">
+            <ul class="mr-24 mb-4">
                 <li class="font-encode-sans font-bold mb-2">
                     TokobayiFiv
                 </li>
@@ -58,7 +58,7 @@
             </ul>
         </div>
     </div>
-    <div class="mt-20 pb-10 container mx-auto px-40 flex justify-center">
+    <div class="xl:mt-20 mt-5 pb-10 container mx-auto xl:px-40 flex justify-center">
         <p class="font-encode-sans">
             Copyright © 2021. <span class="font-bold">TokoBayiFiv</span>
         </p>

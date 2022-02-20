@@ -1,5 +1,5 @@
 <nav class="bg-white shadow-sm py-6">
-    <div class="container mx-auto px-40">
+    <div class="container mx-auto xl:px-40 hidden xl:block">
         <div class="flex justify-between items-center">
             <div class="py-3 px-4 rounded-full bg-neutral-100 w-148">
                 <div class="flex justify-between w-full items-center">
@@ -21,8 +21,7 @@
                 <a href="" class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
                     Daftar
                 </a>
-            </div>
-            
+            </div>        
         </div>
         <ul class="mt-4">
             <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-sky-500 text-white font-bold">
@@ -66,5 +65,32 @@
                 </a>
             </li>
         </ul>    
+    </div>
+
+    <div class="xl:hidden px-3">
+        <div class="flex justify-between">
+            <a href="" class="flex items-center">
+                <i class="fas fa-bars text-2xl text-sky-500"></i>
+                <h6 class="ml-2 text-slate-900 font-bold">
+                    Menu
+                </h6>
+            </a>
+            <a href="" class="flex items-center">
+                <i class="fas fa-shopping-cart text-2xl text-sky-500"></i>
+                <h6 class="ml-2 text-slate-900 font-bold">
+                    Cart
+                </h6>
+            </a>
+        </div>
+        <div class="mt-3">
+            <div class="py-3 px-4 rounded-full bg-neutral-100 w-full">
+                <div class="flex justify-between w-full items-center">
+                    <input type="text" placeholder="Search by keyword" class="w-full mr-3 appearance-none font-encode-sans bg-neutral-100 outline-none text-gray-400">
+                    <button type="submit">
+                        <i class="fas fa-search text-gray-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
