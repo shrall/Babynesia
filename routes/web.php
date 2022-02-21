@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\KlasController as AdminKlasController;
 use App\Http\Controllers\Admin\LinkController as AdminLinkController;
 use App\Http\Controllers\Admin\LinkLocationController as AdminLinkLocationController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PaymentArtController as AdminPaymentArtController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Admin\ProdukDestinationCityController as AdminProdukDestinationCityController;
@@ -185,8 +186,9 @@ Route::group([
 
 Route::group([
     // 'middleware' => ['admin'],
-    'prefix' => 'admin', 'as' => 'admin.'
+    'prefix' => 'adminpage', 'as' => 'adminpage.'
 ], function () {
+    Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);

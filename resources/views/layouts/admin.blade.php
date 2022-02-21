@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }} - Admin</title>
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @yield('head')
+</head>
+
+<body class="font-encode-sans text-white">
+    @yield('modals')
+    <div class="w-screen h-full relative">
+        <div class="w-full flex items-center justify-between px-24 py-4 bg-teal-400 text-white">
+            <span class="font-concert-one text-2xl font-bold">Administrator Area</span>
+            <div class="flex items-center justify-evenly gap-x-4">
+                <span class="flex items-center gap-x-2">
+                    <span class="fa fa-fw fa-user-circle text-3xl"></span>
+                    <span class="font-medium">Aria</span>
+                </span>
+                <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer">Log out</div>
+            </div>
+        </div>
+        @yield('content')
+        <div class="w-full flex flex-col items-center px-24 py-2 bg-slate-800 text-white">
+            <div class="w-full flex items-center justify-between">
+                <span class="font-concert-one text-5xl">{{ config('app.name', 'Laravel') }}</span>
+                <div class="flex flex-col gap-y-1">
+                    <span>Kontak Kami</span>
+                    <div class="flex items-center gap-x-2">
+                        <a href="" class="fab fa-whatsapp text-xl hover:text-gray-100"></a>
+                        <a href="" class="fab fa-line text-xl hover:text-gray-100"></a>
+                        <a href="" class="fab fa-instagram text-xl hover:text-gray-100"></a>
+                        <a href="" class="fab fa-facebook text-xl hover:text-gray-100"></a>
+                        <a href="" class="fa fa-envelope text-xl hover:text-gray-100"></a>
+                    </div>
+                </div>
+            </div>
+            <span>Copyright © {{date("Y")}}. <span class="font-bold">{{config('app.name')}}</span></span>
+            <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    @yield('scripts')
+    <script>
+        function openModal(type) {
+            $('#' + type + '-modal').removeClass('hidden').addClass('flex');
+        }
+
+        function closeModal() {
+            $('.modal').removeClass('flex').addClass('hidden');
+        }
+    </script>
+</body>
+
+</html>
