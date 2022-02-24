@@ -9,4 +9,7 @@ class PageController extends Controller
     public function landing_page(){
         return view('user.landingpage');
     }
+    public function list_products(){
+        return view('user.listproducts');
+    }
 }

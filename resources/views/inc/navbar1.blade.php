@@ -1,9 +1,10 @@
 <nav class="bg-white shadow-sm py-6">
     <div class="container mx-auto xl:px-40 hidden xl:block">
         <div class="flex justify-between items-center">
-            <div class="py-3 px-4 rounded-full bg-neutral-100 w-148">
+            <div class="py-3 px-4 rounded-full bg-neutral-100 w-128">
                 <div class="flex justify-between w-full items-center">
-                    <input type="text" placeholder="Search by keyword" class="w-full mr-3 appearance-none font-encode-sans bg-neutral-100 outline-none text-gray-400">
+                    <input type="text" placeholder="Search by keyword"
+                        class="w-full mr-3 appearance-none font-encode-sans bg-neutral-100 outline-none text-gray-400">
                     <button type="submit">
                         <i class="fas fa-search text-gray-400"></i>
                     </button>
@@ -18,10 +19,11 @@
                     <i class="fa fa-shopping-cart size text-4xl text-sky-500"></i>
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Cart</div>
                 </a>
-                <a href="" class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+                <a href=""
+                    class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
                     Daftar
                 </a>
-            </div>        
+            </div>
         </div>
         <ul class="mt-4">
             <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-sky-500 text-white font-bold">
@@ -64,17 +66,20 @@
                     Home
                 </a>
             </li>
-        </ul>    
+        </ul>
     </div>
 
-    <div class="xl:hidden px-3">
+    <div class="xl:hidden sm:px-10 px-3">
         <div class="flex justify-between">
-            <a href="" class="flex items-center">
-                <i class="fas fa-bars text-2xl text-sky-500"></i>
-                <h6 class="ml-2 text-slate-900 font-bold">
-                    Menu
-                </h6>
-            </a>
+            <div>
+                <input type="checkbox" id="menu" class="hidden checked:">
+                <label for="menu" class="flex items-center cursor-pointer">
+                    <i class="fas fa-bars text-2xl text-sky-500"></i>
+                    <h6 class="ml-2 text-slate-900 font-bold">
+                        Menu
+                    </h6>
+                </label>
+            </div>
             <a href="" class="flex items-center">
                 <i class="fas fa-shopping-cart text-2xl text-sky-500"></i>
                 <h6 class="ml-2 text-slate-900 font-bold">
@@ -85,7 +90,8 @@
         <div class="mt-3">
             <div class="py-3 px-4 rounded-full bg-neutral-100 w-full">
                 <div class="flex justify-between w-full items-center">
-                    <input type="text" placeholder="Search by keyword" class="w-full mr-3 appearance-none font-encode-sans bg-neutral-100 outline-none text-gray-400">
+                    <input type="text" placeholder="Search by keyword"
+                        class="w-full mr-3 appearance-none font-encode-sans bg-neutral-100 outline-none text-gray-400">
                     <button type="submit">
                         <i class="fas fa-search text-gray-400"></i>
                     </button>
@@ -94,3 +100,59 @@
         </div>
     </div>
 </nav>
+
+<div class="bgmenu xl:hidden fixed bg-slate-900 h-screen opacity-20 w-full -left-full top-0"></div>
+<div class="transition-all duration-300 menulist xl:hidden sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
+    <div class="bg-sky-500 py-4 w-full">
+        <div class="flex justify-between px-4">
+            <label for="menu" class="flex items-center cursor-pointer">
+                <i class="fas fa-times sm:text-4xl text-3xl text-white"></i>
+            </label>
+            <a href="" class="flex items-center">
+                <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
+                <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">Log In</div>
+            </a>
+            <a href="" class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans rounded-full text-sm sm:text-base">Create Account</a>        
+        </div>
+    </div>
+    <div class="bg-white py-4 px-4 h-full">
+        <a href="">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Home
+            </div>
+        </a>
+        <hr>
+        <a href="">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Home
+            </div>
+        </a>
+        <hr>
+        <a href="">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Home
+            </div>
+        </a>
+        <hr>
+    </div>
+</div>
+
+<script>
+    const checkbox = document.querySelector('#menu');
+    const menulist = document.querySelector('.menulist');
+    const bgmenu = document.querySelector('.bgmenu');
+    
+    checkbox.addEventListener('click', function () {
+        if (checkbox.checked) {
+            menulist.classList.remove('-left-full');
+            menulist.classList.add('left-0');
+            bgmenu.classList.remove('-left-full');
+            bgmenu.classList.add('left-0');
+        }else {
+            menulist.classList.remove('left-0');
+            menulist.classList.add('-left-full');
+            bgmenu.classList.remove('left-0');
+            bgmenu.classList.add('-left-full');
+        }
+    });
+</script>
