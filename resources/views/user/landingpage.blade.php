@@ -2,6 +2,8 @@
 @section('title', 'TokoBayiFiv')
 @section('content')
 
+@include('inc.navbar1')
+
 <div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-5">
         <div class="flex justify-center">
@@ -28,7 +30,7 @@
         </h1>
     </div>
     <div class="mt-5 mb-5">
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-5/6 xl:mx-auto">
             <a href="" class="rounded-lg shadow-sm bg-white">
                 <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
                 <div class="p-4 pb-6">
@@ -117,8 +119,7 @@
         </h1>
     </div>
     <div class="mt-5 mb-5">
-        <div class="grid grid-cols-2 gap-2 xl:grid-cols-3 xl:gap-3 mb-7">
-            {{-- sek gajelas --}}
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 mb-7 xl:w-5/6 xl:mx-auto">
             <a href="" class="rounded-lg shadow-sm bg-white">
                 <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
                 <div class="p-4 pb-6">

@@ -86,13 +86,7 @@
             </div>
         </nav> --}}
 
-        @include('inc.navbar1')
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-
-        @include('inc.footer1')
+        @yield('content')
     </div>
 </body>
 </html>
