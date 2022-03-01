@@ -22,4 +22,7 @@ class PageController extends Controller
     public function administrator_create(){
         return view('admin.settings.administrator_create');
     }
+    public function hit_counter(){
+        return view('admin.settings.hitcounter');
+    }
 }

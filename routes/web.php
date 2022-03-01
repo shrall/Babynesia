@@ -193,6 +193,7 @@ Route::group([
     Route::get('/settings/layoutdesign', [AdminPageController::class, 'layout_design'])->name('layout_design');
     Route::get('/settings/administrator', [AdminPageController::class, 'administrator'])->name('administrator');
     Route::get('/settings/administrator/create', [AdminPageController::class, 'administrator_create'])->name('administrator.create');
+    Route::get('/settings/hitcounter', [AdminPageController::class, 'hit_counter'])->name('hit_counter');
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);
