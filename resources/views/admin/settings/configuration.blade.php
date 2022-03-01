@@ -4,9 +4,9 @@
     <div class="w-full bg-white p-4">
         <span class="font-concert-one text-3xl font-bold">Konfigurasi Website</span>
     </div>
-    <div class="w-full flex flex-col gap-y-4 p-4">
-        <form action="" method="post">
-            @csrf
+    <form action="" method="post">
+        @csrf
+        <div class="w-full flex flex-col gap-y-4 p-4">
             <div class="admin-card">
                 <div class="col-span-5">Paket-ID</div>
                 <div class="col-span-7">: C3</div>
@@ -135,6 +135,6 @@
                     <button type="submit" class="admin-button">Simpan</button>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 @endsection

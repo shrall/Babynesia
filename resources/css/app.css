@@ -17,7 +17,7 @@ input[type=number] {
 }
 
 .admin-card{
-    @apply w-full rounded-md px-4 py-2 grid grid-cols-12 bg-white gap-y-2;
+    @apply w-full rounded-md px-4 py-2 grid grid-cols-12 bg-white gap-2;
 }
 .admin-button{
     @apply bg-lime-500 rounded-full px-4 py-2 text-white hover:bg-lime-600;

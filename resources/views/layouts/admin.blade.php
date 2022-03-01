@@ -59,6 +59,16 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     @yield('scripts')
     <script>
+        var loadFile = function(event, id) {
+            if ($('#' + id)[0].files[0].size > 2097152) {
+                alert("Ukuran gambar tidak bisa melebihi 2 MB!");
+                $('#' + id).val(null);
+            } else {
+                $('#preview-' + id).attr('src', URL.createObjectURL(event.target.files[0]));
+            }
+        };
+    </script>
+    <script>
         function openModal(type) {
             $('#' + type + '-modal').removeClass('hidden').addClass('flex');
         }
