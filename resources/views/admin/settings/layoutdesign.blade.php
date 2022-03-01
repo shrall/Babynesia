@@ -16,7 +16,9 @@
                         <input type="file" name="" id="header-image" class="invisible w-2"
                             onchange="loadFile(event, 'header-image')" accept="image/*" required>
                     </div>
-                    <label for="header-image" class="admin-button w-36 text-center">Upload Header</label>
+                    <div class="flex">
+                        <label for="header-image" class="admin-button">Upload Header</label>
+                    </div>
                 </div>
             </div>
             <div class="admin-card">

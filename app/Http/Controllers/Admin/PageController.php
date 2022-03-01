@@ -16,4 +16,10 @@ class PageController extends Controller
     public function layout_design(){
         return view('admin.settings.layoutdesign');
     }
+    public function administrator(){
+        return view('admin.settings.administrator');
+    }
+    public function administrator_create(){
+        return view('admin.settings.administrator_create');
+    }
 }
