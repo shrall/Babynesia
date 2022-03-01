@@ -10,19 +10,25 @@ class PageController extends Controller
     public function dashboard(){
         return view('admin.index');
     }
-    public function settings_configuration(){
+    public function settingsconfiguration(){
         return view('admin.settings.configuration');
     }
-    public function layout_design(){
+    public function layoutdesign(){
         return view('admin.settings.layoutdesign');
     }
     public function administrator(){
         return view('admin.settings.administrator');
     }
-    public function administrator_create(){
+    public function administratorcreate(){
         return view('admin.settings.administrator_create');
     }
-    public function hit_counter(){
+    public function hitcounter(){
         return view('admin.settings.hitcounter');
+    }
+    public function topvisitor(){
+        return view('admin.settings.topvisitor');
+    }
+    public function topvisitor_detail(){
+        return view('admin.settings.topvisitor_detail');
     }
 }
