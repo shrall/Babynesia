@@ -38,4 +38,10 @@ class PageController extends Controller
     public function tutorial(){
         return view('admin.settings.tutorial');
     }
+    public function advertisement(){
+        return view('admin.content.advertisement');
+    }
+    public function advertisement_create(){
+        return view('admin.content.advertisement_create');
+    }
 }

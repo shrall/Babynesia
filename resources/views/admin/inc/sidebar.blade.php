@@ -7,7 +7,6 @@
         <a href="#" class="hover:text-white">Berita / Artikel</a>
         <a href="#" class="hover:text-white">Buku Tamu</a>
         <a href="#" class="hover:text-white">Layanan</a>
-        <a href="#" class="hover:text-white">Anggota</a>
         <a href="#" class="hover:text-white">Galeri Gambar</a>
         <a href="#" class="hover:text-white">Ongkos Kirim</a>
     </div>
