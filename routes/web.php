@@ -189,7 +189,7 @@ Route::group([
     'prefix' => 'adminpage', 'as' => 'adminpage.'
 ], function () {
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
-    Route::get('/settings/configuration', [AdminPageController::class, 'settingsconfiguration'])->name('settingsconfiguration');
+    Route::get('/settings/configuration', [AdminPageController::class, 'configuration'])->name('configuration');
     Route::get('/settings/layoutdesign', [AdminPageController::class, 'layoutdesign'])->name('layoutdesign');
     Route::get('/settings/administrator', [AdminPageController::class, 'administrator'])->name('administrator');
     Route::get('/settings/administrator/create', [AdminPageController::class, 'administrator_create'])->name('administrator.create');
@@ -198,6 +198,7 @@ Route::group([
     //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
     Route::get('/settings/topvisitor/detail/1', [AdminPageController::class, 'topvisitor_detail'])->name('topvisitor.detail');
     Route::get('/settings/sendmail', [AdminPageController::class, 'sendmail'])->name('sendmail');
+    Route::get('/settings/tutorial', [AdminPageController::class, 'tutorial'])->name('tutorial');
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);

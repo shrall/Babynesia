@@ -10,7 +10,7 @@ class PageController extends Controller
     public function dashboard(){
         return view('admin.index');
     }
-    public function settingsconfiguration(){
+    public function configuration(){
         return view('admin.settings.configuration');
     }
     public function layoutdesign(){
@@ -34,5 +34,8 @@ class PageController extends Controller
     }
     public function sendmail(){
         return view('admin.settings.sendmail');
+    }
+    public function tutorial(){
+        return view('admin.settings.tutorial');
     }
 }

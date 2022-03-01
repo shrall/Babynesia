@@ -29,13 +29,13 @@
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-gear"></span>Pengaturan & Laporan</div>
     <div class="flex flex-col pl-8">
-        <a href="#" class="hover:text-white">Konfigurasi</a>
-        <a href="#" class="hover:text-white">Layout & Design</a>
-        <a href="#" class="hover:text-white">Administrator</a>
-        <a href="#" class="hover:text-white">Hit Counter</a>
-        <a href="#" class="hover:text-white">Top Visitor</a>
-        <a href="#" class="hover:text-white">Send Mail</a>
+        <a href="{{route('adminpage.configuration')}}" class="hover:text-white">Konfigurasi</a>
+        <a href="{{route('adminpage.layoutdesign')}}" class="hover:text-white">Layout & Design</a>
+        <a href="{{route('adminpage.administrator')}}" class="hover:text-white">Administrator</a>
+        <a href="{{route('adminpage.hitcounter')}}" class="hover:text-white">Hit Counter</a>
+        <a href="{{route('adminpage.topvisitor')}}" class="hover:text-white">Top Visitor</a>
+        <a href="{{route('adminpage.sendmail')}}" class="hover:text-white">Send Mail</a>
         <a href="#" class="hover:text-white">Webmail</a>
-        <a href="#" class="hover:text-white">Tutorial</a>
+        <a href="{{route('adminpage.tutorial')}}" class="hover:text-white">Tutorial</a>
     </div>
 </div>

@@ -774,6 +774,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .font-medium{
   font-weight: 500;
 }
+.italic{
+  font-style: italic;
+}
 .leading-7{
   line-height: 1.75rem;
 }
@@ -812,6 +815,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-slate-300{
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
+}
+.text-fuchsia-400{
+  --tw-text-opacity: 1;
+  color: rgb(232 121 249 / var(--tw-text-opacity));
+}
+.text-fuchsia-700{
+  --tw-text-opacity: 1;
+  color: rgb(162 28 175 / var(--tw-text-opacity));
+}
+.text-fuchsia-500{
+  --tw-text-opacity: 1;
+  color: rgb(217 70 239 / var(--tw-text-opacity));
 }
 .underline{
   -webkit-text-decoration-line: underline;
