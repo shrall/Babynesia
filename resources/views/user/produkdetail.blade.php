@@ -57,28 +57,28 @@
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes">
                         <label for="tes"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-sky-500 peer-checked:text-white peer-checked:border-sky-500">
+                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             M-Cream
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes1">
                         <label for="tes1"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-sky-500 peer-checked:text-white peer-checked:border-sky-500">
+                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             XL-Cream
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes2">
                         <label for="tes2"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-sky-500 peer-checked:text-white peer-checked:border-sky-500">
+                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             M-Abu
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes3">
                         <label for="tes3"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-sky-500 peer-checked:text-white peer-checked:border-sky-500">
+                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             XL-Abu
                         </label>
                     </div>
@@ -89,15 +89,15 @@
                     </h6>
                     <div class="flex items-center">
                         <a href="#" type="button">
-                            <i class="fa fa-chevron-left text-md p-1 bg-pink-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-left text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </a>
                         <h6
-                            class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-pink-400 mx-2">
+                            class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
                             1</h6>
                         <input type="hidden">
                         <a href="#" type="button">
-                            <i class="fa fa-chevron-right text-md p-1 bg-pink-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-right text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </a>
                     </div>

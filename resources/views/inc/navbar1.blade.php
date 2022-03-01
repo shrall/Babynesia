@@ -15,7 +15,7 @@
                     <i class="fa fa-user-circle size text-4xl text-sky-500"></i>
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Log In</div>
                 </a>
-                <a href="" class="ml-4 flex items-center">
+                <a href="{{ route('user.cart.index') }}" class="ml-4 flex items-center">
                     <i class="fa fa-shopping-cart size text-4xl text-sky-500"></i>
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Cart</div>
                 </a>
@@ -162,7 +162,7 @@
                     </h6>
                 </label>
             </div>
-            <a href="" class="flex items-center">
+            <a href="{{ route('user.cart.index') }}" class="flex items-center">
                 <i class="fas fa-shopping-cart text-2xl text-sky-500"></i>
                 <h6 class="ml-2 text-slate-900 font-bold">
                     Cart
