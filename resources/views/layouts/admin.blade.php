@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     @yield('head')
 </head>
 
@@ -23,7 +27,8 @@
     @yield('modals')
     <div class="w-screen h-full relative">
         <div class="w-full flex items-center justify-between px-24 py-4 bg-teal-400 text-white">
-            <a href="{{route('adminpage.dashboard')}}" class="font-concert-one text-2xl font-bold">Administrator Area</a>
+            <a href="{{ route('adminpage.dashboard') }}" class="font-concert-one text-2xl font-bold">Administrator
+                Area</a>
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
                     <span class="fa fa-fw fa-user-circle text-3xl"></span>
@@ -56,7 +61,6 @@
             <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     @yield('scripts')
     <script>
         var loadFile = function(event, id) {

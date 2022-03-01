@@ -197,6 +197,7 @@ Route::group([
     Route::get('/settings/topvisitor', [AdminPageController::class, 'topvisitor'])->name('topvisitor');
     //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
     Route::get('/settings/topvisitor/detail/1', [AdminPageController::class, 'topvisitor_detail'])->name('topvisitor.detail');
+    Route::get('/settings/sendmail', [AdminPageController::class, 'sendmail'])->name('sendmail');
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);

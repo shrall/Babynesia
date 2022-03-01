@@ -28,7 +28,11 @@ class PageController extends Controller
     public function topvisitor(){
         return view('admin.settings.topvisitor');
     }
+    //@marshall ini nanti ada parameternya Model $model trus di compact ke view
     public function topvisitor_detail(){
         return view('admin.settings.topvisitor_detail');
+    }
+    public function sendmail(){
+        return view('admin.settings.sendmail');
     }
 }
