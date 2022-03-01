@@ -23,7 +23,7 @@
     @yield('modals')
     <div class="w-screen h-full relative">
         <div class="w-full flex items-center justify-between px-24 py-4 bg-teal-400 text-white">
-            <span class="font-concert-one text-2xl font-bold">Administrator Area</span>
+            <a href="{{route('adminpage.dashboard')}}" class="font-concert-one text-2xl font-bold">Administrator Area</a>
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
                     <span class="fa fa-fw fa-user-circle text-3xl"></span>
@@ -32,7 +32,12 @@
                 <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer">Log out</div>
             </div>
         </div>
-        @yield('content')
+        <div class="w-full grid grid-cols-9">
+            @include('admin.inc.sidebar')
+            <div class="col-span-7 px-1 py-2 text-black bg-slate-100">
+                @yield('content')
+            </div>
+        </div>
         <div class="w-full flex flex-col items-center px-24 py-2 bg-slate-800 text-white">
             <div class="w-full flex items-center justify-between">
                 <span class="font-concert-one text-5xl">{{ config('app.name', 'Laravel') }}</span>
@@ -47,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <span>Copyright © {{date("Y")}}. <span class="font-bold">{{config('app.name')}}</span></span>
+            <span>Copyright © {{ date('Y') }}. <span class="font-bold">{{ config('app.name') }}</span></span>
             <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>
         </div>
     </div>

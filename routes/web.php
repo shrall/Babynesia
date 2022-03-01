@@ -189,6 +189,7 @@ Route::group([
     'prefix' => 'adminpage', 'as' => 'adminpage.'
 ], function () {
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/settings/configuration', [AdminPageController::class, 'settings_configuration'])->name('settings_configuration');
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);
