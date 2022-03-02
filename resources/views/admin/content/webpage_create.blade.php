@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Tambah Halaman</span>
+        <span class="font-concert-one text-3xl font-bold">Tambah Halaman Samping</span>
     </div>
     <form action="" method="post">
         @csrf
@@ -11,26 +11,18 @@
             <div class="col-span-9 flex items-center gap-x-2">:
                 <input type="text" name="" id="" class="bg-gray-200">
             </div>
-            <div class="col-span-3">Judul</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="text" name="" id="" class="bg-gray-200">
-            </div>
-            <div class="col-span-3">Lokasi</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
-                <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-1">
-                    <label for="radio-1">Samping Kiri Halaman</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-2">
-                    <label for="radio-2">Samping Kanan Halaman</label>
-                </div>
-            </div>
             <div class="col-span-3">Urutan</div>
             <div class="col-span-9 flex items-center gap-x-2">:
                 <input type="number" name="" id="" class="bg-gray-200">
             </div>
-            <div class="col-span-3">Sembunyikan</div>
+            <div class="col-span-3">Tampilkan di</div>
+            <div class="col-span-9 gap-x-2">:
+                <select name="" id="" class="bg-gray-200">
+                    <option value="1">Halaman A</option>
+                    <option value="2">Halaman B</option>
+                </select>
+            </div>
+            <div class="col-span-3">Buka di Window Baru</div>
             <div class="col-span-9 flex items-center gap-x-2">:
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-3">
@@ -39,17 +31,6 @@
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-4">
                     <label for="radio-4">Tidak</label>
-                </div>
-            </div>
-            <div class="col-span-3">Bisa Diubah</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
-                <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-5">
-                    <label for="radio-5">Ya</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-6">
-                    <label for="radio-6">Tidak</label>
                 </div>
             </div>
             <div class="col-span-3">Isi</div>

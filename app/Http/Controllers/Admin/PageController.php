@@ -44,6 +44,12 @@ class PageController extends Controller
     public function advertisement_create(){
         return view('admin.content.advertisement_create');
     }
+    public function webpage(){
+        return view('admin.content.webpage');
+    }
+    public function webpage_create(){
+        return view('admin.content.webpage_create');
+    }
     public function sidearea(){
         return view('admin.content.sidearea');
     }
