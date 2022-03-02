@@ -28,7 +28,7 @@
             </div>
             <div class="col-span-3 type-image">Gambar</div>
             <div class="col-span-9 flex items-center gap-x-2 type-image">:
-                <label for="ad-image" class="admin-button">Upload Header</label>
+                <label for="ad-image" class="admin-button">Upload Gambar</label>
             </div>
             <div class="col-span-12 flex flex-col gap-y-2 type-image">
                 <div class="flex">

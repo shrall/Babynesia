@@ -217,6 +217,11 @@ Route::group([
     Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
     //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
     Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
+    Route::get('/shop/category', [AdminPageController::class, 'category'])->name('category');
+    Route::get('/shop/category/create', [AdminPageController::class, 'category_create'])->name('category.create');
+    Route::get('/shop/subcategory/create', [AdminPageController::class, 'subcategory_create'])->name('subcategory.create');
+    Route::get('/shop/brand', [AdminPageController::class, 'brand'])->name('brands');
+    Route::get('/shop/brand/create', [AdminPageController::class, 'brand_create'])->name('brands.create');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
