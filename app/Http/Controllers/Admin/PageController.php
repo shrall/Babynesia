@@ -107,6 +107,9 @@ class PageController extends Controller
     public function product_create(){
         return view('admin.shop.product_create');
     }
+    public function product_detail(){
+        return view('admin.shop.product_detail');
+    }
     public function sales(){
         return view('admin.shop.sales');
     }
