@@ -1,13 +1,12 @@
 <div class="col-span-2 bg-slate-900 text-slate-300 flex flex-col gap-y-2 p-4">
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-list"></span>Konten Web</div>
     <div class="flex flex-col pl-8">
-        <a href="#" class="hover:text-white">Iklan Utama</a>
-        <a href="#" class="hover:text-white">Halaman Web</a>
-        <a href="#" class="hover:text-white">Halaman Samping</a>
-        <a href="#" class="hover:text-white">Berita / Artikel</a>
-        <a href="#" class="hover:text-white">Buku Tamu</a>
-        <a href="#" class="hover:text-white">Layanan</a>
-        <a href="#" class="hover:text-white">Galeri Gambar</a>
+        <a href="{{route('adminpage.advertisement')}}" class="hover:text-white">Iklan Utama</a>
+        <a href="{{route('adminpage.webpage')}}" class="hover:text-white">Halaman Web</a>
+        <a href="{{route('adminpage.sidearea')}}" class="hover:text-white">Halaman Samping</a>
+        <a href="{{route('adminpage.article')}}" class="hover:text-white">Berita / Artikel</a>
+        <a href="{{route('adminpage.guestbooks')}}" class="hover:text-white">Buku Tamu</a>
+        <a href="{{route('adminpage.gallery')}}" class="hover:text-white">Galeri Gambar</a>
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-shopping-cart"></span>Toko</div>
     <div class="flex flex-col pl-8">
