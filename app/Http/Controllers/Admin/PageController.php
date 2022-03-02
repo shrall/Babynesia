@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -75,7 +76,8 @@ class PageController extends Controller
         return view('admin.content.gallery_create');
     }
     public function member(){
-        return view('admin.shop.member');
+        $users = User::all();
+        return view('admin.shop.member', compact('users'));
     }
     public function member_create(){
         return view('admin.shop.member_create');
@@ -104,5 +106,11 @@ class PageController extends Controller
     }
     public function product_create(){
         return view('admin.shop.product_create');
+    }
+    public function sales(){
+        return view('admin.shop.sales');
+    }
+    public function profit(){
+        return view('admin.shop.profit');
     }
 }
