@@ -14,7 +14,7 @@ class DetailFakturController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.invoice');
     }
 
     /**
@@ -46,7 +46,7 @@ class DetailFakturController extends Controller
      */
     public function show(DetailFaktur $detailFaktur)
     {
-        //
+        return view('user.invoice');
     }
 
     /**

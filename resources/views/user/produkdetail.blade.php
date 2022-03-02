@@ -134,7 +134,7 @@
 
                         </div>
                         <textarea name="" id="" cols="20"
-                            class="border-sky-500 border-2 appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
+                            class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
                     </div>
                     <button type="submit"
                         class="mt-5 bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">

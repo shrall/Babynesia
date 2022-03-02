@@ -25,26 +25,25 @@
                 </div>
 
                 <input id="email" type="email"
-                    class="appearance-none border-2 p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
+                    class="appearance-none border p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
             </div>
-
             <div class="mt-4">
                 <div> <label for="password"
                         class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Password') }}</label>
                 </div>
                 <input id="password" type="password"
-                    class="appearance-none border-2 p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
                     name="password" required autocomplete="new-password">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -52,14 +51,14 @@
             </div>
             <div class="mt-4">
                 <div> <label for="password-confirm"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Password') }}</label>
+                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Confirm Password') }}</label>
                 </div>
                 <input id="password-confirm" type="password"
-                    class="appearance-none border-2 p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
-                    name="password-confirmation" required autocomplete="new-password">
+                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    name="password_confirmation" required autocomplete="new-password">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -74,7 +73,7 @@
                 <div class="w-full">
                     <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">Name</label>
                     </div>
-                    <input id="name" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                    <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                         name="name">
 
                 </div>
@@ -83,60 +82,63 @@
                             First Name</label>
                     </div>
                     <input id="last-name" type="text"
-                        class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="lastname">
+                        class="appearance-none border p-1 w-full rounded-md border-sky-500" name="lastname">
                 </div>
             </div>
             <div class="mt-4">
                 <div> <label for="address" class="text-sm sm:text-base font-encode-sans text-slate-900">Address</label>
                 </div>
-                <textarea id="address" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                <textarea id="address" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                     name="alamat"></textarea>
             </div>
             <div class="mt-4">
                 <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                 </div>
-                <input id="city" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                     name="kota">
             </div>
             <div class="mt-4">
-                <div> <label for="postcode" class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
+                <div> <label for="postcode"
+                        class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
                 </div>
-                <input id="postcode" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                <input id="postcode" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                     name="kodepos">
             </div>
             <div class="mt-4">
                 <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
-                <select id="country" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
-                    name="kodepos">
+                <select id="country" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                    name="negara">
                     <option value="Indonesia">Indonesia</option>
                 </select>
             </div>
             <div class="mt-4">
-                <div> <label for="provinsi-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi</label>
+                <div> <label for="provinsi-indo"
+                        class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi</label>
                 </div>
-                <select id="provinsi-indo" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                <select id="provinsi-indo" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                     name="propinsi">
                     <option value="Indonesia"> Indonesia</option>
                 </select>
             </div>
             <div class="mt-4">
-                <div> <label for="provinsi-notindo" class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
+                <div> <label for="provinsi-notindo"
+                        class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
                 </div>
-                <input id="provinsi-notindo" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
-                    name="kodepos">
+                <input id="provinsi-notindo" type="text"
+                    class="appearance-none border p-1 w-full rounded-md border-sky-500" name="kodepos">
             </div>
             <div class="mt-4">
                 <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
                 </div>
-                <input id="phone" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                <input id="phone" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                     name="telp">
             </div>
             <div class="mt-4">
                 <div> <label for="mobile" class="text-sm sm:text-base font-encode-sans text-slate-900">Mobile</label>
                 </div>
-                <input id="mobile" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
-                    name="kodepos">
+                <input id="mobile" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                    name="hp">
             </div>
 
             <div class="mt-7 text-center">
@@ -162,79 +164,76 @@
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+<div class="card-body">
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+        <div class="row mb-3">
+            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <div class="col-md-6">
+                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
+                    value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password"
-                                    class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
-
-                                @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm"
-                                class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control"
-                                    name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
         </div>
-    </div>
+
+        <div class="row mb-3">
+            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+            <div class="col-md-6">
+                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                    value="{{ old('email') }}" required autocomplete="email">
+
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+            <div class="col-md-6">
+                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                    name="password" required autocomplete="new-password">
+
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="password-confirm"
+                class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+            <div class="col-md-6">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
+                    autocomplete="new-password">
+            </div>
+        </div>
+
+        <div class="row mb-0">
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">
+                    {{ __('Register') }}
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
 </div> --}}
 @endsection

@@ -11,23 +11,39 @@
                 </div>
             </div>
             <div class="flex items-center">
+                @if (Auth::check())
+                <a href="{{ route('user.user.index') }}" class=" ml-8 flex items-center">
+                    <i class="fa fa-user-circle size text-4xl text-sky-500"></i>
+                    <div class="mx-3 font-encode-sans font-bold text-slate-900">{{ Auth::user()->name }}</div>
+                </a>
+                @else
                 <a href="{{ route('login') }}" class=" ml-8 flex items-center">
                     <i class="fa fa-user-circle size text-4xl text-sky-500"></i>
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Log In</div>
                 </a>
+                @endif
                 <a href="{{ route('user.cart.index') }}" class="ml-4 flex items-center">
                     <i class="fa fa-shopping-cart size text-4xl text-sky-500"></i>
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Cart</div>
                 </a>
+                @if (Auth::check())
+                <a href="{{ route('register') }}"
+                    class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+                    Tracking
+                </a>
+
+                @else
                 <a href="{{ route('register') }}"
                     class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
                     Daftar
                 </a>
+
+                @endif
             </div>
         </div>
         <ul class="mt-4">
             <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-sky-500 text-white font-bold">
-                <a href="" aria-expanded="true">
+                <a href="/" aria-expanded="true">
                     Home
                 </a>
             </li>
@@ -38,21 +54,16 @@
             </li>
             <li class="ml-4 inline-block font-encode-sans">
                 <a href="" aria-expanded="true">
-                    Tracking
-                </a>
-            </li>
-            <li class="ml-4 inline-block font-encode-sans">
-                <a href="" aria-expanded="true">
                     FAQ
                 </a>
             </li>
             <li class="ml-4 inline-block font-encode-sans">
-                <a href="" aria-expanded="true">
+                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
             <li class="ml-4 inline-block font-encode-sans">
-                <a href="" aria-expanded="true">
+                <a href="{{ route('user.guestbook.create') }}" aria-expanded="true">
                     Guestbook
                 </a>
             </li>
@@ -61,7 +72,8 @@
                     Kategori
                 </div>
             </li>
-            <div class="invisible peer-hover:visible hover:visible pt-0 pb-6 mt-5 absolute left-0 bg-white w-full mx-auto xl:px-40">
+            <div
+                class="invisible peer-hover:visible hover:visible pt-0 pb-6 mt-5 absolute left-0 bg-white w-full mx-auto xl:px-40">
                 <div class="flex justify-between">
                     <ul>
                         <li class="my-1">
@@ -148,7 +160,7 @@
             </div>
         </ul>
 
-        
+
     </div>
 
     <div class="xl:hidden sm:px-10 px-3">
@@ -192,15 +204,23 @@
             <label for="menu" class="flex items-center cursor-pointer">
                 <i class="fas fa-times sm:text-4xl text-3xl text-white"></i>
             </label>
+            @if (Auth::checK())
+            <a href="{{ route('user.user.index') }}" class="flex items-center">
+                <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
+                <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">{{ Auth::user()->name }}</div>
+            </a>
+            @else
             <a href="{{ route('login') }}" class="flex items-center">
                 <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
                 <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">Log In</div>
             </a>
-            <a href="" class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans rounded-full text-sm sm:text-base">Create Account</a>        
+            @endif
+            <a href="{{ route('register') }}"
+                class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans rounded-full text-sm sm:text-base">Tracking</a>
         </div>
     </div>
     <div class="bg-white py-4 px-4 h-full">
-        <a href="">
+        <a href="/">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
                 Home
             </div>
@@ -208,13 +228,31 @@
         <hr>
         <a href="">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
-                Home
+                About
             </div>
         </a>
         <hr>
         <a href="">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
-                Home
+                FAQ
+            </div>
+        </a>
+        <hr>
+        <a href="{{ route('user.guestbook.index') }}">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Contact
+            </div>
+        </a>
+        <hr>
+        <a href="{{ route('user.guestbook.create') }}">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Guestbook
+            </div>
+        </a>
+        <hr>
+        <a href="">
+            <div class="my-3 font-encode-sans font-bold text-slate-900">
+                Kategori
             </div>
         </a>
         <hr>
@@ -225,18 +263,19 @@
     const checkbox = document.querySelector('#menu');
     const menulist = document.querySelector('.menulist');
     const bgmenu = document.querySelector('.bgmenu');
-    
+
     checkbox.addEventListener('click', function () {
         if (checkbox.checked) {
             menulist.classList.remove('-left-full');
             menulist.classList.add('left-0');
             bgmenu.classList.remove('-left-full');
             bgmenu.classList.add('left-0');
-        }else {
+        } else {
             menulist.classList.remove('left-0');
             menulist.classList.add('-left-full');
             bgmenu.classList.remove('left-0');
             bgmenu.classList.add('-left-full');
         }
     });
+
 </script>

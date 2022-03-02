@@ -14,7 +14,7 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.contact');
     }
 
     /**
@@ -24,7 +24,7 @@ class GuestbookController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.guestbook');
     }
 
     /**

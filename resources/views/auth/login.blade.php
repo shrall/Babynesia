@@ -17,11 +17,11 @@
                 </div>
 
                 <input id="email" type="email"
-                    class="appearance-none border-2 p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
+                    class="appearance-none border p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback font-encode-sans font-normal text-red-500 text-sm sm:text-base" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -31,11 +31,11 @@
                 <div> <label for="password" class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Password') }}</label>
                 </div>
                 <input id="password" type="password"
-                    class="appearance-none border-2 p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback font-encode-sans font-normal text-red-500 text-sm sm:text-base" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror

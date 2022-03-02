@@ -186,7 +186,7 @@
             </div>
         </div>
     </div>
-    <form action="" method="post">
+    <form action="{{ route('user.receiver.create') }}" method="get">
         <div class="xl:flex xl:items-center">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-5 xl:w-8/10">
 
