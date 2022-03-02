@@ -20,6 +20,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!--Regular Datatables CSS-->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
+    <!--Datatables -->
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     @yield('head')
 </head>
 
@@ -61,6 +67,7 @@
             <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>
         </div>
     </div>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     @yield('scripts')
     <script>
         var loadFile = function(event, id) {

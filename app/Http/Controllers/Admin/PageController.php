@@ -74,4 +74,14 @@ class PageController extends Controller
     public function gallery_create(){
         return view('admin.content.gallery_create');
     }
+    public function member(){
+        return view('admin.shop.member');
+    }
+    public function member_create(){
+        return view('admin.shop.member_create');
+    }
+    //@marshall ini nanti ada parameternya Model $model trus di compact ke view. harusnya user
+    public function member_detail(){
+        return view('admin.shop.member_detail');
+    }
 }

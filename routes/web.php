@@ -213,6 +213,11 @@ Route::group([
     Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
     Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
 
+    Route::get('/shop/member', [AdminPageController::class, 'member'])->name('member');
+    Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
+    //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
+    Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
+
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);

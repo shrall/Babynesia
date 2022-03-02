@@ -10,19 +10,18 @@
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-shopping-cart"></span>Toko</div>
     <div class="flex flex-col pl-8">
-        <a href="#" class="hover:text-white">Member List</a>
-        <a href="#" class="hover:text-white">Delivery Cost</a>
-        <a href="#" class="hover:text-white">Product Category & Sub</a>
-        <a href="#" class="hover:text-white">Product Brand</a>
-        <a href="#" class="hover:text-white">Product</a>
-        <a href="#" class="hover:text-white">Product On Sale</a>
-        <a href="#" class="hover:text-white">Product Complimentary</a>
-        <a href="#" class="hover:text-white">Product Restock</a>
-        <a href="#" class="hover:text-white">Product Sold Out</a>
-        <a href="#" class="hover:text-white">Product Non-Active</a>
-        <a href="#" class="hover:text-white">Discount Coupon</a>
-        <a href="#" class="hover:text-white">Sales Report</a>
-        <a href="#" class="hover:text-white">Profit Report</a>
+        <a href="#" class="hover:text-white">Daftar Member</a>
+        <a href="#" class="hover:text-white">Kategori Produk</a>
+        <a href="#" class="hover:text-white">Merk Produk</a>
+        <a href="#" class="hover:text-white">Produk</a>
+        <a href="#" class="hover:text-white">Produk Promo</a>
+        <a href="#" class="hover:text-white">Produk Pelengkap</a>
+        <a href="#" class="hover:text-white">Produk Restock</a>
+        <a href="#" class="hover:text-white">Produk Sold Out</a>
+        <a href="#" class="hover:text-white">Produk Non-Aktif</a>
+        <a href="#" class="hover:text-white">Kupon Diskon</a>
+        <a href="#" class="hover:text-white">Laporan Penjualan</a>
+        <a href="#" class="hover:text-white">Laporan Keuntungan</a>
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-gear"></span>Pengaturan & Laporan</div>
     <div class="flex flex-col pl-8">
