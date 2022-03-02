@@ -47,7 +47,7 @@
             </div>
             <div class="col-span-3 status-2 hidden"></div>
             <div class="col-span-3 status-2 hidden">Tampilkan dari tanggal:</div>
-            <div class="col-span-6 flex items-center gap-2 status-2 hidden">
+            <div class="col-span-6 items-center gap-2 status-2 hidden">
                 <select name="day" id="" class="bg-gray-200">
                     @for ($i = 1; $i <= 31; $i++)
                         <option value={{ $i }}>{{ $i }}</option>
@@ -68,7 +68,7 @@
             </div>
             <div class="col-span-3 status-2 hidden"></div>
             <div class="col-span-3 status-2 hidden">Tampilkan hingga tanggal:</div>
-            <div class="col-span-6 flex items-center gap-2 status-2 hidden">
+            <div class="col-span-6 items-center gap-2 status-2 hidden">
                 <select name="day" id="" class="bg-gray-200">
                     @for ($i = 1; $i <= 31; $i++)
                         <option value={{ $i }}>{{ $i }}</option>

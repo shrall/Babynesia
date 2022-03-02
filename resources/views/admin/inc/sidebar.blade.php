@@ -8,7 +8,6 @@
         <a href="#" class="hover:text-white">Buku Tamu</a>
         <a href="#" class="hover:text-white">Layanan</a>
         <a href="#" class="hover:text-white">Galeri Gambar</a>
-        <a href="#" class="hover:text-white">Ongkos Kirim</a>
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-shopping-cart"></span>Toko</div>
     <div class="flex flex-col pl-8">

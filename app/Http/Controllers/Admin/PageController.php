@@ -56,4 +56,22 @@ class PageController extends Controller
     public function sidearea_create(){
         return view('admin.content.sidearea_create');
     }
+    public function article(){
+        return view('admin.content.article');
+    }
+    public function article_create(){
+        return view('admin.content.article_create');
+    }
+    public function guestbook(){
+        return view('admin.content.guestbook');
+    }
+    public function guestbook_create(){
+        return view('admin.content.guestbook_create');
+    }
+    public function gallery(){
+        return view('admin.content.gallery');
+    }
+    public function gallery_create(){
+        return view('admin.content.gallery_create');
+    }
 }
