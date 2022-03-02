@@ -11,7 +11,7 @@
             <div class="col-span-9 flex items-center gap-x-2">:
                 <input type="text" name="" id="" class="bg-gray-200">
             </div>
-            <div class="col-span-3">Username</div>
+            <div class="col-span-3">Tipe</div>
             <div class="col-span-9 flex items-center gap-x-2">:
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-1">
