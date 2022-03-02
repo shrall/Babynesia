@@ -40,7 +40,7 @@
                 <textarea type="text" name="content" id="input-content" class="bg-gray-200"></textarea>
             </div>
             <div class="col-span-12 text-center">
-                <button type="submit" class="admin-button">Simpan</button>
+                <button type="submit" class="admin-button">Kirim</button>
             </div>
         </div>
     </form>

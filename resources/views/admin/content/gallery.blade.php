@@ -23,20 +23,22 @@
                     <tbody>
                         <tr>
                             <td>Info 1</td>
-                            <td><img src="{{asset('svg/images.svg')}}" alt="" srcset=""></td>
-                            <td>{{asset('svg/images.svg')}}</td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-edit"></span>
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-gallery-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-times"></span>
-                                </a>
-                                <form action="#" id="delete-gallery-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td><img src="{{ asset('svg/images.svg') }}" alt="" srcset=""></td>
+                            <td>{{ asset('svg/images.svg') }}</td>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-edit"></span>
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-gallery-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-times"></span>
+                                    </a>
+                                    <form action="#" id="delete-gallery-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>
@@ -55,5 +57,3 @@
         });
     </script>
 @endsection
-
-

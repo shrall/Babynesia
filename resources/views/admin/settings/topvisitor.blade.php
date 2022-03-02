@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full bg-white p-4 flex items-center justify-between">
         <div class="flex flex-col gap-1">
-            <span class="font-concert-one text-3xl font-bold">Top 100 Visitor ({{date('M Y')}})</span>
+            <span class="font-concert-one text-3xl font-bold">Top 100 Visitor ({{ date('M Y') }})</span>
         </div>
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
@@ -34,18 +34,20 @@
                                     Detail
                                 </a>
                             </td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    View
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-user-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    Delete
-                                </a>
-                                <form action="#" id="delete-user-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        View
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-user-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        Delete
+                                    </a>
+                                    <form action="#" id="delete-user-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>
@@ -64,5 +66,3 @@
         });
     </script>
 @endsection
-
-

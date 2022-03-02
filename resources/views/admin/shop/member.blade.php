@@ -29,21 +29,23 @@
                             <td>Andi Sujono</td>
                             <td>andisujono@gmail.com</td>
                             <td>Kota Surabaya</td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-eye"></span>
-                                </a>
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-edit"></span>
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-member-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-times"></span>
-                                </a>
-                                <form action="#" id="delete-member-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-eye"></span>
+                                    </a>
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-edit"></span>
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-member-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-times"></span>
+                                    </a>
+                                    <form action="#" id="delete-member-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>

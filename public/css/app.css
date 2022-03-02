@@ -535,11 +535,20 @@ Ensure the default browser behavior of the `hidden` attribute.
 .grid-cols-9{
   grid-template-columns: repeat(9, minmax(0, 1fr));
 }
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
 .flex-col{
   flex-direction: column;
 }
 .items-center{
   align-items: center;
+}
+.justify-end{
+  justify-content: flex-end;
 }
 .justify-center{
   justify-content: center;
@@ -572,6 +581,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .gap-y-2{
   row-gap: 0.5rem;
+}
+.gap-x-8{
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
 .overflow-hidden{
   overflow: hidden;
@@ -730,6 +743,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-left: 3rem;
   padding-right: 3rem;
 }
+.px-2{
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 .pt-8{
   padding-top: 2rem;
 }
@@ -738,6 +755,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .text-center{
   text-align: center;
+}
+.text-right{
+  text-align: right;
 }
 .align-baseline{
   vertical-align: baseline;
@@ -771,6 +791,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-xl{
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-xs{
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .font-semibold{
   font-weight: 600;
@@ -1081,8 +1105,8 @@ table.dataTable.display tbody tr:hover {
 table.dataTable.no-footer {
     border-bottom: 1px solid #e2e8f0;
     /*border-b-1 border-gray-300*/
-    margin-top: 0.75em;
-    margin-bottom: 0.75em;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 /*Change colour of responsive icon*/

@@ -26,18 +26,20 @@
                         <tr>
                             <td>Fashion and Clothes</td>
                             <td>Girl</td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-edit"></span>
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-kategori-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-times"></span>
-                                </a>
-                                <form action="#" id="delete-kategori-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-edit"></span>
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-kategori-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-times"></span>
+                                    </a>
+                                    <form action="#" id="delete-kategori-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>

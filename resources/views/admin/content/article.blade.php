@@ -29,18 +29,20 @@
                                 www.BabaWeb.biz. Donec sed odio dui. Vestibulum id ligula porta felis euismod semper. Fusce
                                 dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh</td>
                             <td>2022-02-13</td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-edit"></span>
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-article-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-times"></span>
-                                </a>
-                                <form action="#" id="delete-article-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-edit"></span>
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-article-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-times"></span>
+                                    </a>
+                                    <form action="#" id="delete-article-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>
@@ -59,5 +61,3 @@
         });
     </script>
 @endsection
-
-

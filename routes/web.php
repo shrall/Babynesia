@@ -222,6 +222,8 @@ Route::group([
     Route::get('/shop/subcategory/create', [AdminPageController::class, 'subcategory_create'])->name('subcategory.create');
     Route::get('/shop/brand', [AdminPageController::class, 'brand'])->name('brands');
     Route::get('/shop/brand/create', [AdminPageController::class, 'brand_create'])->name('brands.create');
+    Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
+    Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);

@@ -67,7 +67,7 @@
                             <td>Rp. 12.000</td>
                             <td>Rp. 637.000</td>
                             <td>BCA: 8620.101.070</td>
-                            <td class="flex items-center justify-center gap-2">
+                            <td><div class="flex items-center justify-center gap-2">
                                 <a target="blank" href="#" class="admin-button cursor-pointer">
                                     <span class="fa fa-fw fa-eye"></span>
                                 </a>

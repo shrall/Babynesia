@@ -28,21 +28,23 @@
                         <tr>
                             <td>1</td>
                             <td>Girl</td>
-                            <td><img src="{{asset('svg/images.svg')}}" class="h-24"></td>
+                            <td><img src="{{ asset('svg/images.svg') }}" class="h-24"></td>
                             <td></td>
                             <td><span class="fa fa-fw fa-circle text-red-500"></span></td>
-                            <td class="flex items-center justify-center gap-2">
-                                <a target="blank" href="#" class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-edit"></span>
-                                </a>
-                                <a onclick="event.preventDefault(); document.getElementById('delete-brand-form').submit();"
-                                    class="admin-button cursor-pointer">
-                                    <span class="fa fa-fw fa-times"></span>
-                                </a>
-                                <form action="#" id="delete-brand-form" method="post">
-                                    @csrf
-                                    <input name="_method" type="hidden" value="DELETE">
-                                </form>
+                            <td>
+                                <div class="flex items-center justify-center gap-2">
+                                    <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-edit"></span>
+                                    </a>
+                                    <a onclick="event.preventDefault(); document.getElementById('delete-brand-form').submit();"
+                                        class="admin-button cursor-pointer">
+                                        <span class="fa fa-fw fa-times"></span>
+                                    </a>
+                                    <form action="#" id="delete-brand-form" method="post">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                    </form>
+                                </div>
                             </td>
                     </tbody>
                 </table>
