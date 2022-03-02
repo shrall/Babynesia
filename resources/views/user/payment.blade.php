@@ -28,8 +28,10 @@
                                 </h6>
                                 <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                     142.000.7984.502
-                                    <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
+                                    <a href="#">
+                                        <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
                                         aria-hidden="true"></i>
+                                    </a>
                                 </p>
                             </div>
                         </li>
@@ -40,8 +42,10 @@
                                 </h6>
                                 <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                     8620.101.070
-                                    <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
+                                    <a href="#">
+                                        <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
                                         aria-hidden="true"></i>
+                                    </a>
                                 </p>
                             </div>
                         </li>

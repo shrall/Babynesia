@@ -27,7 +27,7 @@
                     <div class="mx-3 font-encode-sans font-bold text-slate-900">Cart</div>
                 </a>
                 @if (Auth::check())
-                <a href="{{ route('register') }}"
+                <a href="{{ route('user.faktur.index') }}"
                     class="ml-4 border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
                     Tracking
                 </a>
@@ -215,7 +215,7 @@
                 <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">Log In</div>
             </a>
             @endif
-            <a href="{{ route('register') }}"
+            <a href="{{ route('user.faktur.index') }}"
                 class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans rounded-full text-sm sm:text-base">Tracking</a>
         </div>
     </div>

@@ -14,7 +14,7 @@ class FakturController extends Controller
      */
     public function index()
     {
-        //
+        return view('user.tracking');
     }
 
     /**

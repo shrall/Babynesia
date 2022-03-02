@@ -124,7 +124,7 @@
                             Add to Cart
                         </h1>
                         <a href="#" type="button" class="appearance-none" id="close-modal">
-                            <i class="fa fa-times text-3xl text-rose-600" aria-hidden="true"></i>
+                            <i class="fa fa-times text-3xl text-red-500" aria-hidden="true"></i>
                         </a>
                     </div>
                     <div class="mt-4">
