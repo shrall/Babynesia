@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container h-screen sm:flex sm:justify-center sm:items-center px-3 pt-4">
+<div class="h-screen sm:flex sm:justify-center sm:items-center px-3 pt-4">
     <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
         <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-sky-500">TokoBayiFiv Login</h1>
         <p class="text-gray-400 font-encode-sans text-sm sm:text-base text-center">
