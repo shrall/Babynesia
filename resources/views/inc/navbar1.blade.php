@@ -53,7 +53,7 @@
                 </a>
             </li>
             <li class="ml-4 inline-block font-encode-sans">
-                <a href="" aria-expanded="true">
+                <a href="{{ route('user.faq.index') }}" aria-expanded="true">
                     FAQ
                 </a>
             </li>
@@ -73,7 +73,7 @@
                 </div>
             </li>
             <div
-                class="invisible peer-hover:visible hover:visible pt-0 pb-6 mt-5 absolute left-0 bg-white w-full mx-auto xl:px-40">
+                class="invisible peer-hover:visible hover:visible pt-0 pb-6 mt-5 absolute left-0 top-24 bg-white w-full mx-auto xl:px-40">
                 <div class="flex justify-between">
                     <ul>
                         <li class="my-1">
@@ -232,7 +232,7 @@
             </div>
         </a>
         <hr>
-        <a href="">
+        <a href="{{ route('user.faq.index') }}">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
                 FAQ
             </div>

@@ -413,6 +413,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .left-0{
   left: 0px;
 }
+.top-24{
+  top: 6rem;
+}
 .-left-full{
   left: -100%;
 }
@@ -427,6 +430,24 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .col-span-3{
   grid-column: span 3 / span 3;
+}
+.col-span-4{
+  grid-column: span 4 / span 4;
+}
+.col-span-5{
+  grid-column: span 5 / span 5;
+}
+.col-span-7{
+  grid-column: span 7 / span 7;
+}
+.col-span-8{
+  grid-column: span 8 / span 8;
+}
+.col-span-11{
+  grid-column: span 11 / span 11;
+}
+.col-span-12{
+  grid-column: span 12 / span 12;
 }
 .m-0{
   margin: 0px;
@@ -656,6 +677,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-cols-5{
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.grid-cols-8{
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+.grid-cols-12{
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 .flex-wrap{
   flex-wrap: wrap;
@@ -897,6 +927,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pb-4{
   padding-bottom: 1rem;
 }
+.pb-8{
+  padding-bottom: 2rem;
+}
+.pl-8{
+  padding-left: 2rem;
+}
+.pr-5{
+  padding-right: 1.25rem;
+}
 .text-center{
   text-align: center;
 }
@@ -1117,6 +1156,17 @@ input[type=number] {
 .disabled\:bg-neutral-100:disabled{
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+.group:disabled .group-disabled\:rotate-180{
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.peer:checked ~ .peer-checked\:block{
+  display: block;
+}
+.peer:checked ~ .peer-checked\:rotate-180{
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .peer:checked ~ .peer-checked\:border-blue-400{
   --tw-border-opacity: 1;

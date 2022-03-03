@@ -29,7 +29,8 @@
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
+                    role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -43,7 +44,8 @@
                     name="password" required autocomplete="new-password">
 
                 @error('password')
-                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
+                    role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -58,7 +60,8 @@
                     name="password_confirmation" required autocomplete="new-password">
 
                 @error('password')
-                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base" role="alert">
+                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
+                    role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -79,7 +82,7 @@
                 </div>
                 <div class="w-full">
                     <div> <label for="last-name" class="text-sm sm:text-base font-encode-sans text-slate-900">Last
-                            First Name</label>
+                            Name</label>
                     </div>
                     <input id="last-name" type="text"
                         class="appearance-none border p-1 w-full rounded-md border-sky-500" name="lastname">
