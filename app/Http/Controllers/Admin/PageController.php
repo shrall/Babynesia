@@ -107,18 +107,6 @@ class PageController extends Controller
     {
         return view('admin.shop.member_detail');
     }
-    public function category()
-    {
-        return view('admin.shop.category');
-    }
-    public function category_create()
-    {
-        return view('admin.shop.category_create');
-    }
-    public function subcategory_create()
-    {
-        return view('admin.shop.subcategory_create');
-    }
     public function product()
     {
         $products = Produk::paginate(15);

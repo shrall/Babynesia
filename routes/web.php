@@ -215,9 +215,6 @@ Route::group([
     Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
     //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
     Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
-    Route::get('/shop/category', [AdminPageController::class, 'category'])->name('category');
-    Route::get('/shop/category/create', [AdminPageController::class, 'category_create'])->name('category.create');
-    Route::get('/shop/subcategory/create', [AdminPageController::class, 'subcategory_create'])->name('subcategory.create');
     Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
     Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
     //@marshall /1nya ini nanti harus dirubah {product} biar ngikutin
@@ -250,7 +247,9 @@ Route::group([
     Route::resource('imagebank', AdminImageBankController::class);
     Route::resource('indonesiaprovince', AdminIndonesiaProvinceController::class);
     Route::resource('kategori', AdminKategoriController::class);
-    Route::resource('kategorichild', AdminKategoriChildController::class);
+    Route::resource('kategorichild', AdminKategoriChildController::class)->parameters([
+        'kategorichild' => 'kategoriChild'
+    ]);
     Route::resource('kategoriparent', AdminKategoriParentController::class);
     Route::resource('klas', AdminKlasController::class);
     Route::resource('link', AdminLinkController::class);

@@ -15,4 +15,8 @@ class KategoriChild extends Model
     ];
     protected $primaryKey = 'child_id';
     // public $incrementing = false;
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'no_kategori');
+    }
 }
