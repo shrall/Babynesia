@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Tambah Product</span>
+        <span class="font-overpass text-3xl font-bold">Tambah Product</span>
     </div>
     <form action="" method="post">
         @csrf
@@ -10,7 +10,7 @@
             <div class="admin-card">
                 <div class="col-span-3">Kode Alias</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="text" name="" id="" class="bg-gray-200">
+                    <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Status</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
@@ -25,64 +25,64 @@
                 </div>
                 <div class="col-span-3">Nama Produk</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="text" name="" id="" class="bg-gray-200">
+                    <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Kode Alias</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="text" name="" id="" class="bg-gray-200">
+                    <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Kategori</div>
                 <div class="col-span-9 flex gap-x-2">:
-                    <select name="" id="" class="bg-gray-200">
+                    <select name="" id="" class="admin-input">
                         <option value="1">A</option>
                         <option value="2">B</option>
                     </select>
                 </div>
                 <div class="col-span-3">Merk</div>
                 <div class="col-span-9 flex gap-x-2">:
-                    <select name="" id="" class="bg-gray-200">
+                    <select name="" id="" class="admin-input">
                         <option value="1">A</option>
                         <option value="2">B</option>
                     </select>
                 </div>
                 <div class="col-span-3">Berat</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">
+                    <input type="number" name="" id="" class="admin-input">
                     gram
                 </div>
                 <div class="col-span-3">No Urut</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">
+                    <input type="number" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">HPP</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">rupiah
+                    <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-3">Harga Web</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">rupiah
+                    <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-3">Harga Toko</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">rupiah
+                    <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">rupiah
+                    <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Diskon 1</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">%
+                    <input type="number" name="" id="" class="admin-input">%
                 </div>
                 <div class="col-span-3">Diskon 2</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">%
+                    <input type="number" name="" id="" class="admin-input">%
                 </div>
                 <div class="col-span-3">Diskon 3</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">%
+                    <input type="number" name="" id="" class="admin-input">%
                 </div>
 
             </div>
@@ -148,18 +148,18 @@
                 </div>
                 <div class="col-span-3">Harga Promo</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="number" name="" id="" class="bg-gray-200">rupiah
+                    <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Grosir PO Ready Tanggal</div>
                 <div class="col-span-9 flex items-center gap-x-2">:
-                    <input type="text" name="" id="" class="bg-gray-200">
+                    <input type="text" name="" id="" class="admin-input">
                 </div>
             </div>
             <div class="admin-card col-span-2">
                 <div class="col-span-3">Isi</div>
                 <div class="col-span-12 flex justify-center items-center gap-x-2">
-                    <textarea type="text" name="content" id="input-content" class="bg-gray-200"></textarea>
+                    <textarea type="text" name="content" id="input-content" class="admin-input"></textarea>
                 </div>
                 <div class="col-span-12 text-center">
                     <button type="submit" class="admin-button">Simpan</button>

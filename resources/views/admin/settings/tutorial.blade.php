@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Tutorial</span>
+        <span class="font-overpass text-3xl font-bold">Tutorial</span>
     </div>
     <div class="admin-card">
         <div id="maincontent" class="col-span-12">

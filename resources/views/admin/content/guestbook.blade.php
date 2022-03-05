@@ -3,14 +3,14 @@
 @section('content')
     <div class="w-full bg-white p-4 flex items-center justify-between">
         <div class="flex flex-col gap-1">
-            <span class="font-concert-one text-3xl font-bold">Buku Tamu</span>
+            <span class="font-overpass text-3xl font-bold">Buku Tamu</span>
         </div>
         <a href="{{ route('adminpage.guestbooks.create') }}" class="admin-button">Tambah Buku Tamu</a>
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
         <div class="admin-card">
             <div class="col-span-12">
-                <table id="example" class="stripe hover text-center"
+                <table id="example" class="stripe hover"
                     style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                     <thead>
                         <tr>
@@ -53,9 +53,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
-                    responsive: true
-                })
-                .columns.adjust();
+                scrollX: true,
+            });
         });
     </script>
 @endsection

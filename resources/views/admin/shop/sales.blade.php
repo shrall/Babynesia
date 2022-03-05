@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full bg-white p-4 flex items-center justify-between">
         <div class="flex flex-col gap-1">
-            <span class="font-concert-one text-3xl font-bold">Laporan Penjualan</span>
+            <span class="font-overpass text-3xl font-bold">Laporan Penjualan</span>
         </div>
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
@@ -11,19 +11,19 @@
             <div class="col-span-3">
                 <div class="flex flex-col">
                     Tanggal Mulai:
-                    <input type="date" name="" id="" class="bg-gray-200 w-full">
+                    <input type="date" name="" id="" class="admin-input w-full">
                 </div>
             </div>
             <div class="col-span-3">
                 <div class="flex flex-col">
                     Sampai Tanggal:
-                    <input type="date" name="" id="" class="bg-gray-200 w-full">
+                    <input type="date" name="" id="" class="admin-input w-full">
                 </div>
             </div>
             <div class="col-span-6">
                 <div class="flex flex-col">
                     Status:
-                    <select name="" id="" class="bg-gray-200 w-full">
+                    <select name="" id="" class="admin-input w-full">
                         <option value="1">NEW and Paid</option>
                         <option value="2">ALL</option>
                     </select>
@@ -35,7 +35,7 @@
         </div>
         <div class="admin-card">
             <div class="col-span-12">
-                <table id="example" class="stripe hover text-center"
+                <table id="example" class="stripe hover"
                     style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                     <thead>
                         <tr>

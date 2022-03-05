@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Kirim E-Mail</span>
+        <span class="font-overpass text-3xl font-bold">Kirim E-Mail</span>
     </div>
     <form action="" method="post">
         @csrf
@@ -33,11 +33,11 @@
             </div>
             <div class="col-span-3">Judul</div>
             <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="text" name="" id="" class="bg-gray-200">
+                <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Isi E-Mail</div>
             <div class="col-span-12 flex justify-center items-center gap-x-2">
-                <textarea type="text" name="content" id="input-content" class="bg-gray-200"></textarea>
+                <textarea type="text" name="content" id="input-content" class="admin-input"></textarea>
             </div>
             <div class="col-span-12 text-center">
                 <button type="submit" class="admin-button">Kirim</button>

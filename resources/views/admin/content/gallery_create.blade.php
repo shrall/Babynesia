@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Tambah Galeri</span>
+        <span class="font-overpass text-3xl font-bold">Tambah Galeri</span>
     </div>
     <form action="" method="post">
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-3">Nama</div>
             <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="text" name="" id="" class="bg-gray-200">
+                <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Gambar</div>
             <div class="col-span-9 flex flex-col gap-2">

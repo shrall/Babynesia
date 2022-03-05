@@ -200,8 +200,6 @@ Route::group([
     Route::get('/settings/sendmail', [AdminPageController::class, 'sendmail'])->name('sendmail');
     Route::get('/settings/tutorial', [AdminPageController::class, 'tutorial'])->name('tutorial');
 
-    Route::get('/content/advertisement', [AdminPageController::class, 'advertisement'])->name('advertisement');
-    Route::get('/content/advertisement/create', [AdminPageController::class, 'advertisement_create'])->name('advertisement.create');
     Route::get('/content/webpage', [AdminPageController::class, 'webpage'])->name('webpage');
     Route::get('/content/webpage/create', [AdminPageController::class, 'webpage_create'])->name('webpage.create');
     Route::get('/content/sidearea', [AdminPageController::class, 'sidearea'])->name('sidearea');
@@ -246,7 +244,9 @@ Route::group([
     Route::resource('faq', AdminFaqController::class);
     Route::resource('guestbook', AdminGuestbookController::class);
     Route::resource('hitcounter', AdminHitcounterController::class);
-    Route::resource('hotdeals', AdminHotdealsController::class);
+    Route::resource('hotdeals', AdminHotdealsController::class)->parameters([
+        'hotdeals' => 'hotdeals'
+    ]);
     Route::resource('hotdealsarea', AdminHotdealsAreaController::class);
     Route::resource('hotdealsvisiblestatus', AdminHotdealsVisibleStatusController::class);
     Route::resource('imagebank', AdminImageBankController::class);

@@ -12,19 +12,19 @@
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!--Regular Datatables CSS-->
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-    <!--Datatables -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Javascript --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     @yield('head')
 </head>
@@ -32,8 +32,8 @@
 <body class="font-encode-sans text-white">
     @yield('modals')
     <div class="w-screen h-full relative">
-        <div class="w-full flex items-center justify-between px-24 py-4 bg-teal-400 text-white">
-            <a href="{{ route('adminpage.dashboard') }}" class="font-concert-one text-2xl font-bold">Administrator
+        <div class="w-full flex items-center justify-between px-24 py-4 bg-blue-700 text-white">
+            <a href="{{ route('adminpage.dashboard') }}" class="font-overpass text-2xl font-bold">Administrator
                 Area</a>
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
@@ -51,7 +51,7 @@
         </div>
         <div class="w-full flex flex-col items-center px-24 py-2 bg-slate-800 text-white">
             <div class="w-full flex items-center justify-between">
-                <span class="font-concert-one text-5xl">{{ config('app.name', 'Laravel') }}</span>
+                <span class="font-overpass text-5xl">{{ config('app.name', 'Laravel') }}</span>
                 <div class="flex flex-col gap-y-1">
                     <span>Kontak Kami</span>
                     <div class="flex items-center gap-x-2">

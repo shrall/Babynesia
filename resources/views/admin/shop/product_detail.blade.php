@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full bg-white p-4 flex items-center justify-between mb-2">
         <div class="flex flex-col gap-1">
-            <span class="font-concert-one text-3xl font-bold">Produk - Nama Produknya</span>
+            <span class="font-overpass text-3xl font-bold">Produk - Nama Produknya</span>
         </div>
     </div>
     <div class="grid grid-cols-2 gap-x-8">
@@ -75,9 +75,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
-                    responsive: true
-                })
-                .columns.adjust();
+                scrollX: true,
+            });
         });
     </script>
 @endsection

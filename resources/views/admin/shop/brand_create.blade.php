@@ -2,18 +2,18 @@
 
 @section('content')
     <div class="w-full bg-white mb-2 p-4">
-        <span class="font-concert-one text-3xl font-bold">Tambah Merk</span>
+        <span class="font-overpass text-3xl font-bold">Tambah Merk</span>
     </div>
     <form action="" method="post">
         @csrf
         <div class="admin-card">
             <div class="col-span-3">Nama</div>
             <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="text" name="" id="" class="bg-gray-200">
+                <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Link</div>
             <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="text" name="" id="" class="bg-gray-200">
+                <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Gambar</div>
             <div class="col-span-9 flex items-center gap-x-2">:
@@ -34,7 +34,7 @@
             </div>
             <div class="col-span-3">Status</div>
             <div class="col-span-9 flex items-center gap-x-2">:
-                <input type="checkbox" name="" id="" class="bg-gray-200">
+                <input type="checkbox" name="" id="" class="admin-input">
                 Sembunyikan
             </div>
             <div class="col-span-12 text-center">

@@ -13,6 +13,7 @@ module.exports = {
             fontFamily: {
                 "concert-one": ['"Concert One"'],
                 "encode-sans": ['"Encode Sans"'],
+                "overpass": ['"Overpass"'],
             },
             spacing: {
                 108: "28rem",

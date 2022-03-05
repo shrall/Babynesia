@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="w-full bg-white p-4">
-        <span class="font-concert-one text-3xl font-bold">Layout & Design</span>
+        <span class="font-overpass text-3xl font-bold">Layout & Design</span>
     </div>
     <form action="" method="post">
         @csrf

@@ -16,4 +16,20 @@ class Produk extends Model
     ];
     protected $primarykey = 'kode_produk';
     // public $incrementing = false;
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class, 'kategory', 'no_kategori');
+    }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_produk', 'no_brand');
+    }
+    public function stocked()
+    {
+        return $this->hasMany(ProdukStock::class, 'brand_produk', 'no_brand');
+    }
+    public function imaged()
+    {
+        return $this->hasOne(ProdukImage::class, 'produk_id', 'kode_produk');
+    }
 }
