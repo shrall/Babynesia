@@ -13,6 +13,6 @@ class Promo extends Model
     protected $fillable = [
         'promo_kode', 'produk_kode', 'isi'
     ];
-    protected $primarykey = 'promo_kode';
+    protected $primaryKey = 'promo_kode';
     // public $incrementing = false;
 }

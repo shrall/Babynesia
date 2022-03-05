@@ -13,6 +13,6 @@ class ProdukStockHistory extends Model
     protected $fillable = [
         'id','trxdate','admin','product_id','amount','faktur_id','notes'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

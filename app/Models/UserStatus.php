@@ -13,6 +13,6 @@ class UserStatus extends Model
     protected $fillable = [
         'id', 'user_status'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

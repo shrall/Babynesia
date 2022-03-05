@@ -13,6 +13,6 @@ class VisitCounter extends Model
     protected $fillable = [
         'no','user','date','IP'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }

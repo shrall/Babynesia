@@ -13,6 +13,6 @@ class Event extends Model
     protected $fillable = [
         'id', 'event', 'sort_nr'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

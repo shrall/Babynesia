@@ -13,6 +13,6 @@ class Sites extends Model
     protected $fillable = [
         'no', 'code', 'isi', 'link', 'urutan', 'location', 'new_window', 'admin_status', 'editable'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }

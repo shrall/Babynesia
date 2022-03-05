@@ -161,7 +161,7 @@
                 <div class="col-span-12 flex justify-center items-center gap-x-2">
                     <textarea type="text" name="content" id="input-content" class="admin-input"></textarea>
                 </div>
-                <div class="col-span-12 text-center">
+                <div class="col-span-12">
                     <button type="submit" class="admin-button">Simpan</button>
                 </div>
             </div>

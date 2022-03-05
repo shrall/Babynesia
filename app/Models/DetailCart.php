@@ -13,6 +13,6 @@ class DetailCart extends Model
     protected $fillable = [
         'no_detail_cart', 'no_user', 'kode_produk', 'kode_produk_stock', 'jumlah', 'destination_city_id'
     ];
-    protected $primarykey = 'no_detail_cart';
+    protected $primaryKey = 'no_detail_cart';
     // public $incrementing = false;
 }

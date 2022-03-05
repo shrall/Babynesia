@@ -15,6 +15,6 @@ class Admin extends Model
         'password',
         'status',
     ];
-    protected $primarykey = 'username';
+    protected $primaryKey = 'username';
     public $incrementing = false;
 }

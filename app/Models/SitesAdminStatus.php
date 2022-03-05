@@ -13,6 +13,6 @@ class SitesAdminStatus extends Model
     protected $fillable = [
         'sites_admin_id','admin_status','disable'
     ];
-    protected $primarykey = null;
+    protected $primaryKey = null;
     public $incrementing = false;
 }

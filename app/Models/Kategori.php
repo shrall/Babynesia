@@ -13,6 +13,6 @@ class Kategori extends Model
     protected $fillable = [
         'no_kategori','nama_kategori','parent','urutan','image'
     ];
-    protected $primarykey = 'no_kategori';
+    protected $primaryKey = 'no_kategori';
     // public $incrementing = false;
 }

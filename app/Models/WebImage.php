@@ -13,6 +13,6 @@ class WebImage extends Model
     protected $fillable = [
         'id', 'imageurl'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

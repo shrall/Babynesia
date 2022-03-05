@@ -13,6 +13,6 @@ class SitesAdmin extends Model
     protected $fillable = [
         'no', 'sites_admin_kategori_no', 'name', 'link', 'urutan', 'new_window', 'disable', 'admin_status'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }

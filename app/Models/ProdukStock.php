@@ -13,6 +13,6 @@ class ProdukStock extends Model
     protected $fillable = [
         'id', 'produk_id', 'size', 'color', 'produk_stock'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

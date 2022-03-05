@@ -18,7 +18,7 @@
                     <option value="2">Parcel & Goods</option>
                 </select>
             </div>
-            <div class="col-span-12 text-center">
+            <div class="col-span-12">
                 <button type="submit" class="admin-button">Simpan</button>
             </div>
         </div>

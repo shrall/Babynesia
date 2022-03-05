@@ -13,6 +13,6 @@ class Complementary extends Model
     protected $fillable = [
         'product_id', 'suggested_id'
     ];
-    protected $primarykey = null;
+    protected $primaryKey = null;
     public $incrementing = false;
 }

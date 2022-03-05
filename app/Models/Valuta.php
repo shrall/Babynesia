@@ -13,6 +13,6 @@ class Valuta extends Model
     protected $fillable = [
         'id', 'valuta', 'code', 'kurs', 'disable'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

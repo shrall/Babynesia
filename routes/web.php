@@ -218,8 +218,6 @@ Route::group([
     Route::get('/shop/category', [AdminPageController::class, 'category'])->name('category');
     Route::get('/shop/category/create', [AdminPageController::class, 'category_create'])->name('category.create');
     Route::get('/shop/subcategory/create', [AdminPageController::class, 'subcategory_create'])->name('subcategory.create');
-    Route::get('/shop/brand', [AdminPageController::class, 'brand'])->name('brands');
-    Route::get('/shop/brand/create', [AdminPageController::class, 'brand_create'])->name('brands.create');
     Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
     Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
     //@marshall /1nya ini nanti harus dirubah {product} biar ngikutin

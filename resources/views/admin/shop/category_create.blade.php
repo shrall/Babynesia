@@ -11,7 +11,7 @@
             <div class="col-span-9 flex items-center gap-x-2">:
                 <input type="text" name="" id="" class="admin-input">
             </div>
-            <div class="col-span-12 text-center">
+            <div class="col-span-12">
                 <button type="submit" class="admin-button">Simpan</button>
             </div>
         </div>

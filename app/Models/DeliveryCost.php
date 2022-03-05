@@ -13,6 +13,6 @@ class DeliveryCost extends Model
     protected $fillable = [
         'id', 'company', 'origin', 'destination', 'city_name', 'service', 'harga', 'min_weight', 'min_price'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

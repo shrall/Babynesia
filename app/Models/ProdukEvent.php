@@ -13,6 +13,6 @@ class ProdukEvent extends Model
     protected $fillable = [
         'id','produk_kode','event_id'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

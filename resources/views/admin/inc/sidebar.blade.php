@@ -12,7 +12,7 @@
     <div class="flex flex-col pl-8">
         <a href="{{route('adminpage.member')}}" class="hover:text-white">Daftar Member</a>
         <a href="{{route('adminpage.category')}}" class="hover:text-white">Kategori Produk</a>
-        <a href="{{route('adminpage.brands')}}" class="hover:text-white">Merk Produk</a>
+        <a href="{{route('adminpage.brand.index')}}" class="hover:text-white">Merk Produk</a>
         <a href="{{route('adminpage.product')}}" class="hover:text-white">Produk</a>
         <a href="#" class="hover:text-white">Produk Promo</a>
         <a href="#" class="hover:text-white">Produk Pelengkap</a>

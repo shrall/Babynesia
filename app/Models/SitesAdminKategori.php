@@ -13,6 +13,6 @@ class SitesAdminKategori extends Model
     protected $fillable = [
         'no','name','disable','urutan'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }

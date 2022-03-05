@@ -13,6 +13,6 @@ class Klas extends Model
     protected $fillable = [
         'no_klas', 'kategori', 'brand'
     ];
-    protected $primarykey = 'no_klas';
+    protected $primaryKey = 'no_klas';
     // public $incrementing = false;
 }

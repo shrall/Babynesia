@@ -15,6 +15,6 @@ class Code extends Model
         'code',
         'location'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

@@ -13,6 +13,6 @@ class PaymentArt extends Model
     protected $fillable = [
         'id','valuta_id','name','description','disable'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

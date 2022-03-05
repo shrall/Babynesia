@@ -13,6 +13,6 @@ class DestinationCity extends Model
     protected $fillable = [
         'id', 'city'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

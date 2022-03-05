@@ -13,6 +13,6 @@ class HotdealsVisibleStatus extends Model
     protected $fillable = [
         'id','status'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

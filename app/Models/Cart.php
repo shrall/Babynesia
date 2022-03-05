@@ -13,6 +13,6 @@ class Cart extends Model
     protected $fillable = [
         'no_cart'
     ];
-    protected $primarykey = 'no_cart';
+    protected $primaryKey = 'no_cart';
     // public $incrementing = false;
 }

@@ -13,6 +13,6 @@ class FakturStatus extends Model
     protected $fillable = [
         'id','status','color','sort_nr'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

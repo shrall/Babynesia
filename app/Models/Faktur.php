@@ -14,6 +14,6 @@ class Faktur extends Model
         'no_faktur', 'kode_user', 'status', 'tanggal', 'cara_bayar', 'total_pembayaran', 'valuta_id', 'total_profit', 'deliverycost',
         'deliveryDate', 'deliveryExpedition', 'deliveryResi', 'tanggal2', 'discount', 'note', 'admin_note'
     ];
-    protected $primarykey = 'no_faktur';
+    protected $primaryKey = 'no_faktur';
     // public $incrementing = false;
 }

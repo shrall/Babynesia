@@ -26,7 +26,7 @@
                 <div class="flex">
                 </div>
             </div>
-            <div class="col-span-12 text-center">
+            <div class="col-span-12">
                 <button type="submit" class="admin-button">Simpan</button>
             </div>
         </div>

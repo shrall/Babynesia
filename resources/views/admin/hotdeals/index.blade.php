@@ -49,11 +49,11 @@
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.hotdeals.edit', $hd->id) }}"
-                                            class="admin-button cursor-pointer">
+                                            class="admin-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-ad-form-{{$hd->id}}').submit();"
-                                            class="admin-button cursor-pointer">
+                                            class="admin-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
                                         <form action="{{ route('adminpage.hotdeals.destroy', $hd->id) }}" id="delete-ad-form-{{$hd->id}}"

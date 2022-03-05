@@ -13,6 +13,6 @@ class ImageBank extends Model
     protected $fillable = [
         'id','name','url'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

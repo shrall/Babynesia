@@ -13,6 +13,6 @@ class News extends Model
     protected $fillable = [
         'no','sumber','judul','isi','tanggal','urutan'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }

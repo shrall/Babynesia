@@ -13,6 +13,6 @@ class LinkLocation extends Model
     protected $fillable = [
         'no', 'location'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }
