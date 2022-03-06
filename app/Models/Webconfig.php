@@ -13,6 +13,6 @@ class Webconfig extends Model
     protected $fillable = [
         'name', 'showed_name', 'content', 'urutan', 'admin_status', 'type', 'isHidden'
     ];
-    protected $primarykey = 'name';
+    protected $primaryKey = 'name';
     public $incrementing = false;
 }

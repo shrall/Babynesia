@@ -13,6 +13,6 @@ class IndonesiaProvince extends Model
     protected $fillable = [
         'id','name'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

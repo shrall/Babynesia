@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\KlasController as AdminKlasController;
 use App\Http\Controllers\Admin\LinkController as AdminLinkController;
 use App\Http\Controllers\Admin\LinkLocationController as AdminLinkLocationController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PaymentArtController as AdminPaymentArtController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Admin\ProdukDestinationCityController as AdminProdukDestinationCityController;
@@ -186,8 +187,42 @@ Route::group([
 
 Route::group([
     // 'middleware' => ['admin'],
-    'prefix' => 'admin', 'as' => 'admin.'
+    'prefix' => 'adminpage', 'as' => 'adminpage.'
 ], function () {
+    Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
+    Route::get('/settings/configuration', [AdminPageController::class, 'configuration'])->name('configuration');
+    Route::get('/settings/layoutdesign', [AdminPageController::class, 'layoutdesign'])->name('layoutdesign');
+    Route::get('/settings/administrator', [AdminPageController::class, 'administrator'])->name('administrator');
+    Route::get('/settings/administrator/create', [AdminPageController::class, 'administrator_create'])->name('administrator.create');
+    Route::get('/settings/hitcounter', [AdminPageController::class, 'hitcounter'])->name('hitcounter');
+    Route::get('/settings/topvisitor', [AdminPageController::class, 'topvisitor'])->name('topvisitor');
+    //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
+    Route::get('/settings/topvisitor/detail/1', [AdminPageController::class, 'topvisitor_detail'])->name('topvisitor.detail');
+    Route::get('/settings/sendmail', [AdminPageController::class, 'sendmail'])->name('sendmail');
+    Route::get('/settings/tutorial', [AdminPageController::class, 'tutorial'])->name('tutorial');
+
+    Route::get('/content/webpage', [AdminPageController::class, 'webpage'])->name('webpage');
+    Route::get('/content/webpage/create', [AdminPageController::class, 'webpage_create'])->name('webpage.create');
+    Route::get('/content/sidearea', [AdminPageController::class, 'sidearea'])->name('sidearea');
+    Route::get('/content/sidearea/create', [AdminPageController::class, 'sidearea_create'])->name('sidearea.create');
+    Route::get('/content/article', [AdminPageController::class, 'article'])->name('article');
+    Route::get('/content/article/create', [AdminPageController::class, 'article_create'])->name('article.create');
+    Route::get('/content/guestbook', [AdminPageController::class, 'guestbook'])->name('guestbooks');
+    Route::get('/content/guestbook/create', [AdminPageController::class, 'guestbook_create'])->name('guestbooks.create');
+    Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
+    Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
+
+    Route::get('/shop/member', [AdminPageController::class, 'member'])->name('member');
+    Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
+    //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
+    Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
+    Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
+    Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
+    //@marshall /1nya ini nanti harus dirubah {product} biar ngikutin
+    Route::get('/shop/product/detail/1', [AdminPageController::class, 'product_detail'])->name('product.detail');
+    Route::get('/shop/sales', [AdminPageController::class, 'sales'])->name('sales');
+    Route::get('/shop/profit', [AdminPageController::class, 'profit'])->name('profit');
+
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);
@@ -205,13 +240,17 @@ Route::group([
     Route::resource('faq', AdminFaqController::class);
     Route::resource('guestbook', AdminGuestbookController::class);
     Route::resource('hitcounter', AdminHitcounterController::class);
-    Route::resource('hotdeals', AdminHotdealsController::class);
+    Route::resource('hotdeals', AdminHotdealsController::class)->parameters([
+        'hotdeals' => 'hotdeals'
+    ]);
     Route::resource('hotdealsarea', AdminHotdealsAreaController::class);
     Route::resource('hotdealsvisiblestatus', AdminHotdealsVisibleStatusController::class);
     Route::resource('imagebank', AdminImageBankController::class);
     Route::resource('indonesiaprovince', AdminIndonesiaProvinceController::class);
     Route::resource('kategori', AdminKategoriController::class);
-    Route::resource('kategorichild', AdminKategoriChildController::class);
+    Route::resource('kategorichild', AdminKategoriChildController::class)->parameters([
+        'kategorichild' => 'kategoriChild'
+    ]);
     Route::resource('kategoriparent', AdminKategoriParentController::class);
     Route::resource('klas', AdminKlasController::class);
     Route::resource('link', AdminLinkController::class);

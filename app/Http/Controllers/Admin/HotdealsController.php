@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hotdeals;
+use App\Models\HotdealsArea;
+use App\Models\HotdealsVisibleStatus;
 use Illuminate\Http\Request;
 
 class HotdealsController extends Controller
@@ -15,7 +17,8 @@ class HotdealsController extends Controller
      */
     public function index()
     {
-        //
+        $hotdeals = Hotdeals::all();
+        return view('admin.hotdeals.index', compact('hotdeals'));
     }
 
     /**
@@ -25,7 +28,9 @@ class HotdealsController extends Controller
      */
     public function create()
     {
-        //
+        $hotdeals_area = HotdealsArea::all();
+        $hotdeals_status = HotdealsVisibleStatus::all();
+        return view('admin.hotdeals.create', compact('hotdeals_area', 'hotdeals_status'));
     }
 
     /**
@@ -36,7 +41,23 @@ class HotdealsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->image) {
+            $image = 'hotdeals-' . time() . '-' . $request['image']->getClientOriginalName();
+            $request->image->move(public_path('uploads/'), $image);
+        } else {
+            $image = 'video';
+        }
+        $hd = Hotdeals::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'image' => $image,
+            'position_nr' => $request->position_nr,
+            'link' => $request->link,
+            'status' => $request->status,
+            'from_date' => $request->from_date,
+            'until_date' => $request->until_date
+        ]);
+        return redirect()->route('adminpage.hotdeals.index');
     }
 
     /**
@@ -58,7 +79,9 @@ class HotdealsController extends Controller
      */
     public function edit(Hotdeals $hotdeals)
     {
-        //
+        $hotdeals_area = HotdealsArea::all();
+        $hotdeals_status = HotdealsVisibleStatus::all();
+        return view('admin.hotdeals.edit', compact('hotdeals_area', 'hotdeals_status', 'hotdeals'));
     }
 
     /**
@@ -70,7 +93,27 @@ class HotdealsController extends Controller
      */
     public function update(Request $request, Hotdeals $hotdeals)
     {
-        //
+        if ($request->type == 'Gambar') {
+            if ($request->image) {
+                $image = 'hotdeals-' . time() . '-' . $request['image']->getClientOriginalName();
+                $request->image->move(public_path('uploads/'), $image);
+            } else {
+                $image = $hotdeals->image;
+            }
+        } else {
+            $image = 'Video';
+        }
+        $hotdeals->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'image' => $image,
+            'position_nr' => $request->position_nr,
+            'link' => $request->link,
+            'status' => $request->status,
+            'from_date' => $request->status != 2 ? null : $request->from_date,
+            'until_date' => $request->status != 2 ? null : $request->until_date
+        ]);
+        return redirect()->route('adminpage.hotdeals.index');
     }
 
     /**
@@ -81,6 +124,7 @@ class HotdealsController extends Controller
      */
     public function destroy(Hotdeals $hotdeals)
     {
-        //
+        $hotdeals->delete();
+        return redirect()->route('adminpage.hotdeals.index');
     }
 }

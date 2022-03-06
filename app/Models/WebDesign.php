@@ -15,6 +15,6 @@ class WebDesign extends Model
         'overview_header_bgcolor', 'side_header_bgcolor', 'side_bgcolor', 'productmenu_bgcolor_hover', 'title_color', 'mainmenu_color',
         'link_color', 'hover_color', 'border_color'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

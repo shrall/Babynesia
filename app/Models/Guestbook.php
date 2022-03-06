@@ -13,6 +13,6 @@ class Guestbook extends Model
     protected $fillable = [
         'guestbook_id', 'datum', 'name', 'location', 'email', 'message', 'accepted'
     ];
-    protected $primarykey = 'guestbook_id';
+    protected $primaryKey = 'guestbook_id';
     // public $incrementing = false;
 }

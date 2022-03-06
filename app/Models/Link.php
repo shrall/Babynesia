@@ -13,6 +13,6 @@ class Link extends Model
     protected $fillable = [
         'link_kode', 'brand_kode', 'isi'
     ];
-    protected $primarykey = 'link_kode';
+    protected $primaryKey = 'link_kode';
     // public $incrementing = false;
 }

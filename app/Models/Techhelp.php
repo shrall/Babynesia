@@ -13,6 +13,6 @@ class Techhelp extends Model
     protected $fillable = [
         'no_techhelp', 'alamat', 'kota', 'nama', 'telepon', 'email', 'no_faktur', 'judul_keluhan', 'keluhan', 'replied'
     ];
-    protected $primarykey = 'no_techhelp';
+    protected $primaryKey = 'no_techhelp';
     // public $incrementing = false;
 }

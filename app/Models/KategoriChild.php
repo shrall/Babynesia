@@ -13,6 +13,10 @@ class KategoriChild extends Model
     protected $fillable = [
         'child_id', 'child_name', 'kategori_id'
     ];
-    protected $primarykey = 'child_id';
+    protected $primaryKey = 'child_id';
     // public $incrementing = false;
+    public function category()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'no_kategori');
+    }
 }

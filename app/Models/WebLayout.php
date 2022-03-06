@@ -13,6 +13,6 @@ class WebLayout extends Model
     protected $fillable = [
         'id', 'name', 'sites', 'page_width', 'side_width', 'logo_height', 'image', 'css_data', 'choosed', 'note', 'package_status'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

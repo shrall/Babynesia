@@ -15,7 +15,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        //
+        $brands = Brand::all();
+        return view('admin.brand.index', compact('brands'));
     }
 
     /**
@@ -25,7 +26,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.brand.create');
     }
 
     /**
@@ -36,7 +37,13 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = 'brand-' . time() . '-' . $request['image']->getClientOriginalName();
+        $request->image->move(public_path('uploads/'), $image);
+        Brand::create([
+            'nama_brand' => $request->name,
+            'gambar' => $image
+        ]);
+        return redirect()->route('adminpage.brand.index');
     }
 
     /**
@@ -58,7 +65,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('admin.brand.edit', compact('brand'));
     }
 
     /**
@@ -70,7 +77,17 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        if ($request->image) {
+            $image = 'brand-' . time() . '-' . $request['image']->getClientOriginalName();
+            $request->image->move(public_path('uploads/'), $image);
+        } else {
+            $image = $brand->gambar;
+        }
+        $brand->update([
+            'nama_brand' => $request->name,
+            'gambar' => $image
+        ]);
+        return redirect()->route('adminpage.brand.index');
     }
 
     /**
@@ -81,6 +98,7 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return redirect()->route('adminpage.brand.index');
     }
 }

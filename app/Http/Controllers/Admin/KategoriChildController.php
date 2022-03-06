@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\KategoriChild;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class KategoriChildController extends Controller
      */
     public function create()
     {
-        //
+        $kategoris = Kategori::all();
+        return view('admin.kategorichild.create', compact('kategoris'));
     }
 
     /**
@@ -36,7 +38,11 @@ class KategoriChildController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        KategoriChild::create([
+            'child_name' => $request->name,
+            'kategori_id' => $request->kategori
+        ]);
+        return redirect()->route('adminpage.kategori.index');
     }
 
     /**
@@ -58,7 +64,8 @@ class KategoriChildController extends Controller
      */
     public function edit(KategoriChild $kategoriChild)
     {
-        //
+        $kategoris = Kategori::all();
+        return view('admin.kategorichild.edit', compact('kategoriChild', 'kategoris'));
     }
 
     /**
@@ -70,7 +77,11 @@ class KategoriChildController extends Controller
      */
     public function update(Request $request, KategoriChild $kategoriChild)
     {
-        //
+        $kategoriChild->update([
+            'child_name' => $request->name,
+            'kategori_id' => $request->kategori
+        ]);
+        return redirect()->route('adminpage.kategori.index');
     }
 
     /**
@@ -81,6 +92,7 @@ class KategoriChildController extends Controller
      */
     public function destroy(KategoriChild $kategoriChild)
     {
-        //
+        $kategoriChild->delete();
+        return redirect()->route('adminpage.kategori.index');
     }
 }

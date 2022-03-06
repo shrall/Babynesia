@@ -13,6 +13,6 @@ class HotdealsArea extends Model
     protected $fillable = [
         'id', 'area_name', 'disable','urutan'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

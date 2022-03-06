@@ -13,6 +13,6 @@ class Hotdeals extends Model
     protected $fillable = [
         'id', 'name', 'image', 'type', 'link', 'height', 'area', 'position_nr', 'status', 'from_date', 'until_date'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

@@ -15,6 +15,6 @@ class Brand extends Model
         'nama_brand',
         'gambar',
     ];
-    protected $primarykey = 'no_brand';
+    protected $primaryKey = 'no_brand';
     // public $incrementing = false;
 }

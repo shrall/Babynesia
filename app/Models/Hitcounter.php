@@ -13,6 +13,6 @@ class Hitcounter extends Model
     protected $fillable = [
         'id', 'month', 'registered','unregistered','total'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

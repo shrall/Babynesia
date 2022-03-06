@@ -13,6 +13,6 @@ class ProdukDestinationCity extends Model
     protected $fillable = [
         'id', 'produk_id', 'city_id', 'deliverycost'
     ];
-    protected $primarykey = 'id';
+    protected $primaryKey = 'id';
     // public $incrementing = false;
 }

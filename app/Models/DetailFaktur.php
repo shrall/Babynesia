@@ -14,6 +14,6 @@ class DetailFaktur extends Model
         'no_detail_faktur', 'no_user', 'no_faktur', 'kode_produk', 'kode_produk_stock', 'jumlah', 'tanggal', 'harga_satuan', 'destination_city_id',
         'ongkos_kirim', 'subtotal', 'valuta_id', 'profit'
     ];
-    protected $primarykey = 'no_detail_faktur';
+    protected $primaryKey = 'no_detail_faktur';
     // public $incrementing = false;
 }

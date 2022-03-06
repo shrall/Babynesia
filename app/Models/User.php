@@ -18,6 +18,6 @@ class User extends Authenticatable
     protected $fillable = [
         'no_user', 'email', 'password', 'name', 'lastname', 'alamat', 'kota', 'propinsi', 'negara', 'kodepos', 'telp', 'hp', 'birthday', 'gender', 'noKTP', 'stat', 'tgl_gabung', 'conf', 'user_status_id'
     ];
-    protected $primarykey = 'no_user';
+    protected $primaryKey = 'no_user';
     // public $incrementing = false;
 }

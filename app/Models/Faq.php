@@ -13,6 +13,6 @@ class Faq extends Model
     protected $fillable = [
         'no_faq','pertanyaan','jawaban'
     ];
-    protected $primarykey = 'no_faq';
+    protected $primaryKey = 'no_faq';
     // public $incrementing = false;
 }

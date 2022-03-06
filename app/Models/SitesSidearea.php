@@ -13,6 +13,6 @@ class SitesSidearea extends Model
     protected $fillable = [
         'no', 'code', 'titlepage', 'link', 'isi', 'urutan', 'isLeft', 'admin_status', 'editable', 'hidden', 'viewMobile', 'disabled'
     ];
-    protected $primarykey = 'no';
+    protected $primaryKey = 'no';
     // public $incrementing = false;
 }
