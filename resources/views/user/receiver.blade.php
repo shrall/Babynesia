@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
         <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a><a href="{{ route('user.receiver.create') }}">Receiver</a> 
@@ -23,6 +23,23 @@
                         </div>
                         <input id="receivername" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
                             name="receiver_name">
+                    </div>
+                    <div class="mt-4">
+                        <div> <label for="pengirim" class="text-sm sm:text-base font-encode-sans text-slate-900">Pengirim</label>
+                        </div>
+                        <input id="pengirim" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                            name="pengirim">
+                    </div>
+                    <div class="mt-4">
+                        <input type="checkbox" name="dropship" id="dropship" class="peer" value="tes">
+                        <label for="dropship" class="ml-1 text-sm sm:text-base font-encode-sans text-slate-900">Dropship</label>
+                        <div class="hidden mt-3 peer-checked:block" id="dropship_receiver">
+                            <div>
+                                <label for="dropship" class="text-sm sm:text-base font-encode-sans text-slate-900">Dropship Receiver</label>
+                            </div>
+                            <input id="dropinput" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                            name="receiver_dropship">
+                        </div>
                     </div>
                     <div class="mt-4">
                         <div> <label for="address" class="text-sm sm:text-base font-encode-sans text-slate-900">Address</label>

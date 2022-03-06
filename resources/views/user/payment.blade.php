@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
         <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>

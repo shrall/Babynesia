@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-4 px-3">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
             Tracking
@@ -477,6 +477,15 @@
     function showmodal() {
         modal.style.display = "block";
         modalbg.style.display = "block";
+
+        // Get the current page scroll position
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+        // if any scroll is attempted, set this to the previous value
+        window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
     }
     // btn.onclick = function () {
     //     modal.style.display = "block";
@@ -487,12 +496,16 @@
     button.onclick = function () {
         modal.style.display = "none";
         modalbg.style.display = "none";
+
+        window.onscroll = function() {};
     }
 
     window.onclick = function (event) {
         if (event.target == modalbg) {
             modal.style.display = "none";
             modalbg.style.display = "none";
+
+            window.onscroll = function() {};
         }
     }
 

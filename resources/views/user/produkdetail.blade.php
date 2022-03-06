@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 xl:hidden">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
             Nama Produk
@@ -26,7 +26,7 @@
                     alt="" class="aspect-square w-1/4 rounded-lg object-cover mr-3">
             </div>
         </div>
-        <div class="mt-3 px-3 pt-3 pb-5 bg-white rounded-lg shadow-sm">
+        <div class="mt-3 px-3 pt-3 pb-8 bg-white rounded-lg h-fit shadow-sm">
             <div class="hidden xl:block">
                 <h1 class="font-concert-one text-sky-500 xl:text-4xl">
                     Nama Produk
@@ -57,28 +57,28 @@
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes">
                         <label for="tes"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             M-Cream
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes1">
                         <label for="tes1"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             XL-Cream
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes2">
                         <label for="tes2"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             M-Abu
                         </label>
                     </div>
                     <div class="w-full text-center">
                         <input type="radio" name="ukuran" class="hidden peer" id="tes3">
                         <label for="tes3"
-                            class="border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
                             XL-Abu
                         </label>
                     </div>
@@ -131,7 +131,6 @@
                         <div>
                             <label for="" class="text-sm font-encode-sans text-slate-900">Catatan
                                 (size/color/etc)</label>
-
                         </div>
                         <textarea name="" id="" cols="20"
                             class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
@@ -191,17 +190,28 @@
     btn.onclick = function () {
         modal.style.display = "block";
         modalbg.style.display = "block";
+
+        // Get the current page scroll position
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+
+        // if any scroll is attempted, set this to the previous value
+        window.onscroll = function() {
+            window.scrollTo(scrollLeft, scrollTop);
+        };
     }
     // We want the modal to close when the OK button is clicked
     button.onclick = function () {
         modal.style.display = "none";
         modalbg.style.display = "none";
+        window.onscroll = function() {};
     }
 
     window.onclick = function (event) {
         if (event.target == modalbg) {
             modal.style.display = "none";
             modalbg.style.display = "none";
+            window.onscroll = function() {};
         }
     }
 

@@ -141,18 +141,11 @@
             </div>
         </div>
     </div>
-    <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3">
-        <p class="text-red-400 font-bold font-encode-sans text-sm sm:text-base">
-            We will process your order and send you the confirmation mail. Please check your email. Thank You!
-        </p>
-    </div>
-    <div class="">
-        <div class="w-full text-center mt-3">
-            <a href="{{ route('user.list_products') }}"
-                class="inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
-                Lanjutkan Belanja
-            </a>
-        </div>
+    <div class="w-full text-center mt-3">
+        <a href="{{ route('user.user.index') }}"
+            class="inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+            Kembali
+        </a>
     </div>
 </div>
 

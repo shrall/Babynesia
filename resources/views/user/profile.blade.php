@@ -5,7 +5,7 @@
 @include('inc.navbar1')
 
 <div
-    class="xl:grid xl:grid-cols-4 xl:grid-flow-row-dense xl:gap-3 container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+    class="xl:grid xl:grid-cols-4 xl:grid-flow-row-dense xl:gap-3 container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div>
         <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
             <div>
@@ -263,6 +263,79 @@
             </div>
         </form>
     </div>
+
+    <div id="profile_history" class="w-full hidden mt-3 xl:mt-0 xl:col-span-3">
+        <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-3 px-3">
+            <h1 class="font-concert-one text-sky-500 text-3xl sm:text-4xl">
+                History Transaksi
+            </h1>
+        </div>
+        <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-5">
+            <div class="sm:flex sm:justify-between ">
+                <div class="">
+                    <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
+                        Invoice No. <span class="text-slate-900 font-bold">1051</span>
+                        <a href="#">
+                            <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
+                                aria-hidden="true"></i>
+                        </a>
+                    </p>
+                    <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
+                        3 barang
+                    </p>
+                    <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        13 Oktober 2021
+                    </p>
+
+                    <h6
+                        class="hidden sm:block py-1 px-2 w-fit bg-amber-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                        Menunggu Konfirmasi
+                    </h6>
+                </div>
+                <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
+                    <div>
+                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
+                            Total Harga
+                        </p>
+                        <h6 class="font-encode-sans font-bold text-slate-900">
+                            Rp. 90.000
+                        </h6>
+                    </div>
+                    <div class="mt-8">
+                        <a href="{{ route('user.detailfaktur.index') }}" type="button" onclick="showmodal()"
+                            class="appearance-none xl:mt-8 py-2 px-3 border-2 border-pink-400 text-pink-400 rounded-md hover:bg-pink-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            Lihat Detail
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="sm:hidden mt-2">
+                <h6
+                    class="sm:hidden py-1 px-2 w-fit bg-amber-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                    Menunggu Konfirmasi
+                </h6>
+                <div class="mt-2 flex justify-between items-center">
+                    <div>
+                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
+                            Total Harga
+                        </p>
+                        <h6 class="font-encode-sans font-bold text-slate-900">
+                            Rp. 90.000
+                        </h6>
+                    </div>
+                    <div class="">
+                        <a href="#" type="button" onclick="showmodal()"
+                            class="appearance-none py-2 px-3 border-2 border-pink-400 text-pink-400 rounded-md hover:bg-pink-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            Lihat Detail
+                        </a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
 
 <script>
@@ -272,20 +345,29 @@
 
     let profile_info = document.getElementById("profile_info");
     let profile_edit = document.getElementById("profile_edit");
+    let profile_history = document.getElementById("profile_history");
 
     if(profileCheck.checked) {
         profile_info.style.display = "block";
         profile_edit.style.display = "none";
+        profile_history.style.display = "none";
     }
 
     function showcontent() {
         if(profileCheck.checked) {
             profile_info.style.display = "block";
             profile_edit.style.display = "none";
+            profile_history.style.display = "none";
         }
         else if(editCheck.checked) {
             profile_edit.style.display = "block";
             profile_info.style.display = "none";
+            profile_history.style.display = "none";
+        }
+        else if (historyCheck.checked) {
+            profile_edit.style.display = "none";
+            profile_info.style.display = "none";
+            profile_history.style.display = "block";
         }
     }
 

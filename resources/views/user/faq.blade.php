@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
             FAQ

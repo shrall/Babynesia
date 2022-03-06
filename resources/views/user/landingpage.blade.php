@@ -4,7 +4,7 @@
 
 @include('inc.navbar1')
 
-<div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-5">
         <div class="flex justify-center">
             <ul>
@@ -30,7 +30,7 @@
         </h1>
     </div>
     <div class="mt-5 mb-5">
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-5/6 xl:mx-auto">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
             <a href="" class="rounded-lg shadow-sm bg-white">
                 <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
                 <div class="p-4 pb-6">
@@ -179,12 +179,14 @@
             </a>
         </div>
         <div class="flex justify-center">
-            <a href="{{ route('user.list_products') }}" class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+            <a href="{{ route('user.list_products') }}" class="border-2 hover:bg-pink-400 hover:text-white hover:ring-pink-300 hover:ring-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
                 More Products
             </a>
         </div>
         
     </div>
 </div>
+
+@include('inc.footer1')
 
 @endsection
