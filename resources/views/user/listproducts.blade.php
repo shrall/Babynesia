@@ -127,29 +127,36 @@
         </div>
         <div class="mt-5 mb-5">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:mx-auto">
+
+            @foreach ($produks as $produk)
                 <a href="{{ route('user.produk.show', 1) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
-                    <div class="p-4 pb-6">
+                    <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            Nama produk panjangnya 2 baris
+                            {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             <h2 class="font-concert-one text-gray-400 xl:text-2xl text-xl">
-                                Rp. 15.000
+                                Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
+                            @if ($produk->stock <= 0)
                             <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                 Sold
                             </h6>
+                            @endif
                         </div>
+                        @if ($produk->promo != null)
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
                             R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                         </h6>
+                        @endif
                     </div>
                 </a>
-                
+            @endforeach
             </div>
         </div>
-        <div class="bg-white rounded-md px-3 py-3 flex justify-center items-center shadow-sm">
+        {{ $produks->links('vendor.pagination.custom-1') }}
+        {{-- <div class="bg-white rounded-md px-3 py-3 flex justify-center items-center shadow-sm">
             <a href="">
                 <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
             </a>
@@ -163,7 +170,7 @@
             <a href="">
                 <i class="fa fa-chevron-right mx-2" aria-hidden="true"></i> 
             </a>
-        </div>
+        </div> --}}
     </div>
 </div>
 

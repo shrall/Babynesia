@@ -12,7 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $primaryKey = 'no_user';
     public $timestamps = false;
     protected $table = 'user';
     protected $fillable = [

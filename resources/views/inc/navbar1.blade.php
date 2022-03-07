@@ -4,13 +4,21 @@
             <div class="flex">
                 <h1 class="font-concert-one text-white text-4xl mr-5">TokoBayiFiv</h1>
                 <div class="py-3 px-4 rounded-full bg-white w-128">
-                    <div class="flex justify-between w-full items-center">
-                        <input type="text" placeholder="Search by keyword"
+                    <form action="{{ route('user.list_products') }}">
+
+                        <div class="flex justify-between w-full items-center">
+                            @if (!empty($keyword))
+                            <input type="text" placeholder="Search by keyword" name="keyword" value="{{ $keyword }}"
                             class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
-                        <button type="submit">
-                            <i class="fas fa-search text-gray-400"></i>
-                        </button>
-                    </div>
+                            @else
+                            <input type="text" placeholder="Search by keyword" name="keyword"
+                                class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
+                            @endif
+                            <button type="submit">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -211,9 +219,10 @@
                 @if (Auth::checK())
                 <a href="{{ route('user.user.index') }}" class="ml-5 flex items-center">
                     <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
-                    <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">{{ Auth::user()->name }}
+                    <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">
+                        {{ Auth::user()->name }}
                     </div>
-                </a>    
+                </a>
                 @else
                 <a href="{{ route('login') }}" class="ml-5 flex items-center">
                     <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
@@ -222,10 +231,10 @@
                 @endif
             </div>
             @if (Auth::checK())
-            
+
             @else
             <a href="{{ route('register') }}"
-            class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
+                class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
             @endif
         </div>
     </div>
