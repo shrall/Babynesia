@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\LinkLocationController as AdminLinkLocationContro
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PaymentArtController as AdminPaymentArtController;
+use App\Http\Controllers\Admin\PaymentMethodController as AdminPaymentMethodController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Admin\ProdukDestinationCityController as AdminProdukDestinationCityController;
 use App\Http\Controllers\Admin\ProdukEventController as AdminProdukEventController;
@@ -84,6 +85,7 @@ use App\Http\Controllers\LinkLocationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentArtController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProdukDestinationCityController;
 use App\Http\Controllers\ProdukEventController;
@@ -160,6 +162,7 @@ Route::group([
     Route::resource('linklocation', LinkLocationController::class);
     Route::resource('news', NewsController::class);
     Route::resource('paymentart', PaymentArtController::class);
+    Route::resource('paymentmethod', PaymentMethodController::class);
     Route::resource('produk', ProdukController::class);
     Route::resource('produkdestinationcity', ProdukDestinationCityController::class);
     Route::resource('produkevent', ProdukEventController::class);
@@ -256,6 +259,7 @@ Route::group([
     Route::resource('linklocation', AdminLinkLocationController::class);
     Route::resource('news', AdminNewsController::class);
     Route::resource('paymentart', AdminPaymentArtController::class);
+    Route::resource('paymentmethod', AdminPaymentMethodController::class);
     Route::resource('produk', AdminProdukController::class);
     Route::resource('produkdestinationcity', AdminProdukDestinationCityController::class);
     Route::resource('produkevent', AdminProdukEventController::class);

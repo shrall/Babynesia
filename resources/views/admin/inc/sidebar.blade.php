@@ -10,7 +10,7 @@
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-shopping-cart"></span>Toko</div>
     <div class="flex flex-col pl-8">
-        <a href="{{route('adminpage.member')}}" class="hover:text-white">Daftar Member</a>
+        <a href="{{route('adminpage.user.index')}}" class="hover:text-white">Daftar Member</a>
         <a href="{{route('adminpage.kategori.index')}}" class="hover:text-white">Kategori Produk</a>
         <a href="{{route('adminpage.brand.index')}}" class="hover:text-white">Merk Produk</a>
         <a href="{{route('adminpage.product')}}" class="hover:text-white">Produk</a>

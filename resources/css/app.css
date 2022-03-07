@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -18,7 +18,7 @@ input[type="number"] {
 }
 
 .admin-card {
-    @apply w-full rounded-md px-4 py-2 grid grid-cols-12 bg-white gap-2;
+    @apply w-full rounded-md px-4 py-2 grid grid-cols-12 bg-white gap-2 items-center;
 }
 .admin-button {
     @apply bg-green-700 rounded-full px-4 py-2 text-white hover:bg-green-800 text-center;
@@ -32,8 +32,20 @@ input[type="number"] {
 .admin-button-info {
     @apply bg-blue-700 rounded-full px-4 py-2 text-white hover:bg-blue-800 text-center;
 }
-.admin-input{
-    @apply bg-gray-200 px-4 py-2 w-full rounded-lg;
+.admin-input {
+    @apply bg-gray-200 px-4 py-2 w-9/10 rounded-lg;
+}
+.admin-table > tbody > tr,
+.admin-table > tbody > tr > td,
+.admin-table > tbody > tr > th,
+.admin-table {
+    @apply border border-slate-400;
+}
+.admin-table > tbody > tr > th{
+    @apply bg-slate-200;
+}
+.admin-table > tbody > tr > td{
+    @apply px-2 py-1;
 }
 /* select2 */
 .select2 {
@@ -235,7 +247,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
     /*bg-indigo-500*/
 }
 
-.paginate_button,.paginate_button.current
-.paginate_button:hover {
+.paginate_button,
+.paginate_button.current .paginate_button:hover {
     color: #ffffff !important;
 }

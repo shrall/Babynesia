@@ -8,15 +8,15 @@
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-3">Nama</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Judul</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Lokasi</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-1">
                     <label for="radio-1">Samping Kiri Halaman</label>
@@ -27,11 +27,11 @@
                 </div>
             </div>
             <div class="col-span-3">Urutan</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="number" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Sembunyikan</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-3">
                     <label for="radio-3">Ya</label>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="col-span-3">Bisa Diubah</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-5">
                     <label for="radio-5">Ya</label>

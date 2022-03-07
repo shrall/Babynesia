@@ -8,15 +8,15 @@
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-3">Nama</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">E-Mail</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="email" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Kota</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Tanggal:</div>

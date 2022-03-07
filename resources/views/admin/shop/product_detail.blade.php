@@ -32,41 +32,41 @@
         </div>
         <div class="admin-card">
             <div class="col-span-3">Kode</div>
-            <div class="col-span-9">: 1131</div>
+            <div class="col-span-9"> 1131</div>
             <div class="col-span-3">Web ID</div>
-            <div class="col-span-9">: 1131</div>
+            <div class="col-span-9"> 1131</div>
             <div class="col-span-3">Kode Alias</div>
-            <div class="col-span-9">: 1131</div>
+            <div class="col-span-9"> 1131</div>
             <div class="col-span-3">Nama</div>
-            <div class="col-span-9">: Tas Ransel</div>
+            <div class="col-span-9"> Tas Ransel</div>
             <div class="col-span-3">Status</div>
-            <div class="col-span-9">: Active</div>
+            <div class="col-span-9"> Active</div>
             <div class="col-span-3">Kategori</div>
-            <div class="col-span-9">: tes123</div>
+            <div class="col-span-9"> tes123</div>
             <div class="col-span-3">Merk</div>
-            <div class="col-span-9">: 1131</div>
+            <div class="col-span-9"> 1131</div>
             <div class="col-span-3">Keterangan</div>
-            <div class="col-span-9">: 1131</div>
+            <div class="col-span-9"> 1131</div>
             <div class="col-span-3">Ketersediaan</div>
-            <div class="col-span-9">: Promo</div>
+            <div class="col-span-9"> Promo</div>
             <div class="col-span-3">Berat</div>
-            <div class="col-span-9">: 13 gram</div>
+            <div class="col-span-9"> 13 gram</div>
             <div class="col-span-3">No. Urut</div>
-            <div class="col-span-9">: 13</div>
+            <div class="col-span-9"> 13</div>
             <hr class="col-span-12">
             <div class="col-span-3">HPP</div>
-            <div class="col-span-9">: Rp. (0%)</div>
+            <div class="col-span-9"> Rp. (0%)</div>
             <div class="col-span-3">Harga Web</div>
-            <div class="col-span-9">: Rp. 0</div>
+            <div class="col-span-9"> Rp. 0</div>
             <div class="col-span-3">Harga Toko</div>
-            <div class="col-span-9">: Rp. 0</div>
+            <div class="col-span-9"> Rp. 0</div>
             <div class="col-span-3">Harga Grosir</div>
             <hr class="col-span-12">
             <div class="col-span-12 font-bold">Status</div>
             <div class="col-span-3">Status</div>
-            <div class="col-span-9">: Promo</div>
+            <div class="col-span-9"> Promo</div>
             <div class="col-span-3">Harga Promo</div>
-            <div class="col-span-9">: Rp. 0</div>
+            <div class="col-span-9"> Rp. 0</div>
         </div>
     </div>
 @endsection

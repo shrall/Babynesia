@@ -16,4 +16,8 @@ class DetailFaktur extends Model
     ];
     protected $primaryKey = 'no_detail_faktur';
     // public $incrementing = false;
+    public function product()
+    {
+        return $this->belongsTo(Produk::class, 'kode_produk', 'kode_produk');
+    }
 }

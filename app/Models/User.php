@@ -19,4 +19,16 @@ class User extends Authenticatable
     ];
     protected $primaryKey = 'no_user';
     // public $incrementing = false;
+    public function status()
+    {
+        return $this->belongsTo(UserStatus::class, 'user_status_id', 'id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'negara', 'id');
+    }
+    public function fakturs()
+    {
+        return $this->hasMany(Faktur::class, 'kode_user', 'no_user');
+    }
 }

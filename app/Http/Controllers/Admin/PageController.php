@@ -93,20 +93,6 @@ class PageController extends Controller
     {
         return view('admin.content.gallery_create');
     }
-    public function member()
-    {
-        $users = User::all();
-        return view('admin.shop.member', compact('users'));
-    }
-    public function member_create()
-    {
-        return view('admin.shop.member_create');
-    }
-    //@marshall ini nanti ada parameternya Model $model trus di compact ke view. harusnya user
-    public function member_detail()
-    {
-        return view('admin.shop.member_detail');
-    }
     public function product()
     {
         $products = Produk::paginate(15);

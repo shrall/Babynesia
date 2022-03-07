@@ -11,7 +11,7 @@ class FakturStatus extends Model
     public $timestamps = false;
     protected $table = 'faktur_status';
     protected $fillable = [
-        'id','status','color','sort_nr'
+        'id', 'status', 'color', 'sort_nr'
     ];
     protected $primaryKey = 'id';
     // public $incrementing = false;
