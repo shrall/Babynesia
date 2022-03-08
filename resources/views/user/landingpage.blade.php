@@ -66,8 +66,8 @@
         <div id="divhot">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
                 @foreach ($hotdeals as $produk)
-                <a href="" class="rounded-lg shadow-sm bg-white">
-                    <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
+                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             {{ $produk->nama_produk }}
@@ -76,13 +76,17 @@
                             <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
                                 Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
+                            @if ($produk->stock <= 0)
                             <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                 Sold
                             </h6>
+                            @endif
                         </div>
+                        @if ($produk->promo != null)
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
                             R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                         </h6>
+                        @endif
                     </div>
                 </a> 
                 @endforeach
@@ -92,8 +96,8 @@
         <div id="divrestock">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
                 @foreach ($restock as $produk)
-                <a href="" class="rounded-lg shadow-sm bg-white">
-                    <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
+                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             {{ $produk->nama_produk }}
@@ -102,13 +106,17 @@
                             <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
                                 Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
+                            @if ($produk->stock <= 0)
                             <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                 Sold
                             </h6>
+                            @endif
                         </div>
+                        @if ($produk->promo != null)
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
                             R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                         </h6>
+                        @endif
                     </div>
                 </a> 
                 @endforeach
@@ -117,71 +125,40 @@
     </div>
 
     {{-- FEATURED PRODUCT --}}
-
+    @if (!empty($featured[0]))
     <div class="w-full bg-white rounded-md shadow-sm py-5">
         <h1 class="text-center font-concert-one text-4xl text-sky-500">
             Featured Product
         </h1>
     </div>
+    @endif
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 mb-7 xl:w-5/6 xl:mx-auto">
-            <a href="" class="rounded-lg shadow-sm bg-white">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
-                <div class="p-4 pb-6">
-                    <h6 class="font-encode-sans font-bold xl:text-base text-sm">
-                        Nama produk panjangnya 2 baris
-                    </h6>
-                    <div class="flex justify-between items-center xl:my-3 my-2">
-                        <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
-                            Rp. 15.000
-                        </h2>
-                        <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm xl:text-base">
-                            Sold
+            @foreach ($featured as $produk)
+                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
+                    <div class="p-4 pb-6">
+                        <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                            {{ $produk->nama_produk }}
                         </h6>
-                    </div>
-                    <h6 class="font-encode-sans text-gray-400 xl:text-base text-sm">
-                        R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
-                    </h6>
-                </div>
-            </a>
-            <a href="" class="rounded-lg shadow-sm bg-white">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
-                <div class="p-4 pb-6">
-                    <h6 class="font-encode-sans font-bold xl:text-base text-sm">
-                        Nama produk panjangnya 2 baris
-                    </h6>
-                    <div class="flex justify-between items-center xl:my-3 my-2">
-                        <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
-                            Rp. 15.000
-                        </h2>
-                        <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm xl:text-base">
-                            Sold
+                        <div class="flex justify-between items-center sm:my-3 my-2">
+                            <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                                Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            @if ($produk->stock <= 0)
+                            <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                Sold
+                            </h6>
+                            @endif
+                        </div>
+                        @if ($produk->promo != null)
+                        <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                         </h6>
+                        @endif
                     </div>
-                    <h6 class="font-encode-sans text-gray-400 xl:text-base text-sm">
-                        R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
-                    </h6>
-                </div>
-            </a>
-            <a href="" class="rounded-lg shadow-sm bg-white">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
-                <div class="p-4 pb-6">
-                    <h6 class="font-encode-sans font-bold xl:text-base text-sm">
-                        Nama produk panjangnya 2 baris
-                    </h6>
-                    <div class="flex justify-between items-center xl:my-3 my-2">
-                        <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
-                            Rp. 15.000
-                        </h2>
-                        <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm xl:text-base">
-                            Sold
-                        </h6>
-                    </div>
-                    <h6 class="font-encode-sans text-gray-400 xl:text-base text-sm">
-                        R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
-                    </h6>
-                </div>
-            </a>
+                </a> 
+            @endforeach
         </div>
         <div class="flex justify-center">
             <a href="{{ route('user.list_products') }}" class="border-2 hover:bg-pink-400 hover:text-white hover:ring-pink-300 hover:ring-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">

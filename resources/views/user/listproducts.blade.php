@@ -29,6 +29,11 @@
                         Restock
                     </a>
                 </li>
+                <li class="my-1">
+                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
+                        Featured
+                    </a>
+                </li>
             </ul>
             <h2 class="font-concert-one text-slate-900 text-2xl mt-5">Kategori</h2>
             <ul class="mt-3">
@@ -78,9 +83,13 @@
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
                 "{{ $keyword }}"
             </h1>
+            @elseif (!empty($subfilter))
+            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+                {{ $produks[0]->category->subcategories[0]->child_name }}
+            </h1>
             @elseif (!empty($filter))
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-                {{ $filter }}
+                {{ $produks[0]->category->nama_kategori }}
             </h1>
             @else
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">

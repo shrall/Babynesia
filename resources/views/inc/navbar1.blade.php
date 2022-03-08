@@ -131,7 +131,7 @@
                         @foreach ($allkategoris as $kategori)
                         <li class="my-1">
                             <form action="{{ route('user.list_products') }}" method="get">
-                                <input type="hidden" value="{{ $kategori->nama_kategori }}" name="filter">
+                                <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                                 <button type="submit" class="text-white font-encode-sans">
                                     {{ $kategori->nama_kategori }}
                                 </button>

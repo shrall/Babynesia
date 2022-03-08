@@ -7,33 +7,31 @@
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 xl:hidden">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-            Nama Produk
+            {{ $produk->nama_produk }}
         </h1>
-        <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
+        {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
             Product description goes here
-        </p>
+        </p> --}}
     </div>
     <div class="xl:grid xl:grid-cols-2 xl:gap-3">
         <div class="mt-3">
             <div class="mb-3">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                    alt="" class="aspect-square w-full rounded-lg object-cover">
+                <img src="{{ $produk->image }}" alt="" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
             </div>
             <div class="flex items-center flex-wrap">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                    alt="" class="aspect-square w-1/4 rounded-lg object-cover mr-3">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                    alt="" class="aspect-square w-1/4 rounded-lg object-cover mr-3">
+                @foreach ($produk->imaged as $image)
+                <img src="{{ $image->imageurl }}" alt="" class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
+                @endforeach
             </div>
         </div>
         <div class="mt-3 px-3 pt-3 pb-8 bg-white rounded-lg h-fit shadow-sm">
             <div class="hidden xl:block">
                 <h1 class="font-concert-one text-sky-500 xl:text-4xl">
-                    Nama Produk
+                    {{ $produk->nama_produk }}
                 </h1>
-                <p class="text-gray-400 font-encode-sans">
+                {{-- <p class="text-gray-400 font-encode-sans">
                     Product description goes here
-                </p>
+                </p> --}}
             </div>
             <div class="flex xl:mt-6">
                 <p class="text-sm sm:text-base text-gray-400 font-encode-sans leading-7">
@@ -47,41 +45,23 @@
                     :
                 </p>
                 <p class="font-bold sm:text-base font-encode-sans text-slate-900 text-sm ml-2 leading-7">
-                    Baju Dewasa <br>
-                    A/N <br>
-                    150 gram
+                    {{ $produk->category->nama_kategori }} <br>
+                    {{ $produk->brand->nama_brand }} <br>
+                    {{ $produk->weight }} gram
                 </p>
             </div>
             <form action="{{ route('user.produk.create') }}" method="post">
                 <div class="mt-3 xl:mt-6 grid grid-cols-3 sm:grid-cols-5 xl:grid-cols-4 gap-2">
+                    @foreach ($produk->stocked as $stock)
                     <div class="w-full text-center">
-                        <input type="radio" name="ukuran" class="hidden peer" id="tes">
-                        <label for="tes"
+                        <input type="radio" name="ukuran" class="hidden peer" id="stock-{{ $stock->id }}"
+                            value="{{ $stock->size }} - {{ $stock->color }}">
+                        <label for="stock-{{ $stock->id }}"
                             class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
-                            M-Cream
+                            {{ $stock->size }} - {{ $stock->color }}
                         </label>
                     </div>
-                    <div class="w-full text-center">
-                        <input type="radio" name="ukuran" class="hidden peer" id="tes1">
-                        <label for="tes1"
-                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
-                            XL-Cream
-                        </label>
-                    </div>
-                    <div class="w-full text-center">
-                        <input type="radio" name="ukuran" class="hidden peer" id="tes2">
-                        <label for="tes2"
-                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
-                            M-Abu
-                        </label>
-                    </div>
-                    <div class="w-full text-center">
-                        <input type="radio" name="ukuran" class="hidden peer" id="tes3">
-                        <label for="tes3"
-                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
-                            XL-Abu
-                        </label>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="mt-4 xl:mt-7 flex items-center justify-between">
                     <h6 class="font-encode-sans text-slate-900 font-bold text-sm sm:text-base">
@@ -104,7 +84,7 @@
                 </div>
                 <div class="my-4 xl:my-7">
                     <h1 class="text-3xl font-concert-one text-slate-900">
-                        Rp. 28.000
+                        {{ $produk->harga }}
                     </h1>
                 </div>
                 <a href="#" role="button" id="open-modal"
@@ -154,27 +134,32 @@
     </div>
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
-            <a href="{{ route('user.produk.show', 1) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                    class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
-                <div class="p-4 pb-6">
+            @foreach ($others as $produk)
+            <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                    alt="">
+                <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        Nama produk panjangnya 2 baris
+                        {{ $produk->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         <h2 class="font-concert-one text-gray-400 xl:text-2xl text-xl">
-                            Rp. 15.000
+                            Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h2>
-                        <h6
+                        @if ($produk->stock <= 0) <h6
                             class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                             Sold
-                        </h6>
+                            </h6>
+                            @endif
                     </div>
+                    @if ($produk->promo != null)
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
                         R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                     </h6>
+                    @endif
                 </div>
             </a>
+            @endforeach
 
         </div>
     </div>
@@ -195,23 +180,23 @@
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
 
-        // if any scroll is attempted, set this to the previous value
-        window.onscroll = function() {
-            window.scrollTo(scrollLeft, scrollTop);
-        };
+            // if any scroll is attempted, set this to the previous value
+            window.onscroll = function () {
+                window.scrollTo(scrollLeft, scrollTop);
+            };
     }
     // We want the modal to close when the OK button is clicked
     button.onclick = function () {
         modal.style.display = "none";
         modalbg.style.display = "none";
-        window.onscroll = function() {};
+        window.onscroll = function () {};
     }
 
     window.onclick = function (event) {
         if (event.target == modalbg) {
             modal.style.display = "none";
             modalbg.style.display = "none";
-            window.onscroll = function() {};
+            window.onscroll = function () {};
         }
     }
 

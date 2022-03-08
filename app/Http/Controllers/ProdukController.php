@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -46,7 +47,11 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        return view('user.produkdetail', compact('produk'));
+        $others = Produk::where('kategory', $produk->kategory)
+            ->limit(4)
+            ->get();
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        return view('user.produkdetail', compact('produk', 'others', 'allkategoris'));
     }
 
     /**

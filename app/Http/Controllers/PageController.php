@@ -14,6 +14,7 @@ class PageController extends Controller
         $produks = Produk::all();
         $newproduct = Produk::where('stat', '0')
             ->limit(9)
+            ->orderBy('kode_produk', 'desc')
             ->get();
         $hotdeals = Produk::where('stat', 'd')
             ->limit(9)
@@ -21,12 +22,15 @@ class PageController extends Controller
         $restock = Produk::where('stat', 'r')
             ->limit(9)
             ->get();
+        $featured = Produk::where('featured', 1)
+            ->limit(3)
+            ->get();
 
         $page = 'home';
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
 
 
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'allkategoris', 'page'));
+        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'page'));
     }
     public function list_products(Request $request)
     {
@@ -43,6 +47,7 @@ class PageController extends Controller
             $produks = Produk::where('kategory', $kategori[0]->no_kategori)->paginate(9);
 
             if (!empty($subfilter)) {
+                $subs = KategoriChild::where('category_id', $subfilter)->get();
             }
         } else {
             $produks = Produk::paginate(9);

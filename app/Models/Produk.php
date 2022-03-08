@@ -26,7 +26,7 @@ class Produk extends Model
     }
     public function stocked()
     {
-        return $this->hasMany(ProdukStock::class, 'brand_produk', 'no_brand');
+        return $this->hasMany(ProdukStock::class, 'produk_id', 'kode_produk');
     }
     public function imaged()
     {
