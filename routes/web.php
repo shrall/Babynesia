@@ -214,16 +214,11 @@ Route::group([
     Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
     Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
 
-    Route::get('/shop/member', [AdminPageController::class, 'member'])->name('member');
-    Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
-    //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
-    Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
-    Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
-    Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
-    //@marshall /1nya ini nanti harus dirubah {product} biar ngikutin
-    Route::get('/shop/product/detail/1', [AdminPageController::class, 'product_detail'])->name('product.detail');
     Route::get('/shop/sales', [AdminPageController::class, 'sales'])->name('sales');
     Route::get('/shop/profit', [AdminPageController::class, 'profit'])->name('profit');
+
+    Route::get('/produk/search', [AdminProdukController::class, 'index_search'])->name('produk.search.index');
+    Route::post('/produk/search', [AdminProdukController::class, 'search'])->name('produk.search');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
