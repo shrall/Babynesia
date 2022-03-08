@@ -7,15 +7,13 @@
     <form action="{{route('adminpage.brand.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="admin-card">
-            <div class="col-span-12">
-                <div class="flex flex-col gap-2">
-                    <label for="name" class="text-xl">Nama</label>
-                    <input type="text" name="name" id="name" class="admin-input" required>
-                </div>
+            <div class="col-span-3">Nama</div>
+            <div class="col-span-9 flex items-center">
+                <input type="text" name="name" id="name" class="admin-input" required>
             </div>
             <div class="col-span-12 type-Gambar">
                 <div class="flex flex-col gap-2">
-                    <label for="" class="text-xl">Gambar</label>
+                    <label for="" class="">Gambar</label>
                     <div class="flex items-end">
                         <img src="{{ asset('svg/images.svg') }}" class="w-48 h-48 bg-gray-300"
                             id="preview-ad-image">

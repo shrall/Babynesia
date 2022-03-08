@@ -31,6 +31,7 @@ use App\Http\Controllers\Admin\LinkLocationController as AdminLinkLocationContro
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\PaymentArtController as AdminPaymentArtController;
+use App\Http\Controllers\Admin\PaymentMethodController as AdminPaymentMethodController;
 use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Admin\ProdukDestinationCityController as AdminProdukDestinationCityController;
 use App\Http\Controllers\Admin\ProdukEventController as AdminProdukEventController;
@@ -84,6 +85,7 @@ use App\Http\Controllers\LinkLocationController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentArtController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProdukDestinationCityController;
 use App\Http\Controllers\ProdukEventController;
@@ -163,6 +165,7 @@ Route::group([
     Route::resource('linklocation', LinkLocationController::class);
     Route::resource('news', NewsController::class);
     Route::resource('paymentart', PaymentArtController::class);
+    Route::resource('paymentmethod', PaymentMethodController::class);
     Route::resource('produk', ProdukController::class);
     Route::resource('produkdestinationcity', ProdukDestinationCityController::class);
     Route::resource('produkevent', ProdukEventController::class);
@@ -214,16 +217,11 @@ Route::group([
     Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
     Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
 
-    Route::get('/shop/member', [AdminPageController::class, 'member'])->name('member');
-    Route::get('/shop/member/create', [AdminPageController::class, 'member_create'])->name('member.create');
-    //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
-    Route::get('/shop/member/detail/1', [AdminPageController::class, 'member_detail'])->name('member.detail');
-    Route::get('/shop/product', [AdminPageController::class, 'product'])->name('product');
-    Route::get('/shop/product/create', [AdminPageController::class, 'product_create'])->name('product.create');
-    //@marshall /1nya ini nanti harus dirubah {product} biar ngikutin
-    Route::get('/shop/product/detail/1', [AdminPageController::class, 'product_detail'])->name('product.detail');
     Route::get('/shop/sales', [AdminPageController::class, 'sales'])->name('sales');
     Route::get('/shop/profit', [AdminPageController::class, 'profit'])->name('profit');
+
+    Route::get('/produk/search', [AdminProdukController::class, 'index_search'])->name('produk.search.index');
+    Route::post('/produk/search', [AdminProdukController::class, 'search'])->name('produk.search');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
@@ -259,6 +257,7 @@ Route::group([
     Route::resource('linklocation', AdminLinkLocationController::class);
     Route::resource('news', AdminNewsController::class);
     Route::resource('paymentart', AdminPaymentArtController::class);
+    Route::resource('paymentmethod', AdminPaymentMethodController::class);
     Route::resource('produk', AdminProdukController::class);
     Route::resource('produkdestinationcity', AdminProdukDestinationCityController::class);
     Route::resource('produkevent', AdminProdukEventController::class);

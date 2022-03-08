@@ -11,7 +11,7 @@ class Produk extends Model
     public $timestamps = false;
     protected $table = 'produk';
     protected $fillable = [
-        'kode_produk', 'kode_alias', 'kategory', 'nama_produk', 'brand_produk', 'ket', 'harga', 'harga_sale', 'stat', 'complement', 'image', 'promo',
+        'kode_produk', 'kode_alias', 'kategory', 'subkategory', 'nama_produk', 'brand_produk', 'ket', 'harga', 'harga_sale', 'stat', 'complement', 'image', 'promo',
         'harga_pokok', 'ket2', 'ket3', 'ket4', 'stock', 'sort_nr', 'max_buy_amount', 'disable', 'weight'
     ];
     protected $primaryKey = 'kode_produk';
@@ -30,6 +30,6 @@ class Produk extends Model
     }
     public function imaged()
     {
-        return $this->hasOne(ProdukImage::class, 'produk_id', 'kode_produk');
+        return $this->hasMany(ProdukImage::class, 'produk_id', 'kode_produk');
     }
 }

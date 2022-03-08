@@ -14,5 +14,5 @@ class Country extends Model
         'id', 'name'
     ];
     protected $primaryKey = 'id';
-    // public $incrementing = false;
+    public $incrementing = false;
 }

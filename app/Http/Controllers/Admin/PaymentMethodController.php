@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faktur;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
-class FakturController extends Controller
+class PaymentMethodController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,47 +42,44 @@ class FakturController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Faktur  $faktur
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function show(Faktur $faktur)
+    public function show(PaymentMethod $paymentMethod)
     {
-        return view('admin.faktur.show', compact('faktur'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Faktur  $faktur
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faktur $faktur)
+    public function edit(PaymentMethod $paymentMethod)
     {
-        return view('admin.faktur.edit', compact('faktur'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Faktur  $faktur
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faktur $faktur)
+    public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        $faktur->update([
-            'admin_note' => $request->admin_note,
-        ]);
-        return redirect()->route('adminpage.faktur.edit', $faktur->no_faktur);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Faktur  $faktur
+     * @param  \App\Models\PaymentMethod  $paymentMethod
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faktur $faktur)
+    public function destroy(PaymentMethod $paymentMethod)
     {
         //
     }

@@ -32,7 +32,7 @@
                 <div class="text-xl font-bold">Isi E-Mail</div>
             </div>
             <div class="col-span-3">Judul</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Isi E-Mail</div>

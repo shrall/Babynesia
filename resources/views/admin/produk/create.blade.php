@@ -9,11 +9,11 @@
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
             <div class="admin-card">
                 <div class="col-span-3">Kode Alias</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Status</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="type" checked id="radio-1">
                         <label for="radio-1">Aktif</label>
@@ -24,64 +24,64 @@
                     </div>
                 </div>
                 <div class="col-span-3">Nama Produk</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Kode Alias</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">Kategori</div>
-                <div class="col-span-9 flex gap-x-2">:
+                <div class="col-span-9 flex gap-x-2">
                     <select name="" id="" class="admin-input">
                         <option value="1">A</option>
                         <option value="2">B</option>
                     </select>
                 </div>
                 <div class="col-span-3">Merk</div>
-                <div class="col-span-9 flex gap-x-2">:
+                <div class="col-span-9 flex gap-x-2">
                     <select name="" id="" class="admin-input">
                         <option value="1">A</option>
                         <option value="2">B</option>
                     </select>
                 </div>
                 <div class="col-span-3">Berat</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">
                     gram
                 </div>
                 <div class="col-span-3">No Urut</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">
                 </div>
                 <div class="col-span-3">HPP</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-3">Harga Web</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-3">Harga Toko</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Harga Grosir</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Diskon 1</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">%
                 </div>
                 <div class="col-span-3">Diskon 2</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">%
                 </div>
                 <div class="col-span-3">Diskon 3</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">%
                 </div>
 
@@ -113,7 +113,7 @@
                         accept="image/*" required>
                 </div>
                 <div class="col-span-3">Featured Product</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="type" checked id="radio-3">
                         <label for="radio-3">Normal</label>
@@ -147,12 +147,12 @@
                     </div>
                 </div>
                 <div class="col-span-3">Harga Promo</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="" id="" class="admin-input">rupiah
                 </div>
                 <div class="col-span-12 text-xs">*Bila 0, tidak ditampilkan</div>
                 <div class="col-span-3">Grosir PO Ready Tanggal</div>
-                <div class="col-span-9 flex items-center gap-x-2">:
+                <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="" id="" class="admin-input">
                 </div>
             </div>

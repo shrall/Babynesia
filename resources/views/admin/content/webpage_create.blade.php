@@ -8,22 +8,22 @@
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-3">Nama</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Urutan</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="number" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Tampilkan di</div>
-            <div class="col-span-9 gap-x-2">:
+            <div class="col-span-9 gap-x-2">
                 <select name="" id="" class="admin-input">
                     <option value="1">Halaman A</option>
                     <option value="2">Halaman B</option>
                 </select>
             </div>
             <div class="col-span-3">Buka di Window Baru</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-3">
                     <label for="radio-3">Ya</label>

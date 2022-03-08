@@ -3,8 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\Faktur;
+use App\Models\IndonesiaProvince;
 use App\Models\User;
+use App\Models\UserStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -15,7 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -25,7 +33,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $countries = Country::all();
+        $provinces = IndonesiaProvince::all();
+        $statuses = UserStatus::all();
+        return view('admin.user.create', compact('countries', 'provinces', 'statuses'));
     }
 
     /**
@@ -36,7 +47,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->password != $request->password_confirmation) {
+            return redirect()->route('adminpage.user.create')->with('wrong', 'Password Konfirmasi Salah!');
+        }
+        if ($request->country != 'ID') {
+            $prv = $request->other_province;
+        } else {
+            $prv = $request->province;
+        }
+        $user = User::create([
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'name' => $request->name,
+            'alamat' => $request->address,
+            'kota' => $request->city,
+            'propinsi' => $prv,
+            'negara' => $request->country,
+            'kodepos' => $request->postal_code,
+            'hp' => $request->handphone,
+            'telp' => $request->telephone ?? 0,
+            'tgl_gabung' => Carbon::now(),
+            'user_status_id' => $request->status
+        ]);
+        return redirect()->route('adminpage.user.show', $user->no_user);
     }
 
     /**
@@ -47,7 +80,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $fakturs = Faktur::where('kode_user', $user->no_user)->paginate(15);
+        $sortedResult = $fakturs->getCollection()->sortByDesc('no_faktur')->values();
+        $fakturs->setCollection($sortedResult);
+        return view('admin.user.show', compact('user', 'fakturs'));
     }
 
     /**
@@ -58,7 +94,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        $countries = Country::all();
+        $provinces = IndonesiaProvince::all();
+        $statuses = UserStatus::all();
+        return view('admin.user.edit', compact('countries', 'provinces', 'statuses', 'user'));
     }
 
     /**
@@ -70,7 +109,34 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        if ($request->password) {
+            if ($request->password != $request->password_confirmation) {
+                return redirect()->route('adminpage.user.create')->with('wrong', 'Password Konfirmasi Salah!');
+            } else {
+                $password = Hash::make($request->password);
+            }
+        } else {
+            $password = $user->password;
+        }
+        if ($request->country != 'ID') {
+            $prv = $request->other_province;
+        } else {
+            $prv = $request->province;
+        }
+        $user->update([
+            'email' => $request->email,
+            'password' => $password,
+            'name' => $request->name,
+            'alamat' => $request->address,
+            'kota' => $request->city,
+            'propinsi' => $prv,
+            'negara' => $request->country,
+            'kodepos' => $request->postal_code,
+            'hp' => $request->handphone,
+            'telp' => $request->telephone ?? 0,
+            'user_status_id' => $request->status
+        ]);
+        return redirect()->route('adminpage.user.show', $user->no_user);
     }
 
     /**

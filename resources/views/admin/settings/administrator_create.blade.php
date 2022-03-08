@@ -8,11 +8,11 @@
         @csrf
         <div class="admin-card">
             <div class="col-span-3">Username</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="text" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Tipe</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <div class="flex items-center gap-2">
                     <input type="radio" name="" id="radio-1">
                     <label for="radio-1">Master Admin</label>
@@ -23,11 +23,11 @@
                 </div>
             </div>
             <div class="col-span-3">Password</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="password" name="" id="" class="admin-input">
             </div>
             <div class="col-span-3">Ulang Password</div>
-            <div class="col-span-9 flex items-center gap-x-2">:
+            <div class="col-span-9 flex items-center gap-x-2">
                 <input type="password" name="" id="" class="admin-input">
             </div>
             <div class="col-span-12">
