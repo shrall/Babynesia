@@ -32,95 +32,61 @@
             </ul>
             <h2 class="font-concert-one text-slate-900 text-2xl mt-5">Kategori</h2>
             <ul class="mt-3">
-                <li class="my-1">
-                    <a href="" class="text-sky-500 text-sm font-bold font-encode-sans">
-                        Shoes
-                    </a>
+                @foreach ($allkategoris as $kategori)
+                <li class="my-1 group">
+                    <form action="{{ route('user.list_products') }}" method="get">
+                        <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                        @if ($filter == $kategori->no_kategori)
+                        <button type="submit" class="text-left appearance-none text-sky-500 text-sm font-bold font-encode-sans peer">
+                            {{ $kategori->nama_kategori }}
+                        </button>
+                        @else
+                        <button type="submit" class="appearance-none text-left text-gray-400 text-sm font-bold font-encode-sans peer hover:text-sky-500">
+                            {{ $kategori->nama_kategori }}
+                        </button>
+                        @endif
+                    </form>
+                    @foreach ($subkategoris as $sub)
+                    @if ($sub->kategori_id == $kategori->no_kategori)
+                    <form action="{{ route('user.list_products') }}" method="">
+                        <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
+                        <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
+                        <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
+                            @if ($subfilter == $sub->child_id)
+                            <li class="appearance-none text-sky-500 block whitespace-no-wrap">
+                                <submit type="submit" class="text-left">{{ $sub->child_name }}</submit>
+                            </li>
+                            @else
+                            <li class="appearance-none hover:text-sky-500 text-gray-400 block whitespace-no-wrap">
+                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
+                            </li>
+                            @endif
+                        </ul>
+                    </form>
+                    @endif
+                    @endforeach
                 </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Bedding Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Clothes
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Pajamas
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Sock and Legging
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Bento Tools
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Diaper Bag & Kids Bag
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Peralatan Renang & Mandi
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Storage and Organiser Items
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Baju Dewasa
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Casual Dewasa
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Casual Set
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Feeding and Breast Feeding Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Safety Tools
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
-                        Others
-                    </a>
-                </li>
+                @endforeach
+                
             </ul>
         </div>
     
     </div>
     <div class="col-span-3">
         <div class="bg-white rounded-md px-3 py-5 flex justify-between items-center shadow-sm">
+            @if (!empty($keyword))
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-                Shoes
+                "{{ $keyword }}"
             </h1>
+            @elseif (!empty($filter))
+            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+                {{ $filter }}
+            </h1>
+            @else
+            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+                List Product
+            </h1>
+            @endif
             <a href="" class="rounded-full px-4 py-2 bg-sky-500 text-white text-sm font-bold xl:hidden font-encode-sans">
                 Filter
             </a>
@@ -129,8 +95,8 @@
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:mx-auto">
 
             @foreach ($produks as $produk)
-                <a href="{{ route('user.produk.show', 1) }}" class="rounded-lg shadow-sm bg-white">
-                    <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
+                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             {{ $produk->nama_produk }}

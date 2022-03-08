@@ -2,14 +2,16 @@
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex justify-between items-center">
             <div class="flex">
-                <h1 class="font-concert-one text-white text-4xl mr-5">TokoBayiFiv</h1>
+                <a href="/">
+                    <h1 class="font-concert-one text-white text-4xl mr-5">TokoBayiFiv</h1>
+                </a>
                 <div class="py-3 px-4 rounded-full bg-white w-128">
                     <form action="{{ route('user.list_products') }}">
 
                         <div class="flex justify-between w-full items-center">
                             @if (!empty($keyword))
                             <input type="text" placeholder="Search by keyword" name="keyword" value="{{ $keyword }}"
-                            class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
+                                class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
                             @else
                             <input type="text" placeholder="Search by keyword" name="keyword"
                                 class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
@@ -50,119 +52,92 @@
             </div>
         </div>
         <ul class="mt-4">
+            @if (!empty($page)&&$page == "home")
             <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
                 <a href="/" aria-expanded="true">
                     Home
                 </a>
             </li>
+            @else
+            <li class="inline-block font-encode-sans text-white">
+                <a href="/" aria-expanded="true">
+                    Home
+                </a>
+            </li>
+            @endif
+            @if (!empty($page)&&$page == "about")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+                <a href="" aria-expanded="true">
+                    About
+                </a>
+            </li>
+            @else
             <li class="ml-4 inline-block font-encode-sans text-white">
                 <a href="" aria-expanded="true">
                     About
                 </a>
             </li>
+            @endif
+            @if (!empty($page)&&$page == "faq")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+                <a href="{{ route('user.faq.index') }}" aria-expanded="true">
+                    FAQ
+                </a>
+            </li>
+            @else
             <li class="ml-4 inline-block font-encode-sans text-white">
                 <a href="{{ route('user.faq.index') }}" aria-expanded="true">
                     FAQ
                 </a>
             </li>
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
+            @endif
+            @if (!empty($page)&&$page == "contact")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+                <a href="{{ route('user.contact') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
+            @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.guestbook.create') }}" aria-expanded="true">
+                <a href="{{ route('user.contact') }}" aria-expanded="true">
+                    Contact
+                </a>
+            </li>
+            @endif
+            @if (!empty($page)&&$page == "guestbook")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
                     Guestbook
                 </a>
             </li>
-            <li class="peer ml-4 inline-block font-encode-sans text-white">
-                <div class="cursor-pointer">
-                    Kategori
-                </div>
+            @else
+            <li class="ml-4 inline-block font-encode-sans text-white">
+                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
+                    Guestbook
+                </a>
             </li>
-            <div
-                class="invisible peer-hover:visible hover:visible pt-0 pb-6 mt-5 absolute left-0 top-24 bg-white w-full mx-auto xl:px-40">
-                <div class="flex justify-between">
-                    <ul>
+            @endif
+            <div class="group inline-block">
+
+                <li class="peer ml-4 font-encode-sans text-white">
+                    <div class="cursor-pointer">
+                        Kategori
+                    </div>
+                </li>
+                <div class="p-10 absolute">&nbsp;</div>
+                <div
+                    class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-400 w-full mx-auto xl:px-40">
+                    <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
+                        @foreach ($allkategoris as $kategori)
                         <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Shoes
-                            </a>
+                            <form action="{{ route('user.list_products') }}" method="get">
+                                <input type="hidden" value="{{ $kategori->nama_kategori }}" name="filter">
+                                <button type="submit" class="text-white font-encode-sans">
+                                    {{ $kategori->nama_kategori }}
+                                </button>
+                            </form>
                         </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Bedding Accesories
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Clothes
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Pajamas
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Sock and Legging
-                            </a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Accesories
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Bento Tools
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Diaper Bag & Kids Bag
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Peralatan Renang & Mandi
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Storage and Organiser Items
-                            </a>
-                        </li>
-                    </ul>
-                    <ul>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Baju Dewasa
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Casual Set
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Feeding and Breast Feeding Accesories
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Safety Tools
-                            </a>
-                        </li>
-                        <li class="my-1">
-                            <a href="" class="font-encode-sans text-white">
-                                Others
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -263,7 +238,7 @@
             </div>
         </a>
         <hr>
-        <a href="{{ route('user.guestbook.create') }}">
+        <a href="{{ route('user.guestbook.index') }}">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
                 Guestbook
             </div>

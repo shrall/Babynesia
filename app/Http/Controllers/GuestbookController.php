@@ -14,7 +14,8 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        return view('user.contact');
+        $page = 'guestbook';
+        return view('user.guestbook', compact('page'));
     }
 
     /**
@@ -24,7 +25,6 @@ class GuestbookController extends Controller
      */
     public function create()
     {
-        return view('user.guestbook');
     }
 
     /**

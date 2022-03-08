@@ -36,8 +36,8 @@
         <div id="divnew">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
                 @foreach ($newproduct as $produk)
-                <a href="" class="rounded-lg shadow-sm bg-white">
-                    <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2" class="aspect-square w-full bg-red-500 rounded-t-lg object-cover" alt="">
+                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             {{ $produk->nama_produk }}
@@ -46,13 +46,17 @@
                             <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
                                 Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
+                            @if ($produk->stock <= 0)
                             <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                 Sold
                             </h6>
+                            @endif
                         </div>
+                        @if ($produk->promo != null)
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
                             R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
                         </h6>
+                        @endif
                     </div>
                 </a> 
                 @endforeach

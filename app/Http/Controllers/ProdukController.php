@@ -46,7 +46,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        return view('user.produkdetail');
+        return view('user.produkdetail', compact('produk'));
     }
 
     /**

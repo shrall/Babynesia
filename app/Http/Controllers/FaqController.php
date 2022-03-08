@@ -14,7 +14,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        return view('user.faq');
+        $page = 'faq';
+        return view('user.faq', compact('page'));
     }
 
     /**

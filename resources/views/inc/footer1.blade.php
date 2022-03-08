@@ -1,8 +1,10 @@
 <footer class="bg-blue-400 shadow-sm xl:pt-20 pt-8">
     <div class="container mx-auto xl:px-32 px-3 xl:flex xl:justify-between">
-        <h1 class="font-concert-one text-4xl mt-3 text-white">
-            TokoBayiFiv
-        </h1>
+        <a href="/">
+            <h1 class="font-concert-one text-4xl mt-3 text-white">
+                TokoBayiFiv
+            </h1>
+        </a>
         <div class="flex xl:justify-end flex-wrap mt-5 xl:mt-0">
             <ul class="mr-24 mb-4">
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">

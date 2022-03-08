@@ -131,6 +131,8 @@ Route::group([
 ], function () {
     Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
     Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
+    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
     Route::resource('admin', AdminController::class);
     Route::resource('adminstatus', AdminStatusController::class);
     Route::resource('brand', BrandController::class);

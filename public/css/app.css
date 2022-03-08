@@ -414,11 +414,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .left-0{
   left: 0px;
 }
-.top-24{
-  top: 6rem;
+.top-32{
+  top: 8rem;
 }
 .-left-full{
   left: -100%;
+}
+.top-24{
+  top: 6rem;
 }
 .top-4{
   top: 1rem;
@@ -428,6 +431,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .top-20{
   top: 5rem;
+}
+.top-28{
+  top: 7rem;
+}
+.left-10{
+  left: 2.5rem;
 }
 .z-10{
   z-index: 10;
@@ -587,6 +596,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-ml-px{
   margin-left: -1px;
 }
+.-mt-1{
+  margin-top: -0.25rem;
+}
 .block{
   display: block;
 }
@@ -711,6 +723,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-4{
   width: 1rem;
 }
+.w-8\/10{
+  width: 80%;
+}
 .max-w-6xl{
   max-width: 72rem;
 }
@@ -758,6 +773,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .grid-cols-3{
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.grid-rows-5{
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+}
+.grid-rows-3{
+  grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 .flex-col{
   flex-direction: column;
@@ -825,6 +846,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
+.space-y-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
@@ -1050,6 +1081,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
+.bg-neutral-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
+}
+.bg-neutral-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(163 163 163 / var(--tw-bg-opacity));
+}
 .bg-opacity-50{
   --tw-bg-opacity: 0.5;
 }
@@ -1074,6 +1113,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .p-2{
   padding: 0.5rem;
+}
+.p-10{
+  padding: 2.5rem;
 }
 .py-4{
   padding-top: 1rem;
@@ -1183,6 +1225,24 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pb-8{
   padding-bottom: 2rem;
+}
+.pb-2{
+  padding-bottom: 0.5rem;
+}
+.pt-6{
+  padding-top: 1.5rem;
+}
+.pt-10{
+  padding-top: 2.5rem;
+}
+.pt-20{
+  padding-top: 5rem;
+}
+.pr-8{
+  padding-right: 2rem;
+}
+.pt-1{
+  padding-top: 0.25rem;
 }
 .text-left{
   text-align: left;
@@ -1372,6 +1432,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ring-gray-300{
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(209 213 219 / var(--tw-ring-opacity));
+}
+.filter{
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition-all{
   transition-property: all;
@@ -1736,6 +1799,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-gray-400:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
 .hover\:text-white:hover{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1851,6 +1919,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
 .disabled\:bg-neutral-100:disabled{
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
+}
+
+.group:hover .group-hover\:visible{
+  visibility: visible;
+}
+
+.group:hover .group-hover\:block{
+  display: block;
 }
 
 .peer:checked ~ .peer-checked\:block{
@@ -2205,6 +2281,18 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:px-80{
     padding-left: 20rem;
     padding-right: 20rem;
+  }
+  .xl\:px-64{
+    padding-left: 16rem;
+    padding-right: 16rem;
+  }
+  .xl\:px-72{
+    padding-left: 18rem;
+    padding-right: 18rem;
+  }
+  .xl\:px-48{
+    padding-left: 12rem;
+    padding-right: 12rem;
   }
   .xl\:pt-20{
     padding-top: 5rem;
