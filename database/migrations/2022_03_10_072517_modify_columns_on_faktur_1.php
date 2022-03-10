@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ModifyColumnsOnProduk extends Migration
+class ModifyColumnsOnFaktur1 extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class ModifyColumnsOnProduk extends Migration
      */
     public function up()
     {
-        Schema::table('produk', function (Blueprint $table) {
-            $table->integer('subkategory')->nullable();
+        Schema::table('faktur', function (Blueprint $table) {
+            $table->string('sender_name')->nullable();
+            $table->string('sender_phone')->nullable();
+            $table->text('sender_address')->nullable();
         });
     }
 
@@ -25,7 +27,7 @@ class ModifyColumnsOnProduk extends Migration
      */
     public function down()
     {
-        Schema::table('produk', function (Blueprint $table) {
+        Schema::table('faktur', function (Blueprint $table) {
             //
         });
     }
