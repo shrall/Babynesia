@@ -124,7 +124,7 @@
                         Kategori
                     </div>
                 </li>
-                <div class="p-10 absolute">&nbsp;</div>
+                <div class="py-3 px-10 absolute">&nbsp;</div>
                 <div
                     class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-400 w-full mx-auto xl:px-40">
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
@@ -213,7 +213,7 @@
             @endif
         </div>
     </div>
-    <div class="bg-white py-4 px-4 h-full">
+    <div class="bg-white py-4 px-4 h-full overflow-y-auto">
         <a href="/">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
                 Home
@@ -251,81 +251,16 @@
         </a>
         <div class="ml-4">
             <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
-                <li class="my-1">
-                    <a href="">
-                        Shoes
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Bedding Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Clothes
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Pajamas
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Sock and Legging
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Bento Tools
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Diaper Bag & Kids Bag
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Peralatan Renang & Mandi
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Storage and Organiser Items
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Baju Dewasa
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Casual Set
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Feeding and Breast Feeding Accesories
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Safety Tools
-                    </a>
-                </li>
-                <li class="my-1">
-                    <a href="">
-                        Others
-                    </a>
-                </li>
+                @foreach ($allkategoris as $kategori)
+                    <li class="my-1">
+                        <form action="{{ route('user.list_products') }}" method="get">
+                            <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                            <button type="submit" class="text-slate-900 font-encode-sans">
+                                {{ $kategori->nama_kategori }}
+                            </button>
+                        </form>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>

@@ -12,17 +12,20 @@ class PageController extends Controller
     public function landing_page()
     {
         $produks = Produk::all();
-        $newproduct = Produk::where('stat', '0')
+        $newproduct = Produk::where('stock', '!=', 0)
             ->limit(9)
             ->orderBy('kode_produk', 'desc')
             ->get();
         $hotdeals = Produk::where('stat', 'd')
+            ->where('stock', '!=', 0)
             ->limit(9)
             ->get();
         $restock = Produk::where('stat', 'r')
+            ->where('stock', '!=', 0)
             ->limit(9)
             ->get();
         $featured = Produk::where('featured', 1)
+            ->where('stock', '!=', 0)
             ->limit(3)
             ->get();
 

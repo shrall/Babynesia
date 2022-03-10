@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\DetailCart;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -14,7 +17,11 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('user.cart');
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+
+        $carts = DetailCart::where('no_user', Auth::id())->get();
+
+        return view('user.cart', compact('allkategoris', 'carts'));
     }
 
     /**

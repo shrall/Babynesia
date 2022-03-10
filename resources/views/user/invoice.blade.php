@@ -33,21 +33,21 @@
                     <li>:</li>
                 </ul>
                 <ul class="ml-2 font-encode-sans text-slate-900">
-                    <li>Namamu</li>
-                    <li>nama@gmail.com</li>
-                    <li>0821139</li>
+                    <li>{{ $faktur->receiver->receiver_name }}</li>
+                    <li>{{ $faktur->receiver->email }}</li>
+                    <li>{{ $faktur->receiver->phone }}</li>
                 </ul>
             </div>
             <div class="text-center hidden sm:block">
                 <p class="font-encode-sans">Invoice No.</p>
-                <h6 class="font-encode-sans font-bold text-slate-900"> 1051</h6>
+                <h6 class="font-encode-sans font-bold text-slate-900">{{ $faktur->no_faktur }}</h6>
             </div>
             <div class="text-right">
                 <p class="font-encode-sans sm:hidden">Invoice No.</p>
-                <h6 class="font-encode-sans font-bold text-slate-900 sm:hidden"> 1051</h6>
+                <h6 class="font-encode-sans font-bold text-slate-900 sm:hidden">{{ $faktur->no_faktur }}</h6>
 
                 <p class="font-encode-sans mt-2 sm:mt-0">Date</p>
-                <h6 class="font-encode-sans font-bold text-slate-900">27/01/2022</h6>
+                <h6 class="font-encode-sans font-bold text-slate-900">{{ $faktur->tanggal }}</h6>
             </div>
         </div>
         <div class="my-6">
@@ -62,26 +62,23 @@
                     </tr>
                 </thead>
                 <tbody class="font-encode-sans text-slate-900">
+                    @foreach ($faktur->items as $item)
+                        
                     <tr>
-                        <td class="text-center py-3">1</td>
-                        <td class="py-3">Ini nama produk</td>
-                        <td class="py-3">Lorem ipsum dolor sit amet.</td>
-                        <td class="py-3">Rp. 90.000</td>
-                        <td class="py-3">Rp. 90.000</td>
+                        <td class="text-center py-3">{{ $loop->iteration }}</td>
+                        <td class="py-3">{{ $item->product->nama_produk }}</td>
+                        <td class="py-3">{{ $item->note }}</td>
+                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
+                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
                     </tr>
-                    <tr class="bg-neutral-100">
-                        <td class="text-center">2</td>
-                        <td class="py-3">Ini nama produk</td>
-                        <td class="py-3">Lorem ipsum dolor sit amet.</td>
-                        <td class="py-3">Rp. 90.000</td>
-                        <td class="py-3">Rp. 180.000</td>
-                    </tr>
+
+                    @endforeach
                 </tbody>
                 <tfoot class="bg-blue-400 font-bold font-encode-sans text-white">
                     <tr>
                         <td colspan="3" class="py-3">&nbsp;</td>
                         <td class="py-3 text-center">Total</td>
-                        <td class="py-3">Rp. 270.000</td>
+                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -109,12 +106,12 @@
                         <li>:</li>
                     </ul>
                     <ul class="ml-2 font-encode-sans text-gray-400">
-                        <li>Namamu</li>
-                        <li>Grueltyd</li>
-                        <li>Surabaya</li>
-                        <li>Jawa Timur</li>
-                        <li>120301-213</li>
-                        <li>0812231302</li>
+                        <li>{{ $faktur->receiver->receiver_name }}</li>
+                        <li>{{ $faktur->receiver->address }}</li>
+                        <li>{{ $faktur->receiver->city }}</li>
+                        <li>{{ $faktur->receiver->province }}</li>
+                        <li>{{ $faktur->receiver->phone }}</li>
+                        <li>{{ $faktur->receiver->hp }}</li>
                     </ul>
                 </div>
             </div>

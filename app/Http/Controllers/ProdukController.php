@@ -48,10 +48,12 @@ class ProdukController extends Controller
     public function show(Produk $produk)
     {
         $others = Produk::where('kategory', $produk->kategory)
+            ->where('stock', '!=', 0)
             ->limit(4)
             ->get();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.produkdetail', compact('produk', 'others', 'allkategoris'));
+        $stocks = $produk->stocked->where('produck_stock', '!=', 0);
+        return view('user.produkdetail', compact('produk', 'others', 'stocks', 'allkategoris'));
     }
 
     /**

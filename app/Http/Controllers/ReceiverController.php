@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Receiver;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,6 @@ class ReceiverController extends Controller
      */
     public function index()
     {
-        
     }
 
     /**
@@ -22,9 +22,11 @@ class ReceiverController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('user.receiver');
+        $note = $request->note;
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        return view('user.receiver', compact('allkategoris', 'note'));
     }
 
     /**

@@ -29,7 +29,7 @@
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
+                <span class="invalid-feedback text-red-500 font-light font-encode-sans text-sm sm:text-base"
                     role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -44,7 +44,7 @@
                     name="password" required autocomplete="new-password">
 
                 @error('password')
-                <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
+                <span class="invalid-feedback text-red-500 font-light font-encode-sans text-sm sm:text-base"
                     role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -146,7 +146,7 @@
 
             <div class="mt-7 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white text-pink-400 px-8 py-2 rounded-full">
                     {{ __('Register') }}
                 </button>
             </div>

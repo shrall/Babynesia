@@ -52,7 +52,7 @@
 
             <div class="mt-7 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white text-pink-400 px-8 py-2 rounded-full">
                     {{ __('Login') }}
                 </button>
             </div>

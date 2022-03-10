@@ -9,7 +9,6 @@
         <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>
             <a href="{{ route('user.receiver.create') }}" class="text-gray-400">Receiver ></a>
-            <a href="{{ route('user.paymentart.index') }}" class="text-gray-400">Payment ></a>
             <a href="{{ route('user.detailcart.index') }}">Confirmation</a>
         </p>
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
@@ -20,24 +19,46 @@
         <h6 class="text-slate-900 font-bold font-encode-sans mb-5 text-sm sm:text-base">
             Ordered Products
         </h6>
+        @foreach ($carts as $cart)
         <div class="w-full">
             <div class="sm:flex sm:justify-between">
                 <div class="flex">
                     <div class="w-20 sm:w-40">
-                        <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
+                        <img src="{{ $cart->produk->image }}"
                             alt="" class="aspect-square w-full rounded-md object-cover">
                     </div>
                     <div class="ml-2">
                         <h6 class="font-bold font-encode-sans text-base text-clip text-slate-900">
-                            Nama produk panjangnya 2 baris
+                            {{ $cart->produk->nama_produk }}
                         </h6>
                         <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
-                            Rp. 30.000,- x 3 barang
+                            {{ $cart->jumlah }} barang x Rp.
+                        {{ substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
                         </p>
                         <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
                             Note: <br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
+                        {{ $cart->note }}
                         </p>
+                        @if (!empty($cart->produkstock->size))
+                    @if (!empty($cart->produkstock->color))
+                    <h6
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        {{ $cart->produkstock->size }} - {{ $cart->produkstock->color }}
+                    </h6>
+                    @else
+                    <h6
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        {{ $cart->produkstock->size }}
+                    </h6>
+                    @endif
+                    @else
+                    @if (!empty($cart->produkstock->color))
+                    <h6
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        {{ $cart->produkstock->color }}
+                    </h6>
+                    @endif
+                    @endif
                     </div>
                 </div>
                 <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
@@ -46,19 +67,19 @@
                             Total Harga
                         </p>
                         <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
+                            Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
                         </h6>
                     </div>
-                    <a href="" class="mt-4 xl:mt-8 flex items-center">
+                    {{-- <a href="" class="mt-4 xl:mt-8 flex items-center">
                         <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
                         <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <div class="sm:hidden mt-3">
                 <p class="font-encode-sans text-gray-400 text-sm text-clip">
                     Note: <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
+                    {{ $cart->note }}
                 </p>
                 <hr class="my-3">
                 <div class="mt-3 flex justify-between items-center">
@@ -67,139 +88,20 @@
                             Total Harga
                         </p>
                         <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
+                            Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
                         </h6>
                     </div>
-                    <a href="" class="flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
-                        <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
                 </div>
             </div>
         </div>
         <hr class="my-3">
-        <div class="w-full">
-            <div class="sm:flex sm:justify-between">
-                <div class="flex">
-                    <div class="w-20 sm:w-40">
-                        <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                            alt="" class="aspect-square w-full rounded-md object-cover">
-                    </div>
-                    <div class="ml-2">
-                        <h6 class="font-bold font-encode-sans text-base text-clip text-slate-900">
-                            Nama produk panjangnya 2 baris
-                        </h6>
-                        <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
-                            Rp. 30.000,- x 3 barang
-                        </p>
-                        <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
-                            Note: <br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
-                        </p>
-                    </div>
-                </div>
-                <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
-                    <div>
-                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
-                            Total Harga
-                        </p>
-                        <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
-                        </h6>
-                    </div>
-                    <a href="" class="mt-4 xl:mt-8 flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
-                        <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
-                </div>
-            </div>
-            <div class="sm:hidden mt-3">
-                <p class="font-encode-sans text-gray-400 text-sm text-clip">
-                    Note: <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
-                </p>
-                <hr class="my-3">
-                <div class="mt-3 flex justify-between items-center">
-                    <div>
-                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
-                            Total Harga
-                        </p>
-                        <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
-                        </h6>
-                    </div>
-                    <a href="" class="flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
-                        <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="my-3">
-        <div class="w-full">
-            <div class="sm:flex sm:justify-between">
-                <div class="flex">
-                    <div class="w-20 sm:w-40">
-                        <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?ixid=2yJhcHBfaWQiOjEyMDd9&w=750&dpr=2"
-                            alt="" class="aspect-square w-full rounded-md object-cover">
-                    </div>
-                    <div class="ml-2">
-                        <h6 class="font-bold font-encode-sans text-base text-clip text-slate-900">
-                            Nama produk panjangnya 2 baris
-                        </h6>
-                        <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
-                            Rp. 30.000,- x 3 barang
-                        </p>
-                        <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
-                            Note: <br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
-                        </p>
-                    </div>
-                </div>
-                <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
-                    <div>
-                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
-                            Total Harga
-                        </p>
-                        <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
-                        </h6>
-                    </div>
-                    <a href="" class="mt-4 xl:mt-8 flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
-                        <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
-                </div>
-            </div>
-            <div class="sm:hidden mt-3">
-                <p class="font-encode-sans text-gray-400 text-sm text-clip">
-                    Note: <br>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, explicabo.
-                </p>
-                <hr class="my-3">
-                <div class="mt-3 flex justify-between items-center">
-                    <div>
-                        <p class="font-encode-sans text-sm sm:text-base text-gray-400">
-                            Total Harga
-                        </p>
-                        <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. 90.000
-                        </h6>
-                    </div>
-                    <a href="" class="flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
-                        <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <hr class="my-3">
+        @endforeach
         <div class="text-center">
             <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
                 Total Harga
             </p>
             <h6 class="text-pink-400 font-encode-sans font-bold">
-                Rp. 270.000
+                Rp. {{ substr(number_format($total,2,",","."), 0, -3) }}
             </h6>
         </div>
     </div>
@@ -208,8 +110,7 @@
             Catatan Tambahan
         </h6>
         <div class="mt-3 p-2 rounded-lg border border-sky-500 text-sm sm:text-base font-encode-sans text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt eligendi a doloremque dicta quod
-            asperiores molestiae impedit unde vero cupiditate.
+            {{ $request->note }}
         </div>
     </div>
     <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
@@ -239,8 +140,8 @@
                     <li>:</li>
                 </ul>
                 <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
-                    <li>Alamat rumah yang dituju</li>
-                    <li>+- 1 kg</li>
+                    <li>{{ $request->city }}</li>
+                    <li>+- {{ $berat }} kg</li>
                     <li>Ongkos kirim akan diinformasikan terpisah</li>
                 </ul>
             </div>
@@ -266,13 +167,13 @@
                     <li>:</li>
                     <li>:</li>
                 </ul>
-                <ul class="ml-2 font-encode-sans text-gray-400 text-sm sm:text-base">
-                    <li>Namamu</li>
-                    <li>Grued adrress goes here</li>
-                    <li>Surabaya</li>
-                    <li>Jawa Timur</li>
-                    <li>1-2390129</li>
-                    <li>0821304990</li>
+                <ul class="ml-2 font-encode-sans text-slate-900 text-sm sm:text-base">
+                    <li>{{ $request->receiver_name }}</li>
+                    <li>{{ $request->address }}</li>
+                    <li>{{ $request->city }}</li>
+                    <li>{{ $request->province }}</li>
+                    <li>{{ $request->phone }}</li>
+                    <li>{{ $request->hp }}</li>
                 </ul>
             </div>
         </div>
@@ -308,7 +209,27 @@
             </div>
         </div>
     </div>
-    <form action="{{ route('user.detailfaktur.index') }}" method="get">
+    <form action="{{ route('user.faktur.store') }}" method="post">
+        @csrf
+        @if ($request->dropship == 'yes')
+        <input type="hidden" value="{{ $request->pengirim_name }}" name="pengirim_name">
+        <input type="hidden" value="{{ $request->pengirim_address }}" name="pengirim_address">
+        <input type="hidden" value="{{ $request->pengirimhp }}" name="pengirimhp">
+        @endif
+        <input type="hidden" value="{{ $request->receiver_name }}" name="receiver_name">
+        <input type="hidden" value="{{ $request->address }}" name="address">
+        <input type="hidden" value="{{ $request->postcode }}" name="postcode">
+        <input type="hidden" value="{{ $request->city }}" name="city">
+        <input type="hidden" value="{{ $request->province }}" name="province">
+        <input type="hidden" value="{{ $request->phone }}" name="phone">
+        <input type="hidden" value="{{ $request->hp }}" name="hp">
+        <input type="hidden" value="{{ $request->note }}" name="note">
+        <input type="hidden" value="{{ $total }}" name="total">
+        <input type="hidden" value="{{ $berat }}" name="berat">
+        <input type="hidden" value="{{ $jumlahCart }}" name="jumlahCart">
+        <input type="hidden" value="{{ base64_encode(serialize($carts)) }}" name="carts">
+
+
         <div class="xl:flex xl:justify-between">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-3 xl:px-4 xl:w-5/6">
                 <div>
@@ -319,7 +240,7 @@
                 </div>
                 <div class="xl:hidden mt-7">
                     <div class="text-center">
-                        <button type="submit"
+                        <button type="submit" id="finish"
                             class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
                             Finish
                         </button>
@@ -334,8 +255,8 @@
             </div>
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
-                    <button type="submit"
-                        class="w-full inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                    <button type="submit" id="finish"
+                        class="w-full inline-block border-2 border-pink-400 disabled:border-neutral-100 disabled:text-gray-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
                         Finish
                     </button>
                 </div>
@@ -349,6 +270,15 @@
         </div>
     </form>
 </div>
+
+<script>
+    let setuju = document.getElementById('persetujuan');
+    let finish = document.getElementById('finish');
+
+    setuju.onchange = function() {
+        finish.disabled = !!this.checked;
+    }
+</script>
 
 @include('inc.footer1')
 @endsection

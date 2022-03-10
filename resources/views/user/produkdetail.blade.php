@@ -20,7 +20,8 @@
             </div>
             <div class="flex items-center flex-wrap">
                 @foreach ($produk->imaged as $image)
-                <img src="{{ $image->imageurl }}" alt="" class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
+                <img src="{{ $image->imageurl }}" alt=""
+                    class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
                 @endforeach
             </div>
         </div>
@@ -50,47 +51,69 @@
                     {{ $produk->weight }} gram
                 </p>
             </div>
-            <form action="{{ route('user.produk.create') }}" method="post">
-                <div class="mt-3 xl:mt-6 grid grid-cols-3 sm:grid-cols-5 xl:grid-cols-4 gap-2">
-                    @foreach ($produk->stocked as $stock)
-                    <div class="w-full text-center">
-                        <input type="radio" name="ukuran" class="hidden peer" id="stock-{{ $stock->id }}"
-                            value="{{ $stock->size }} - {{ $stock->color }}">
-                        <label for="stock-{{ $stock->id }}"
-                            class="font-encode-sans border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
-                            {{ $stock->size }} - {{ $stock->color }}
-                        </label>
-                    </div>
-                    @endforeach
+            <form action="{{ route('user.detailcart.store') }}" method="post">
+                @csrf
+                @if (!empty($stocks[0]))
+                <div class="mt-3 xl:mt-6 relative border-2 border-blue-400 rounded-lg">
+                    <select name="ukuran" id=""
+                        class="appearance-none bg-white w-full font-bold py-2 px-3 font-encode-sans text-blue-400">
+                        @foreach ($stocks as $stock)
+                        @if (!empty($stock->size))
+                        <option value="{{ $stock->id }}">{{ $stock->size }} -
+                            {{ $stock->color }}</option>
+                        @else
+                        <option value="{{ $stock->id }}">{{ $stock->color }}</option>
+                        @endif
+                        @endforeach
+                    </select>
+                    <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        aria-hidden="true"></i>
                 </div>
+                @endif
+
                 <div class="mt-4 xl:mt-7 flex items-center justify-between">
                     <h6 class="font-encode-sans text-slate-900 font-bold text-sm sm:text-base">
                         Jumlah
                     </h6>
                     <div class="flex items-center">
-                        <a href="#" type="button">
+                        <button type="button" onclick="decrement()" id="buttonminus">
                             <i class="fa fa-chevron-left text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
-                        </a>
-                        <h6
-                            class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
-                            1</h6>
-                        <input type="hidden">
-                        <a href="#" type="button">
+                        </button>
+                        <input type="number" name="jumlah" value="1" id="numbersize" readonly
+                            class="appearance-none font-encode-sans w-9 text-center font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
+                        <button type="button" onclick="increment()" id="buttonplus">
                             <i class="fa fa-chevron-right text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="my-4 xl:my-7">
                     <h1 class="text-3xl font-concert-one text-slate-900">
-                        {{ $produk->harga }}
+                        Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                     </h1>
                 </div>
+                @if ($produk->stock != 0)
+                @if (Auth::check())
                 <a href="#" role="button" id="open-modal"
                     class="bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                     Add to Cart
                 </a>
+
+                @else
+                <a href="{{ route('login') }}"
+                    class="bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
+                    Add to Cart
+                </a>
+
+                @endif
+                @else
+                <button disabled
+                    class="bg-neutral-100 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-gray-400 font-encode-sans font-bold">
+                    Add to Cart
+                </button>
+
+                @endif
 
                 {{-- modal --}}
                 <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
@@ -109,12 +132,15 @@
                     </div>
                     <div class="mt-4">
                         <div>
-                            <label for="" class="text-sm font-encode-sans text-slate-900">Catatan
+                            <label for="catatan" class="text-sm font-encode-sans text-slate-900">Catatan
                                 (size/color/etc)</label>
                         </div>
-                        <textarea name="" id="" cols="20"
+                        <textarea name="note" id="catatan" cols="20"
                             class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
                     </div>
+
+                    <input type="hidden" value="{{ $produk->kode_produk }}" name="kode_produk">
+
                     <button type="submit"
                         class="mt-5 bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                         Add to Cart
@@ -198,6 +224,18 @@
             modalbg.style.display = "none";
             window.onscroll = function () {};
         }
+    }
+
+    //+ - button
+    function increment() {
+        document.getElementById('numbersize').stepUp();
+    }
+
+    function decrement() {
+        if (document.getElementById('numbersize').value <= 1) {} else {
+            document.getElementById('numbersize').stepDown();
+        }
+
     }
 
 </script>
