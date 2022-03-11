@@ -62,6 +62,7 @@ class PageController extends Controller
     public function contact()
     {
         $page = 'contact';
-        return view('user.contact', compact('page'));
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        return view('user.contact', compact('page', 'allkategoris'));
     }
 }

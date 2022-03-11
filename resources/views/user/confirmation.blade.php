@@ -131,6 +131,9 @@
                         Berat
                     </li>
                     <li>
+                        Ekspedisi
+                    </li>
+                    <li>
                         Ongkos kirim
                     </li>
                 </ul>
@@ -138,11 +141,13 @@
                     <li>:</li>
                     <li>:</li>
                     <li>:</li>
+                    <li>:</li>
                 </ul>
                 <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
-                    <li>{{ $request->city }}</li>
+                    <li>{{ $city }}</li>
                     <li>+- {{ $berat }} kg</li>
-                    <li>Ongkos kirim akan diinformasikan terpisah</li>
+                    <li>{{ $request->delivery }}</li>
+                    <li>Rp. {{ substr(number_format($deliveryCost,2,",","."), 0, -3) }}</li>
                 </ul>
             </div>
         </div>
@@ -214,19 +219,21 @@
         @if ($request->dropship == 'yes')
         <input type="hidden" value="{{ $request->pengirim_name }}" name="pengirim_name">
         <input type="hidden" value="{{ $request->pengirim_address }}" name="pengirim_address">
-        <input type="hidden" value="{{ $request->pengirimhp }}" name="pengirimhp">
+        <input type="hidden" value="{{ $request->pengirim_hp }}" name="pengirim_hp">
         @endif
         <input type="hidden" value="{{ $request->receiver_name }}" name="receiver_name">
         <input type="hidden" value="{{ $request->address }}" name="address">
         <input type="hidden" value="{{ $request->postcode }}" name="postcode">
-        <input type="hidden" value="{{ $request->city }}" name="city">
-        <input type="hidden" value="{{ $request->province }}" name="province">
+        <input type="hidden" value="{{ $city }}" name="city">
+        <input type="hidden" value="{{ $province }}" name="province">
+        <input type="hidden" value="{{ $request->delivery }}" name="delivery">
         <input type="hidden" value="{{ $request->phone }}" name="phone">
         <input type="hidden" value="{{ $request->hp }}" name="hp">
         <input type="hidden" value="{{ $request->note }}" name="note">
         <input type="hidden" value="{{ $total }}" name="total">
         <input type="hidden" value="{{ $berat }}" name="berat">
         <input type="hidden" value="{{ $jumlahCart }}" name="jumlahCart">
+        <input type="hidden" value="{{ $deliveryCost }}" name="deliveryCost">
         <input type="hidden" value="{{ base64_encode(serialize($carts)) }}" name="carts">
 
 

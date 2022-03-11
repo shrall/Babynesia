@@ -19,7 +19,7 @@
                 <img src="{{ $produk->image }}" alt="" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
             </div>
             <div class="flex items-center flex-wrap">
-                @foreach ($produk->imaged as $image)
+                @foreach ($produk->images as $image)
                 <img src="{{ $image->imageurl }}" alt=""
                     class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
                 @endforeach

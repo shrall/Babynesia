@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Receiver;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ReceiverController extends Controller
 {
@@ -24,9 +25,21 @@ class ReceiverController extends Controller
      */
     public function create(Request $request)
     {
+        //cities rajaongkir
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+
+        //province rajaongkir
+        $provinces = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/province')
+            ->json()['rajaongkir']['results'];
+
         $note = $request->note;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.receiver', compact('allkategoris', 'note'));
+        return view('user.receiver', compact('allkategoris', 'note', 'cities', 'provinces'));
     }
 
     /**

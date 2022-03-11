@@ -134,6 +134,8 @@ Route::group([
     Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
     Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+    Route::get('/faktur/showdetail/{faktur}', [FakturController::class, 'showDetail'])->name('faktur.showdetail');
+    Route::get('/faktur/showfaktur/{faktur}', [FakturController::class, 'showfaktur'])->name('faktur.showfaktur');
 
     Route::resource('admin', AdminController::class);
     Route::resource('adminstatus', AdminStatusController::class);

@@ -86,15 +86,57 @@
                         <div> <label for="city"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                         </div>
-                        <input id="city" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="city">
+                        <div class="relative border-sky-500 border-2 rounded-md">
+                            <select name="city" id="city" class="appearance-none p-1 w-full font-encode-sans">
+                                @foreach ($cities as $city)
+                                    
+                                <option value="{{ $city['city_id'] }}">
+                                    {{ $city['city_name'] }}
+                                </option>
+    
+                                @endforeach
+                            </select>
+                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <div> <label for="province"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">Province</label>
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Provincee</label>
                         </div>
-                        <input id="province" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="province">
+                        <div class="border-sky-500 border-2 relative rounded-md">
+                            <select name="province" id="province" class="appearance-none p-1 w-full font-encode-sans">
+                                @foreach ($provinces as $province)
+                                    
+                                <option value="{{ $province['province_id'] }}">
+                                    {{ $province['province'] }}
+                                </option>
+    
+                                @endforeach
+                            </select>
+                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div> <label for="expedition"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Ekspedisi Delivery</label>
+                        </div>
+                        <div class="relative border-sky-500 border-2 rounded-md">
+                            <select name="delivery" id="expedition" class="appearance-none p-1 w-full font-encode-sans">
+                                <option value="JNE OKE">
+                                    JNE OKE
+                                </option>
+                                <option value="JNE REG">
+                                    JNE REG
+                                </option>
+                                <option value="JNE YES">
+                                    JNE YES
+                                </option>
+                            </select>
+                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
                     </div>
                     <div class="mt-4">
                         <div> <label for="phone"
@@ -111,6 +153,7 @@
                             class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="hp">
                     </div>
                 </div>
+
                 <div class="xl:hidden mt-7">
                     <input type="hidden" value="{{ $note }}" name="note">
                     <div class="text-center">

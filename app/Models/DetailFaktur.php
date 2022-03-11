@@ -12,7 +12,7 @@ class DetailFaktur extends Model
     protected $table = 'detail_faktur';
     protected $fillable = [
         'no_detail_faktur', 'no_user', 'no_faktur', 'kode_produk', 'kode_produk_stock', 'jumlah', 'tanggal', 'harga_satuan', 'destination_city_id',
-        'ongkos_kirim', 'subtotal', 'valuta_id', 'profit'
+        'ongkos_kirim', 'subtotal', 'valuta_id', 'profit', 'note'
     ];
     protected $primaryKey = 'no_detail_faktur';
     // public $incrementing = false;

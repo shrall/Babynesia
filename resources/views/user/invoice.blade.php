@@ -9,7 +9,8 @@
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
             Invoice
         </h1>
-        <a href="#" class="py-2 px-4 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold font-encode-sans">
+        <a href="{{ route('user.faktur.showfaktur', $faktur) }}" target="_blank" 
+            class="py-2 px-4 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold font-encode-sans">
             <i class="fa fa-print mr-1" aria-hidden="true"></i>
             Print
         </a>
@@ -33,9 +34,9 @@
                     <li>:</li>
                 </ul>
                 <ul class="ml-2 font-encode-sans text-slate-900">
-                    <li>{{ $faktur->receiver->receiver_name }}</li>
-                    <li>{{ $faktur->receiver->email }}</li>
-                    <li>{{ $faktur->receiver->phone }}</li>
+                    <li>{{ Auth::user()->name }}</li>
+                    <li>{{ Auth::user()->email }}</li>
+                    <li>{{ Auth::user()->telp }}</li>
                 </ul>
             </div>
             <div class="text-center hidden sm:block">
@@ -55,21 +56,21 @@
                 <thead class="bg-blue-400 font-encode-sans font-bold text-white">
                     <tr class="">
                         <th class="py-3">Quantity</th>
-                        <th class="py-3">Product</th>
-                        <th class="py-3">Note</th>
-                        <th class="py-3">Price</th>
-                        <th class="py-3">Subtotal</th>
+                        <th class="py-3 text-left">Product</th>
+                        <th class="py-3 text-left">Note</th>
+                        <th class="py-3 text-left">Price</th>
+                        <th class="py-3 text-left">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody class="font-encode-sans text-slate-900">
                     @foreach ($faktur->items as $item)
                         
-                    <tr>
-                        <td class="text-center py-3">{{ $loop->iteration }}</td>
-                        <td class="py-3">{{ $item->product->nama_produk }}</td>
-                        <td class="py-3">{{ $item->note }}</td>
-                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
-                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
+                    <tr class="even:bg-neutral-100">
+                        <td class="text-center py-3">{{ $item->jumlah }}</td>
+                        <td class="py-3 text-clip">{{ $item->product->nama_produk }}</td>
+                        <td class="py-3 text-left">{{ $item->note }}</td>
+                        <td class="py-3">Rp. {{ substr(number_format($item->harga_satuan,2,",","."), 0, -3) }}</td>
+                        <td class="py-3">Rp. {{ substr(number_format($item->subtotal,2,",","."), 0, -3) }}</td>
                     </tr>
 
                     @endforeach
@@ -77,8 +78,18 @@
                 <tfoot class="bg-blue-400 font-bold font-encode-sans text-white">
                     <tr>
                         <td colspan="3" class="py-3">&nbsp;</td>
-                        <td class="py-3 text-center">Total</td>
+                        <td class="py-3 text-left">Subtotal</td>
                         <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-3">&nbsp;</td>
+                        <td class="py-3 text-left">Ongkos kirim ({{ $faktur->deliveryExpedition }})</td>
+                        <td class="py-3">Rp. {{ substr(number_format($faktur->deliverycost,2,",","."), 0, -3) }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="py-3">&nbsp;</td>
+                        <td class="py-3 text-left">Total</td>
+                        <td class="py-3">Rp. {{ substr(number_format($faktur->total_pembayaran+$faktur->deliverycost,2,",","."), 0, -3) }}</td>
                     </tr>
                 </tfoot>
             </table>

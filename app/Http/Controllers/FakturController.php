@@ -11,6 +11,7 @@ use App\Models\Receiver;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class FakturController extends Controller
 {
@@ -44,13 +45,14 @@ class FakturController extends Controller
     {
         $dt = Carbon::now()->format('d-m-y');
         $carts = unserialize(base64_decode($request->carts));
-        // $carts = DetailCart::where('')
 
+        //pengecekan stock
         // foreach ($carts as $cart) {
         // if ($cart->produkstock->product_stock < 1) {
         // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
         // }
         // }
+
 
         $faktur = Faktur::create([
             'kode_user' => Auth::id(),
@@ -60,9 +62,9 @@ class FakturController extends Controller
             'total_pembayaran' => $request->total,
             'valuta_id' => 1,
             'total_profit' => $request->total,
-            // 'deliverycost',
+            'deliverycost' => $request->deliveryCost,
             'deliveryDate' => '0000-00-00',
-            'deliveryExpedition' => $request->deliveryExpedition,
+            'deliveryExpedition' => $request->delivery,
             // 'deliveryResi',
             'tanggal2' => Carbon::now(),
             // 'discount',
@@ -71,10 +73,35 @@ class FakturController extends Controller
             // 'total_weight' => $request->berat
         ]);
 
+        if (!empty($request->pengirim_name)) {
+            $faktur->update([
+                'sender_name' => $request->pengirim_name,
+                'sender_phone' => $request->pengirim_hp,
+                'sender_address' => $request->pengirim_address
+            ]);
+        }
+
         //create receiver data
         Receiver::create([
-            ''
+            'faktur_id' => $faktur->no_faktur,
+            'user_id' => Auth::id(),
+            'receiver_name' => $request->receiver_name,
+            'address' => $request->address,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            'province' => $request->province,
+            'phone' => $request->phone,
+            'hp' => $request->hp,
+            // 'email' => $request->email, 
+            // 'message' => $request->message, 
+            // 'message_from' => $request->, 
+            'delivery_date' => '0000-00-00',
+            'alternativ_deliverry_date' => '0000-00-00',
+            // 'reminder', 
+            // 'remider_subject'
         ]);
+
+        // dd($shipments);
 
         foreach ($carts as $cart) {
             DetailFaktur::create([
@@ -89,7 +116,8 @@ class FakturController extends Controller
                 'ongkos_kirim' => 0,
                 'subtotal' => $cart->jumlah * $cart->produk->harga,
                 'valuta_id' => 1,
-                'profit' => $cart->jumlah * $cart->produk->harga
+                'profit' => $cart->jumlah * $cart->produk->harga,
+                'note' => $cart->note
             ]);
 
             //delete semua cart
@@ -119,6 +147,17 @@ class FakturController extends Controller
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         return view('user.invoice', compact('allkategoris', 'faktur'));
+    }
+
+    public function showDetail(Faktur $faktur)
+    {
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        return view('user.detailinvoice', compact('allkategoris', 'faktur'));
+    }
+
+    public function showFaktur(Faktur $faktur)
+    {
+        return view('user.showfaktur', compact('faktur'));
     }
 
     /**

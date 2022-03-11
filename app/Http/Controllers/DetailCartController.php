@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Http;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -22,20 +23,55 @@ class DetailCartController extends Controller
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
+        //hitung total harga dan total berat
         $total = 0;
         $berat = 0;
         $jumlahCart = 0;
         foreach ($carts as $cart) {
             $temp = $cart->produk->harga * $cart->jumlah;
-            $berat += $cart->produk->weight;
+            $berat += $cart->produk->weight * $cart->jumlah;
             $total += $temp;
             $jumlahCart += 1;
         }
 
-        //berat dalam kg
-        $berat = $berat / 100;
+        //hitung delivery cost
+        //Rajaongkir
+        $shipments = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->post('https://api.rajaongkir.com/starter/cost', [
+            'origin' => 444, //@marshall ini perlu dirubah ke asal pengirim
+            'destination' => $request->city,
+            'weight' => $berat,
+            'courier' => 'jne',
+        ])->json()['rajaongkir']['results'][0];
 
-        return view('user.confirmation', compact('request', 'allkategoris', 'carts', 'total', 'berat', 'jumlahCart'));
+        if ($request->delivery == "JNE OKE") {
+            $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
+        } else if ($request->delivery == "JNE REG") {
+            $deliveryCost = $shipments['costs'][1]['cost'][0]['value'];
+        } else {
+            $deliveryCost = $shipments['costs'][2]['cost'][0]['value'];
+        }
+
+        //get city & province yang dipilih
+        //cities rajaongkir
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+
+        //province rajaongkir
+        $provinces = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/province')
+            ->json()['rajaongkir']['results'];
+        $city = $cities[$request->city]['city_name'];
+        $province = $provinces[$request->province]['province'];
+
+        //berat dalam kg
+        $berat = $berat / 1000;
+
+        return view('user.confirmation', compact('request', 'allkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province'));
     }
 
     /**

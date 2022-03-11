@@ -36,10 +36,17 @@
                     <div class="mx-3 font-encode-sans font-bold text-white">Log In</div>
                 </a>
                 @endif
+                @if (Auth::check())
                 <a href="{{ route('user.cart.index') }}" class="ml-4 flex items-center">
                     <i class="fa fa-shopping-cart size text-4xl text-white"></i>
                     <div class="mx-3 font-encode-sans font-bold text-white">Cart</div>
                 </a>
+                @else
+                <a href="{{ route('login') }}" class="ml-4 flex items-center">
+                    <i class="fa fa-shopping-cart size text-4xl text-white"></i>
+                    <div class="mx-3 font-encode-sans font-bold text-white">Cart</div>
+                </a>
+                @endif
                 @if (Auth::check())
 
                 @else
@@ -160,12 +167,21 @@
             <h1 class="text-3xl font-concert-one text-white">
                 TokoBayiFiv
             </h1>
+            @if (Auth::check())
             <a href="{{ route('user.cart.index') }}" class="flex items-center">
                 <i class="fas fa-shopping-cart text-2xl text-white"></i>
                 <h6 class="ml-2 text-white font-bold">
                     Cart
                 </h6>
             </a>
+            @else
+            <a href="{{ route('login') }}" class="flex items-center">
+                <i class="fas fa-shopping-cart text-2xl text-white"></i>
+                <h6 class="ml-2 text-white font-bold">
+                    Cart
+                </h6>
+            </a>
+            @endif
         </div>
         <div class="mt-3">
             <div class="py-3 px-4 rounded-full bg-white w-full">

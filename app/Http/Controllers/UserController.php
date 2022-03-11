@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faktur;
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.profile');
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $fakturs = Faktur::where('kode_user', Auth::id())->get();
+        return view('user.profile', compact('allkategoris', 'fakturs'));
     }
 
     /**

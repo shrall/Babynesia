@@ -209,17 +209,17 @@
                     <input type="hidden" name="_method" value="PATCH">
                     <div>
                         <div>
-                            <label for="jumlah" class="text-sm font-encode-sans text-slate-900">Jumlah</label>
+                            <label for="jumlah{{ $cart->no_detail_cart }}" class="text-sm font-encode-sans text-slate-900">Jumlah</label>
                         </div>
-                        <Input name="jumlah" id="jumlah" type="number" value="{{ $cart->jumlah }}" required
+                        <input name="jumlah" id="jumlah{{ $cart->no_detail_cart }}" type="number" value="{{ $cart->jumlah }}" required
                             class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans">
                     </div>
                     <div class="mt-3">
                         <div>
-                            <label for="" class="text-sm font-encode-sans text-slate-900">Catatan
+                            <label for="note{{ $cart->no_detail_cart }}" class="text-sm font-encode-sans text-slate-900">Catatan
                                 (size/color/etc)</label>
                         </div>
-                        <textarea name="" id="" cols="20" required
+                        <textarea name="note" id="note{{ $cart->no_detail_cart }}" cols="20" required
                             class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans">{{ $cart->note }}</textarea>
                         <button type="submit"
                             class="mt-5 bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">

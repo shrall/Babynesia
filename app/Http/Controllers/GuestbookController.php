@@ -15,7 +15,8 @@ class GuestbookController extends Controller
     public function index()
     {
         $page = 'guestbook';
-        return view('user.guestbook', compact('page'));
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        return view('user.guestbook', compact('page', 'allkategoris'));
     }
 
     /**
