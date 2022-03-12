@@ -290,9 +290,9 @@
                         {{ $faktur->tanggal }}
                     </p>
 
-                    <h6
-                        class="hidden sm:block py-1 px-2 w-fit bg-amber-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
-                        Menunggu Konfirmasi
+                    {{-- <h6
+                        class="hidden sm:block py-1 px-2 w-fit bg-blue-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                        {{ $faktur->deliveryExpedition }} </h6> --}}
                 </div>
                 <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
                     <div>

@@ -56,9 +56,9 @@
                             </h2>
                             @endif
                         </div>
-                        @if ($produk->promo != null)
+                        @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                            Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h6>
                         @endif
                     </div>
@@ -86,15 +86,13 @@
                             </h6>
                             @else
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
-                                Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                                Rp. {{ substr(number_format($produk->harga_sale,2,",","."), 0, -3) }}
                             </h2>
                             @endif
                         </div>
-                        @if ($produk->promo != null)
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                            <del>Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}</del>
                         </h6>
-                        @endif
                     </div>
                 </a> 
                 @endforeach
@@ -124,9 +122,9 @@
                             </h2>
                             @endif
                         </div>
-                        @if ($produk->promo != null)
+                        @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                            Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h6>
                         @endif
                     </div>
@@ -167,9 +165,9 @@
                             </h2>
                             @endif
                         </div>
-                        @if ($produk->promo != null)
+                        @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                            Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h6>
                         @endif
                     </div>

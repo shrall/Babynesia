@@ -14,18 +14,23 @@ class PageController extends Controller
         $produks = Produk::all();
         $newproduct = Produk::where('stock', '!=', 0)
             ->limit(9)
+            ->where('disable', '!=', 1)
+            ->where('disable', '!=', 1)
             ->orderBy('kode_produk', 'desc')
             ->get();
         $hotdeals = Produk::where('stat', 'd')
             ->where('stock', '!=', 0)
+            ->where('disable', '!=', 1)
             ->limit(9)
             ->get();
         $restock = Produk::where('stat', 'r')
             ->where('stock', '!=', 0)
+            ->where('disable', '!=', 1)
             ->limit(9)
             ->get();
         $featured = Produk::where('featured', 1)
             ->where('stock', '!=', 0)
+            ->where('disable', '!=', 1)
             ->limit(3)
             ->get();
 
@@ -47,7 +52,7 @@ class PageController extends Controller
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
         } else if (!empty($filter)) {
             $kategori = Kategori::where('no_kategori', $filter)->get();
-            $produks = Produk::where('kategory', $kategori[0]->no_kategori)->paginate(9);
+            $produks = Produk::where('kategory', $kategori[0]->no_kategori)->where('disable', '!=', 1)->paginate(9);
 
             if (!empty($subfilter)) {
                 $subs = KategoriChild::where('category_id', $subfilter)->get();

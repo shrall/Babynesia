@@ -25,7 +25,7 @@
                 </div>
 
                 <input id="email" type="email"
-                    class="appearance-none border p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
+                    class="appearance-none border p-1 rounded-md w-full bg-neutral-100 @error('email') is-invalid @enderror"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
@@ -40,7 +40,7 @@
                         class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Password') }}</label>
                 </div>
                 <input id="password" type="password"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
                     name="password" required autocomplete="new-password">
 
                 @error('password')
@@ -56,7 +56,7 @@
                         class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Confirm Password') }}</label>
                 </div>
                 <input id="password-confirm" type="password"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
                     name="password_confirmation" required autocomplete="new-password">
 
                 @error('password')
@@ -76,7 +76,7 @@
                 <div class="w-full">
                     <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">Name</label>
                     </div>
-                    <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                    <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                         name="name">
 
                 </div>
@@ -85,32 +85,32 @@
                             Name</label>
                     </div>
                     <input id="last-name" type="text"
-                        class="appearance-none border p-1 w-full rounded-md border-sky-500" name="lastname">
+                        class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="lastname">
                 </div>
             </div>
             <div class="mt-4">
                 <div> <label for="address" class="text-sm sm:text-base font-encode-sans text-slate-900">Address</label>
                 </div>
-                <textarea id="address" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <textarea id="address" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="alamat"></textarea>
             </div>
             <div class="mt-4">
                 <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                 </div>
-                <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="kota">
             </div>
             <div class="mt-4">
                 <div> <label for="postcode"
                         class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
                 </div>
-                <input id="postcode" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <input id="postcode" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="kodepos">
             </div>
             <div class="mt-4">
                 <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
-                <select id="country" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <select id="country" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="negara">
                     <option value="Indonesia">Indonesia</option>
                 </select>
@@ -119,7 +119,7 @@
                 <div> <label for="provinsi-indo"
                         class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi</label>
                 </div>
-                <select id="provinsi-indo" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <select id="provinsi-indo" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="propinsi">
                     <option value="Indonesia"> Indonesia</option>
                 </select>
@@ -129,18 +129,18 @@
                         class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
                 </div>
                 <input id="provinsi-notindo" type="text"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500" name="kodepos">
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="kodepos">
             </div>
             <div class="mt-4">
                 <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
                 </div>
-                <input id="phone" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <input id="phone" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="telp">
             </div>
             <div class="mt-4">
                 <div> <label for="mobile" class="text-sm sm:text-base font-encode-sans text-slate-900">Mobile</label>
                 </div>
-                <input id="mobile" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <input id="mobile" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="hp">
             </div>
 

@@ -17,7 +17,7 @@
                 </div>
 
                 <input id="email" type="email"
-                    class="appearance-none border p-1 rounded-md w-full border-sky-500 @error('email') is-invalid @enderror"
+                    class="appearance-none border p-1 rounded-md w-full bg-neutral-100 @error('email') is-invalid @enderror"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
@@ -31,7 +31,7 @@
                 <div> <label for="password" class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Password') }}</label>
                 </div>
                 <input id="password" type="password"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500 @error('password') is-invalid @enderror"
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
                     name="password" required autocomplete="current-password">
 
                 @error('password')

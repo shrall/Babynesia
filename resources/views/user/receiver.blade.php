@@ -29,14 +29,14 @@
                                     class="text-sm sm:text-base font-encode-sans text-slate-900">Nama Pengirim</label>
                             </div>
                             <input id="pengirim" type="text"
-                                class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                                class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                                 name="pengirim_name">
                         </div>
                         {{-- <div class="hidden mt-3 peer-checked:block" id="dropship_receiver">
                             <div>
                                 <label for="dropship" class="text-sm sm:text-base font-encode-sans text-slate-900">Dropship Receiver</label>
                             </div>
-                            <input id="dropinput" type="text" class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                            <input id="dropinput" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
                             name="receiver_dropship">
                         </div> --}}
                         <div class="mt-4 peer-checked:block hidden">
@@ -44,7 +44,7 @@
                                     class="text-sm sm:text-base font-encode-sans text-slate-900">Alamat Pengirim</label>
                             </div>
                             <input id="pengirimaddress" type="text"
-                                class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                                class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                                 name="pengirim_address">
                         </div>
                         <div class="mt-4 peer-checked:block hidden">
@@ -54,7 +54,7 @@
                                     Hp Pengirim</label>
                             </div>
                             <input id="pengirimhp" type="text"
-                                class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="pengirim_hp">
+                                class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="pengirim_hp">
                         </div>
                     </div>
                 </div>
@@ -65,14 +65,14 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Receiver Name</label>
                         </div>
                         <input id="receivername" type="text"
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="receiver_name" required>
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="receiver_name" required>
                     </div>
                     <div class="mt-4">
                         <div> <label for="address"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Address</label>
                         </div>
                         <textarea id="address" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500"
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                             name="address"></textarea>
                     </div>
                     <div class="mt-4">
@@ -80,14 +80,14 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
                         </div>
                         <input id="postcode" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="postcode">
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="postcode">
                     </div>
                     <div class="mt-4">
                         <div> <label for="city"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                         </div>
-                        <div class="relative border-sky-500 border-2 rounded-md">
-                            <select name="city" id="city" class="appearance-none p-1 w-full font-encode-sans">
+                        <div class="relative border rounded-md">
+                            <select name="city" id="city" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
                                 @foreach ($cities as $city)
                                     
                                 <option value="{{ $city['city_id'] }}">
@@ -96,7 +96,7 @@
     
                                 @endforeach
                             </select>
-                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                         </div>
                     </div>
@@ -104,8 +104,8 @@
                         <div> <label for="province"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Provincee</label>
                         </div>
-                        <div class="border-sky-500 border-2 relative rounded-md">
-                            <select name="province" id="province" class="appearance-none p-1 w-full font-encode-sans">
+                        <div class="border relative rounded-md">
+                            <select name="province" id="province" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
                                 @foreach ($provinces as $province)
                                     
                                 <option value="{{ $province['province_id'] }}">
@@ -114,7 +114,7 @@
     
                                 @endforeach
                             </select>
-                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                         </div>
                     </div>
@@ -122,8 +122,8 @@
                         <div> <label for="expedition"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Ekspedisi Delivery</label>
                         </div>
-                        <div class="relative border-sky-500 border-2 rounded-md">
-                            <select name="delivery" id="expedition" class="appearance-none p-1 w-full font-encode-sans">
+                        <div class="relative border rounded-md">
+                            <select name="delivery" id="expedition" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
                                 <option value="JNE OKE">
                                     JNE OKE
                                 </option>
@@ -134,7 +134,7 @@
                                     JNE YES
                                 </option>
                             </select>
-                            <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                         </div>
                     </div>
@@ -143,14 +143,14 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
                         </div>
                         <input id="phone" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="phone">
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="phone">
                     </div>
                     <div class="mt-4">
                         <div> <label for="handphone"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Handphone</label>
                         </div>
                         <input id="handphone" type="text" required
-                            class="appearance-none border-2 p-1 w-full rounded-md border-sky-500" name="hp">
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="hp">
                     </div>
                 </div>
 
@@ -174,13 +174,13 @@
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
                     <button type="submit"
-                        class="w-full inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                        class="w-full inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
                         Next Step
                     </button>
                 </div>
                 <div class="w-full text-center mt-2">
-                    <a href="{{ route('user.cart.index') }}"
-                        class="w-full inline-block border-2 border-gray-400 bg-white font-bold font-encode-sans text-gray-400 px-8 py-2 rounded-full">
+                    <a href="javascript:history.back()"
+                        class="w-full inline-block border-2 border-gray-400 hover:bg-neutral-100 hover:border-gray-300 hover:text-gray-300 bg-white font-bold font-encode-sans text-gray-400 px-8 py-2 rounded-full">
                         Back
                     </a>
                 </div>

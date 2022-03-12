@@ -90,8 +90,11 @@
                 </div>
                 <div class="my-4 xl:my-7">
                     <h1 class="text-3xl font-concert-one text-slate-900">
-                        Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                        Rp. {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                     </h1>
+                    @if ($produk->stat == 'd')
+                    <p class="font-encode-sans text-sm sm:text-base text-gray-400"> <del> Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }} </del></p>
+                    @endif
                 </div>
                 @if ($produk->stock != 0)
                 @if (Auth::check())
@@ -132,11 +135,11 @@
                     </div>
                     <div class="mt-4">
                         <div>
-                            <label for="catatan" class="text-sm font-encode-sans text-slate-900">Catatan
+                            <label for="catatan" class="text-sm font-encode-sans text-slate-900">Catatan Tambahan
                                 (size/color/etc)</label>
                         </div>
                         <textarea name="note" id="catatan" cols="20"
-                            class="border-sky-500 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
+                            class="bg-neutral-100 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
                     </div>
 
                     <input type="hidden" value="{{ $produk->kode_produk }}" name="kode_produk">

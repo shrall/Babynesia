@@ -67,6 +67,7 @@ class FakturController extends Controller
             'deliveryExpedition' => $request->delivery,
             // 'deliveryResi',
             'tanggal2' => Carbon::now(),
+            'sender_name' => 'TokoBayiFiv',
             // 'discount',
             'note' => $request->note,
             // 'admin_note',

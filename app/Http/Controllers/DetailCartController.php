@@ -143,9 +143,16 @@ class DetailCartController extends Controller
      */
     public function update(Request $request, DetailCart $detailCart)
     {
+        if (!empty($request->cartnote)) {
+            $note = $request->cartnote;
+        } else {
+            $note = $request->cartnote1;
+        }
+
+        $detailCart = DetailCart::where('no_detail_cart', $request->idcart)->get()->last();
         $detailCart->update([
             'jumlah' => $request->jumlah,
-            'note' => $request->note
+            'note' => $note
         ]);
         return redirect()->route('user.cart.index');
     }
@@ -159,6 +166,15 @@ class DetailCartController extends Controller
     public function destroy(DetailCart $detailCart)
     {
         $detailCart->delete();
+        return redirect()->route('user.cart.index');
+    }
+
+    public function customDestroy(Request $request)
+    {
+        foreach ($request->select as $select) {
+            $cart = DetailCart::where('no_detail_cart', $select);
+            $cart->delete();
+        }
         return redirect()->route('user.cart.index');
     }
 }

@@ -18,7 +18,7 @@
     
     <div class="w-full bg-white rounded-md shadow-sm mt-3 px-8 pt-7 pb-10">
         <div class="flex justify-between items-center">
-            <h1 class="font-concert-one text-4xl text-sky-500">TokoBayiFiv</h1>
+            <h1 class="font-concert-one text-4xl text-sky-500">{{ $faktur->sender_name }}</h1>
             <h2 class="font-concert-one text-3xl text-pink-400">Invoice</h2>
         </div>
         <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
@@ -157,7 +157,7 @@
     <div class="">
         <div class="w-full text-center mt-3">
             <a href="{{ route('user.list_products') }}"
-                class="inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                class="inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
                 Lanjutkan Belanja
             </a>
         </div>

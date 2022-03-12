@@ -17,11 +17,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        if (Auth::check()) {
+            $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+            $carts = DetailCart::where('no_user', Auth::id())->get();
+            return view('user.cart', compact('allkategoris', 'carts'));
+        }
 
-        $carts = DetailCart::where('no_user', Auth::id())->get();
-
-        return view('user.cart', compact('allkategoris', 'carts'));
+        return redirect()->route('login');
     }
 
     /**

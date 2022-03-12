@@ -136,6 +136,7 @@ Route::group([
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::get('/faktur/showdetail/{faktur}', [FakturController::class, 'showDetail'])->name('faktur.showdetail');
     Route::get('/faktur/showfaktur/{faktur}', [FakturController::class, 'showfaktur'])->name('faktur.showfaktur');
+    Route::post('/detailcart/customdestroy', [DetailCartController::class, 'customDestroy'], '_token')->name('detailcart.customdestroy');
 
     Route::resource('admin', AdminController::class);
     Route::resource('adminstatus', AdminStatusController::class);

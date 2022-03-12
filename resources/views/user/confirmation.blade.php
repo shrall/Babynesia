@@ -109,7 +109,7 @@
         <h6 class="text-slate-900 font-bold font-encode-sans text-sm sm:text-base">
             Catatan Tambahan
         </h6>
-        <div class="mt-3 p-2 rounded-lg border border-sky-500 text-sm sm:text-base font-encode-sans text-gray-400">
+        <div class="mt-3 p-2 rounded-lg border bg-neutral-100 text-sm sm:text-base font-encode-sans text-slate-900">
             {{ $request->note }}
         </div>
     </div>
@@ -124,6 +124,9 @@
             </p>
             <div class="ml-5 flex">
                 <ul class="text-gray-400 list-disc text-sm sm:text-base">
+                    <li>
+                        Dari
+                    </li>
                     <li>
                         Tujuan
                     </li>
@@ -142,8 +145,10 @@
                     <li>:</li>
                     <li>:</li>
                     <li>:</li>
+                    <li>:</li>
                 </ul>
                 <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
+                    <li>Gudang</li>
                     <li>{{ $city }}</li>
                     <li>+- {{ $berat }} kg</li>
                     <li>{{ $request->delivery }}</li>
@@ -240,21 +245,21 @@
         <div class="xl:flex xl:justify-between">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-3 xl:px-4 xl:w-5/6">
                 <div>
-                    <input type="checkbox" id="persetujuan" name="setuju" value="setuju">
-                    <label for="persetujuan" class="font-encode-sans text-red-500 text-sm sm:text-base">
+                    <input type="checkbox" id="persetujuan" name="setuju" class="cursor-pointer" value="setuju">
+                    <label for="persetujuan" class="font-encode-sans text-red-500 text-sm sm:text-base cursor-pointer">
                         I certify that I have read, understand, and agree to the terms and conditions
                     </label>
                 </div>
                 <div class="xl:hidden mt-7">
                     <div class="text-center">
-                        <button type="submit" id="finish"
-                            class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
-                            Finish
-                        </button>
+                        <button type="submit" id="finish" disabled
+                        class="border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                        Finish
+                    </button>
                     </div>
                     <div class="text-center mt-1">
                         <a href="{{ route('user.paymentart.index') }}"
-                            class="font-encode-sans text-gray-400 text-sm sm:text-base">
+                            class="font-encode-sans text-gray-400 hover:text-gray-300 text-sm sm:text-base">
                             Back
                         </a>
                     </div>
@@ -262,14 +267,14 @@
             </div>
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
-                    <button type="submit" id="finish"
-                        class="w-full inline-block border-2 border-pink-400 disabled:border-neutral-100 disabled:text-gray-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                    <button type="submit" id="finish1" disabled
+                        class="w-full inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
                         Finish
                     </button>
                 </div>
                 <div class="w-full text-center mt-2">
-                    <a href="{{ route('user.paymentart.index') }}"
-                        class="w-full inline-block border-2 border-gray-400 bg-white font-bold font-encode-sans text-gray-400 px-8 py-2 rounded-full">
+                    <a href="javascript:history.back()"
+                        class="w-full inline-block border-2 border-gray-400 hover:bg-neutral-100 hover:border-gray-300 hover:text-gray-300 bg-white font-bold font-encode-sans text-gray-400 px-8 py-2 rounded-full">
                         Back
                     </a>
                 </div>
@@ -281,9 +286,11 @@
 <script>
     let setuju = document.getElementById('persetujuan');
     let finish = document.getElementById('finish');
+    let finish1 = document.getElementById('finish1');
 
     setuju.onchange = function() {
-        finish.disabled = !!this.checked;
+        finish.disabled = !this.checked;
+        finish1.disabled = !this.checked;
     }
 </script>
 

@@ -1,21 +1,16 @@
 <nav class="bg-blue-400 shadow-sm py-6">
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex justify-between items-center">
-            <div class="flex">
+            <div class="flex items-center">
                 <a href="/">
-                    <h1 class="font-concert-one text-white text-4xl mr-5">TokoBayiFiv</h1>
+                    <h1 class="font-concert-one text-white text-5xl mr-5">TokoBayiFiv</h1>
                 </a>
-                <div class="py-3 px-4 rounded-full bg-white w-128">
+                <div class="py-2 px-4 rounded-full bg-white w-80">
                     <form action="{{ route('user.list_products') }}">
 
                         <div class="flex justify-between w-full items-center">
-                            @if (!empty($keyword))
-                            <input type="text" placeholder="Search by keyword" name="keyword" value="{{ $keyword }}"
+                            <input type="text" placeholder="Search by keyword" name="keyword" value="{{ !empty($keyword) ? $keyword : ''}}"
                                 class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
-                            @else
-                            <input type="text" placeholder="Search by keyword" name="keyword"
-                                class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
-                            @endif
                             <button type="submit">
                                 <i class="fas fa-search text-gray-400"></i>
                             </button>
@@ -36,17 +31,10 @@
                     <div class="mx-3 font-encode-sans font-bold text-white">Log In</div>
                 </a>
                 @endif
-                @if (Auth::check())
                 <a href="{{ route('user.cart.index') }}" class="ml-4 flex items-center">
                     <i class="fa fa-shopping-cart size text-4xl text-white"></i>
                     <div class="mx-3 font-encode-sans font-bold text-white">Cart</div>
                 </a>
-                @else
-                <a href="{{ route('login') }}" class="ml-4 flex items-center">
-                    <i class="fa fa-shopping-cart size text-4xl text-white"></i>
-                    <div class="mx-3 font-encode-sans font-bold text-white">Cart</div>
-                </a>
-                @endif
                 @if (Auth::check())
 
                 @else
@@ -128,7 +116,7 @@
 
                 <li class="peer ml-4 font-encode-sans text-white">
                     <div class="cursor-pointer">
-                        Kategori
+                        Products
                     </div>
                 </li>
                 <div class="py-3 px-10 absolute">&nbsp;</div>
@@ -262,7 +250,7 @@
         <hr>
         <a href="">
             <div class="my-3 font-encode-sans font-bold text-slate-900">
-                Kategori
+                Products
             </div>
         </a>
         <div class="ml-4">

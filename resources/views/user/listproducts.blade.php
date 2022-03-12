@@ -12,30 +12,29 @@
             </h6>
         </div>
         <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
-            <h2 class="font-concert-one text-slate-900 text-2xl">Type</h2>
             <ul class="mt-3">
                 <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
+                    <a href="" class="text-slate-900 text-sm font-bold hover:text-sky-500 font-encode-sans">
                         New Product
                     </a>
                 </li>
                 <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
+                    <a href="" class="text-slate-900 text-sm font-bold hover:text-sky-500 font-encode-sans">
                         Hotdeals
                     </a>
                 </li>
                 <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
+                    <a href="" class="text-slate-900 text-sm font-bold hover:text-sky-500 font-encode-sans">
                         Restock
                     </a>
                 </li>
                 <li class="my-1">
-                    <a href="" class="text-gray-400 text-sm font-bold font-encode-sans">
+                    <a href="" class="text-slate-900 text-sm font-bold hover:text-sky-500 font-encode-sans">
                         Featured
                     </a>
                 </li>
             </ul>
-            <h2 class="font-concert-one text-slate-900 text-2xl mt-5">Kategori</h2>
+            <h2 class="font-concert-one text-slate-900 text-2xl mt-5">Our Products</h2>
             <ul class="mt-3">
                 @foreach ($allkategoris as $kategori)
                 <li class="my-1 group">
@@ -113,20 +112,20 @@
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             @if ($produk->stock <= 0)
                             <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
-                                Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                                Rp. {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
                             <h6 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                 Sold
                             </h6>
                             @else
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
-                                Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                                Rp. {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
                             @endif
                         </div>
-                        @if ($produk->promo != null)
+                        @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                            R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                            <del>Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}</del>
                         </h6>
                         @endif
                     </div>
