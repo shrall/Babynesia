@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
+use App\Models\IndonesiaProvince;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,6 +43,13 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    protected function getRegister()
+    {
+        $countries = Country::all();
+        $indoprovinces = IndonesiaProvince::all();
+        return view('auth.register', compact('countries', 'indoprovinces'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -64,6 +73,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if (!empty($data['propinsi2'])) {
+            $propinsi = $data['propinsi2'];
+        } else {
+            $propinsi = $data['propinsi'];
+        }
+
         return User::create([
             'name' => $data['name'],
             'lastname' => $data['lastname'],
@@ -71,11 +86,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'alamat' => $data['alamat'],
             'kota' => $data['kota'],
-            'propinsi' => $data['propinsi'],
+            'propinsi' => $propinsi,
             'negara' => $data['negara'],
             'kodepos' => $data['kodepos'],
             'telp' => $data['telp'],
-            'hp' =>$data['hp'],
+            'hp' => $data['hp'],
             'conf' => 'user',
         ]);
     }

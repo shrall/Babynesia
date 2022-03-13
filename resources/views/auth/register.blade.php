@@ -59,12 +59,12 @@
                     class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
                     name="password_confirmation" required autocomplete="new-password">
 
-                @error('password')
+                {{-- @error('password')
                 <span class="invalid-feedback text-red-500 font-normal font-encode-sans text-sm sm:text-base"
                     role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-                @enderror
+                @enderror --}}
 
             </div>
 
@@ -110,26 +110,39 @@
             <div class="mt-4">
                 <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
-                <select id="country" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="negara">
-                    <option value="Indonesia">Indonesia</option>
-                </select>
+                <div class="relative border rounded-md">
+                    <select id="country" type="text" class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100"
+                        name="negara">
+                        @foreach ($countries as $country)
+                        <option value="{{ $country->name }}">{{ $country->name }}</option>
+                        @endforeach
+                    </select>
+                    <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        aria-hidden="true"></i>
+                </div>
+
             </div>
             <div class="mt-4">
-                <div> <label for="provinsi-indo"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi</label>
+                <div> <label for="provinsi-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
+                        (Indonesia)</label>
                 </div>
-                <select id="provinsi-indo" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="propinsi">
-                    <option value="Indonesia"> Indonesia</option>
-                </select>
+                <div class="relative border rounded-md">
+                    <select id="provinsi-indo" class="appearance-none p-1 cursor-pointer w-full rounded-md bg-neutral-100"
+                        name="propinsi">
+                        @foreach ($indoprovinces as $province)
+                        <option value="{{ $province->name }}">{{ $province->name }}</option>
+                        @endforeach
+                    </select>
+                    <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        aria-hidden="true"></i>
+                </div>
             </div>
             <div class="mt-4">
                 <div> <label for="provinsi-notindo"
                         class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
                 </div>
                 <input id="provinsi-notindo" type="text"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="kodepos">
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2">
             </div>
             <div class="mt-4">
                 <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>

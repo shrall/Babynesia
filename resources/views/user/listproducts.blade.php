@@ -40,15 +40,10 @@
                 <li class="my-1 group">
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        @if ($filter == $kategori->no_kategori)
-                        <button type="submit" class="text-left appearance-none text-sky-500 text-sm font-bold font-encode-sans peer">
+                        <button type="submit" {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }} 
+                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-sky-500' : 'text-gray-400' }}  text-sm font-bold font-encode-sans peer">
                             {{ $kategori->nama_kategori }}
                         </button>
-                        @else
-                        <button type="submit" class="appearance-none text-left text-gray-400 text-sm font-bold font-encode-sans peer hover:text-sky-500">
-                            {{ $kategori->nama_kategori }}
-                        </button>
-                        @endif
                     </form>
                     @foreach ($subkategoris as $sub)
                     @if ($sub->kategori_id == $kategori->no_kategori)
@@ -56,15 +51,9 @@
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
-                            @if ($subfilter == $sub->child_id)
-                            <li class="appearance-none text-sky-500 block whitespace-no-wrap">
-                                <submit type="submit" class="text-left">{{ $sub->child_name }}</submit>
-                            </li>
-                            @else
-                            <li class="appearance-none hover:text-sky-500 text-gray-400 block whitespace-no-wrap">
+                            <li class="appearance-none {{ $subfilter == $sub->child_id ? 'text-sky-500' : 'text-gray-400' }}  block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>
-                            @endif
                         </ul>
                     </form>
                     @endif
@@ -84,7 +73,7 @@
             </h1>
             @elseif (!empty($subfilter))
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-                {{ $produks[0]->category->subcategories[0]->child_name }}
+                {{ $subsname }}
             </h1>
             @elseif (!empty($filter))
             <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">

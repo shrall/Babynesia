@@ -56,6 +56,7 @@ use App\Http\Controllers\Admin\WebImageController as AdminWebImageController;
 use App\Http\Controllers\Admin\WebLayoutController as AdminWebLayoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminStatusController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CodeController;
@@ -125,6 +126,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/register', [RegisterController::class, 'getRegister'])->name('register');
 
 Route::group([
     // 'middleware' => ['user'], !ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya

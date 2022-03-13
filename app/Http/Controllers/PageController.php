@@ -47,22 +47,25 @@ class PageController extends Controller
         $subfilter = $request->subfilter;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
+        $subsname = '';
 
         if (!empty($keyword)) {
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
         } else if (!empty($filter)) {
-            $kategori = Kategori::where('no_kategori', $filter)->get();
-            $produks = Produk::where('kategory', $kategori[0]->no_kategori)->where('disable', '!=', 1)->paginate(9);
-
+            $kategori = Kategori::where('no_kategori', $filter)->get()->first();
             if (!empty($subfilter)) {
-                $subs = KategoriChild::where('category_id', $subfilter)->get();
+                $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
+                $produks = Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9);
+                $subsname = $subs->child_name->child_name;
+            } else {
+                $produks = Produk::where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9);
             }
         } else {
             $produks = Produk::paginate(9);
         }
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname'));
     }
     public function contact()
     {
