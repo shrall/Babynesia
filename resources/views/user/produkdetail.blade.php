@@ -77,13 +77,13 @@
                     </h6>
                     <div class="flex items-center">
                         <button type="button" onclick="decrement()" id="buttonminus">
-                            <i class="fa fa-chevron-left text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-left text-md p-1 bg-blue-300 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                         <input type="number" name="jumlah" value="1" id="numbersize" readonly
                             class="appearance-none font-encode-sans w-9 text-center font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
                         <button type="button" onclick="increment()" id="buttonplus">
-                            <i class="fa fa-chevron-right text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-right text-md p-1 bg-blue-300 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                     </div>

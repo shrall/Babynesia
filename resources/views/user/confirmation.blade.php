@@ -42,19 +42,19 @@
                         @if (!empty($cart->produkstock->size))
                     @if (!empty($cart->produkstock->color))
                     <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
                         {{ $cart->produkstock->size }} - {{ $cart->produkstock->color }}
                     </h6>
                     @else
                     <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
                         {{ $cart->produkstock->size }}
                     </h6>
                     @endif
                     @else
                     @if (!empty($cart->produkstock->color))
                     <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-400 text-white font-encode-sans">
+                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
                         {{ $cart->produkstock->color }}
                     </h6>
                     @endif

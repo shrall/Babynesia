@@ -13,28 +13,28 @@
             <div class="">
                 <input type="radio" name="ukuran" class="hidden peer" id="tes">
                 <label for="tes"
-                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-300 peer-checked:text-white peer-checked:border-blue-400">
                     Menunggu Konfirmasi
                 </label>
             </div>
             <div class="">
                 <input type="radio" name="ukuran" class="hidden peer" id="tes1">
                 <label for="tes1"
-                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-300 peer-checked:text-white peer-checked:border-blue-400">
                     Dikirim
                 </label>
             </div>
             <div class="">
                 <input type="radio" name="ukuran" class="hidden peer" id="tes2">
                 <label for="tes2"
-                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-300 peer-checked:text-white peer-checked:border-blue-400">
                     Selesai
                 </label>
             </div>
             <div class="">
                 <input type="radio" name="ukuran" class="hidden peer" id="tes3">
                 <label for="tes3"
-                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-400 peer-checked:text-white peer-checked:border-blue-400">
+                    class="px-3 border-2 border-gray-400 py-2 inline-block w-full text-gray-400 text-sm sm:text-base font-bold rounded-lg cursor-pointer peer-checked:bg-blue-300 peer-checked:text-white peer-checked:border-blue-400">
                     Batal
                 </label>
             </div>
@@ -141,7 +141,7 @@
                     </p>
 
                     <h6
-                        class="hidden sm:block py-1 px-2 w-fit bg-blue-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                        class="hidden sm:block py-1 px-2 w-fit bg-blue-300 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
                         Dikirim
                     </h6>
                 </div>
@@ -165,7 +165,7 @@
         </div>
         <div class="sm:hidden mt-2">
             <h6
-                class="sm:hidden py-1 px-2 w-fit bg-blue-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                class="sm:hidden py-1 px-2 w-fit bg-blue-300 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
                 Dikirim
             </h6>
             <div class="mt-2 flex justify-between items-center">

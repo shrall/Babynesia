@@ -1,4 +1,4 @@
-<nav class="bg-blue-400 shadow-sm py-6">
+<nav class="bg-blue-300 shadow-sm py-6">
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex justify-between items-center">
             <div class="flex items-center">
@@ -122,7 +122,7 @@
                 </li>
                 <div class="py-3 px-10 absolute">&nbsp;</div>
                 <div
-                    class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-400 w-full mx-auto xl:px-40">
+                    class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-300 w-full mx-auto xl:px-40">
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
                         @foreach ($allkategoris as $kategori)
                         <li class="my-1 group">
@@ -207,7 +207,7 @@
     <label for="menu" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 menulist xl:hidden sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
-    <div class="bg-blue-400 py-4 w-full">
+    <div class="bg-blue-300 py-4 w-full">
         <div class="flex justify-between px-4">
             <div class="flex items-center">
                 <label for="menu" class="flex items-center cursor-pointer">

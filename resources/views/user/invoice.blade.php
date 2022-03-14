@@ -53,7 +53,7 @@
         </div>
         <div class="my-6">
             <table class="table-auto w-full">
-                <thead class="bg-blue-400 font-encode-sans font-bold text-white">
+                <thead class="bg-blue-300 font-encode-sans font-bold text-white">
                     <tr class="">
                         <th class="py-3">Quantity</th>
                         <th class="py-3 text-left">Product</th>
@@ -75,7 +75,7 @@
 
                     @endforeach
                 </tbody>
-                <tfoot class="bg-blue-400 font-bold font-encode-sans text-white">
+                <tfoot class="bg-blue-300 font-bold font-encode-sans text-white">
                     <tr>
                         <td colspan="3" class="py-3">&nbsp;</td>
                         <td class="py-3 text-left">Subtotal</td>

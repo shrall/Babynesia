@@ -1,4 +1,4 @@
-<footer class="bg-blue-400 shadow-sm xl:pt-20 pt-8">
+<footer class="bg-blue-300 shadow-sm xl:pt-20 pt-8">
     <div class="container mx-auto xl:px-32 px-3 xl:flex xl:justify-between">
         <a href="/">
             <h1 class="font-concert-one text-4xl mt-3 text-white">

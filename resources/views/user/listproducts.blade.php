@@ -6,7 +6,7 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
     <div class="hidden xl:block">
-        <div class="bg-blue-400 rounded-t-lg px-4 py-3">
+        <div class="bg-blue-300 rounded-t-lg px-4 py-3">
             <h6 class="font-encode-sans text-white text-sm font-bold">
                 Our Products
             </h6>
@@ -171,7 +171,7 @@
             <a href="">
                 <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
             </a>
-            <a href="" class="p-2 bg-blue-400 text-sm font-bold font-encode-sans mx-2 rounded-md text-white">1</a>
+            <a href="" class="p-2 bg-blue-300 text-sm font-bold font-encode-sans mx-2 rounded-md text-white">1</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">2</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">3</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">4</a>
@@ -189,7 +189,7 @@
     <label for="bottomclick" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 bottomfilterlist xl:hidden w-full fixed -bottom-full -translate-x-1/2 left-1/2">
-    <div class="bg-blue-400 px-3 py-3 w-full rounded-t-lg">
+    <div class="bg-blue-300 px-3 py-3 w-full rounded-t-lg">
         <h6 class="font-encode-sans text-white font-bold">
             Filter
         </h6>
