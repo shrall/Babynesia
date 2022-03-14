@@ -67,7 +67,7 @@
                         
                     <tr class="even:bg-neutral-100">
                         <td class="text-center py-3">{{ $item->jumlah }}</td>
-                        <td class="py-3 text-clip">{{ $item->product->nama_produk }}</td>
+                        <td class="py-3 text-clip">[{{ $produk->kode_alias }}] {{ $item->product->nama_produk }}</td>
                         <td class="py-3 text-left">{{ $item->note }}</td>
                         <td class="py-3">Rp. {{ substr(number_format($item->harga_satuan,2,",","."), 0, -3) }}</td>
                         <td class="py-3">Rp. {{ substr(number_format($item->subtotal,2,",","."), 0, -3) }}</td>

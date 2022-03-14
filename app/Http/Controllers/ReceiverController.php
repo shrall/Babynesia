@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use App\Models\Receiver;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -39,7 +40,8 @@ class ReceiverController extends Controller
 
         $note = $request->note;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.receiver', compact('allkategoris', 'note', 'cities', 'provinces'));
+        $subkategoris = KategoriChild::all();
+        return view('user.receiver', compact('allkategoris', 'subkategoris', 'note', 'cities', 'provinces'));
     }
 
     /**

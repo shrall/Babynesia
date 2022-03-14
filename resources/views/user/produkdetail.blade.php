@@ -7,7 +7,7 @@
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 xl:hidden">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-            {{ $produk->nama_produk }}
+            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
         </h1>
         {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
             Product description goes here

@@ -9,7 +9,8 @@
                     <form action="{{ route('user.list_products') }}">
 
                         <div class="flex justify-between w-full items-center">
-                            <input type="text" placeholder="Search by keyword" name="keyword" value="{{ !empty($keyword) ? $keyword : ''}}"
+                            <input type="text" placeholder="Search by keyword" name="keyword"
+                                value="{{ !empty($keyword) ? $keyword : ''}}"
                                 class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
                             <button type="submit">
                                 <i class="fas fa-search text-gray-400"></i>
@@ -124,14 +125,31 @@
                     class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-400 w-full mx-auto xl:px-40">
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
                         @foreach ($allkategoris as $kategori)
-                        <li class="my-1">
-                            <form action="{{ route('user.list_products') }}" method="get">
-                                <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                                <button type="submit" class="text-white font-encode-sans">
-                                    {{ $kategori->nama_kategori }}
-                                </button>
-                            </form>
+                        <li class="my-1 group">
+                            <form action="{{ route('user.list_products') }}" method="get" id="kategorifilter"></form>
+                            <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter"
+                                form="kategorifilter">
+                            <button type="submit" class="text-white font-encode-sans peer" form="kategorifilter"
+                                {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
+                                {{ $kategori->nama_kategori }}
+                            </button>
+                            <ul class="hidden ml-2 text-gray-400 pt-1 hover:block absolute peer-hover:block">
+                                @foreach ($subkategoris as $sub)
+                                @if ($sub->kategori_id == $kategori->no_kategori)
+                                <form action="{{ route('user.list_products') }}" method="" id="subkategori{{ $sub->child_id }}"></form>
+                                <input type="hidden" name="subfilter" value="{{ $sub->child_id }}" form="subkategori{{ $sub->child_id }}">
+                                <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}"
+                                    form="subkategori{{ $sub->child_id }}">
+                                <li class="bg-neutral-100 p-2 hover:bg-neutral-200 first:rounded-t-md last:rounded-b-md">
+                                    <button type="submit" form="subkategori{{ $sub->child_id }}"
+                                        class="text-left appearance-none text-gray-400 block whitespace-no-wrap">{{ $sub->child_name }}</button>
+                                </li>
+                                @endif
+                                @endforeach
+
+                            </ul>
                         </li>
+
                         @endforeach
                     </ul>
                 </div>
@@ -219,51 +237,65 @@
     </div>
     <div class="bg-white py-4 px-4 h-full overflow-y-auto">
         <a href="/">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 Home
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 About
             </div>
         </a>
         <hr>
         <a href="{{ route('user.faq.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 FAQ
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 Contact
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 Guestbook
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans font-bold text-slate-900">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
                 Products
             </div>
         </a>
         <div class="ml-4">
             <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
                 @foreach ($allkategoris as $kategori)
-                    <li class="my-1">
-                        <form action="{{ route('user.list_products') }}" method="get">
-                            <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                            <button type="submit" class="text-slate-900 font-encode-sans">
-                                {{ $kategori->nama_kategori }}
-                            </button>
-                        </form>
-                    </li>
+                <li class="my-1">
+                    <form action="{{ route('user.list_products') }}" method="get">
+                        <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                        <button type="submit" class="text-slate-900 hover:text-sky-500 font-encode-sans"
+                            {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
+                            {{ $kategori->nama_kategori }}
+                        </button>
+                    </form>
+                    @foreach ($subkategoris as $sub)
+                    @if ($sub->kategori_id == $kategori->no_kategori)
+                    <form action="{{ route('user.list_products') }}" method="">
+                        <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
+                        <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
+                        <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-sky-500">
+                            <li class="appearance-none block whitespace-no-wrap">
+                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
+                            </li>
+                        </ul>
+                    </form>
+                    @endif
+                    @endforeach
+                </li>
                 @endforeach
             </ul>
         </div>

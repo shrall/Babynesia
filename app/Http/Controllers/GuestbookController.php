@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guestbook;
+use App\Models\KategoriChild;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class GuestbookController extends Controller
@@ -16,7 +18,11 @@ class GuestbookController extends Controller
     {
         $page = 'guestbook';
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.guestbook', compact('page', 'allkategoris'));
+        $subkategoris = KategoriChild::all();
+
+        $guestbooks = Guestbook::all();
+
+        return view('user.guestbook', compact('page', 'allkategoris', 'subkategoris', 'guestbooks'));
     }
 
     /**
@@ -36,7 +42,15 @@ class GuestbookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Guestbook::create([
+            'datum' => Carbon::now(),
+            'name' => $request->name,
+            'location' => $request->location,
+            'email' => $request->email,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->route('user.guestbook.index');
     }
 
     /**

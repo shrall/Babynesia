@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -52,8 +53,9 @@ class ProdukController extends Controller
             ->limit(4)
             ->get();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $subkategoris = KategoriChild::all();
         $stocks = $produk->stocked->where('produck_stock', '!=', 0);
-        return view('user.produkdetail', compact('produk', 'others', 'stocks', 'allkategoris'));
+        return view('user.produkdetail', compact('produk', 'others', 'stocks', 'allkategoris', 'subkategoris'));
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\Faktur;
 use App\Models\IndonesiaProvince;
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,10 +21,12 @@ class UserController extends Controller
     public function index()
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $subkategoris = KategoriChild::all();
         $fakturs = Faktur::where('kode_user', Auth::id())->get();
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
-        return view('user.profile', compact('allkategoris', 'fakturs', 'countries', 'indoprovinces'));
+
+        return view('user.profile', compact('allkategoris', 'subkategoris', 'fakturs', 'countries', 'indoprovinces'));
     }
 
     /**

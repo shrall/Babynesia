@@ -15,76 +15,20 @@
             User Reviews
         </h2>
         <div class="mt-4 space-y-3 max-h-128 overflow-y-auto px-4">
+            @foreach ($guestbooks as $guestbook)
             <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
                 <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Nama orang yang ngasi testi
+                    {{ $guestbook->name }}
                 </h6>
                 <p class="text-gray-400 font-encode-sans text-sm">
-                    redo@gmail.com
+                    {{ $guestbook->email }}
                 </p>
                 <p class="text-gray-400 mt-2 font-encode-sans text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam nostrum fugiat! Nemo
-                    obcaecati optio laborum deserunt, neque dicta itaque! Aliquam repudiandae, velit dolorem, vel doloribus
-                    nesciunt assumenda fuga laboriosam amet dignissimos deleniti impedit exercitationem maiores tenetur
-                    iusto optio odio corporis, dicta hic. Maxime alias harum, sapiente obcaecati soluta inventore.
+                    {{ $guestbook->message }}
                 </p>
             </div>
-            <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
-                <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Nama orang yang ngasi testi
-                </h6>
-                <p class="text-gray-400 font-encode-sans text-sm">
-                    redo@gmail.com
-                </p>
-                <p class="text-gray-400 mt-2 font-encode-sans text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam nostrum fugiat! Nemo
-                    obcaecati optio laborum deserunt, neque dicta itaque! Aliquam repudiandae, velit dolorem, vel doloribus
-                    nesciunt assumenda fuga laboriosam amet dignissimos deleniti impedit exercitationem maiores tenetur
-                    iusto optio odio corporis, dicta hic. Maxime alias harum, sapiente obcaecati soluta inventore.
-                </p>
-            </div>
-            <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
-                <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Nama orang yang ngasi testi
-                </h6>
-                <p class="text-gray-400 font-encode-sans text-sm">
-                    redo@gmail.com
-                </p>
-                <p class="text-gray-400 mt-2 font-encode-sans text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam nostrum fugiat! Nemo
-                    obcaecati optio laborum deserunt, neque dicta itaque! Aliquam repudiandae, velit dolorem, vel doloribus
-                    nesciunt assumenda fuga laboriosam amet dignissimos deleniti impedit exercitationem maiores tenetur
-                    iusto optio odio corporis, dicta hic. Maxime alias harum, sapiente obcaecati soluta inventore.
-                </p>
-            </div>
-            <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
-                <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Nama orang yang ngasi testi
-                </h6>
-                <p class="text-gray-400 font-encode-sans text-sm">
-                    redo@gmail.com
-                </p>
-                <p class="text-gray-400 mt-2 font-encode-sans text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam nostrum fugiat! Nemo
-                    obcaecati optio laborum deserunt, neque dicta itaque! Aliquam repudiandae, velit dolorem, vel doloribus
-                    nesciunt assumenda fuga laboriosam amet dignissimos deleniti impedit exercitationem maiores tenetur
-                    iusto optio odio corporis, dicta hic. Maxime alias harum, sapiente obcaecati soluta inventore.
-                </p>
-            </div>
-            <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
-                <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Nama orang yang ngasi testi
-                </h6>
-                <p class="text-gray-400 font-encode-sans text-sm">
-                    redo@gmail.com
-                </p>
-                <p class="text-gray-400 mt-2 font-encode-sans text-sm">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quisquam nostrum fugiat! Nemo
-                    obcaecati optio laborum deserunt, neque dicta itaque! Aliquam repudiandae, velit dolorem, vel doloribus
-                    nesciunt assumenda fuga laboriosam amet dignissimos deleniti impedit exercitationem maiores tenetur
-                    iusto optio odio corporis, dicta hic. Maxime alias harum, sapiente obcaecati soluta inventore.
-                </p>
-            </div>
+            @endforeach
+
             <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
                 <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
                     Nama orang yang ngasi testi
@@ -119,33 +63,33 @@
         <h2 class="font-concert-one text-slate-900 text-2xl">
             Send Us Message
         </h2>
-        <form action="" method="post">
+        <form action="{{ route('user.guestbook.store') }}" method="post">
             @csrf
             <div class="mt-4">
                 <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Name</label>
                 </div>
                 <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
-                    name="name">
+                    name="name" required>
             </div>
             <div class="mt-4">
                 <div> <label for="email" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Email</label>
                 </div>
                 <input id="email" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
-                    name="email">
+                    name="email" required>
             </div>
             <div class="mt-4">
                 <div> <label for="location" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Location</label>
                 </div>
                 <input id="location" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
-                    name="location">
+                    name="location" required>
             </div>
             <div class="mt-4">
                 <div> <label for="message" class="text-sm sm:text-base font-encode-sans text-slate-900">Message</label>
                 </div>
-                <textarea id="message" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <textarea id="message" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500" required
                     name="message"></textarea>
             </div>
             <div class="mt-5 text-center">

@@ -13,7 +13,7 @@ class PageController extends Controller
     {
         $produks = Produk::all();
         $newproduct = Produk::where('stock', '!=', 0)
-            ->limit(9)
+            ->limit(12)
             ->where('disable', '!=', 1)
             ->where('disable', '!=', 1)
             ->orderBy('kode_produk', 'desc')
@@ -21,36 +21,62 @@ class PageController extends Controller
         $hotdeals = Produk::where('stat', 'd')
             ->where('stock', '!=', 0)
             ->where('disable', '!=', 1)
-            ->limit(9)
+            ->limit(12)
             ->get();
         $restock = Produk::where('stat', 'r')
             ->where('stock', '!=', 0)
             ->where('disable', '!=', 1)
-            ->limit(9)
+            ->limit(12)
             ->get();
         $featured = Produk::where('featured', 1)
             ->where('stock', '!=', 0)
             ->where('disable', '!=', 1)
-            ->limit(3)
+            ->limit(4)
             ->get();
 
         $page = 'home';
+        $subkategoris = KategoriChild::all();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
 
 
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'page'));
+        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page'));
     }
     public function list_products(Request $request)
     {
+
         $keyword = $request->keyword;
         $filter = $request->filter;
         $subfilter = $request->subfilter;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
         $subsname = '';
+        $filteredproduct = $request->filterproduct;
 
         if (!empty($keyword)) {
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
+        } else if (!empty($filteredproduct) && $filteredproduct != 'allproduct') {
+            if ($filteredproduct == 'newproduct') {
+                $produks = Produk::where('stock', '!=', 0)
+                    ->where('disable', '!=', 1)
+                    ->where('disable', '!=', 1)
+                    ->orderBy('kode_produk', 'desc')
+                    ->paginate(9);
+            } else if ($filteredproduct == 'hotdeals') {
+                $produks = Produk::where('stat', 'd')
+                    ->where('stock', '!=', 0)
+                    ->where('disable', '!=', 1)
+                    ->paginate(9);
+            } else if ($filteredproduct == 'restock') {
+                $produks = Produk::where('stat', 'r')
+                    ->where('stock', '!=', 0)
+                    ->where('disable', '!=', 1)
+                    ->paginate(9);
+            } else if ($filteredproduct == 'featured') {
+                $produks = Produk::where('featured', 1)
+                    ->where('stock', '!=', 0)
+                    ->where('disable', '!=', 1)
+                    ->paginate(9);
+            }
         } else if (!empty($filter)) {
             $kategori = Kategori::where('no_kategori', $filter)->get()->first();
             if (!empty($subfilter)) {
@@ -62,10 +88,11 @@ class PageController extends Controller
             }
         } else {
             $produks = Produk::paginate(9);
+            $filteredproduct = 'allproduct';
         }
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct'));
     }
     public function contact()
     {

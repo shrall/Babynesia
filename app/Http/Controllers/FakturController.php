@@ -6,6 +6,7 @@ use App\Models\DetailCart;
 use App\Models\DetailFaktur;
 use App\Models\Faktur;
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use App\Models\Produk;
 use App\Models\Receiver;
 use Carbon\Carbon;
@@ -147,13 +148,15 @@ class FakturController extends Controller
     public function show(Faktur $faktur)
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.invoice', compact('allkategoris', 'faktur'));
+        $subkategoris = KategoriChild::all();
+        return view('user.invoice', compact('allkategoris', 'subkategoris', 'faktur'));
     }
 
     public function showDetail(Faktur $faktur)
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        return view('user.detailinvoice', compact('allkategoris', 'faktur'));
+        $subkategoris = KategoriChild::all();
+        return view('user.detailinvoice', compact('allkategoris', 'subkategoris', 'faktur'));
     }
 
     public function showFaktur(Faktur $faktur)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\DetailCart;
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,9 @@ class CartController extends Controller
     {
         if (Auth::check()) {
             $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+            $subkategoris = KategoriChild::all();
             $carts = DetailCart::where('no_user', Auth::id())->get();
-            return view('user.cart', compact('allkategoris', 'carts'));
+            return view('user.cart', compact('allkategoris', 'carts', 'subkategoris'));
         }
 
         return redirect()->route('login');

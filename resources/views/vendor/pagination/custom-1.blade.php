@@ -1,6 +1,6 @@
 @if ($paginator->hasPages())
 
-    <div class="bg-white rounded-md px-3 py-3 flex justify-center items-center shadow-sm pagination">
+    <div class="bg-white rounded-md px-3 py-3 flex justify-center w-full items-center shadow-sm pagination">
         
         @if ($paginator->onFirstPage())
             {{-- <div class="mx-2">&nbsp;</div> --}}

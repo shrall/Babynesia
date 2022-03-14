@@ -23,7 +23,7 @@
                 <li class="ml-4 inline-block">
                     <input type="radio" onclick="showcontent()" id="restock" name="tes" value="tes" class="peer" hidden>
                     <label for="restock" class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-sky-500 peer-checked:font-bold hover:text-sky-500 peer-checked:border-b-4 peer-checked:border-sky-500 peer-checked:px-1">
-                        Restock
+                        Restock Product
                     </label>
                 </li>
             </ul>
@@ -34,13 +34,13 @@
     </div>
     <div class="mt-5 mb-5">
         <div id="divnew">
-            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
                 @foreach ($newproduct as $produk)
                 <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            {{ $produk->nama_produk }}
+                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             @if ($produk->stock <= 0)
@@ -68,13 +68,13 @@
         </div>
 
         <div id="divhot">
-            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:w-4/5 xl:mx-auto">
                 @foreach ($hotdeals as $produk)
                 <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            {{ $produk->nama_produk }}
+                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             @if ($produk->stock <= 0)
@@ -100,13 +100,13 @@
         </div>
 
         <div id="divrestock">
-            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:w-4/5 xl:mx-auto">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:w-4/5 xl:mx-auto">
                 @foreach ($restock as $produk)
                 <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            {{ $produk->nama_produk }}
+                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             @if ($produk->stock <= 0)
@@ -143,13 +143,13 @@
     </div>
     @endif
     <div class="mt-5 mb-5">
-        <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 mb-7 xl:w-5/6 xl:mx-auto">
+        <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 mb-7 xl:mx-auto">
             @foreach ($featured as $produk)
                 <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            {{ $produk->nama_produk }}
+                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             @if ($produk->stock <= 0)
