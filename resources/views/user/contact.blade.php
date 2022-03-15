@@ -67,26 +67,26 @@
                         Name</label>
                 </div>
                 <input id="name" type="text"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500" name="name">
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="name">
             </div>
             <div class="mt-4">
                 <div> <label for="email" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Email</label>
                 </div>
                 <input id="email" type="text"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500" name="email">
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="email">
             </div>
             <div class="mt-4">
                 <div> <label for="subject" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Subject</label>
                 </div>
                 <input id="subject" type="text"
-                    class="appearance-none border p-1 w-full rounded-md border-sky-500" name="subject">
+                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="subject">
             </div>
             <div class="mt-4">
                 <div> <label for="message" class="text-sm sm:text-base font-encode-sans text-slate-900">Message</label>
                 </div>
-                <textarea id="message" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                <textarea id="message" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                     name="message"></textarea>
             </div>
             <div class="mt-5 text-center">

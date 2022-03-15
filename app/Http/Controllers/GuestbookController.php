@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guestbook;
 use App\Models\KategoriChild;
+use App\Models\Kategori;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

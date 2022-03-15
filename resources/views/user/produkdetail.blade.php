@@ -16,12 +16,16 @@
     <div class="xl:grid xl:grid-cols-2 xl:gap-3">
         <div class="mt-3">
             <div class="mb-3">
-                <img src="{{ $produk->image }}" alt="" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
+                <img src="{{ $produk->image }}" alt="" id="productimg" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
             </div>
             <div class="flex items-center flex-wrap">
                 @foreach ($produk->images as $image)
+                <a href="#n" onclick="switchImg('{{ $image->imageurl }}')">
+                    
                 <img src="{{ $image->imageurl }}" alt=""
                     class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
+                    
+                </a>
                 @endforeach
             </div>
         </div>
@@ -239,6 +243,10 @@
             document.getElementById('numbersize').stepDown();
         }
 
+    }
+
+    function switchImg(i){
+        document.images["productimg"].src = i;
     }
 
 </script>
