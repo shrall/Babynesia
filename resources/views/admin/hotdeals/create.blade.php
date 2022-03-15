@@ -31,7 +31,9 @@
             <div class="col-span-9 status-2 hidden">
                 <input type="date" name="until_date" id="until_date" class="admin-input">
             </div>
-            <div class="col-span-3">Tipe</div>
+            {{-- @marshall ini comment yang hidden kalo udah ga di uncomment --}}
+            <input type="hidden" name="type" value="Gambar">
+            {{-- <div class="col-span-3">Tipe</div>
             <div class="col-span-9 flex items-center">
                 <div class="flex items-center gap-2">
                     <div class="flex items-center gap-2">
@@ -43,7 +45,7 @@
                         <label for="radio-2">Video</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-span-12 type-Gambar">
                 <div class="flex flex-col gap-2">
                     <label for="" class="">Gambar</label>

@@ -30,11 +30,11 @@
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank"
                                             href="{{ route('adminpage.kategori.edit', $kategori->no_kategori) }}"
-                                            class="admin-button-warning cursor-pointer">
+                                            class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-kategori-form-{{ $kategori->no_kategori }}').submit();"
-                                            class="admin-button-danger cursor-pointer">
+                                            class="admin-action-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
                                         <form action="{{ route('adminpage.kategori.destroy', $kategori->no_kategori) }}"
@@ -53,11 +53,11 @@
                                         <div class="flex items-center justify-center gap-2">
                                             <a target="blank"
                                                 href="{{ route('adminpage.kategorichild.edit', $sub->child_id) }}"
-                                                class="admin-button-warning cursor-pointer">
+                                                class="admin-action-button-warning cursor-pointer">
                                                 <span class="fa fa-fw fa-edit"></span>
                                             </a>
                                             <a onclick="event.preventDefault(); document.getElementById('delete-kategorichild-form-{{ $sub->child_id }}').submit();"
-                                                class="admin-button-danger cursor-pointer">
+                                                class="admin-action-button-danger cursor-pointer">
                                                 <span class="fa fa-fw fa-times"></span>
                                             </a>
                                             <form

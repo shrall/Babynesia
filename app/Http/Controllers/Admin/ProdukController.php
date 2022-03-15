@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Kategori;
 use App\Models\Produk;
+use App\Models\ProdukImage;
+use App\Models\ProdukStock;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -23,6 +25,42 @@ class ProdukController extends Controller
         return view('admin.produk.index', compact('products', 'categories', 'brands'));
     }
 
+    public function index_promo()
+    {
+        $products = Produk::where('stat', 'd')->paginate(15);
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        $tipeproduk = 'Promo';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+    }
+
+    public function index_restock()
+    {
+        $products = Produk::where('stat', 'r')->paginate(15);
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        $tipeproduk = 'Restock';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+    }
+
+    public function index_disabled()
+    {
+        $products = Produk::where('disable', 1)->paginate(15);
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        $tipeproduk = 'Non-Aktif';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+    }
+
+    public function index_soldout()
+    {
+        $products = Produk::where('stock', 0)->paginate(15);
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        $tipeproduk = 'Promo';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +68,9 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        return view('admin.produk.create', compact('categories', 'brands'));
     }
 
     /**
@@ -41,7 +81,64 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $images = [];
+        $keys = [];
+        $key_doesnt_exist = false;
+        foreach ($request->image as $key => $value) {
+            $image = 'product-' . time() . '-' . $value->getClientOriginalName();
+            $value->move(public_path('uploads/'), $image);
+            $images[$key] = $image;
+            array_push($keys, $key);
+        }
+        foreach ($keys as $key => $value) {
+            if ($value == $request->image_primary) {
+                $key_doesnt_exist = true;
+            }
+        }
+        if ($key_doesnt_exist == false) {
+            return redirect()->route('adminpage.produk.create')->with('image', 'Gambar Utama Tidak Boleh Kosong!');;
+        }
+        $product = Produk::create([
+            'kode_alias' => $request->alias_code,
+            'stat' => $request->status,
+            'nama_produk' => $request->name,
+            'kategory' => $request->category,
+            'brand' => $request->brand,
+            'weight' => $request->weight,
+            'sort_nr' => $request->order,
+            'hpp' => $request->hpp,
+            'harga' => $request->harga,
+            'harga_toko' => $request->harga_toko,
+            'harga_grosir' => $request->harga_grosir,
+            'disc1' => $request->disc1,
+            'disc2' => $request->disc2,
+            'disc3' => $request->disc3,
+            'image' => $images[$request->image_primary],
+            'featured' => $request->featured,
+            'stat' => $request->stat,
+            'harga_sale' => $request->harga_sale,
+            'ket' => $request->content
+        ]);
+        foreach ($images as $key => $value) {
+            ProdukImage::create([
+                'produk_id' => $product->kode_produk,
+                'produk_id_alias' => $product->kode_alias,
+                'imageurl' => $value
+            ]);
+        }
+        if ($request->stock_type) {
+            foreach ($request->stock_type as $key => $types) {
+                ProdukStock::create([
+                    'produk_id' => $product->kode_produk,
+                    'produk_id_alias' => $product->kode_alias,
+                    'type' => $request->stock_type[$key],
+                    'size' => $request->stock_size[$key],
+                    'color' => $request->stock_color[$key],
+                    'product_stock' => $request->stock_left[$key] ?? 0,
+                ]);
+            }
+        }
+        return redirect()->route('adminpage.produk.edit', $product->kode_produk);
     }
 
     /**
@@ -52,7 +149,7 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        //
+        return view('admin.produk.show', compact('produk'));
     }
 
     /**
@@ -63,7 +160,9 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        //
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        return view('admin.produk.edit', compact('produk', 'categories', 'brands'));
     }
 
     /**
@@ -75,7 +174,113 @@ class ProdukController extends Controller
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+        $imagecount = $produk->images->count();
+        if ($request->deleteimg) {
+            if (count($request->deleteimg) == $imagecount) {
+                if ($request->image == null) {
+                    return redirect()->route('adminpage.produk.edit', $produk->kode_produk)->with('image', 'Foto Tidak Boleh Kosong!');
+                }
+            }
+        }
+        $images = [];
+        $keys = [];
+        foreach ($produk->images as $key => $value) {
+            array_push($images, $value->imageurl);
+            $images[$key] = $value->imageurl;
+            array_push($keys, $key);
+        }
+        if ($request->deleteimg) {
+            foreach ($request->deleteimg as $key => $value) {
+                $produk->images[$key]->delete();
+                array_splice($images, $key, 1);
+                array_splice($keys, $key, 1);
+            }
+        }
+        $loope = 0;
+        $truekey = $request->image_primary;
+        if ($request->image) {
+            foreach ($request->image as $key => $value) {
+                $loope++;
+                $image = 'product-' . time() . '-' . $value->getClientOriginalName();
+                $value->move(public_path('uploads/'), $image);
+                if (count($images) < $key) {
+                    array_push($keys, count($images));
+                    $images[count($images)] = $image;
+                } else {
+                    array_push($keys, $key);
+                    $images[$key] = $image;
+                }
+            }
+        }
+        foreach ($keys as $key => $value) {
+            $truekey = $key;
+        }
+        $produk->update([
+            'kode_alias' => $request->alias_code,
+            'stat' => $request->status,
+            'nama_produk' => $request->name,
+            'kategory' => $request->category,
+            'brand' => $request->brand,
+            'weight' => $request->weight,
+            'sort_nr' => $request->order,
+            'hpp' => $request->hpp,
+            'harga' => $request->harga,
+            'harga_toko' => $request->harga_toko,
+            'harga_grosir' => $request->harga_grosir,
+            'disc1' => $request->disc1,
+            'disc2' => $request->disc2,
+            'disc3' => $request->disc3,
+            'image' => $images[$truekey],
+            'featured' => $request->featured,
+            'stat' => $request->stat,
+            'harga_sale' => $request->harga_sale,
+            'ket' => $request->content
+        ]);
+        if ($request->image) {
+            foreach ($request->image as $key => $value) {
+                ProdukImage::create([
+                    'produk_id' => $produk->kode_produk,
+                    'produk_id_alias' => $produk->kode_alias,
+                    'imageurl' => $value
+                ]);
+            }
+        }
+        $kodeprodstok = [];
+        foreach ($produk->stocks as $key => $value) {
+            array_push($kodeprodstok, $value->id);
+        }
+        foreach ($kodeprodstok as $key => $value) {
+            if (array_key_exists($key + 1, $request->stock_code)) {
+                if (in_array($request->stock_code[$key + 1], $kodeprodstok)) {
+                    $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->update([
+                        'produk_id' => $produk->kode_produk,
+                        'produk_id_alias' => $request->alias_code,
+                        'size' => $request->stock_size[$key + 1],
+                        'color' => $request->stock_color[$key + 1],
+                        'type' => $request->stock_type[$key + 1],
+                        'product_stock' => $request->stock_left[$key + 1] ?? 0,
+                    ]);
+                } else {
+                    $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->delete();
+                }
+            } else {
+                $produk->stocks->where('id', $kodeprodstok[$key])->first()->delete();
+            }
+        };
+        foreach ($request->stock_code as $key => $value) {
+            if ($value == null) {
+                ProdukStock::create([
+                    'produk_id' => $produk->kode_produk,
+                    'produk_id_alias' => $request->alias_code,
+                    'size' => $request->stock_size[$key],
+                    'color' => $request->stock_color[$key],
+                    'type' => $request->stock_type[$key],
+                    'product_stock' => $request->stock_left[$key] ?? 0,
+                ]);
+            }
+        }
+
+        return redirect()->route('adminpage.produk.edit', $produk->kode_produk);
     }
 
     /**
@@ -86,14 +291,15 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        $produk->delete();
+        return redirect()->back();
     }
 
     public function index_search(Request $request)
     {
         $products = Produk::where('disable', session('product_search_status'));
         if (session('product_search_search')) {
-            $products = Produk::where('nama_produk', 'like', '%' . session('product_search_search'). '%');
+            $products = Produk::where('nama_produk', 'like', '%' . session('product_search_search') . '%');
         }
         if (session('product_search_category') != 'no') {
             $products->where('kategory', session('product_search_category'));
@@ -136,5 +342,11 @@ class ProdukController extends Controller
         $categories = Kategori::all();
         $brands = Brand::all();
         return view('admin.produk.index', compact('products', 'categories', 'brands'));
+    }
+
+    public function add_type(Request $request)
+    {
+        $order = $request->prodstok;
+        return view('admin.produk.inc.newstockfield', compact('order'));
     }
 }

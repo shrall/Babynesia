@@ -24,7 +24,7 @@ class Produk extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_produk', 'no_brand');
     }
-    public function stocked()
+    public function stocks()
     {
         return $this->hasMany(ProdukStock::class, 'produk_id', 'kode_produk');
     }

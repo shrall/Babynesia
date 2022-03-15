@@ -20,4 +20,8 @@ class DetailFaktur extends Model
     {
         return $this->belongsTo(Produk::class, 'kode_produk', 'kode_produk');
     }
+    public function productstock()
+    {
+        return $this->belongsTo(ProdukStock::class, 'kode_produk_stock', 'id');
+    }
 }

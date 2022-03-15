@@ -11,8 +11,12 @@ class ProdukStock extends Model
     public $timestamps = false;
     protected $table = 'produk_stock';
     protected $fillable = [
-        'id', 'produk_id', 'size', 'color', 'produk_stock'
+        'id', 'produk_id', 'size', 'color', 'product_stock', 'type'
     ];
     protected $primaryKey = 'id';
     // public $incrementing = false;
+    public function fakturs()
+    {
+        return $this->hasMany(DetailFaktur::class, 'kode_produk_stock', 'id');
+    }
 }
