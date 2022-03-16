@@ -8,6 +8,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\ProdukImage;
 use App\Models\ProdukStock;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -54,10 +55,12 @@ class ProdukController extends Controller
 
     public function index_soldout()
     {
-        $products = Produk::where('stock', 0)->paginate(15);
+        $products = Produk::whereHas('stocks', function (Builder $query) {
+            $query->where('product_stock', 0);
+        })->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
-        $tipeproduk = 'Promo';
+        $tipeproduk = 'Sold Out';
         return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
 
