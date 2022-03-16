@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faktur;
+use App\Models\FakturStatus;
+use App\Models\ProdukStockHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FakturController extends Controller
 {
@@ -15,7 +19,8 @@ class FakturController extends Controller
      */
     public function index()
     {
-        //
+        $fakturs = Faktur::orderBy('no_faktur', 'desc')->paginate(15);
+        return view('admin.faktur.index', compact('fakturs'));
     }
 
     /**
@@ -58,7 +63,8 @@ class FakturController extends Controller
      */
     public function edit(Faktur $faktur)
     {
-        return view('admin.faktur.edit', compact('faktur'));
+        $fakturstatuses = FakturStatus::all();
+        return view('admin.faktur.edit', compact('faktur', 'fakturstatuses'));
     }
 
     /**
@@ -73,6 +79,26 @@ class FakturController extends Controller
         $faktur->update([
             'admin_note' => $request->admin_note,
         ]);
+        if ($request->faktur_status) {
+            $faktur->update([
+                'status' => $request->faktur_status,
+            ]);
+        }
+        if ($request->faktur_status == 5) {
+            foreach ($faktur->items as $key => $item) {
+                $item->productstock->update([
+                    'product_stock' => $item->productstock->product_stock + $item->jumlah
+                ]);
+                ProdukStockHistory::create([
+                    'trxdate' => Carbon::now(),
+                    'admin' => 'Admin',
+                    'product_id' => $item->kode_produk,
+                    'amount' => $item->jumlah,
+                    'faktur_id' => $faktur->no_faktur,
+                    'notes' => 'Penjualan dibatalkan admin. Stok +'
+                ]);
+            }
+        }
         return redirect()->route('adminpage.faktur.edit', $faktur->no_faktur);
     }
 

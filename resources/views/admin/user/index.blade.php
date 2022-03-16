@@ -35,15 +35,15 @@
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.user.show', $user->no_user) }}"
-                                            class="admin-button-info cursor-pointer">
+                                            class="admin-action-button-info cursor-pointer">
                                             <span class="fa fa-fw fa-eye"></span>
                                         </a>
                                         <a target="blank" href="{{ route('adminpage.user.edit', $user->no_user) }}"
-                                            class="admin-button-warning cursor-pointer">
+                                            class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-member-form-{{ $user->no_user }}').submit();"
-                                            class="admin-button-danger cursor-pointer">
+                                            class="admin-action-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
                                         <form action="{{ route('adminpage.user.destroy', $user->no_user) }}"

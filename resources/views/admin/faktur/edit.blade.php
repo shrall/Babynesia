@@ -11,9 +11,25 @@
         @method('PATCH')
         <div class="w-full flex flex-col gap-y-4 p-4">
             <div class="admin-card">
-                <div class="col-span-3">Status</div>
-                <div class="col-span-9" style="color: {{ $faktur->fakturstatus->color }};">
-                    {{ $faktur->fakturstatus->status }}</div>
+                <div class="col-span-3 place-self-start">Status</div>
+                @if ($faktur->status != 3 && $faktur->status != 5)
+                    <div class="col-span-9">
+                        <div class="flex flex-col gap-1">
+                            @foreach ($fakturstatuses as $fs)
+                                <div class="flex items-center gap-2">
+                                    <input type="radio" name="faktur_status" value="{{$fs->id}}"
+                                        {{ $fs->id == $faktur->status ? 'checked' : '' }} id="radio-fs-{{ $fs->id }}">
+                                    <label for="radio-fs-{{ $fs->id }}"
+                                        style="color: {{ $fs->color }};">{{ $fs->status }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="col-span-9" style="color: {{ $faktur->fakturstatus->color }};">
+                        {{ $faktur->fakturstatus->status }}
+                    </div>
+                @endif
                 <div class="col-span-3 place-self-start">Pesanan</div>
                 <div class="col-span-9">
                     <table class="admin-table">

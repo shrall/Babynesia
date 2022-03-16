@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\ProdukController as AdminProdukController;
 use App\Http\Controllers\Admin\ProdukDestinationCityController as AdminProdukDestinationCityController;
 use App\Http\Controllers\Admin\ProdukEventController as AdminProdukEventController;
 use App\Http\Controllers\Admin\ProdukImageController as AdminProdukImageController;
+use App\Http\Controllers\Admin\ProdukStatusController as AdminProdukStatusController;
 use App\Http\Controllers\Admin\ProdukStockController as AdminProdukStockController;
 use App\Http\Controllers\Admin\ProdukStockHistoryController as AdminProdukStockHistoryController;
 use App\Http\Controllers\Admin\PromoController as AdminPromoController;
@@ -91,6 +92,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProdukDestinationCityController;
 use App\Http\Controllers\ProdukEventController;
 use App\Http\Controllers\ProdukImageController;
+use App\Http\Controllers\ProdukStatusController;
 use App\Http\Controllers\ProdukStockController;
 use App\Http\Controllers\ProdukStockHistoryController;
 use App\Http\Controllers\PromoController;
@@ -175,6 +177,7 @@ Route::group([
     Route::resource('produkdestinationcity', ProdukDestinationCityController::class);
     Route::resource('produkevent', ProdukEventController::class);
     Route::resource('produkimage', ProdukImageController::class);
+    Route::resource('produkstatus', ProdukStatusController::class);
     Route::resource('produkstock', ProdukStockController::class);
     Route::resource('produkstockhistory', ProdukStockHistoryController::class);
     Route::resource('promo', PromoController::class);
@@ -227,6 +230,11 @@ Route::group([
 
     Route::get('/produk/search', [AdminProdukController::class, 'index_search'])->name('produk.search.index');
     Route::post('/produk/search', [AdminProdukController::class, 'search'])->name('produk.search');
+    Route::post('/produk/add_type', [AdminProdukController::class, 'add_type'])->name('produk.addtype');
+    Route::get('/produk/promo', [AdminProdukController::class, 'index_promo'])->name('produk.index.promo');
+    Route::get('/produk/restock', [AdminProdukController::class, 'index_restock'])->name('produk.index.restock');
+    Route::get('/produk/disabled', [AdminProdukController::class, 'index_disabled'])->name('produk.index.disabled');
+    Route::get('/produk/soldout', [AdminProdukController::class, 'index_soldout'])->name('produk.index.soldout');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
@@ -267,6 +275,7 @@ Route::group([
     Route::resource('produkdestinationcity', AdminProdukDestinationCityController::class);
     Route::resource('produkevent', AdminProdukEventController::class);
     Route::resource('produkimage', AdminProdukImageController::class);
+    Route::resource('produkstatus', AdminProdukStatusController::class);
     Route::resource('produkstock', AdminProdukStockController::class);
     Route::resource('produkstockhistory', AdminProdukStockHistoryController::class);
     Route::resource('promo', AdminPromoController::class);

@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full bg-white p-4 flex items-center justify-between">
         <div class="flex flex-col gap-1">
-            <span class="font-overpass text-3xl font-bold">Daftar Produk</span>
+            <span class="font-overpass text-3xl font-bold">Daftar Produk {{ $tipeproduk ?? '' }}</span>
         </div>
         <div class="flex items-center gap-2">
             <a href="{{ route('adminpage.produk.create') }}" class="admin-button">Tambah Produk</a>
@@ -30,8 +30,21 @@
                         <select name="category" id="category" class="admin-input w-full">
                             <option value="no">-</option>
                             @foreach ($categories as $kategori)
-                                <option value="{{$kategori->no_kategori}}">{{$kategori->nama_kategori}}</option>
+                                <option value="{{ $kategori->no_kategori }}">{{ $kategori->nama_kategori }}</option>
                             @endforeach
+                            {{-- @foreach ($categories as $kategori)
+                                @if ($kategori->subcategories->count() == 0)
+                                    <option value="{{ $kategori->no_kategori }}">
+                                        {{ $kategori->nama_kategori }}</option>
+                                @else
+                                    @foreach ($kategori->subcategories as $kategorichild)
+                                        <option value="{{ $kategorichild->child_id }}">
+                                            {{ $kategorichild->category->nama_kategori }} -
+                                            {{ $kategorichild->child_name }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            @endforeach --}}
                         </select>
                     </div>
                 </div>
@@ -41,7 +54,7 @@
                         <select name="brand" id="brand" class="admin-input w-full">
                             <option value="no">-</option>
                             @foreach ($brands as $brand)
-                                <option value="{{$brand->no_brand}}">{{$brand->nama_brand}}</option>
+                                <option value="{{ $brand->no_brand }}">{{ $brand->nama_brand }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -74,8 +87,7 @@
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                     <thead>
                         <tr>
-                            <th>Kode</th>
-                            <th>Kode Alias</th>
+                            <th>Kode / Kode Alias</th>
                             <th>Gambar</th>
                             <th>Nama</th>
                             <th>Kategori</th>
@@ -85,41 +97,67 @@
                             <th>Promo</th>
                             <th>Stok Sisa</th>
                             <th>Stok Dipesan</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $product)
+                        @foreach ($products as $produk)
                             <tr>
-                                <td>{{ $product->kode_produk }}</td>
-                                <td>{{ $product->kode_alias }}</td>
+                                <td>{{ $produk->kode_produk }}<br><span
+                                        class="text-gray-400">{{ $produk->kode_alias }}</span></td>
                                 {{-- @marshall image ini belum --}}
                                 <td>
-                                    <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $product->image ?? '#' }}"
+                                    <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->image ?? '#' }}"
                                         class="h-24">
                                 </td>
-                                <td>{{ $product->nama_produk }}</td>
-                                {{-- @marshall kategori ini aneh ada yang 31-36 IDnya. maksudnya gimana? --}}
-                                <td>{{ $product->category->nama_kategori ?? 'kategori' }}</td>
-                                <td>{{ $product->brand->nama_brand ?? 'brand' }}</td>
-                                <td>{{ number_format(intval($product->harga_pokok) ?? 0, 0, ',', '.') }}</td>
-                                <td>{{ number_format(intval($product->harga) ?? 0, 0, ',', '.') }}</td>
-                                <td>{{ number_format(intval($product->harga_promo) ?? 0, 0, ',', '.') }}</td>
-                                <td>{{ $product->stock }}</td>
-                                {{-- @marshall stok dipesan ini datanya yang mana --}}
-                                <td>1</td>
-                                <td><span class="fa fa-fw fa-circle text-red-500"></span></td>
+                                <td class="text-center">
+                                    <div class="flex flex-col items-center gap-1">
+                                        {{ $produk->nama_produk ?? '-' }}
+                                        <span
+                                            class="fa fa-fw fa-circle {{ $produk->disable == 1 ? 'text-red-500' : 'text-green-500' }}"></span>
+                                    </div>
+                                </td>
+                                <td>{{ $produk->category->nama_kategori ?? '-' }}</td>
+                                <td>{{ $produk->brand->nama_brand ?? '-' }}</td>
+                                <td>{{ AppHelper::rp(intval($produk->harga_pokok)) }}</td>
+                                <td>{{ AppHelper::rp(intval($produk->harga)) }}</td>
+                                <td>{{ AppHelper::rp(intval($produk->harga_sale)) }}</td>
+                                @php
+                                    $stock = 0;
+                                @endphp
+                                @foreach ($produk->stockhistory as $history)
+                                    @php
+                                        $stock += $history->amount;
+                                    @endphp
+                                @endforeach
+                                <td>{{ $stock }}</td>
+                                @php
+                                    $orderedstock = 0;
+                                @endphp
+                                @foreach ($produk->carts as $cart)
+                                    @php
+                                        $orderedstock += $cart->jumlah;
+                                    @endphp
+                                @endforeach
+                                <td>{{ $orderedstock }}</td>
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
-                                        <a target="blank" href="#" class="admin-button cursor-pointer">
+                                        <a target="blank"
+                                            href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
+                                            class="admin-action-button-info cursor-pointer">
+                                            <span class="fa fa-fw fa-eye"></span>
+                                        </a>
+                                        <a target="blank"
+                                            href="{{ route('adminpage.produk.edit', $produk->kode_produk) }}"
+                                            class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-brand-form').submit();"
-                                            class="admin-button cursor-pointer">
+                                        <a onclick="event.preventDefault(); document.getElementById('delete-produk-form').submit();"
+                                            class="admin-action-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
-                                        <form action="#" id="delete-brand-form" method="post">
+                                        <form action="{{ route('adminpage.produk.destroy', $produk->kode_produk) }}"
+                                            id="delete-produk-form" method="post">
                                             @csrf
                                             <input name="_method" type="hidden" value="DELETE">
                                         </form>

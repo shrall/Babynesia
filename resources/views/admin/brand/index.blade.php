@@ -32,11 +32,11 @@
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.brand.edit', $brand->no_brand) }}"
-                                            class="admin-button-warning cursor-pointer">
+                                            class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
                                         <a onclick="event.preventDefault(); document.getElementById('delete-brand-form-{{ $brand->no_brand }}').submit();"
-                                            class="admin-button-danger cursor-pointer">
+                                            class="admin-action-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
                                         <form action="{{route('adminpage.brand.destroy', $brand->no_brand)}}" id="delete-brand-form-{{ $brand->no_brand }}" method="post">
