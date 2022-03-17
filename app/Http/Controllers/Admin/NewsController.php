@@ -47,6 +47,19 @@ class NewsController extends Controller
         ]);
         return redirect()->route('adminpage.news.index');
     }
+    public function upload_photo(Request $request)
+    {
+        if ($request->has('upload')) {
+            $upload = 'news-' . time() . '-' . $request['upload']->getClientOriginalName();
+            $request->upload->move(public_path('uploads'), $upload);
+        } else {
+            $upload = null;
+        }
+        return response()->json([
+            "uploaded" => true,
+            'url' => config('app.url')  . '/uploads/' .  $upload,
+        ]);
+    }
 
     /**
      * Display the specified resource.

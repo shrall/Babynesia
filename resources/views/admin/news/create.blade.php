@@ -4,7 +4,7 @@
     <div class="w-full bg-white mb-2 p-4">
         <span class="font-overpass text-3xl font-bold">Tambah Berita/Artikel</span>
     </div>
-    <form action="{{route('adminpage.news.store')}}" method="post">
+    <form action="{{ route('adminpage.news.store') }}" method="post">
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-3">Judul</div>
@@ -34,12 +34,15 @@
     <script src="{{ asset('js/ckeditor.js') }}"></script>
     <script>
         ClassicEditor.create(document.querySelector('#input-content'), {
+                simpleUpload: {
+                    uploadUrl: {
+                        url: "{{ route('adminpage.news.uploadphoto') }}"
+                    }
+                },
                 mediaEmbed: {
                     previewsInData: true
                 },
-                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle',
-                    'ImageToolbar', 'ImageUpload', 'MediaEmbed', 'Table'
-                ],
+                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'MediaEmbed', 'Table'],
             }).then(editor => {})
             .catch(error => {
                 console.error(error);

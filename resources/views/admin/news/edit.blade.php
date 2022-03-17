@@ -35,11 +35,15 @@
     <script src="{{ asset('js/ckeditor.js') }}"></script>
     <script>
         ClassicEditor.create(document.querySelector('#input-content'), {
+                simpleUpload: {
+                    uploadUrl: {
+                        url: "{{ route('adminpage.news.uploadphoto') }}"
+                    }
+                },
                 mediaEmbed: {
                     previewsInData: true
                 },
-                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle',
-                    'ImageToolbar', 'ImageUpload', 'MediaEmbed', 'Table'
+                removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'MediaEmbed', 'Table'
                 ],
             }).then(editor => {})
             .catch(error => {
