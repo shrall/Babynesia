@@ -221,10 +221,6 @@ Route::group([
     Route::get('/content/webpage/create', [AdminPageController::class, 'webpage_create'])->name('webpage.create');
     Route::get('/content/sidearea', [AdminPageController::class, 'sidearea'])->name('sidearea');
     Route::get('/content/sidearea/create', [AdminPageController::class, 'sidearea_create'])->name('sidearea.create');
-    Route::get('/content/article', [AdminPageController::class, 'article'])->name('article');
-    Route::get('/content/article/create', [AdminPageController::class, 'article_create'])->name('article.create');
-    Route::get('/content/guestbook', [AdminPageController::class, 'guestbook'])->name('guestbooks');
-    Route::get('/content/guestbook/create', [AdminPageController::class, 'guestbook_create'])->name('guestbooks.create');
     Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
     Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
 
@@ -238,6 +234,8 @@ Route::group([
     Route::get('/produk/restock', [AdminProdukController::class, 'index_restock'])->name('produk.index.restock');
     Route::get('/produk/disabled', [AdminProdukController::class, 'index_disabled'])->name('produk.index.disabled');
     Route::get('/produk/soldout', [AdminProdukController::class, 'index_soldout'])->name('produk.index.soldout');
+
+    Route::post('news/uploadphoto', [AdminNewsController::class, 'upload_photo'])->name('news.uploadphoto');
 
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);

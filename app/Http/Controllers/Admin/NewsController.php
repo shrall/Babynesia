@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -15,7 +16,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $newses = News::all();
+        return view('admin.news.index', compact('newses'));
     }
 
     /**
@@ -25,7 +27,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
@@ -36,7 +38,27 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = News::create([
+            'isi' => $request->content,
+            'urutan' => $request->order,
+            'judul' => $request->title,
+            'sumber' => $request->source,
+            'tanggal' => Carbon::now()
+        ]);
+        return redirect()->route('adminpage.news.index');
+    }
+    public function upload_photo(Request $request)
+    {
+        if ($request->has('upload')) {
+            $upload = 'news-' . time() . '-' . $request['upload']->getClientOriginalName();
+            $request->upload->move(public_path('uploads'), $upload);
+        } else {
+            $upload = null;
+        }
+        return response()->json([
+            "uploaded" => true,
+            'url' => config('app.url')  . '/uploads/' .  $upload,
+        ]);
     }
 
     /**
@@ -58,7 +80,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('admin.news.edit', compact('news'));
     }
 
     /**
@@ -70,7 +92,13 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $news->update([
+            'isi' => $request->content,
+            'urutan' => $request->order,
+            'judul' => $request->title,
+            'sumber' => $request->source,
+        ]);
+        return redirect()->route('adminpage.news.index');
     }
 
     /**
@@ -81,6 +109,7 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        return redirect()->route('adminpage.news.index');
     }
 }
