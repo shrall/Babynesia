@@ -3,6 +3,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "./public/tw-elements/dist/js/**/*.js"
     ],
     theme: {
         extend: {
@@ -114,5 +115,7 @@ module.exports = {
             backgroundImage: ["hover"],
         },
     },
-    plugins: [],
+    plugins: [
+        require('tw-elements/dist/plugin')
+    ],
 };

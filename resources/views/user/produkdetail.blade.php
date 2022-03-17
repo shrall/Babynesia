@@ -60,7 +60,7 @@
                 @if (!empty($stocks[0]))
                 <div class="mt-3 xl:mt-6 relative border-2 border-blue-400 rounded-lg">
                     <select name="ukuran" id=""
-                        class="appearance-none bg-white w-full font-bold py-2 px-3 font-encode-sans text-blue-400">
+                        class="appearance-none cursor-pointer bg-white w-full font-bold py-2 px-3 font-encode-sans text-blue-400">
                         @foreach ($stocks as $stock)
                         @if (!empty($stock->size))
                         <option value="{{ $stock->id }}">{{ $stock->size }} -
@@ -81,13 +81,13 @@
                     </h6>
                     <div class="flex items-center">
                         <button type="button" onclick="decrement()" id="buttonminus">
-                            <i class="fa fa-chevron-left text-md p-1 bg-blue-300 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-left text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                         <input type="number" name="jumlah" value="1" id="numbersize" readonly
                             class="appearance-none font-encode-sans w-9 text-center font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
                         <button type="button" onclick="increment()" id="buttonplus">
-                            <i class="fa fa-chevron-right text-md p-1 bg-blue-300 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-right text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                     </div>
@@ -100,7 +100,7 @@
                     <p class="font-encode-sans text-sm sm:text-base text-gray-400"> <del> Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }} </del></p>
                     @endif
                 </div>
-                @if ($produk->stock != 0)
+                {{-- @if ($produk->stock != 0) --}}
                 @if (Auth::check())
                 <a href="#" role="button" id="open-modal"
                     class="bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
@@ -114,13 +114,13 @@
                 </a>
 
                 @endif
-                @else
+                {{-- @else
                 <button disabled
                     class="bg-neutral-100 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-gray-400 font-encode-sans font-bold">
                     Add to Cart
                 </button>
 
-                @endif
+                @endif --}}
 
                 {{-- modal --}}
                 <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
@@ -173,21 +173,27 @@
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        {{ $produk->nama_produk }}
+                        [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
-                        <h2 class="font-concert-one text-gray-400 xl:text-2xl text-xl">
-                            Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
-                        </h2>
-                        @if ($produk->stock <= 0) <h6
-                            class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
-                            Sold
+                        {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                            Rp.
+                            {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            <h6
+                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                Sold
                             </h6>
-                            @endif
+                            @else --}}
+                            <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                Rp.
+                                {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            {{-- @endif --}}
                     </div>
-                    @if ($produk->promo != null)
+                    @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        R̶p̶.̶ ̶3̶0̶.̶0̶0̶0
+                        <del>Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>

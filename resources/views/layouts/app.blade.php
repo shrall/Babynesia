@@ -89,7 +89,11 @@
         @yield('content')
     </div>
 
+    {{-- FLOWBITE --}}
     {{-- <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script> --}}
     <script src="{{ asset('flowbite/dist/flowbite.js') }}"></script>
+
+    {{-- TW-ELEMENTS --}}
+    <script src="{{ asset('tw-elements/dist/js/index.min.js') }}"></script>
 </body>
 </html>

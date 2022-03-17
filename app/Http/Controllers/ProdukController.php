@@ -54,7 +54,7 @@ class ProdukController extends Controller
             ->get();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
-        $stocks = $produk->stocked->where('produck_stock', '!=', 0);
+        $stocks = $produk->stocks->where('product_stock', '!=', 0);
         return view('user.produkdetail', compact('produk', 'others', 'stocks', 'allkategoris', 'subkategoris'));
     }
 

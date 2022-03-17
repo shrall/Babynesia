@@ -1157,7 +1157,7 @@
                                     <tr id="chart">
                                         <th colspan="3" align="right"> TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
-                                            {{ AppHelper::rp($faktur->total_pembayaran ?? 0) }}</th>
+                                            {{ AppHelper::rp($faktur->total_pembayaran+intval(substr($faktur->no_faktur, -3)) ?? 0) }}</th>
                                     </tr>
                                 </tbody>
                             </table>

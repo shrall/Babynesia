@@ -8,6 +8,7 @@ use App\Models\Faktur;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
+use App\Models\ProdukStockHistory;
 use App\Models\Receiver;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -122,6 +123,16 @@ class FakturController extends Controller
                 'note' => $cart->note
             ]);
 
+            //create stock_history
+            ProdukStockHistory::create([
+                'trxdate' => Carbon::now(),
+                'admin' => 'System',
+                'product_id' => $cart->kode_produk,
+                'amount' => -$cart->jumlah,
+                'faktur_id' => $faktur->no_faktur,
+                'notes' => $cart->note
+            ]);
+
             //delete semua cart
             $cart->delete();
 
@@ -131,9 +142,10 @@ class FakturController extends Controller
             ]);
 
             //kurangin produk stock
-            // $cart->produkstock->update([
-            //     'produk_stock' => $cart->produkstock->produk_stock - 1
-            // ]);
+
+            $cart->produkstock->update([
+                'produk_stock' => $cart->produkstock->produk_stock - 1
+            ]);
         }
 
         return redirect(route('user.faktur.show', $faktur));

@@ -59,8 +59,8 @@
                     <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
                         <input type="number" form="updatecart" value="{{ $cart->jumlah }}" name="jumlah"
                             class="bg-neutral-100 border font-encode-sans w-7 text-center rounded-sm"
-                            id="inputnumber{{ $cart->jumlah }}"> barang x Rp.
-                        {{ substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
+                            id="inputnumber{{ $cart->jumlah }}"> barang x 
+                        Rp. {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale,2,",","."), 0, -3) : substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
                     </p>
                     @if (!empty($cart->produkstock->size))
                     @if (!empty($cart->produkstock->color))
@@ -98,7 +98,7 @@
                         Total Harga
                     </p>
                     <h6 class="font-encode-sans font-bold text-slate-900">
-                        Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
+                        Rp. {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale*$cart->jumlah,2,",","."), 0, -3) : substr(number_format($cart->produk->harga*$cart->jumlah,2,",","."), 0, -3) }}
                     </h6>
                 </div>
                 <button type="submit" form="updatecart" class="appearance-none hover:text-pink-400 text-slate-900 mt-4 xl:mt-8 flex items-center">
@@ -121,7 +121,7 @@
                         Total Harga
                     </p>
                     <h6 class="font-encode-sans font-bold text-slate-900">
-                        Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
+                        Rp. {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale*$cart->jumlah,2,",","."), 0, -3) : substr(number_format($cart->produk->harga*$cart->jumlah,2,",","."), 0, -3) }}
                     </h6>
                 </div>
                 <button type="submit" form="updatecart" class="appearance-none hover:text-pink-400 text-slate-900 mt-4 xl:mt-8 flex items-center">

@@ -141,7 +141,7 @@
                             [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
-                            @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                            {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
                                 Rp.
                                 {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                                 </h2>
@@ -149,12 +149,12 @@
                                     class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
                                     Sold
                                 </h6>
-                                @else
+                                @else --}}
                                 <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                     Rp.
                                     {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                                 </h2>
-                                @endif
+                                {{-- @endif --}}
                         </div>
                         @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">

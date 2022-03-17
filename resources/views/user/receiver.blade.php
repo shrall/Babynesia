@@ -21,16 +21,16 @@
                 <h6 class="mt-4 font-encode-sans font-bold text-slate-900">Opsi Dropship</h6>
                 <div class="px-4 mt-3">
                     <div class="">
-                        <input type="checkbox" name="dropship" id="dropship" class="peer" value="yes">
+                        <input type="checkbox" name="dropship" id="dropship" class="peer cursor-pointer" value="yes">
                         <label for="dropship"
-                            class="ml-1 text-sm sm:text-base font-encode-sans text-slate-900">Dropship (Opsional)</label>
+                            class="ml-1 text-sm sm:text-base font-encode-sans text-slate-900 cursor-pointer">Dropship (Opsional)</label>
                         <div class="mt-3 peer-checked:block hidden">
                             <div> <label for="pengirim"
-                                    class="text-sm sm:text-base font-encode-sans text-slate-900">Nama Pengirim</label>
+                                    class="text-sm sm:text-base font-encode-sans text-slate-900">Sender Name</label>
                             </div>
                             <input id="pengirim" type="text"
                                 class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                                name="pengirim_name">
+                                name="pengirim_name" value="{{ Auth::user()->name }}">
                         </div>
                         {{-- <div class="hidden mt-3 peer-checked:block" id="dropship_receiver">
                             <div>
@@ -41,11 +41,11 @@
                         </div> --}}
                         <div class="mt-4 peer-checked:block hidden">
                             <div> <label for="pengirimaddress"
-                                    class="text-sm sm:text-base font-encode-sans text-slate-900">Alamat Pengirim</label>
+                                    class="text-sm sm:text-base font-encode-sans text-slate-900">Sender Address</label>
                             </div>
-                            <input id="pengirimaddress" type="text"
+                            <textarea id="pengirimaddress" type="text"
                                 class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                                name="pengirim_address">
+                                name="pengirim_address">{{ Auth::user()->alamat }}</textarea>
                         </div>
                         <div class="mt-4 peer-checked:block hidden">
                             <div> 
@@ -54,7 +54,7 @@
                                     Hp Pengirim</label>
                             </div>
                             <input id="pengirimhp" type="text"
-                                class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="pengirim_hp">
+                                class="appearance-none border p-1 w-full rounded-md bg-neutral-100" value="{{ Auth::user()->hp }}" name="pengirim_hp">
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="mt-4">
                         <div> <label for="province"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">Provincee</label>
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Province</label>
                         </div>
                         <div class="border relative rounded-md">
                             <select name="province" id="province" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">

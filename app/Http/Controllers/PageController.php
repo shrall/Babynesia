@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -12,24 +13,31 @@ class PageController extends Controller
     public function landing_page()
     {
         $produks = Produk::all();
-        $newproduct = Produk::where('stock', '!=', 0)
-            ->limit(12)
-            ->where('disable', '!=', 1)
+
+        $newproduct = Produk::whereHas('stocks', function (Builder $query) {
+            $query->where('product_stock', '!=', 0);
+        })->limit(12)
             ->where('disable', '!=', 1)
             ->orderBy('kode_produk', 'desc')
             ->get();
-        $hotdeals = Produk::where('stat', 'd')
-            ->where('stock', '!=', 0)
+
+        $hotdeals = Produk::whereHas('stocks', function (Builder $query) {
+            $query->where('product_stock', '!=', 0);
+        })->where('stat', 'd')
             ->where('disable', '!=', 1)
             ->limit(12)
             ->get();
-        $restock = Produk::where('stat', 'r')
-            ->where('stock', '!=', 0)
+
+        $restock = Produk::whereHas('stocks', function (Builder $query) {
+            $query->where('product_stock', '!=', 0);
+        })->where('stat', 'r')
             ->where('disable', '!=', 1)
             ->limit(12)
             ->get();
-        $featured = Produk::where('featured', 1)
-            ->where('stock', '!=', 0)
+
+        $featured = Produk::whereHas('stocks', function (Builder $query) {
+            $query->where('product_stock', '!=', 0);
+        })->where('featured', 1)
             ->where('disable', '!=', 1)
             ->limit(4)
             ->get();
@@ -56,24 +64,31 @@ class PageController extends Controller
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
         } else if (!empty($filteredproduct) && $filteredproduct != 'allproduct') {
             if ($filteredproduct == 'newproduct') {
-                $produks = Produk::where('stock', '!=', 0)
-                    ->where('disable', '!=', 1)
-                    ->where('disable', '!=', 1)
+                //new product
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('disable', '!=', 1)
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(9);
             } else if ($filteredproduct == 'hotdeals') {
-                $produks = Produk::where('stat', 'd')
-                    ->where('stock', '!=', 0)
+                //hotdeals
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('stat', 'd')
                     ->where('disable', '!=', 1)
                     ->paginate(9);
             } else if ($filteredproduct == 'restock') {
-                $produks = Produk::where('stat', 'r')
-                    ->where('stock', '!=', 0)
+                //restock
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('stat', 'r')
                     ->where('disable', '!=', 1)
                     ->paginate(9);
             } else if ($filteredproduct == 'featured') {
-                $produks = Produk::where('featured', 1)
-                    ->where('stock', '!=', 0)
+                //featured
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('featured', 1)
                     ->where('disable', '!=', 1)
                     ->paginate(9);
             }
@@ -81,13 +96,19 @@ class PageController extends Controller
             $kategori = Kategori::where('no_kategori', $filter)->get()->first();
             if (!empty($subfilter)) {
                 $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
-                $produks = Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9);
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9);
                 $subsname = $subs->child_name->child_name;
             } else {
-                $produks = Produk::where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9);
+                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9);
             }
         } else {
-            $produks = Produk::paginate(9);
+            $produks = Produk::whereHas('stocks', function (Builder $query) {
+                $query->where('product_stock', '!=', 0);
+            })->paginate(9);
             $filteredproduct = 'allproduct';
         }
         $produks->withPath('listproducts');
@@ -101,5 +122,23 @@ class PageController extends Controller
         $subkategoris = KategoriChild::all();
 
         return view('user.contact', compact('page', 'allkategoris', 'subkategoris'));
+    }
+
+    public function list_articles()
+    {
+        $page = 'article';
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $subkategoris = KategoriChild::all();
+
+        return view('user.articles', compact('page', 'allkategoris', 'subkategoris'));
+    }
+
+    public function article_detail()
+    {
+        $page = 'article';
+        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $subkategoris = KategoriChild::all();
+
+        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris'));
     }
 }

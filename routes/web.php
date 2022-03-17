@@ -137,6 +137,9 @@ Route::group([
 ], function () {
     Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
     Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
+    Route::get('/article', [PageController::class, 'list_articles'])->name('article');
+    Route::get('/article/detail', [PageController::class, 'article_detail'])->name('article.detail');
+
     Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::get('/faktur/showdetail/{faktur}', [FakturController::class, 'showDetail'])->name('faktur.showdetail');
     Route::get('/faktur/showfaktur/{faktur}', [FakturController::class, 'showfaktur'])->name('faktur.showfaktur');

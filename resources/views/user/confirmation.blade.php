@@ -24,41 +24,42 @@
             <div class="sm:flex sm:justify-between">
                 <div class="flex">
                     <div class="w-20 sm:w-40">
-                        <img src="{{ $cart->produk->image }}"
-                            alt="" class="aspect-square w-full rounded-md object-cover">
+                        <img src="{{ $cart->produk->image }}" alt=""
+                            class="aspect-square w-full rounded-md object-cover">
                     </div>
                     <div class="ml-2">
                         <h6 class="font-bold font-encode-sans text-base text-clip text-slate-900">
-                            [{{ $produk->kode_alias }}] {{ $cart->produk->nama_produk }}
+                            [{{ $cart->produk->kode_alias }}] {{ $cart->produk->nama_produk }}
                         </h6>
                         <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
                             {{ $cart->jumlah }} barang x Rp.
-                        {{ substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
+                            {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale,2,",","."), 0, -3) : substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
+
                         </p>
                         <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
                             Note: <br>
-                        {{ $cart->note }}
+                            {{ $cart->note }}
                         </p>
                         @if (!empty($cart->produkstock->size))
-                    @if (!empty($cart->produkstock->color))
-                    <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
-                        {{ $cart->produkstock->size }} - {{ $cart->produkstock->color }}
-                    </h6>
-                    @else
-                    <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
-                        {{ $cart->produkstock->size }}
-                    </h6>
-                    @endif
-                    @else
-                    @if (!empty($cart->produkstock->color))
-                    <h6
-                        class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
-                        {{ $cart->produkstock->color }}
-                    </h6>
-                    @endif
-                    @endif
+                        @if (!empty($cart->produkstock->color))
+                        <h6
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            {{ $cart->produkstock->size }} - {{ $cart->produkstock->color }}
+                        </h6>
+                        @else
+                        <h6
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            {{ $cart->produkstock->size }}
+                        </h6>
+                        @endif
+                        @else
+                        @if (!empty($cart->produkstock->color))
+                        <h6
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            {{ $cart->produkstock->color }}
+                        </h6>
+                        @endif
+                        @endif
                     </div>
                 </div>
                 <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
@@ -67,7 +68,8 @@
                             Total Harga
                         </p>
                         <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
+                            Rp.
+                            {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale*$cart->jumlah,2,",","."), 0, -3) : substr(number_format($cart->produk->harga*$cart->jumlah,2,",","."), 0, -3) }}
                         </h6>
                     </div>
                     {{-- <a href="" class="mt-4 xl:mt-8 flex items-center">
@@ -88,7 +90,8 @@
                             Total Harga
                         </p>
                         <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. {{ substr(number_format($cart->produk->harga * $cart->jumlah,2,",","."), 0, -3) }}
+                            Rp.
+                            {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale*$cart->jumlah,2,",","."), 0, -3) : substr(number_format($cart->produk->harga*$cart->jumlah,2,",","."), 0, -3) }}
                         </h6>
                     </div>
                 </div>
@@ -152,7 +155,11 @@
                     <li>{{ $city }}</li>
                     <li>+- {{ $berat }} kg</li>
                     <li>{{ $request->delivery }}</li>
+                    @if ($deliveryCost == -1)
+                    <li>Ongkos kirim akan diinformasikan terpisah</li>
+                    @else
                     <li>Rp. {{ substr(number_format($deliveryCost,2,",","."), 0, -3) }}</li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -217,6 +224,13 @@
                     </li>
                 </ul>
             </div>
+            <h6 class="font-bold mt-4 font-encode-sans text-red-500 text-sm sm:text-base">
+                Penting!
+            </h6>
+            <p class="ml-3 mt-3 font-encode-sans text-gray-400 text-sm sm:text-base">
+                Sertakan nomor pesanan (invoice number) sebagai berita pada saat Anda melakukan transfer.
+                Nomor Pesanan akan anda terima melalui email kemudian.
+            </p>
         </div>
     </div>
     <form action="{{ route('user.faktur.store') }}" method="post">
@@ -253,9 +267,9 @@
                 <div class="xl:hidden mt-7">
                     <div class="text-center">
                         <button type="submit" id="finish" disabled
-                        class="border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
-                        Finish
-                    </button>
+                            class="border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                            Finish
+                        </button>
                     </div>
                     <div class="text-center mt-1">
                         <a href="{{ route('user.paymentart.index') }}"
@@ -288,10 +302,11 @@
     let finish = document.getElementById('finish');
     let finish1 = document.getElementById('finish1');
 
-    setuju.onchange = function() {
+    setuju.onchange = function () {
         finish.disabled = !this.checked;
         finish1.disabled = !this.checked;
     }
+
 </script>
 
 @include('inc.footer1')

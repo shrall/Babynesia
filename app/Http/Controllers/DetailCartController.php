@@ -30,7 +30,11 @@ class DetailCartController extends Controller
         $berat = 0;
         $jumlahCart = 0;
         foreach ($carts as $cart) {
-            $temp = $cart->produk->harga * $cart->jumlah;
+            if ($cart->produk->stat == 'd') {
+                $temp = $cart->produk->harga_sale * $cart->jumlah;
+            } else {
+                $temp = $cart->produk->harga * $cart->jumlah;
+            }
             $berat += $cart->produk->weight * $cart->jumlah;
             $total += $temp;
             $jumlahCart += 1;
@@ -47,12 +51,14 @@ class DetailCartController extends Controller
             'courier' => 'jne',
         ])->json()['rajaongkir']['results'][0];
 
-        if ($request->delivery == "JNE OKE") {
+        if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
-        } else if ($request->delivery == "JNE REG") {
+        } else if ($request->delivery == "JNE REG" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][1]['cost'][0]['value'];
-        } else {
+        } else if ($request->delivery == "JNE YES" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][2]['cost'][0]['value'];
+        } else {
+            $deliveryCost = -1;
         }
 
         //get city & province yang dipilih
@@ -95,11 +101,7 @@ class DetailCartController extends Controller
     public function store(Request $request)
     {
         // $produk = Produk::where('kode_produk', $request->kode_produk);
-        if (isEmpty($request->ukuran)) {
-            $kode_produk_stok = 0;
-        } else {
-            $kode_produk_stok = $request->ukuran;
-        }
+        $kode_produk_stok = $request->ukuran;
 
         //destination city dari profile
 

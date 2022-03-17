@@ -74,6 +74,19 @@
                 </a>
             </li>
             @endif
+            @if (!empty($page)&&$page == "article")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+                <a href="{{ route('user.article') }}" aria-expanded="true">
+                    Article
+                </a>
+            </li>
+            @else
+            <li class="ml-4 inline-block font-encode-sans text-white">
+                <a href="{{ route('user.article') }}" aria-expanded="true">
+                    Article
+                </a>
+            </li>
+            @endif
             @if (!empty($page)&&$page == "faq")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
                 <a href="{{ route('user.faq.index') }}" aria-expanded="true">
@@ -122,7 +135,7 @@
                 </li>
                 <div class="py-3 px-10 absolute">&nbsp;</div>
                 <div
-                    class="invisible group-hover:visible pb-6 mt-5 absolute left-0 bg-blue-300 w-full mx-auto xl:px-40">
+                    class="invisible group-hover:visible z-50 pb-6 mt-5 absolute left-0 bg-blue-300 w-full mx-auto xl:px-40">
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
                         @foreach ($allkategoris as $kategori)
                         <li class="my-1 group">
@@ -140,9 +153,9 @@
                                 <input type="hidden" name="subfilter" value="{{ $sub->child_id }}" form="subkategori{{ $sub->child_id }}">
                                 <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}"
                                     form="subkategori{{ $sub->child_id }}">
-                                <li class="bg-neutral-100 p-2 hover:bg-neutral-200 first:rounded-t-md last:rounded-b-md">
+                                <li class="bg-neutral-100 p-2 hover:bg-white text-gray-400 hover:text-pink-400 first:rounded-t-md last:rounded-b-md">
                                     <button type="submit" form="subkategori{{ $sub->child_id }}"
-                                        class="text-left appearance-none text-gray-400 block whitespace-no-wrap">{{ $sub->child_name }}</button>
+                                        class="text-left appearance-none block whitespace-no-wrap">{{ $sub->child_name }}</button>
                                 </li>
                                 @endif
                                 @endforeach
@@ -237,31 +250,37 @@
     </div>
     <div class="bg-white py-4 px-4 h-full overflow-y-auto">
         <a href="/">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "home" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
                 Home
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
                 About
             </div>
         </a>
         <hr>
+        <a href="{{ route('user.article') }}">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+                Article
+            </div>
+        </a>
+        <hr>
         <a href="{{ route('user.faq.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
                 FAQ
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
                 Contact
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "guestbook" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
                 Guestbook
             </div>
         </a>
