@@ -210,10 +210,6 @@ Route::group([
     Route::get('/content/webpage/create', [AdminPageController::class, 'webpage_create'])->name('webpage.create');
     Route::get('/content/sidearea', [AdminPageController::class, 'sidearea'])->name('sidearea');
     Route::get('/content/sidearea/create', [AdminPageController::class, 'sidearea_create'])->name('sidearea.create');
-    Route::get('/content/article', [AdminPageController::class, 'article'])->name('article');
-    Route::get('/content/article/create', [AdminPageController::class, 'article_create'])->name('article.create');
-    Route::get('/content/guestbook', [AdminPageController::class, 'guestbook'])->name('guestbooks');
-    Route::get('/content/guestbook/create', [AdminPageController::class, 'guestbook_create'])->name('guestbooks.create');
     Route::get('/content/gallery', [AdminPageController::class, 'gallery'])->name('gallery');
     Route::get('/content/gallery/create', [AdminPageController::class, 'gallery_create'])->name('gallery.create');
 

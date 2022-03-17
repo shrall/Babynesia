@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Guestbook;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class GuestbookController extends Controller
@@ -15,7 +16,8 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        //
+        $guestbooks = Guestbook::all();
+        return view('admin.guestbook.index', compact('guestbooks'));
     }
 
     /**
@@ -25,7 +27,7 @@ class GuestbookController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.guestbook.create');
     }
 
     /**
@@ -36,7 +38,15 @@ class GuestbookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $guestbook = Guestbook::create([
+            'datum' => $request->date,
+            'name' => $request->name,
+            'location' => $request->city,
+            'email' => $request->email,
+            'message' => $request->content,
+            'accepted' => $request->status
+        ]);
+        return redirect()->route('adminpage.guestbook.index');
     }
 
     /**
@@ -58,7 +68,7 @@ class GuestbookController extends Controller
      */
     public function edit(Guestbook $guestbook)
     {
-        //
+        return view('admin.guestbook.edit', compact('guestbook'));
     }
 
     /**
@@ -70,7 +80,15 @@ class GuestbookController extends Controller
      */
     public function update(Request $request, Guestbook $guestbook)
     {
-        //
+        $guestbook->update([
+            'datum' => $request->date,
+            'name' => $request->name,
+            'location' => $request->city,
+            'email' => $request->email,
+            'message' => $request->content,
+            'accepted' => $request->status
+        ]);
+        return redirect()->route('adminpage.guestbook.index');
     }
 
     /**
@@ -81,6 +99,7 @@ class GuestbookController extends Controller
      */
     public function destroy(Guestbook $guestbook)
     {
-        //
+        $guestbook->delete();
+        return redirect()->route('adminpage.guestbook.index');
     }
 }

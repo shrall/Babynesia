@@ -67,7 +67,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('admin.news.edit', compact('news'));
     }
 
     /**
@@ -79,7 +79,13 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $news->update([
+            'isi' => $request->content,
+            'urutan' => $request->order,
+            'judul' => $request->title,
+            'sumber' => $request->source,
+        ]);
+        return redirect()->route('adminpage.news.index');
     }
 
     /**
