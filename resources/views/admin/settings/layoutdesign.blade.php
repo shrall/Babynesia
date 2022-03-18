@@ -11,8 +11,9 @@
                 <div class="col-span-12 flex flex-col gap-y-2">
                     <div class="text-xl font-bold">Gambar Header</div>
                     <div class="flex">
-                        <img src="{{ asset('svg/images.svg') }}" class="w-vw-50 h-vh-20 bg-gray-300"
-                            id="preview-header-image">
+                        <img @if ($webconfigs[22]['content'] == null) src="{{ asset('svg/images.svg') }}"
+                            @else src="{{ asset('uploads/' . $webconfigs[22]['content']) }}" @endif
+                            class="w-vw-50 h-vh-20 bg-gray-300" id="preview-header-image">
                         <input type="file" name="" id="header-image" class="invisible w-2"
                             onchange="loadFile(event, 'header-image')" accept="image/*" required>
                     </div>
@@ -23,12 +24,12 @@
             </div>
             <div class="admin-card">
                 <div class="col-span-12">
-                    <div class="text-xl font-bold">Gambar Header</div>
+                    <div class="text-xl font-bold">Layout Halaman</div>
                 </div>
                 <div class="col-span-6 flex flex-col items-center justify-center gap-2 px-12">
                     <img src="{{ asset('svg/images.svg') }}">
                     <div class="flex items-center gap-2">
-                        <input type="radio" name="" id="layout-1">
+                        <input type="radio" name="" id="layout-1" checked>
                         <label for="layout-1">Layout 1</label>
                     </div>
                 </div>

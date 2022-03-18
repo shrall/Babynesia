@@ -11,7 +11,7 @@ class Webconfig extends Model
     public $timestamps = false;
     protected $table = 'webconfig';
     protected $fillable = [
-        'name', 'showed_name', 'content', 'urutan', 'admin_status', 'type', 'isHidden', 'color_bg', 'color_text', 'color_button'
+        'name', 'showed_name', 'content', 'urutan', 'admin_status', 'type', 'isHidden'
     ];
     protected $primaryKey = 'name';
     public $incrementing = false;
