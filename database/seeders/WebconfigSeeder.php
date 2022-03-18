@@ -29,5 +29,10 @@ class WebconfigSeeder extends Seeder
         $status->content = 'bg-blue-100';
         $status->showed_name = 'Button Color';
         $status->save();
+        $status = new Webconfig();
+        $status->name = 'web_layout';
+        $status->content = '1';
+        $status->showed_name = 'Website Layout';
+        $status->save();
     }
 }
