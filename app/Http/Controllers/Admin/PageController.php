@@ -8,6 +8,7 @@ use App\Models\HotdealsArea;
 use App\Models\HotdealsVisibleStatus;
 use App\Models\Produk;
 use App\Models\User;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -18,11 +19,13 @@ class PageController extends Controller
     }
     public function configuration()
     {
-        return view('admin.settings.configuration');
+        $webconfigs = Webconfig::all();
+        return view('admin.settings.configuration', compact('webconfigs'));
     }
     public function layoutdesign()
     {
-        return view('admin.settings.layoutdesign');
+        $webconfigs = Webconfig::all();
+        return view('admin.settings.layoutdesign', compact('webconfigs'));
     }
     public function administrator()
     {
