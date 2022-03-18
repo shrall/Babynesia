@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\VisitCounter;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class VisitCounterController extends Controller
@@ -15,7 +18,12 @@ class VisitCounterController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::withCount('visitcounters')
+            ->orderBy('visitcounters_count', 'desc')
+            ->whereHas('visitcounters', function (Builder $query) {
+                $query->whereMonth('date', date('m'));
+            })->take(10)->get();
+        return view('admin.visitcounter.index', compact('users'));
     }
 
     /**
@@ -36,7 +44,8 @@ class VisitCounterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::where('no_user', $request->user)->first();
+        return view('admin.visitcounter.show', compact('user'));
     }
 
     /**

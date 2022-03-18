@@ -10,8 +10,7 @@
     <div class="w-full flex flex-col gap-y-4 p-4">
         <div class="admin-card">
             <div class="col-span-12">
-                <table id="example" class="stripe hover"
-                    style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+                <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <thead>
                         <tr>
                             <th data-priority="1">No</th>
@@ -22,12 +21,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2022 - Januari</td>
-                            <td>12300</td>
-                            <td>43100</td>
-                            <td>55400</td>
+                        @foreach ($hitcounters as $hitcounter)
+                            <tr>
+                                <td>{{ $hitcounter->id }}</td>
+                                <td>{{ $hitcounter->month }}</td>
+                                <td>{{ $hitcounter->registered }}</td>
+                                <td>{{ $hitcounter->unregistered }}</td>
+                                <td>{{ $hitcounter->total }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -44,5 +46,3 @@
         });
     </script>
 @endsection
-
-
