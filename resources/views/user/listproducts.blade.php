@@ -134,7 +134,7 @@
 
                 @foreach ($produks as $produk)
                 <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                    <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                    <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                         alt="">
                     <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">

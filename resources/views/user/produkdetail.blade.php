@@ -16,7 +16,7 @@
     <div class="xl:grid xl:grid-cols-2 xl:gap-3">
         <div class="mt-3">
             <div class="mb-3">
-                <img src="{{ $produk->image }}" alt="" id="productimg" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" alt="" id="productimg" class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
             </div>
             <div class="flex items-center flex-wrap">
                 @foreach ($produk->images as $image)
@@ -160,20 +160,20 @@
     </div>
 
     {{-- more product --}}
+    @if (!empty($produk->complement))
     <div class="mt-5 bg-white rounded-md px-3 py-5 shadow-sm">
         <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
-            More Product
+            Product Suggestions
         </h1>
     </div>
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
-            @foreach ($others as $produk)
-            <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+            <a href="{{ route('user.produk.show', $produk->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+                        [{{ $produk->complement->kode_alias }}] {{ $produk->complement->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -187,21 +187,115 @@
                             @else --}}
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
-                                {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                                {{ $produk->complement->stat == 'd' ? substr(number_format($produk->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->harga,2,",","."), 0, -3) }}
                             </h2>
                             {{-- @endif --}}
                     </div>
                     @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        <del>Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}</del>
+                        <del>Rp. {{ substr(number_format($produk->complement->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>
             </a>
-            @endforeach
 
+            {{-- manual loop --}}
+
+            <a href="{{ route('user.produk.show', $produk->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                    alt="">
+                <div class="p-4 pb-5">
+                    <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                        [{{ $produk->complement->complement->kode_alias }}] {{ $produk->complement->complement->nama_produk }}
+                    </h6>
+                    <div class="flex justify-between items-center sm:my-3 my-2">
+                        {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                            Rp.
+                            {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            <h6
+                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                Sold
+                            </h6>
+                            @else --}}
+                            <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                Rp.
+                                {{ $produk->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            {{-- @endif --}}
+                    </div>
+                    @if ($produk->stat == 'd')
+                    <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                        <del>Rp. {{ substr(number_format($produk->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                    </h6>
+                    @endif
+                </div>
+            </a>
+
+            <a href="{{ route('user.produk.show', $produk->complement->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                    alt="">
+                <div class="p-4 pb-5">
+                    <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                        [{{ $produk->complement->complement->complement->kode_alias }}] {{ $produk->complement->complement->complement->nama_produk }}
+                    </h6>
+                    <div class="flex justify-between items-center sm:my-3 my-2">
+                        {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                            Rp.
+                            {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            <h6
+                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                Sold
+                            </h6>
+                            @else --}}
+                            <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                Rp.
+                                {{ $produk->complement->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->complement->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            {{-- @endif --}}
+                    </div>
+                    @if ($produk->stat == 'd')
+                    <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                        <del>Rp. {{ substr(number_format($produk->complement->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                    </h6>
+                    @endif
+                </div>
+            </a>
+
+            <a href="{{ route('user.produk.show', $produk->complement->complement->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->complement->complement->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                    alt="">
+                <div class="p-4 pb-5">
+                    <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                        [{{ $produk->complement->complement->complement->complement->kode_alias }}] {{ $produk->complement->complement->complement->complement->nama_produk }}
+                    </h6>
+                    <div class="flex justify-between items-center sm:my-3 my-2">
+                        {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+                            Rp.
+                            {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            <h6
+                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                Sold
+                            </h6>
+                            @else --}}
+                            <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                Rp.
+                                {{ $produk->complement->complement->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->complement->complement->harga,2,",","."), 0, -3) }}
+                            </h2>
+                            {{-- @endif --}}
+                    </div>
+                    @if ($produk->stat == 'd')
+                    <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                        <del>Rp. {{ substr(number_format($produk->complement->complement->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                    </h6>
+                    @endif
+                </div>
+            </a>
         </div>
     </div>
+    @endif
 </div>
 
 <script>
