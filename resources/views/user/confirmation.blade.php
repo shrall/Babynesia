@@ -24,7 +24,7 @@
             <div class="sm:flex sm:justify-between">
                 <div class="flex">
                     <div class="w-20 sm:w-40">
-                        <img src="{{ $cart->produk->image }}" alt=""
+                        <img src="http://www.tokobayifiv.com/images/produk/{{ $cart->produk->image }}" alt=""
                             class="aspect-square w-full rounded-md object-cover">
                     </div>
                     <div class="ml-2">
@@ -197,31 +197,23 @@
         <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
             <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Payment</h6>
             <div class="px-7 mt-3">
-                <ul class="list-disc">
+                <ul class="list-disc space-y-2">
+                    @foreach ($payments as $payment)
+                        
                     <li>
                         <div>
                             <h6 class="text-sm sm:text-base font-bold text-slate-900">
-                                Mandiri
+                                {{ $payment->info }}
                             </h6>
                             <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
-                                142.000.7984.502
-                                <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
-                                    aria-hidden="true"></i>
+                                {{ $payment->description }}
+                                {{-- <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
+                                    aria-hidden="true"></i> --}}
                             </p>
                         </div>
                     </li>
-                    <li class="mt-3">
-                        <div>
-                            <h6 class="text-sm sm:text-base font-bold text-slate-900">
-                                BCA
-                            </h6>
-                            <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
-                                8620.101.070
-                                <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
-                                    aria-hidden="true"></i>
-                            </p>
-                        </div>
-                    </li>
+
+                    @endforeach
                 </ul>
             </div>
             <h6 class="font-bold mt-4 font-encode-sans text-red-500 text-sm sm:text-base">

@@ -7,6 +7,7 @@ use App\Models\DetailFaktur;
 use App\Models\Faktur;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
+use App\Models\PaymentMethod;
 use App\Models\Produk;
 use App\Models\ProdukStockHistory;
 use App\Models\Receiver;
@@ -161,14 +162,16 @@ class FakturController extends Controller
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
-        return view('user.invoice', compact('allkategoris', 'subkategoris', 'faktur'));
+        $payments = PaymentMethod::all();
+        return view('user.invoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments'));
     }
 
     public function showDetail(Faktur $faktur)
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $payments = PaymentMethod::all();
         $subkategoris = KategoriChild::all();
-        return view('user.detailinvoice', compact('allkategoris', 'subkategoris', 'faktur'));
+        return view('user.detailinvoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments'));
     }
 
     public function showFaktur(Faktur $faktur)

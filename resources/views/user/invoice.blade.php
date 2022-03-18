@@ -130,22 +130,18 @@
                 <h6 class="font-encode-sans font-bold text-slate-900">
                     Payment
                 </h6>
+                @foreach ($payments as $payment)
+                    
                 <div class="mt-2">
                     <h6 class="font-encode-sans font-bold text-slate-900">
-                        BCA
+                        {{ $payment->info }}
                     </h6>
                     <p class="font-encode-sans text-gray-400">
-                        8620.101.070
+                        {{ $payment->description }}
                     </p>
                 </div>
-                <div class="mt-2">
-                    <h6 class="font-encode-sans font-bold text-slate-900">
-                        Mandiri
-                    </h6>
-                    <p class="font-encode-sans text-gray-400">
-                        142.000.7984.502
-                    </p>
-                </div>
+
+                @endforeach
             </div>
         </div>
     </div>

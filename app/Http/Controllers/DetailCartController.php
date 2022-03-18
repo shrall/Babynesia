@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailCart;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
+use App\Models\PaymentMethod;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use Auth;
@@ -23,6 +24,7 @@ class DetailCartController extends Controller
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
+        $payments = PaymentMethod::all();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
         //hitung total harga dan total berat
@@ -79,7 +81,7 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'allkategoris', 'subkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province'));
+        return view('user.confirmation', compact('request', 'allkategoris', 'subkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments'));
     }
 
     /**

@@ -49,7 +49,7 @@
         <div class="sm:flex sm:justify-between">
             <div class="flex">
                 <div class="w-20 sm:w-44">
-                    <img src="{{ $cart->produk->image }}" alt=""
+                    <img src="http://www.tokobayifiv.com/images/produk/{{ $cart->produk->image }}" alt=""
                         class="aspect-square w-full rounded-md object-cover bg-gray-400">
                 </div>
                 <div class="ml-2 sm:w-vw-30">
