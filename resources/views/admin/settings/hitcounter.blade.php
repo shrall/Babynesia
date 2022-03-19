@@ -42,6 +42,9 @@
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 scrollX: true,
+                "order": [
+                    [1, "desc"]
+                ]
             });
         });
     </script>
