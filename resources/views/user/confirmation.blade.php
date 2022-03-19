@@ -6,12 +6,12 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
-        <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
+        <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>
             <a href="{{ route('user.receiver.create') }}" class="text-gray-400">Receiver ></a>
             <a href="{{ route('user.detailcart.index') }}">Confirmation</a>
         </p>
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Confirmation
         </h1>
     </div>
@@ -43,19 +43,19 @@
                         @if (!empty($cart->produkstock->size))
                         @if (!empty($cart->produkstock->color))
                         <h6
-                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-{{ $color[0] }}-300 text-white font-encode-sans">
                             {{ $cart->produkstock->size }} - {{ $cart->produkstock->color }}
                         </h6>
                         @else
                         <h6
-                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-{{ $color[0] }}-300 text-white font-encode-sans">
                             {{ $cart->produkstock->size }}
                         </h6>
                         @endif
                         @else
                         @if (!empty($cart->produkstock->color))
                         <h6
-                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-blue-300 text-white font-encode-sans">
+                            class="py-1 sm:py-2 sm:mt-3 mt-2 px-3 inline-block text-sm sm:text-base font-bold rounded-lg bg-{{ $color[0] }}-300 text-white font-encode-sans">
                             {{ $cart->produkstock->color }}
                         </h6>
                         @endif
@@ -73,7 +73,7 @@
                         </h6>
                     </div>
                     {{-- <a href="" class="mt-4 xl:mt-8 flex items-center">
-                        <i class="fas fa-edit text-pink-400 text-2xl" aria-hidden="true"></i>
+                        <i class="fas fa-edit text-{{ $color[2] }}-400 text-2xl" aria-hidden="true"></i>
                         <p class="ml-1 font-encode-sans font-bold text-slate-900">Edit</p>
                     </a> --}}
                 </div>
@@ -103,7 +103,7 @@
             <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
                 Total Harga
             </p>
-            <h6 class="text-pink-400 font-encode-sans font-bold">
+            <h6 class="text-{{ $color[2] }}-400 font-encode-sans font-bold">
                 Rp. {{ substr(number_format($total,2,",","."), 0, -3) }}
             </h6>
         </div>
@@ -207,7 +207,7 @@
                             </h6>
                             <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                 {{ $payment->description }}
-                                {{-- <i class="fa fa-copy ml-1 text-blue-400 border p-1 rounded-md border-blue-400"
+                                {{-- <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 rounded-md border-{{ $color[0] }}-400"
                                     aria-hidden="true"></i> --}}
                             </p>
                         </div>
@@ -259,7 +259,7 @@
                 <div class="xl:hidden mt-7">
                     <div class="text-center">
                         <button type="submit" id="finish" disabled
-                            class="border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                            class="border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                             Finish
                         </button>
                     </div>
@@ -274,7 +274,7 @@
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
                     <button type="submit" id="finish1" disabled
-                        class="w-full inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                        class="w-full inline-block border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:bg-neutral-100 bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                         Finish
                     </button>
                 </div>

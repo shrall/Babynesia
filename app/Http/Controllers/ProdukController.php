@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Models\Webconfig;
 
 class ProdukController extends Controller
 {
@@ -51,7 +52,14 @@ class ProdukController extends Controller
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
         $stocks = $produk->stocks->where('product_stock', '!=', 0);
-        return view('user.produkdetail', compact('produk', 'stocks', 'allkategoris', 'subkategoris'));
+
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.produkdetail', compact('produk', 'stocks', 'allkategoris', 'subkategoris', 'color'));
     }
 
     /**

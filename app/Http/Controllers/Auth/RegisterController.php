@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\IndonesiaProvince;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Webconfig;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -47,7 +48,14 @@ class RegisterController extends Controller
     {
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
-        return view('auth.register', compact('countries', 'indoprovinces'));
+
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('auth.register', compact('countries', 'indoprovinces', 'color'));
     }
 
     /**

@@ -61,7 +61,7 @@
                     <input type="radio" onclick="showcontent()" id="newproduct" name="tes" value="tes" class="peer"
                         hidden checked>
                     <label for="newproduct"
-                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-sky-500 peer-checked:font-bold hover:text-sky-500 peer-checked:border-b-4 peer-checked:border-sky-500 peer-checked:px-1">
+                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-{{ $color[1] }}-500 peer-checked:font-bold hover:text-{{ $color[1] }}-500 peer-checked:border-b-4 peer-checked:border-{{ $color[1] }}-500 peer-checked:px-1">
                         New Product
                     </label>
                 </li>
@@ -69,20 +69,20 @@
                     <input type="radio" onclick="showcontent()" id="hotdeals" name="tes" value="tes" class="peer"
                         hidden>
                     <label for="hotdeals"
-                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-sky-500 peer-checked:font-bold hover:text-sky-500 peer-checked:border-b-4 peer-checked:border-sky-500 peer-checked:px-1">
+                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-{{ $color[1] }}-500 peer-checked:font-bold hover:text-{{ $color[1] }}-500 peer-checked:border-b-4 peer-checked:border-{{ $color[1] }}-500 peer-checked:px-1">
                         Hot Deals
                     </label>
                 </li>
                 <li class="ml-4 inline-block">
                     <input type="radio" onclick="showcontent()" id="restock" name="tes" value="tes" class="peer" hidden>
                     <label for="restock"
-                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-sky-500 peer-checked:font-bold hover:text-sky-500 peer-checked:border-b-4 peer-checked:border-sky-500 peer-checked:px-1">
+                        class="cursor-pointer font-encode-sans text-gray-400 peer-checked:text-{{ $color[1] }}-500 peer-checked:font-bold hover:text-{{ $color[1] }}-500 peer-checked:border-b-4 peer-checked:border-{{ $color[1] }}-500 peer-checked:px-1">
                         Restock Product
                     </label>
                 </li>
             </ul>
         </div>
-        <h1 class="text-center font-concert-one text-4xl mt-3 text-sky-500">
+        <h1 class="text-center font-concert-one text-4xl mt-3 text-{{ $color[1] }}-500">
             Our Newest Product
         </h1>
     </div>
@@ -200,7 +200,7 @@
     {{-- FEATURED PRODUCT --}}
     @if (!empty($featured[0]))
     <div class="w-full bg-white rounded-md shadow-sm py-5">
-        <h1 class="text-center font-concert-one text-4xl text-sky-500">
+        <h1 class="text-center font-concert-one text-4xl text-{{ $color[1] }}-500">
             Featured Product
         </h1>
     </div>
@@ -240,7 +240,7 @@
         </div>
         <div class="flex justify-center">
             <a href="{{ route('user.list_products') }}"
-                class="border-2 hover:bg-pink-400 hover:text-white hover:ring-pink-300 hover:ring-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+                class="border-2 hover:bg-{{ $color[2] }}-400 hover:text-white hover:ring-{{ $color[2] }}-300 hover:ring-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
                 More Products
             </a>
         </div>

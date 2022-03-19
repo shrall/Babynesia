@@ -6,7 +6,7 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
     <div class="hidden xl:block">
-        <div class="bg-blue-300 rounded-t-lg px-4 py-3">
+        <div class="bg-{{ $color[0] }}-300 rounded-t-lg px-4 py-3">
             <h6 class="font-encode-sans text-white text-sm font-bold">
                 Our Products
             </h6>
@@ -17,7 +17,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="allproduct" name="filterproduct">
                         <button type="submit"
-                            class="text-sm font-bold hover:text-sky-500 {{ $filteredproduct == 'allproduct' ? 'text-sky-500' : 'text-slate-900' }} font-encode-sans">
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} font-encode-sans">
                             All Product
                         </button>
                     </form>
@@ -26,7 +26,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="newproduct" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'newproduct' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'newproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             New Product
                         </button>
                     </form>
@@ -35,7 +35,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="hotdeals" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'hotdeals' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'hotdeals' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Hotdeals
                         </button>
                     </form>
@@ -44,7 +44,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="restock" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'restock' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'restock' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Restock Product
                         </button>
                     </form>
@@ -53,7 +53,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'featured' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'featured' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Featured Product
                         </button>
                     </form>
@@ -67,7 +67,7 @@
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit" {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}
-                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-sky-500' : 'text-gray-400' }}  text-sm font-bold font-encode-sans peer">
+                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }}  text-sm font-bold font-encode-sans peer">
                             {{ $kategori->nama_kategori }}
                         </button>
                     </form>
@@ -78,7 +78,7 @@
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
                             <li
-                                class="appearance-none {{ $subfilter == $sub->child_id ? 'text-sky-500' : 'text-gray-400' }}  block whitespace-no-wrap">
+                                class="appearance-none {{ $subfilter == $sub->child_id ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }}  block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>
                         </ul>
@@ -95,11 +95,11 @@
     <div class="col-span-3">
         <div class="bg-white rounded-md px-3 py-5 flex justify-between items-center shadow-sm">
             @if (!empty($keyword))
-            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 "{{ $keyword }}"
             </h1>
             @elseif (!empty($filteredproduct) && $filteredproduct != 'allproduct')
-            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 @if ($filteredproduct == 'newproduct' )
                 New Product
                 @elseif ($filteredproduct == 'hotdeals')
@@ -111,21 +111,21 @@
                 @endif
             </h1>            
             @elseif (!empty($subfilter))
-            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 {{ $subsname }}
             </h1>
             @elseif (!empty($filter))
-            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 {{ $produks[0]->category->nama_kategori }}
             </h1>
             @else
-            <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 All Product
             </h1>
             @endif
             <input type="checkbox" name="bottomclick" id="bottomclick" hidden>
             <label for="bottomclick"
-                class="rounded-full px-4 py-2 bg-sky-500 cursor-pointer hover:bg-sky-600 text-white text-sm font-bold xl:hidden font-encode-sans">
+                class="rounded-full px-4 py-2 bg-{{ $color[1] }}-500 cursor-pointer hover:bg-{{ $color[1] }}-600 text-white text-sm font-bold xl:hidden font-encode-sans">
                 Filter
             </label>
         </div>
@@ -171,7 +171,7 @@
             <a href="">
                 <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
             </a>
-            <a href="" class="p-2 bg-blue-300 text-sm font-bold font-encode-sans mx-2 rounded-md text-white">1</a>
+            <a href="" class="p-2 bg-{{ $color[0] }}-300 text-sm font-bold font-encode-sans mx-2 rounded-md text-white">1</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">2</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">3</a>
             <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">4</a>
@@ -189,7 +189,7 @@
     <label for="bottomclick" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 bottomfilterlist xl:hidden w-full fixed -bottom-full -translate-x-1/2 left-1/2">
-    <div class="bg-blue-300 px-3 py-3 w-full rounded-t-lg">
+    <div class="bg-{{ $color[0] }}-300 px-3 py-3 w-full rounded-t-lg">
         <h6 class="font-encode-sans text-white font-bold">
             Filter
         </h6>
@@ -200,7 +200,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="allproduct" name="filterproduct">
                     <button type="submit"
-                        class="text-sm font-bold hover:text-sky-500 {{ $filteredproduct == 'allproduct' ? 'text-sky-500' : 'text-slate-900' }} font-encode-sans">
+                        class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} font-encode-sans">
                         All Product
                     </button>
                 </form>
@@ -209,7 +209,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="newproduct" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'newproduct' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'newproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         New Product
                     </button>
                 </form>
@@ -218,7 +218,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="hotdeals" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'hotdeals' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'hotdeals' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Hotdeals
                     </button>
                 </form>
@@ -227,7 +227,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="restock" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'restock' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'restock' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Restock Product
                     </button>
                 </form>
@@ -236,7 +236,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="featured" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'featured' ? 'text-sky-500' : 'text-slate-900' }} text-sm font-bold hover:text-sky-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'featured' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Featured Product
                     </button>
                 </form>
@@ -257,7 +257,7 @@
                 <li class="my-1">
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-sky-500' : 'text-gray-400' }} font-bold hover:text-sky-500 font-encode-sans"
+                        <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -267,7 +267,7 @@
                     <form action="{{ route('user.list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-sky-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-sky-500">
+                        <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
                             <li class="appearance-none block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>

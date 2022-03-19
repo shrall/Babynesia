@@ -12,7 +12,7 @@
                 <input type="radio" name="test" onclick="showcontent()" id="profile" value="profile" class="peer"
                     checked hidden>
                 <label for="profile" type="button"
-                    class="appearance-none peer-checked:font-bold peer-checked:text-sky-500 cursor-pointer font-encode-sans text-slate-900 hover:text-sky-500 text-sm sm:text-base ">
+                    class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     Profile Info
                 </label>
             </div>
@@ -21,7 +21,7 @@
                 <input type="radio" name="test" onclick="showcontent()" id="editprofile" value="edit-profile"
                     class="peer" hidden>
                 <label for="editprofile" type="button"
-                    class="appearance-none peer-checked:font-bold peer-checked:text-sky-500 cursor-pointer font-encode-sans text-slate-900 hover:text-sky-500 text-sm sm:text-base ">
+                    class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     Edit Profile
                 </label>
             </div>
@@ -30,14 +30,14 @@
                 <input type="radio" name="test" onclick="showcontent()" id="history" value="history" class="peer"
                     hidden>
                 <label for="history" type="button"
-                    class="appearance-none peer-checked:font-bold peer-checked:text-sky-500 cursor-pointer font-encode-sans text-slate-900 hover:text-sky-500 text-sm sm:text-base ">
+                    class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     History Transaksi
                 </label>
             </div>
 
             <hr class="my-3">
             <a href="#" type="button"
-                class="appearance-none font-encode-sans text-slate-900 hover:text-sky-500 text-sm sm:text-base ">
+                class="appearance-none font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                 Chat Us
             </a>
             <hr class="my-3">
@@ -53,15 +53,15 @@
 
     <div id="profile_info"
         class="hidden w-full mt-3 xl:mt-0 xl:col-span-3 bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
-        <h1 class="font-concert-one text-sky-500 text-3xl sm:text-4xl">
+        <h1 class="font-concert-one text-{{ $color[1] }}-500 text-3xl sm:text-4xl">
             Profile Info
         </h1>
         <hr class="my-3">
         <div class="flex">
-            <i class="fa fa-user-circle size sm:text-8xl text-6xl text-sky-500"></i>
+            <i class="fa fa-user-circle size sm:text-8xl text-6xl text-{{ $color[1] }}-500"></i>
             <div class="ml-4">
                 <div class="sm:mt-4">
-                    <h1 class="font-concert-one text-pink-400 text-3xl sm:text-4xl">
+                    <h1 class="font-concert-one text-{{ $color[2] }}-400 text-3xl sm:text-4xl">
                         {{ Auth::user()->name }}
                     </h1>
                     <p class="mt-1 font-encode-sans text-gray-400 text-sm sm:text-base">
@@ -120,7 +120,7 @@
 
     <div id="profile_edit"
         class="hidden w-full mt-3 xl:mt-0 xl:col-span-3 bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
-        <h1 class="font-concert-one text-sky-500 text-3xl sm:text-4xl">
+        <h1 class="font-concert-one text-{{ $color[1] }}-500 text-3xl sm:text-4xl">
             Edit Profile
         </h1>
         <hr class="my-3">
@@ -288,7 +288,7 @@
 
             <div class="mt-7 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 hover:text-white hover:bg-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-{{ $color[2] }}-400 hover:text-white hover:bg-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                     Simpan
                 </button>
             </div>
@@ -297,7 +297,7 @@
 
     <div id="profile_history" class="w-full hidden mt-3 xl:mt-0 xl:col-span-3">
         <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-3 px-3">
-            <h1 class="font-concert-one text-sky-500 text-3xl sm:text-4xl">
+            <h1 class="font-concert-one text-{{ $color[1] }}-500 text-3xl sm:text-4xl">
                 History Transaksi
             </h1>
         </div>
@@ -318,7 +318,7 @@
                     <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                         Invoice No. <span class="text-slate-900 font-bold">{{ $faktur->no_faktur }}</span>
                         <a href="#">
-                            <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
+                            <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                 aria-hidden="true"></i>
                         </a>
                     </p>
@@ -331,7 +331,7 @@
                     </p>
 
                     {{-- <h6
-                        class="hidden sm:block py-1 px-2 w-fit bg-blue-300 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
+                        class="hidden sm:block py-1 px-2 w-fit bg-{{ $color[0] }}-300 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
                         {{ $faktur->deliveryExpedition }} </h6> --}}
                 </div>
                 <div class="hidden sm:block border-l-2 border-gray-100 pl-4 w-40">
@@ -345,7 +345,7 @@
                     </div>
                     <div class="mt-8">
                         <a href="{{ route('user.faktur.showdetail', $faktur) }}"
-                            class="appearance-none xl:mt-8 py-2 px-3 border-2 border-pink-400 text-pink-400 rounded-md hover:bg-pink-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            class="appearance-none xl:mt-8 py-2 px-3 border-2 border-{{ $color[2] }}-400 text-{{ $color[2] }}-400 rounded-md hover:bg-{{ $color[2] }}-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
                             Lihat Detail
                         </a>
                     </div>
@@ -367,7 +367,7 @@
                     </div>
                     <div class="">
                         <a href="{{ route('user.faktur.showdetail', $faktur) }}"
-                            class="appearance-none py-2 px-3 border-2 border-pink-400 text-pink-400 rounded-md hover:bg-pink-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            class="appearance-none py-2 px-3 border-2 border-{{ $color[2] }}-400 text-{{ $color[2] }}-400 rounded-md hover:bg-{{ $color[2] }}-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
                             Lihat Detail
                         </a>
                     </div>

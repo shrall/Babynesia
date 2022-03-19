@@ -6,7 +6,7 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             FAQ
         </h1>
     </div>
@@ -45,10 +45,10 @@
                 <li>Konfirmasi dan selesai.</li>
                 <li>Tunggu email konfirmasi dari Babynesia berisi rincian order.</li>
                 <li>Lakukan pembayaran max 48 jam setelah email diterima ke rekening bank yang tercantum di email.
-                    <span class="text-pink-400 font-bold">Waktu tunggu / keep adalah 24 jam.</span> Bila pembayaran
+                    <span class="text-{{ $color[2] }}-400 font-bold">Waktu tunggu / keep adalah 24 jam.</span> Bila pembayaran
                     belum diterima dalam kurun waktu tersebut, order akan otomatis dibatalkan dan barang kembali
                     disediakan untuk dibeli oleh customer lain.</li>
-                <li>Konfirmasi pembayaran ke <span class="font-bold text-pink-400">SMS/WA 0812.5020.5040</span> dengan
+                <li>Konfirmasi pembayaran ke <span class="font-bold text-{{ $color[2] }}-400">SMS/WA 0812.5020.5040</span> dengan
                     format: <br> <br> <span class="text-slate-900 font-bold">BAYAR - NOTA 1234 - RP 500.000 - TGL
                         20/1/2013 - BCA</span> </li>
                 <br>

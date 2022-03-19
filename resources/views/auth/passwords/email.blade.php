@@ -3,7 +3,7 @@
 @section('content')
 <div class="h-screen sm:flex sm:justify-center sm:items-center px-3 pt-4">
     <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
-        <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-sky-500">{{ __('Reset Password') }}</h1>
+        <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-500">{{ __('Reset Password') }}</h1>
 
         @if (session('status'))
             <div class="alert alert-success" role="alert">
@@ -31,7 +31,7 @@
 
             <div class="mt-7 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                     {{ __('Send Password Reset Link') }}
                 </button>
             </div>

@@ -6,43 +6,43 @@
 
 <div class="xl:grid xl:grid-cols-3 xl:gap-3 container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Contact
         </h1>
         <hr class="my-3">
         <div class="ml-3">
             <div class="flex items-center">
-                <i class="fab fa-whatsapp text-blue-400 text-xl" aria-hidden="true"></i>
+                <i class="fab fa-whatsapp text-{{ $color[0] }}-400 text-xl" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     0812 5020 5040
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
-                <i class="fab fa-line text-blue-400 text-xl" aria-hidden="true"></i>
+                <i class="fab fa-line text-{{ $color[0] }}-400 text-xl" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     @meu1858i
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
-                <i class="fab fa-instagram text-blue-400 text-xl" aria-hidden="true"></i>
+                <i class="fab fa-instagram text-{{ $color[0] }}-400 text-xl" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     @TokoBayiFiv
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
-                <i class="fab fa-facebook text-blue-400 text-xl" aria-hidden="true"></i>
+                <i class="fab fa-facebook text-{{ $color[0] }}-400 text-xl" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     www.facebook.com/babynesia
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
-                <i class="fa fa-envelope text-blue-400 text-lg" aria-hidden="true"></i>
+                <i class="fa fa-envelope text-{{ $color[0] }}-400 text-lg" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     babynesia.online@gmail.com
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
-                <i class="fa fa-location-arrow text-blue-400 text-lg" aria-hidden="true"></i>
+                <i class="fa fa-location-arrow text-{{ $color[0] }}-400 text-lg" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
                     Surabaya - Indonesia
                 </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="mt-5 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-200 focus:ring-2 text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-200 focus:ring-2 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                     Send
                 </button>
             </div>

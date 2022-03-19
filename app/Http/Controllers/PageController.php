@@ -46,16 +46,14 @@ class PageController extends Controller
         $page = 'home';
         $subkategoris = KategoriChild::all();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $webconfig = Webconfig::all();
-        $config = [];
-        for ($x = 38; $x <= 41; $x++) {
-            array_push($config, $webconfig[$x]->content);
-        }
 
-        dd($config);
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
 
-
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'config'));
+        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'color'));
     }
     public function list_products(Request $request)
     {
@@ -67,6 +65,12 @@ class PageController extends Controller
         $subkategoris = KategoriChild::all();
         $subsname = '';
         $filteredproduct = $request->filterproduct;
+
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
 
         if (!empty($keyword)) {
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
@@ -121,7 +125,7 @@ class PageController extends Controller
         }
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color'));
     }
     public function contact()
     {
@@ -129,7 +133,13 @@ class PageController extends Controller
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
 
-        return view('user.contact', compact('page', 'allkategoris', 'subkategoris'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.contact', compact('page', 'allkategoris', 'subkategoris', 'color'));
     }
 
     public function list_articles()
@@ -138,7 +148,13 @@ class PageController extends Controller
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
 
-        return view('user.articles', compact('page', 'allkategoris', 'subkategoris'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.articles', compact('page', 'allkategoris', 'subkategoris', 'color'));
     }
 
     public function article_detail()
@@ -147,6 +163,12 @@ class PageController extends Controller
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
 
-        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris', 'color'));
     }
 }

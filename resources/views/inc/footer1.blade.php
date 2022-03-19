@@ -1,4 +1,4 @@
-<footer class="bg-blue-300 shadow-sm xl:pt-20 pt-8">
+<footer class="bg-{{ $color[0] }}-300 shadow-sm xl:pt-20 pt-8">
     <div class="container mx-auto xl:px-32 px-3 xl:flex xl:justify-between">
         <a href="/">
             <h1 class="font-concert-one text-4xl mt-3 text-white">
@@ -71,7 +71,7 @@
 {{-- Footer 2 --}}
 {{-- <footer class="bg-white shadow-sm xl:pt-20 pt-8">
     <div class="container mx-auto xl:px-40 px-3 xl:flex xl:justify-between">
-        <h1 class="font-concert-one text-4xl mt-3 text-sky-500">
+        <h1 class="font-concert-one text-4xl mt-3 text-{{ $color[1] }}-500">
             TokoBayiFiv
         </h1>
         <div class="flex xl:justify-end flex-wrap mt-5 xl:mt-0">

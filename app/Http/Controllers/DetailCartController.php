@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\PaymentMethod;
 use App\Models\Produk;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Http;
@@ -81,7 +82,13 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'allkategoris', 'subkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.confirmation', compact('request', 'allkategoris', 'subkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments', 'color'));
     }
 
     /**

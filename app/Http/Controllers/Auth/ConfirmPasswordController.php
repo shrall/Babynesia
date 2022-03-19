@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use App\Models\Webconfig;
 
 class ConfirmPasswordController extends Controller
 {
@@ -36,5 +37,14 @@ class ConfirmPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function showConfirmForm() {
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();            $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('auth.passwords.confirm', compact('color'));
     }
 }

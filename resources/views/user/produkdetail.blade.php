@@ -6,7 +6,7 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 xl:hidden">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
         </h1>
         {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
@@ -31,7 +31,7 @@
         </div>
         <div class="mt-3 px-3 pt-3 pb-8 bg-white rounded-lg h-fit shadow-sm">
             <div class="hidden xl:block">
-                <h1 class="font-concert-one text-sky-500 xl:text-4xl">
+                <h1 class="font-concert-one text-{{ $color[1] }}-500 xl:text-4xl">
                     {{ $produk->nama_produk }}
                 </h1>
                 {{-- <p class="text-gray-400 font-encode-sans">
@@ -58,9 +58,9 @@
             <form action="{{ route('user.detailcart.store') }}" method="post">
                 @csrf
                 @if (!empty($stocks[0]))
-                <div class="mt-3 xl:mt-6 relative border-2 border-blue-400 rounded-lg">
+                <div class="mt-3 xl:mt-6 relative border-2 border-{{ $color[0] }}-400 rounded-lg">
                     <select name="ukuran" id=""
-                        class="appearance-none cursor-pointer bg-white w-full font-bold py-2 px-3 font-encode-sans text-blue-400">
+                        class="appearance-none cursor-pointer bg-white w-full font-bold py-2 px-3 font-encode-sans text-{{ $color[0] }}-400">
                         @foreach ($stocks as $stock)
                         @if (!empty($stock->size))
                         <option value="{{ $stock->id }}">{{ $stock->size }} -
@@ -70,7 +70,7 @@
                         @endif
                         @endforeach
                     </select>
-                    <i class="fa fa-chevron-down absolute text-blue-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                    <i class="fa fa-chevron-down absolute text-{{ $color[0] }}-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                         aria-hidden="true"></i>
                 </div>
                 @endif
@@ -81,13 +81,13 @@
                     </h6>
                     <div class="flex items-center">
                         <button type="button" onclick="decrement()" id="buttonminus">
-                            <i class="fa fa-chevron-left text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-left text-md p-1 bg-{{ $color[0] }}-400 focus:bg-{{ $color[2] }}-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                         <input type="number" name="jumlah" value="1" id="numbersize" readonly
-                            class="appearance-none font-encode-sans w-9 text-center font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-blue-400 mx-2">
+                            class="appearance-none font-encode-sans w-9 text-center font-bold text-slate-900 text-sm sm:text-base px-2 py-1 border-2 rounded-lg border-{{ $color[0] }}-400 mx-2">
                         <button type="button" onclick="increment()" id="buttonplus">
-                            <i class="fa fa-chevron-right text-md p-1 bg-blue-400 focus:bg-pink-600 rounded-md text-white"
+                            <i class="fa fa-chevron-right text-md p-1 bg-{{ $color[0] }}-400 focus:bg-{{ $color[2] }}-600 rounded-md text-white"
                                 aria-hidden="true"></i>
                         </button>
                     </div>
@@ -103,13 +103,13 @@
                 {{-- @if ($produk->stock != 0) --}}
                 @if (Auth::check())
                 <a href="#" role="button" id="open-modal"
-                    class="bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
+                    class="bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                     Add to Cart
                 </a>
 
                 @else
                 <a href="{{ route('login') }}"
-                    class="bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
+                    class="bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                     Add to Cart
                 </a>
 
@@ -130,7 +130,7 @@
                 <div class="left-1/2 transform -translate-x-1/2 ease-out fixed hidden top-20 mx-auto py-5 px-7 border w-96 shadow-lg rounded-md bg-white"
                     id="my-modal">
                     <div class="flex justify-between">
-                        <h1 class="text-3xl font-concert-one text-sky-500">
+                        <h1 class="text-3xl font-concert-one text-{{ $color[1] }}-500">
                             Add to Cart
                         </h1>
                         <a href="#" type="button" class="appearance-none" id="close-modal">
@@ -149,7 +149,7 @@
                     <input type="hidden" value="{{ $produk->kode_produk }}" name="kode_produk">
 
                     <button type="submit"
-                        class="mt-5 bg-sky-500 hover:bg-sky-600 focus:ring-sky-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
+                        class="mt-5 bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                         Add to Cart
                     </button>
 
@@ -162,7 +162,7 @@
     {{-- more product --}}
     @if (!empty($produk->complement))
     <div class="mt-5 bg-white rounded-md px-3 py-5 shadow-sm">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Product Suggestions
         </h1>
     </div>

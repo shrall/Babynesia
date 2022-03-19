@@ -6,7 +6,7 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-3 px-3">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Guestbook
         </h1>
     </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="mt-5 text-center">
                 <button type="submit"
-                    class="border-2 border-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-200 focus:ring-2 text-pink-400 px-8 py-2 rounded-full">
+                    class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-200 focus:ring-2 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                     Send
                 </button>
             </div>

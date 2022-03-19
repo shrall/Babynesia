@@ -1,4 +1,4 @@
-<nav class="bg-blue-300 shadow-sm py-6">
+<nav class="bg-{{ $color[0] }}-300 shadow-sm py-6">
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex justify-between items-center">
             <div class="flex items-center">
@@ -40,7 +40,7 @@
 
                 @else
                 <a href="{{ route('register') }}"
-                    class="ml-4 bg-white hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+                    class="ml-4 bg-white hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
                     Daftar
                 </a>
 
@@ -49,7 +49,7 @@
         </div>
         <ul class="mt-4">
             @if (!empty($page)&&$page == "home")
-            <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="/" aria-expanded="true">
                     Home
                 </a>
@@ -62,7 +62,7 @@
             </li>
             @endif
             @if (!empty($page)&&$page == "about")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="" aria-expanded="true">
                     About
                 </a>
@@ -75,7 +75,7 @@
             </li>
             @endif
             @if (!empty($page)&&$page == "article")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('user.article') }}" aria-expanded="true">
                     Article
                 </a>
@@ -88,7 +88,7 @@
             </li>
             @endif
             @if (!empty($page)&&$page == "faq")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('user.faq.index') }}" aria-expanded="true">
                     FAQ
                 </a>
@@ -101,7 +101,7 @@
             </li>
             @endif
             @if (!empty($page)&&$page == "contact")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('user.contact') }}" aria-expanded="true">
                     Contact
                 </a>
@@ -114,7 +114,7 @@
             </li>
             @endif
             @if (!empty($page)&&$page == "guestbook")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-pink-400 font-bold">
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
                     Guestbook
                 </a>
@@ -135,7 +135,7 @@
                 </li>
                 <div class="py-3 px-10 absolute">&nbsp;</div>
                 <div
-                    class="invisible group-hover:visible z-50 pb-6 mt-5 absolute left-0 bg-blue-300 w-full mx-auto xl:px-40">
+                    class="invisible group-hover:visible z-50 pb-6 mt-5 absolute left-0 bg-{{ $color[0] }}-300 w-full mx-auto xl:px-40">
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
                         @foreach ($allkategoris as $kategori)
                         <li class="my-1 group">
@@ -153,7 +153,7 @@
                                 <input type="hidden" name="subfilter" value="{{ $sub->child_id }}" form="subkategori{{ $sub->child_id }}">
                                 <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}"
                                     form="subkategori{{ $sub->child_id }}">
-                                <li class="bg-neutral-100 p-2 hover:bg-white text-gray-400 hover:text-pink-400 first:rounded-t-md last:rounded-b-md">
+                                <li class="bg-neutral-100 p-2 hover:bg-white text-gray-400 hover:text-{{ $color[2] }}-400 first:rounded-t-md last:rounded-b-md">
                                     <button type="submit" form="subkategori{{ $sub->child_id }}"
                                         class="text-left appearance-none block whitespace-no-wrap">{{ $sub->child_name }}</button>
                                 </li>
@@ -220,7 +220,7 @@
     <label for="menu" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 menulist xl:hidden sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
-    <div class="bg-blue-300 py-4 w-full">
+    <div class="bg-{{ $color[0] }}-300 py-4 w-full">
         <div class="flex justify-between px-4">
             <div class="flex items-center">
                 <label for="menu" class="flex items-center cursor-pointer">
@@ -244,49 +244,49 @@
 
             @else
             <a href="{{ route('register') }}"
-                class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
+                class="py-3 px-5 bg-white text-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
             @endif
         </div>
     </div>
     <div class="bg-white py-4 px-4 h-full overflow-y-auto">
         <a href="/">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "home" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "home" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Home
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 About
             </div>
         </a>
         <hr>
         <a href="{{ route('user.article') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Article
             </div>
         </a>
         <hr>
         <a href="{{ route('user.faq.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 FAQ
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Contact
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "guestbook" ? 'text-sky-500' : 'text-slate-900' }} hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "guestbook" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Guestbook
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-sky-500">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-{{ $color[1] }}-500">
                 Products
             </div>
         </a>
@@ -296,7 +296,7 @@
                 <li class="my-1">
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="text-slate-900 hover:text-sky-500 font-encode-sans"
+                        <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -306,7 +306,7 @@
                     <form action="{{ route('user.list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-sky-500">
+                        <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
                             <li class="appearance-none block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>
@@ -338,28 +338,28 @@
             <div class="flex items-center">
                 @if (Auth::check())
                 <a href="{{ route('user.user.index') }}" class=" ml-8 flex items-center">
-<i class="fa fa-user-circle size text-4xl text-sky-500"></i>
+<i class="fa fa-user-circle size text-4xl text-{{ $color[1] }}-500"></i>
 <div class="mx-3 font-encode-sans font-bold text-slate-900">{{ Auth::user()->name }}</div>
 </a>
 @else
 <a href="{{ route('login') }}" class=" ml-8 flex items-center">
-    <i class="fa fa-user-circle size text-4xl text-sky-500"></i>
+    <i class="fa fa-user-circle size text-4xl text-{{ $color[1] }}-500"></i>
     <div class="mx-3 font-encode-sans font-bold text-slate-900">Log In</div>
 </a>
 @endif
 <a href="{{ route('user.cart.index') }}" class="ml-4 flex items-center">
-    <i class="fa fa-shopping-cart size text-4xl text-sky-500"></i>
+    <i class="fa fa-shopping-cart size text-4xl text-{{ $color[1] }}-500"></i>
     <div class="mx-3 font-encode-sans font-bold text-slate-900">Cart</div>
 </a>
 @if (Auth::check())
 <a href="{{ route('user.faktur.index') }}"
-    class="ml-4 border-2 border-pink-400 hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+    class="ml-4 border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
     Tracking
 </a>
 
 @else
 <a href="{{ route('register') }}"
-    class="ml-4 border-2 border-pink-400 hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 font-bold font-encode-sans text-pink-400 px-4 py-2 rounded-full">
+    class="ml-4 border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
     Daftar
 </a>
 
@@ -367,7 +367,7 @@
 </div>
 </div>
 <ul class="mt-4">
-    <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-sky-500 text-white font-bold">
+    <li class="inline-block font-encode-sans py-1 px-2 rounded-full bg-{{ $color[1] }}-500 text-white font-bold">
         <a href="/" aria-expanded="true">
             Home
         </a>
@@ -493,14 +493,14 @@
         <div>
             <input type="checkbox" id="menu" class="hidden checked:">
             <label for="menu" class="flex items-center cursor-pointer">
-                <i class="fas fa-bars text-2xl text-sky-500"></i>
+                <i class="fas fa-bars text-2xl text-{{ $color[1] }}-500"></i>
                 <h6 class="ml-2 text-slate-900 font-bold">
                     Menu
                 </h6>
             </label>
         </div>
         <a href="{{ route('user.cart.index') }}" class="flex items-center">
-            <i class="fas fa-shopping-cart text-2xl text-sky-500"></i>
+            <i class="fas fa-shopping-cart text-2xl text-{{ $color[1] }}-500"></i>
             <h6 class="ml-2 text-slate-900 font-bold">
                 Cart
             </h6>
@@ -524,7 +524,7 @@
     <label for="menu" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 menulist xl:hidden sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
-    <div class="bg-sky-500 py-4 w-full">
+    <div class="bg-{{ $color[1] }}-500 py-4 w-full">
         <div class="flex justify-between px-4">
             <label for="menu" class="flex items-center cursor-pointer">
                 <i class="fas fa-times sm:text-4xl text-3xl text-white"></i>
@@ -536,7 +536,7 @@
                 </div>
             </a>
             <a href="{{ route('user.faktur.index') }}"
-                class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 rounded-full text-sm sm:text-base">Tracking</a>
+                class="py-3 px-5 bg-white text-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 rounded-full text-sm sm:text-base">Tracking</a>
 
             @else
             <a href="{{ route('login') }}" class="flex items-center">
@@ -544,7 +544,7 @@
                 <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">Log In</div>
             </a>
             <a href="{{ route('register') }}"
-                class="py-3 px-5 bg-white text-pink-400 font-bold font-encode-sans hover:bg-pink-400 hover:text-white focus:ring-pink-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
+                class="py-3 px-5 bg-white text-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 rounded-full text-sm sm:text-base">Daftar</a>
 
             @endif
         </div>

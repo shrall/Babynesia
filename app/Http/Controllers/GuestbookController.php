@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guestbook;
 use App\Models\KategoriChild;
 use App\Models\Kategori;
+use App\Models\Webconfig;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,13 @@ class GuestbookController extends Controller
 
         $guestbooks = Guestbook::all();
 
-        return view('user.guestbook', compact('page', 'allkategoris', 'subkategoris', 'guestbooks'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.guestbook', compact('page', 'allkategoris', 'subkategoris', 'guestbooks', 'color'));
     }
 
     /**

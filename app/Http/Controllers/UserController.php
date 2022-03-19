@@ -8,6 +8,7 @@ use App\Models\IndonesiaProvince;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\User;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +27,13 @@ class UserController extends Controller
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
 
-        return view('user.profile', compact('allkategoris', 'subkategoris', 'fakturs', 'countries', 'indoprovinces'));
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.profile', compact('allkategoris', 'subkategoris', 'fakturs', 'countries', 'indoprovinces', 'color'));
     }
 
     /**

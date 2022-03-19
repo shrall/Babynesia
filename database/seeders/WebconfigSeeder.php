@@ -15,11 +15,6 @@ class WebconfigSeeder extends Seeder
     public function run()
     {
         $status = new Webconfig();
-        $status->name = 'normal_color';
-        $status->content = 'slate';
-        $status->showed_name = 'Normal Text Color';
-        $status->save();
-        $status = new Webconfig();
         $status->name = 'bg_color';
         $status->content = 'blue';
         $status->showed_name = 'Background Color';

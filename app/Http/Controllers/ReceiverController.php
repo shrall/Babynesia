@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Receiver;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -41,7 +42,14 @@ class ReceiverController extends Controller
         $note = $request->note;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
-        return view('user.receiver', compact('allkategoris', 'subkategoris', 'note', 'cities', 'provinces'));
+
+        //get color webconfig
+        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
+        $text_color = Webconfig::where('name', 'text_color')->get()->last();
+        $button_color = Webconfig::where('name', 'button_color')->get()->last();
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
+
+        return view('user.receiver', compact('allkategoris', 'subkategoris', 'note', 'cities', 'provinces', 'color'));
     }
 
     /**

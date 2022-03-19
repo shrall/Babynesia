@@ -6,11 +6,11 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
-        <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
+        <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a><a
                 href="{{ route('user.receiver.create') }}">Receiver</a>
         </p>
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Receiver
         </h1>
     </div>
@@ -36,7 +36,7 @@
                             <div>
                                 <label for="dropship" class="text-sm sm:text-base font-encode-sans text-slate-900">Dropship Receiver</label>
                             </div>
-                            <input id="dropinput" type="text" class="appearance-none border p-1 w-full rounded-md border-sky-500"
+                            <input id="dropinput" type="text" class="appearance-none border p-1 w-full rounded-md border-{{ $color[1] }}-500"
                             name="receiver_dropship">
                         </div> --}}
                         <div class="mt-4 peer-checked:block hidden">
@@ -158,7 +158,7 @@
                     <input type="hidden" value="{{ $note }}" name="note">
                     <div class="text-center">
                         <button type="submit"
-                            class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                            class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                             Next Step
                         </button>
                     </div>
@@ -174,7 +174,7 @@
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
                     <button type="submit"
-                        class="w-full inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                        class="w-full inline-block border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                         Next Step
                     </button>
                 </div>

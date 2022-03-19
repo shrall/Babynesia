@@ -58,6 +58,10 @@ use App\Http\Controllers\Admin\WebLayoutController as AdminWebLayoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminStatusController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CodeController;
@@ -129,6 +133,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/register', [RegisterController::class, 'getRegister'])->name('register');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.request');
+Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showForgotForm'])->name('password.reset');
+Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+
 
 Route::group([
     // 'middleware' => ['user'], !ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya

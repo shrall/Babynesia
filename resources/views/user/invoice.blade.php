@@ -6,11 +6,11 @@
 
 <div class="container mx-auto xl:px-40 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 flex justify-between">
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Invoice
         </h1>
         <a href="{{ route('user.faktur.showfaktur', $faktur) }}" target="_blank" 
-            class="py-2 px-4 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold font-encode-sans">
+            class="py-2 px-4 rounded-full bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 text-white font-bold font-encode-sans">
             <i class="fa fa-print mr-1" aria-hidden="true"></i>
             Print
         </a>
@@ -18,8 +18,8 @@
     
     <div class="w-full bg-white rounded-md shadow-sm mt-3 px-8 pt-7 pb-10">
         <div class="flex justify-between items-center">
-            <h1 class="font-concert-one text-4xl text-sky-500">{{ $faktur->sender_name }}</h1>
-            <h2 class="font-concert-one text-3xl text-pink-400">Invoice</h2>
+            <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">{{ $faktur->sender_name }}</h1>
+            <h2 class="font-concert-one text-3xl text-{{ $color[2] }}-400">Invoice</h2>
         </div>
         <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
             <div class="col-span-2 flex">
@@ -53,7 +53,7 @@
         </div>
         <div class="my-6">
             <table class="table-auto w-full">
-                <thead class="bg-blue-300 font-encode-sans font-bold text-white">
+                <thead class="bg-{{ $color[0] }}-300 font-encode-sans font-bold text-white">
                     <tr class="">
                         <th class="py-3">Quantity</th>
                         <th class="py-3 text-left">Product</th>
@@ -75,7 +75,7 @@
 
                     @endforeach
                 </tbody>
-                <tfoot class="bg-blue-300 font-bold font-encode-sans text-white">
+                <tfoot class="bg-{{ $color[0] }}-300 font-bold font-encode-sans text-white">
                     <tr>
                         <td colspan="3" class="py-3">&nbsp;</td>
                         <td class="py-3 text-left">Subtotal</td>
@@ -153,7 +153,7 @@
     <div class="">
         <div class="w-full text-center mt-3">
             <a href="{{ route('user.list_products') }}"
-                class="inline-block border-2 border-pink-400 hover:bg-pink-400 hover:text-white bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                class="inline-block border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                 Lanjutkan Belanja
             </a>
         </div>

@@ -6,12 +6,12 @@
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
-        <p class="text-sky-500 text-sm sm:text-base font-encode-sans">
+        <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>
             <a href="{{ route('user.receiver.create') }}" class="text-gray-400">Receiver ></a>
             <a href="{{ route('user.paymentart.index') }}">Payment</a>
         </p>
-        <h1 class="font-concert-one text-3xl text-sky-500 xl:text-4xl">
+        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Payment
         </h1>
     </div>
@@ -29,7 +29,7 @@
                                 <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                     142.000.7984.502
                                     <a href="#">
-                                        <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
+                                        <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                         aria-hidden="true"></i>
                                     </a>
                                 </p>
@@ -43,7 +43,7 @@
                                 <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                     8620.101.070
                                     <a href="#">
-                                        <i class="fa fa-copy ml-1 text-blue-400 border p-1 hover:text-blue-500 hover:border-blue-500 rounded-md border-blue-400"
+                                        <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                         aria-hidden="true"></i>
                                     </a>
                                 </p>
@@ -59,7 +59,7 @@
                 <div class="xl:hidden mt-7">
                     <div class="text-center">
                         <button type="submit"
-                            class="border-2 border-pink-400 font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                            class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                             Next Step
                         </button>
                     </div>
@@ -74,7 +74,7 @@
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
                     <button type="submit"
-                        class="w-full inline-block border-2 border-pink-400 bg-white font-bold font-encode-sans text-pink-400 px-8 py-2 rounded-full">
+                        class="w-full inline-block border-2 border-{{ $color[2] }}-400 bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                         Next Step
                     </button>
                 </div>
