@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
+use App\Models\Webconfig;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -45,9 +46,16 @@ class PageController extends Controller
         $page = 'home';
         $subkategoris = KategoriChild::all();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $webconfig = Webconfig::all();
+        $config = [];
+        for ($x = 38; $x <= 41; $x++) {
+            array_push($config, $webconfig[$x]->content);
+        }
+
+        dd($config);
 
 
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page'));
+        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'config'));
     }
     public function list_products(Request $request)
     {
