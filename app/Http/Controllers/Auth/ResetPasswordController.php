@@ -35,7 +35,9 @@ class ResetPasswordController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();            
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('auth.passwords.reset', compact('color'))->with(['token' => $token, 'email' => $request->email]);
+        return view('auth.passwords.reset', compact('color', 'bg_img'))->with(['token' => $token, 'email' => $request->email]);
     }
 }

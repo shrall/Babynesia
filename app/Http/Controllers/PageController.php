@@ -52,8 +52,10 @@ class PageController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'color'));
+        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'color', 'bg_img'));
     }
     public function list_products(Request $request)
     {
@@ -70,7 +72,9 @@ class PageController extends Controller
         $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
+        $color = [$bg_color->content, $text_color->content, $button_color->content];        
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
         if (!empty($keyword)) {
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
@@ -125,7 +129,7 @@ class PageController extends Controller
         }
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color', 'bg_img'));
     }
     public function contact()
     {
@@ -138,8 +142,10 @@ class PageController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.contact', compact('page', 'allkategoris', 'subkategoris', 'color'));
+        return view('user.contact', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
     }
 
     public function list_articles()
@@ -153,8 +159,10 @@ class PageController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.articles', compact('page', 'allkategoris', 'subkategoris', 'color'));
+        return view('user.articles', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
     }
 
     public function article_detail()
@@ -168,7 +176,9 @@ class PageController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris', 'color'));
+        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
     }
 }

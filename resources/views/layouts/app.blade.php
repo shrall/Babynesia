@@ -31,7 +31,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" class="bg-neutral-100">
+    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img) ? 'background: url('.asset('img/background/'.$bg_img->content).')' : '' }}">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

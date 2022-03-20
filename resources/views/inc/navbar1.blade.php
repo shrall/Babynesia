@@ -273,7 +273,7 @@
             </div>
         </a>
         <hr>
-        <a href="{{ route('user.guestbook.index') }}">
+        <a href="{{ route('user.contact') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Contact
             </div>

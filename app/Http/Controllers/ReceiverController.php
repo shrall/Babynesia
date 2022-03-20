@@ -48,8 +48,10 @@ class ReceiverController extends Controller
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
         $color = [$bg_color->content, $text_color->content, $button_color->content];
+        //background image
+        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.receiver', compact('allkategoris', 'subkategoris', 'note', 'cities', 'provinces', 'color'));
+        return view('user.receiver', compact('allkategoris', 'subkategoris', 'note', 'cities', 'provinces', 'color', 'bg_img'));
     }
 
     /**
