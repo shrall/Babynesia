@@ -83,6 +83,16 @@
                     <input type="text" name="wait_time" id="wait_time" class="admin-input"
                         value="{{ $webconfigs[30]['content'] }}">
                 </div>
+                <div class="col-span-5">Kota Pengirim</div>
+                <div class="col-span-7 flex items-center gap-x-2">
+                    <select name="kota_pengirim" id="kota_pengirim" class="admin-input">
+                        @foreach ($cities as $city)
+                            <option value={{ $city['city_id'] }}
+                                {{ $city['city_id'] == $webconfigs[41]['content'] ? 'selected' : '' }}>
+                                {{ $city['city_name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 {{-- <div class="col-span-5">Catatan Ongkos Kirim</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="text" name="ongkir_note" id="ongkir_note" class="admin-input"

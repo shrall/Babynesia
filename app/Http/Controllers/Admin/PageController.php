@@ -13,6 +13,7 @@ use App\Models\Webconfig;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
@@ -23,7 +24,11 @@ class PageController extends Controller
     public function configuration()
     {
         $webconfigs = Webconfig::all();
-        return view('admin.settings.configuration', compact('webconfigs'));
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+        return view('admin.settings.configuration', compact('webconfigs', 'cities'));
     }
     public function layoutdesign()
     {
