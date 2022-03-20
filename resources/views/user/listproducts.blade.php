@@ -17,7 +17,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="allproduct" name="filterproduct">
                         <button type="submit"
-                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} font-encode-sans">
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
                             All Product
                         </button>
                     </form>
@@ -26,7 +26,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="newproduct" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'newproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             New Product
                         </button>
                     </form>
@@ -35,7 +35,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="hotdeals" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'hotdeals' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Hotdeals
                         </button>
                     </form>
@@ -44,7 +44,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="restock" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'restock' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Restock Product
                         </button>
                     </form>
@@ -53,7 +53,7 @@
                     <form action="{{ route('user.list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
                         <button type="submit"
-                            class="{{ $filteredproduct == 'featured' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                            class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                             Featured Product
                         </button>
                     </form>
@@ -67,7 +67,7 @@
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit" {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}
-                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }}  text-sm font-bold font-encode-sans peer">
+                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} hover:text-{{ $color[1] }}-500 text-sm font-bold font-encode-sans peer">
                             {{ $kategori->nama_kategori }}
                         </button>
                     </form>
@@ -78,7 +78,7 @@
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
                             <li
-                                class="appearance-none {{ $subfilter == $sub->child_id ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }}  block whitespace-no-wrap">
+                                class="appearance-none {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} hover:text-{{ $color[1] }}-500  block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>
                         </ul>
@@ -166,7 +166,7 @@
                 @endforeach
             </div>
         </div>
-        {{ $produks->onEachSide(1)->links('vendor.pagination.custom-1') }}
+        {{ $produks->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
         {{-- <div class="bg-white rounded-md px-3 py-3 flex justify-center items-center shadow-sm">
             <a href="">
                 <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
@@ -200,7 +200,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="allproduct" name="filterproduct">
                     <button type="submit"
-                        class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} font-encode-sans">
+                        class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
                         All Product
                     </button>
                 </form>
@@ -209,7 +209,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="newproduct" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'newproduct' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         New Product
                     </button>
                 </form>
@@ -218,7 +218,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="hotdeals" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'hotdeals' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Hotdeals
                     </button>
                 </form>
@@ -227,7 +227,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="restock" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'restock' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Restock Product
                     </button>
                 </form>
@@ -236,7 +236,7 @@
                 <form action="{{ route('user.list_products') }}">
                     <input type="hidden" value="featured" name="filterproduct">
                     <button type="submit"
-                        class="{{ $filteredproduct == 'featured' ? 'text-{{ $color[1] }}-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                        class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
                         Featured Product
                     </button>
                 </form>
@@ -257,7 +257,7 @@
                 <li class="my-1">
                     <form action="{{ route('user.list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
+                        <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -267,7 +267,7 @@
                     <form action="{{ route('user.list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-{{ $color[1] }}-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                        <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
                             <li class="appearance-none block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>

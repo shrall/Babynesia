@@ -8,7 +8,7 @@
         <div class="flex xl:justify-end flex-wrap mt-5 xl:mt-0">
             <ul class="mr-24 mb-4">
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">
-                    TokobayiFiv
+                    TokoBayiFiv
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="">
@@ -16,46 +16,43 @@
                     </a>
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
-                    </a> </li>
+                    <a href="{{ route('user.article') }}">
+                        article
+                    </a>
+                </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
+                    <a href="{{ route('user.faq.index') }}">
+                        faq
                     </a> </li>
             </ul>
             <ul class="mr-24 mb-4">
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">
-                    TokobayiFiv
+                    Account Details
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
+                    <a href="{{ route('user.user.index') }}">
+                        account
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
-                    </a> </li>
-                <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
+                    <a href="{{ route('user.user.index') }}">
+                        transaction history
                     </a> </li>
             </ul>
             <ul>
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">
-                    TokobayiFiv
+                    Customer Service
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
+                    <a href="{{ route('user.guestbook.index') }}">
+                        contact us
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="">
-                        about us
+                        chat us
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
-                        about us
+                    <a href="{{ route('user.cart.index') }}">
+                        cart
                     </a> </li>
             </ul>
         </div>
