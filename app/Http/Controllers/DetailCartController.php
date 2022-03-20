@@ -9,7 +9,7 @@ use App\Models\PaymentMethod;
 use App\Models\Produk;
 use App\Models\Webconfig;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 use function PHPUnit\Framework\isEmpty;
@@ -45,10 +45,11 @@ class DetailCartController extends Controller
 
         //hitung delivery cost
         //Rajaongkir
+        $webconfigs = Webconfig::all();
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin' => 444, //@marshall ini perlu dirubah ke asal pengirim
+            'origin' => $webconfigs[41]['content'],
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',
