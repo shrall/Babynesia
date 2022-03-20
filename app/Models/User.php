@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,5 +32,13 @@ class User extends Authenticatable
     public function fakturs()
     {
         return $this->hasMany(Faktur::class, 'kode_user', 'no_user');
+    }
+    public function visitcounters()
+    {
+        return $this->hasMany(VisitCounter::class, 'user', 'no_user');
+    }
+    public function visitcountersmonth()
+    {
+        return $this->hasMany(VisitCounter::class, 'user', 'no_user')->whereMonth('date', date('m'));
     }
 }
