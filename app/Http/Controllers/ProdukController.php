@@ -61,7 +61,7 @@ class ProdukController extends Controller
         //background image
         $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.produkdetail', compact('produk', 'stocks', 'allkategoris', 'subkategoris', 'color'. 'bg_img'));
+        return view('user.produkdetail', compact('produk', 'stocks', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
     }
 
     /**

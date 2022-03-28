@@ -111,8 +111,8 @@
                 <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
                 <div class="relative border rounded-md">
-                    <select id="country" type="text" class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100"
-                        name="negara">
+                    <select id="country" type="text"
+                        class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="negara">
                         @foreach ($countries as $country)
                         <option value="{{ $country->name }}">{{ $country->name }}</option>
                         @endforeach
@@ -127,8 +127,8 @@
                         (Indonesia)</label>
                 </div>
                 <div class="relative border rounded-md">
-                    <select id="provinsi-indo" class="appearance-none p-1 cursor-pointer w-full rounded-md bg-neutral-100"
-                        name="propinsi">
+                    <select id="provinsi-indo"
+                        class="appearance-none p-1 cursor-pointer w-full rounded-md bg-neutral-100" name="propinsi">
                         @foreach ($indoprovinces as $province)
                         <option value="{{ $province->name }}">{{ $province->name }}</option>
                         @endforeach
@@ -157,6 +157,32 @@
                     name="hp">
             </div>
 
+            {{-- Captcha --}}
+            <div class="mt-4">
+                <div> <label for="captcha-form"
+                        class="text-sm sm:text-base font-encode-sans text-slate-900">Captcha</label>
+                </div>
+                <div class="my-2 flex items-end">
+                    <span id="captcha-img">
+                        {!! captcha_img('flat') !!}
+                    </span>
+                    <button type="button" class="ml-2 py-1 px-2 bg-{{ $color[0] }}-300 hover:bg-{{ $color[0] }}-400 rounded-md text-white aspect-square h-fit text-xl"
+                        id="reload">
+                        &#x21bb;
+                    </button>
+
+                </div>
+                <input id="captcha-form" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                    name="captcha">
+                @error('captcha')
+                <span class="invalid-feedback text-red-500 font-light font-encode-sans text-sm sm:text-base"
+                    role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            {{-- End Captcha --}}
+
             <div class="mt-7 text-center">
                 <button type="submit"
                     class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
@@ -164,13 +190,33 @@
                 </button>
             </div>
             <div class="text-center mt-3">
-                <a class="text-sm sm:text-base text-{{ $color[1] }}-500 font-encode-sans text-center" href="{{ route('login') }}">
+                <a class="text-sm sm:text-base text-{{ $color[1] }}-500 font-encode-sans text-center"
+                    href="{{ route('login') }}">
                     {{ __('Sudah punya akun? Login sekarang') }}
                 </a>
             </div>
         </form>
     </div>
 </div>
+
+@push('scripts')
+    
+<script type="text/javascript">
+    $("#reload").click(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "reload",
+            type: 'GET',
+            dataType: 'html',
+            success: function(res) {
+                $('#captcha-img').html(res);
+            }
+        });
+    });
+
+</script>
+
+@endpush
 
 
 {{-- DUMMY LARAVEL --}}

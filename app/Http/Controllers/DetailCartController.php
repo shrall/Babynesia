@@ -23,6 +23,10 @@ class DetailCartController extends Controller
      */
     public function index(Request $request)
     {
+        $request->validate([
+            'captcha' => ['required', 'captcha'],
+        ]);
+
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
         $payments = PaymentMethod::all();

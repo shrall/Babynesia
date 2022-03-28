@@ -63,6 +63,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplementaryController;
@@ -137,6 +138,9 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.request');
 Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showForgotForm'])->name('password.reset');
 Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+
+// reload captcha
+Route::get('/reload', [CaptchaController::class, 'reload']);
 
 
 Route::group([

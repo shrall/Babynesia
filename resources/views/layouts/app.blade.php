@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -29,9 +29,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img) ? 'background: url('.asset('img/background/'.$bg_img->content).')' : '' }}">
+    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img->content) ? 'background: url('.asset('img/background/'.$bg_img->content).')' : '' }}">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -95,5 +98,7 @@
 
     {{-- TW-ELEMENTS --}}
     <script src="{{ asset('tw-elements/dist/js/index.min.js') }}"></script>
+
+    @stack('scripts')
 </body>
 </html>
