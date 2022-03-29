@@ -219,7 +219,7 @@
 $("#reload").click(function(e) {
         e.preventDefault();
         $.ajax({
-            url: "reload",
+            url: "{{ route('reload') }}",
             type: 'GET',
             dataType: 'html',
             success: function(res) {

@@ -140,7 +140,7 @@ Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showFor
 Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
 
 // reload captcha
-Route::get('/reload', [CaptchaController::class, 'reload']);
+Route::get('/reload', [CaptchaController::class, 'reload'])->name('reload');
 
 
 Route::group([
