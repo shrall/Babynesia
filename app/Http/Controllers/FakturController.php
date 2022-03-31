@@ -51,11 +51,12 @@ class FakturController extends Controller
         $carts = unserialize(base64_decode($request->carts));
 
         //pengecekan stock
-        // foreach ($carts as $cart) {
-        // if ($cart->produkstock->product_stock < 1) {
-        // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
-        // }
-        // }
+        foreach ($carts as $cart) {
+            if ($cart->produkstock->product_stock < 1) {
+                // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
+                return redirect()->back()->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk penuh.');
+            }
+        }
 
 
         $faktur = Faktur::create([

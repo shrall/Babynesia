@@ -52,6 +52,10 @@ class GuestbookController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'captcha' => ['required', 'captcha'],
+        ]);
+
         Guestbook::create([
             'datum' => Carbon::now(),
             'name' => $request->name,
