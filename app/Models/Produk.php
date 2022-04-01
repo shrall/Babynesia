@@ -44,7 +44,7 @@ class Produk extends Model
     {
         return $this->belongsTo(ProdukStatus::class, 'stat', 'status_code');
     }
-    public function complement()
+    public function complementary()
     {
         return $this->belongsTo(Produk::class, 'complement', 'kode_produk');
     }
