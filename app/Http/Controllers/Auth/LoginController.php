@@ -58,10 +58,10 @@ class LoginController extends Controller
             ->where('password', md5($request->password))
             ->first();
         Auth::login($user);
-        if ($user->stat == 'admin') {
-            return redirect()->route('adminpage.dashboard');
-        } else {
+        if ($user->stat == 'a') {
             return redirect()->route('user.landingpage');
+        } else {
+            return redirect()->route('adminpage.dashboard');
         }
     }
 }

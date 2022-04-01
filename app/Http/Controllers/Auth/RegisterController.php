@@ -100,6 +100,7 @@ class RegisterController extends Controller
             'telp' => $data['telp'],
             'hp' => $data['hp'],
             'conf' => 'user',
+            'stat' => 'a'
         ]);
     }
 }
