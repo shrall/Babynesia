@@ -21,10 +21,10 @@
             <div class="flex items-center flex-wrap">
                 @foreach ($produk->images as $image)
                 <a href="#n" onclick="switchImg('{{ $image->imageurl }}')">
-                    
+
                 <img src="{{ $image->imageurl }}" alt=""
                     class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
-                    
+
                 </a>
                 @endforeach
             </div>
@@ -169,11 +169,11 @@
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
             <a href="{{ route('user.produk.show', $produk->complement) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complement->kode_alias }}] {{ $produk->complement->nama_produk }}
+                        [{{ $produk->complementary->kode_alias }}] {{ $produk->complementary->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -187,13 +187,13 @@
                             @else --}}
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
-                                {{ $produk->complement->stat == 'd' ? substr(number_format($produk->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->harga,2,",","."), 0, -3) }}
+                                {{ $produk->complementary->stat == 'd' ? substr(number_format($produk->complementary->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complementary->harga,2,",","."), 0, -3) }}
                             </h2>
                             {{-- @endif --}}
                     </div>
                     @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        <del>Rp. {{ substr(number_format($produk->complement->harga,2,",","."), 0, -3) }}</del>
+                        <del>Rp. {{ substr(number_format($produk->complementary->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>
@@ -201,12 +201,12 @@
 
             {{-- manual loop --}}
 
-            <a href="{{ route('user.produk.show', $produk->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+            <a href="{{ route('user.produk.show', $produk->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complement->complement->kode_alias }}] {{ $produk->complement->complement->nama_produk }}
+                        [{{ $produk->complementary->complement->kode_alias }}] {{ $produk->complementary->complement->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -220,24 +220,24 @@
                             @else --}}
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
-                                {{ $produk->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->harga,2,",","."), 0, -3) }}
+                                {{ $produk->complementary->complement->stat == 'd' ? substr(number_format($produk->complementary->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complementary->complement->harga,2,",","."), 0, -3) }}
                             </h2>
                             {{-- @endif --}}
                     </div>
                     @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        <del>Rp. {{ substr(number_format($produk->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                        <del>Rp. {{ substr(number_format($produk->complementary->complement->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>
             </a>
 
-            <a href="{{ route('user.produk.show', $produk->complement->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+            <a href="{{ route('user.produk.show', $produk->complementary->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complement->complement->complement->kode_alias }}] {{ $produk->complement->complement->complement->nama_produk }}
+                        [{{ $produk->complementary->complement->complementary->kode_alias }}] {{ $produk->complementary->complement->complementary->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -251,24 +251,24 @@
                             @else --}}
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
-                                {{ $produk->complement->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->complement->harga,2,",","."), 0, -3) }}
+                                {{ $produk->complementary->complement->complementary->stat == 'd' ? substr(number_format($produk->complementary->complement->complementary->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complementary->complement->complementary->harga,2,",","."), 0, -3) }}
                             </h2>
                             {{-- @endif --}}
                     </div>
                     @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        <del>Rp. {{ substr(number_format($produk->complement->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                        <del>Rp. {{ substr(number_format($produk->complementary->complement->complementary->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>
             </a>
 
-            <a href="{{ route('user.produk.show', $produk->complement->complement->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complement->complement->complement->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
+            <a href="{{ route('user.produk.show', $produk->complementary->complement->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
+                <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->complement->complementary->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complement->complement->complement->complement->kode_alias }}] {{ $produk->complement->complement->complement->complement->nama_produk }}
+                        [{{ $produk->complementary->complement->complementary->complement->kode_alias }}] {{ $produk->complementary->complement->complementary->complement->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -282,13 +282,13 @@
                             @else --}}
                             <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
-                                {{ $produk->complement->complement->complement->complement->stat == 'd' ? substr(number_format($produk->complement->complement->complement->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complement->complement->complement->complement->harga,2,",","."), 0, -3) }}
+                                {{ $produk->complementary->complement->complementary->complement->stat == 'd' ? substr(number_format($produk->complementary->complement->complementary->complement->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->complementary->complement->complementary->complement->harga,2,",","."), 0, -3) }}
                             </h2>
                             {{-- @endif --}}
                     </div>
                     @if ($produk->stat == 'd')
                     <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                        <del>Rp. {{ substr(number_format($produk->complement->complement->complement->complement->harga,2,",","."), 0, -3) }}</del>
+                        <del>Rp. {{ substr(number_format($produk->complementary->complement->complementary->complement->harga,2,",","."), 0, -3) }}</del>
                     </h6>
                     @endif
                 </div>
