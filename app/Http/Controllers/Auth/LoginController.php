@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Webconfig;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -48,5 +51,17 @@ class LoginController extends Controller
         $color = [$bg_color->content, $text_color->content, $button_color->content];
 
         return view('auth.login', compact('color'));
+    }
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)
+            ->where('password', md5($request->password))
+            ->first();
+        Auth::login($user);
+        if ($user->stat == 'admin') {
+            return redirect()->route('adminpage.dashboard');
+        } else {
+            return redirect()->route('user.landingpage');
+        }
     }
 }
