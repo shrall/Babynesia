@@ -315,7 +315,6 @@ class ProdukController extends Controller
             $products->where('brand_produk', session('product_search_brand'));
         }
         if (session('product_search_rule') == '2') {
-            dd($products);
             $products->whereNotNull('image');
         }
         $products = $products->paginate(15);
