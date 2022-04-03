@@ -141,7 +141,6 @@ Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmF
 
 Route::group([
     // 'middleware' => ['user'], !ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya
-    // 'prefix' => 'user', !ini biar di urlnya ada /user dulu sebelum /modelnya
     'as' => 'user.'
 ], function () {
     Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
@@ -211,7 +210,7 @@ Route::group([
 });
 
 Route::group([
-    // 'middleware' => ['admin'],
+    'middleware' => ['admin'],
     'prefix' => 'adminpage', 'as' => 'adminpage.'
 ], function () {
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');

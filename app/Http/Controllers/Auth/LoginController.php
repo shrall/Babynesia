@@ -57,8 +57,12 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)
             ->where('password', md5($request->password))
             ->first();
-        Auth::login($user);
-        if ($user->stat == 'a') {
+        if ($user) {
+            Auth::login($user);
+        }else{
+            return redirect()->route('login');
+        }
+        if ($user->user_status_id == 1 || $user->user_status_id == 2) {
             return redirect()->route('user.landingpage');
         } else {
             return redirect()->route('adminpage.dashboard');

@@ -42,13 +42,13 @@
 
             </div>
 
-            <div class="text-sm sm:text-base mt-7 flex items-center">
+            {{-- <div class="text-sm sm:text-base mt-7 flex items-center">
                 <input class="" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                 <label class="font-encode-sans text-slate-900 ml-2" for="remember">
                     {{ __('Remember Me') }}
                 </label>
-            </div>
+            </div> --}}
 
             <div class="mt-7 text-center">
                 <button type="submit"
