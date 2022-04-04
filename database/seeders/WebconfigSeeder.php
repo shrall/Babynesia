@@ -34,5 +34,10 @@ class WebconfigSeeder extends Seeder
         $status->content = '1';
         $status->showed_name = 'Website Layout';
         $status->save();
+        $status = new Webconfig();
+        $status->name = 'kota_pengirim';
+        $status->content = 444;
+        $status->showed_name = 'ID Kota Pengirim dari API Rajaongkir';
+        $status->save();
     }
 }

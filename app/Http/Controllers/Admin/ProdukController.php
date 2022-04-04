@@ -73,7 +73,8 @@ class ProdukController extends Controller
     {
         $categories = Kategori::all();
         $brands = Brand::all();
-        return view('admin.produk.create', compact('categories', 'brands'));
+        $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
+        return view('admin.produk.create', compact('categories', 'brands', 'products'));
     }
 
     /**
@@ -120,7 +121,8 @@ class ProdukController extends Controller
             'featured' => $request->featured,
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
-            'ket' => $request->content
+            'ket' => $request->content,
+            'complement' => $request->complement
         ]);
         foreach ($images as $key => $value) {
             ProdukImage::create([
@@ -165,7 +167,8 @@ class ProdukController extends Controller
     {
         $categories = Kategori::all();
         $brands = Brand::all();
-        return view('admin.produk.edit', compact('produk', 'categories', 'brands'));
+        $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
+        return view('admin.produk.edit', compact('produk', 'categories', 'brands', 'products'));
     }
 
     /**
@@ -233,11 +236,12 @@ class ProdukController extends Controller
             'disc1' => $request->disc1,
             'disc2' => $request->disc2,
             'disc3' => $request->disc3,
-            'image' => $images[$truekey],
+            'image' => count($images) == 0 ? $produk->image : $images[$truekey],
             'featured' => $request->featured,
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
-            'ket' => $request->content
+            'ket' => $request->content,
+            'complement' => $request->complement
         ]);
         if ($request->image) {
             foreach ($request->image as $key => $value) {
@@ -311,7 +315,6 @@ class ProdukController extends Controller
             $products->where('brand_produk', session('product_search_brand'));
         }
         if (session('product_search_rule') == '2') {
-            dd($products);
             $products->whereNotNull('image');
         }
         $products = $products->paginate(15);

@@ -250,6 +250,9 @@ Route::group([
 
     Route::post('news/uploadphoto', [AdminNewsController::class, 'upload_photo'])->name('news.uploadphoto');
 
+    Route::get('/faktur/filter', [AdminFakturController::class, 'index_filter'])->name('faktur.filter.index');
+    Route::post('/faktur/filter', [AdminFakturController::class, 'filter'])->name('faktur.filter');
+
     Route::resource('admin', AdminAdminController::class);
     Route::resource('adminstatus', AdminAdminStatusController::class);
     Route::resource('brand', AdminBrandController::class);

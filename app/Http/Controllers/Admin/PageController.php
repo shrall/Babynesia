@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Hitcounter;
 use App\Models\Hotdeals;
 use App\Models\HotdealsArea;
 use App\Models\HotdealsVisibleStatus;
 use App\Models\Produk;
 use App\Models\User;
 use App\Models\Webconfig;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
@@ -20,7 +24,11 @@ class PageController extends Controller
     public function configuration()
     {
         $webconfigs = Webconfig::all();
-        return view('admin.settings.configuration', compact('webconfigs'));
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+        return view('admin.settings.configuration', compact('webconfigs', 'cities'));
     }
     public function layoutdesign()
     {
@@ -37,11 +45,8 @@ class PageController extends Controller
     }
     public function hitcounter()
     {
-        return view('admin.settings.hitcounter');
-    }
-    public function topvisitor()
-    {
-        return view('admin.settings.topvisitor');
+        $hitcounters = Hitcounter::all();
+        return view('admin.settings.hitcounter', compact('hitcounters'));
     }
     //@marshall ini nanti ada parameternya Model $model trus di compact ke view
     public function topvisitor_detail()

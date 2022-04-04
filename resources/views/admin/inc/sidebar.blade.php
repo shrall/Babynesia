@@ -29,7 +29,7 @@
         <a href="{{ route('adminpage.layoutdesign') }}" class="hover:text-white">Layout & Design</a>
         <a href="{{ route('adminpage.administrator') }}" class="hover:text-white">Administrator</a>
         <a href="{{ route('adminpage.hitcounter') }}" class="hover:text-white">Hit Counter</a>
-        <a href="{{ route('adminpage.topvisitor') }}" class="hover:text-white">Top Visitor</a>
+        <a href="{{ route('adminpage.visitcounter.index') }}" class="hover:text-white">Top Visitor</a>
         <a href="{{ route('adminpage.sendmail') }}" class="hover:text-white">Send Mail</a>
         <a href="#" class="hover:text-white">Webmail</a>
         <a href="{{ route('adminpage.tutorial') }}" class="hover:text-white">Tutorial</a>

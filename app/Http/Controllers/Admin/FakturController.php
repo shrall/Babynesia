@@ -20,7 +20,8 @@ class FakturController extends Controller
     public function index()
     {
         $fakturs = Faktur::orderBy('no_faktur', 'desc')->paginate(15);
-        return view('admin.faktur.index', compact('fakturs'));
+        $fakturstatuses = FakturStatus::all();
+        return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
 
     /**
@@ -111,5 +112,37 @@ class FakturController extends Controller
     public function destroy(Faktur $faktur)
     {
         //
+    }
+    public function filter(Request $request)
+    {
+        session()->flush();
+        session(['faktur_date_start' => $request->date_start]);
+        session(['faktur_date_end' => $request->date_end]);
+        session(['faktur_status' => $request->status]);
+        $fakturs = Faktur::orderBy('no_faktur', 'desc');
+        $fakturs->where('status', $request->status);
+        if ($request->date_start) {
+            $fakturs->where('tanggal2', '>=', $request->date_start);
+        }
+        if ($request->date_end) {
+            $fakturs->where('tanggal2', '<=', $request->date_end);
+        }
+        $fakturs = $fakturs->paginate(15);
+        $fakturstatuses = FakturStatus::all();
+        return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
+    }
+    public function index_filter(Request $request)
+    {
+        $fakturs = Faktur::orderBy('no_faktur', 'desc');
+        $fakturs->where('status', session('faktur_status'));
+        if (session('faktur_date_start')) {
+            $fakturs->where('tanggal2', '>=', session('faktur_date_start'));
+        }
+        if (session('faktur_date_end')) {
+            $fakturs->where('tanggal2', '<=', session('faktur_date_end'));
+        }
+        $fakturs = $fakturs->paginate(15);
+        $fakturstatuses = FakturStatus::all();
+        return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
 }

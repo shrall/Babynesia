@@ -241,6 +241,15 @@
                     <input type="number" name="harga_sale" id="harga_sale" class="admin-input"
                         value="{{ $produk->harga_sale }}" placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
+                <div class="col-span-3">Produk Pelengkap</div>
+                <div class="col-span-9 flex gap-x-2">
+                    <select name="complement" id="complement" class="admin-input">
+                        @foreach ($products as $product)
+                            <option {{ $produk->complement == $product->kode_produk ? 'selected' : '' }}
+                                value="{{ $product->kode_produk }}">{{ $product->nama_produk }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="admin-card col-span-2">
                 <div class="grid grid-cols-12 gap-y-1 col-span-12">
@@ -262,7 +271,8 @@
                             class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                         <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
                             class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                        <input type="text" name="stock_left[{{ $loop->iteration }}]" value="{{ $stok->product_stock }}"
+                        <input type="text" name="stock_left[{{ $loop->iteration }}]"
+                            value="{{ $stok->product_stock }}"
                             class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
                         @php
                             $orderedstock = 0;

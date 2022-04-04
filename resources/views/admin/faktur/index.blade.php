@@ -7,32 +7,36 @@
         </div>
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
-        {{-- <div class="admin-card">
-            <div class="col-span-3">
-                <div class="flex flex-col">
-                    Tanggal Mulai:
-                    <input type="date" name="" id="" class="admin-input w-full">
+        <form action="{{ route('adminpage.faktur.filter') }}" method="post">
+            @csrf
+            <div class="admin-card">
+                <div class="col-span-3">
+                    <div class="flex flex-col">
+                        Tanggal Mulai:
+                        <input type="date" name="date_start" id="" class="admin-input w-full">
+                    </div>
+                </div>
+                <div class="col-span-3">
+                    <div class="flex flex-col">
+                        Sampai Tanggal:
+                        <input type="date" name="date_end" id="" class="admin-input w-full">
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <div class="flex flex-col">
+                        Status:
+                        <select name="status" id="status" class="admin-input w-full">
+                            @foreach ($fakturstatuses as $fakturstatus)
+                                <option value="{{ $fakturstatus->id }}">{{ $fakturstatus->status }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-span-12">
+                    <button type="submit" class="admin-button">Tampilkan</button>
                 </div>
             </div>
-            <div class="col-span-3">
-                <div class="flex flex-col">
-                    Sampai Tanggal:
-                    <input type="date" name="" id="" class="admin-input w-full">
-                </div>
-            </div>
-            <div class="col-span-6">
-                <div class="flex flex-col">
-                    Status:
-                    <select name="" id="" class="admin-input w-full">
-                        <option value="1">NEW and Paid</option>
-                        <option value="2">ALL</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-span-12">
-                <button type="submit" class="admin-button">Tampilkan</button>
-            </div>
-        </div> --}}
+        </form>
         <div class="admin-card">
             <div class="col-span-12">
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">

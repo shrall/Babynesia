@@ -74,6 +74,9 @@ class WebconfigController extends Controller
             $webconfigs[30]->update([
                 'content' => $request->wait_time
             ]);
+            $webconfigs[41]->update([
+                'content' => $request->kota_pengirim
+            ]);
             // $webconfigs[16]->update([
             //     'content' => $request->ongkir_note
             // ]);
