@@ -15,6 +15,7 @@ class ModifyColumnsOnProduk extends Migration
     {
         Schema::table('produk', function (Blueprint $table) {
             $table->integer('subkategory')->nullable();
+            $table->integer('featured')->default(0);
         });
     }
 

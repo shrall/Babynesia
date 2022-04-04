@@ -38,11 +38,15 @@
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
                     <span class="fa fa-fw fa-user-circle text-3xl"></span>
-                    <span class="font-medium">Aria</span>
+                    <span class="font-medium">{{Auth::user()->name}}</span>
                 </span>
-                <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer">Log out</div>
+                <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</div>
             </div>
         </div>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         <div class="w-full grid grid-cols-12">
             @include('admin.inc.sidebar')
             <div class="col-span-10 px-1 py-2 text-black bg-slate-100">

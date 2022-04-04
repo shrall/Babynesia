@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Webconfig;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -50,5 +53,21 @@ class LoginController extends Controller
         $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
         return view('auth.login', compact('color', 'bg_img'));
+    }
+    public function login(Request $request)
+    {
+        $user = User::where('email', $request->email)
+            ->where('password', md5($request->password))
+            ->first();
+        if ($user) {
+            Auth::login($user);
+        }else{
+            return redirect()->route('login');
+        }
+        if ($user->user_status_id == 1 || $user->user_status_id == 2) {
+            return redirect()->route('user.landingpage');
+        } else {
+            return redirect()->route('adminpage.dashboard');
+        }
     }
 }
