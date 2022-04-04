@@ -14,7 +14,7 @@
         <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
             <ul class="mt-3">
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
                         <input type="hidden" value="allproduct" name="filterproduct">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
@@ -23,7 +23,7 @@
                     </form>
                 </li>
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
                         <input type="hidden" value="newproduct" name="filterproduct">
                         <button type="submit"
                             class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -32,7 +32,7 @@
                     </form>
                 </li>
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
                         <input type="hidden" value="hotdeals" name="filterproduct">
                         <button type="submit"
                             class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -41,7 +41,7 @@
                     </form>
                 </li>
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
                         <input type="hidden" value="restock" name="filterproduct">
                         <button type="submit"
                             class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -50,7 +50,7 @@
                     </form>
                 </li>
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
                         <button type="submit"
                             class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -64,7 +64,7 @@
             <ul class="mt-3">
                 @foreach ($allkategoris as $kategori)
                 <li class="my-1 group">
-                    <form action="{{ route('user.list_products') }}" method="get">
+                    <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit" {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}
                             class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} hover:text-{{ $color[1] }}-500 text-sm font-bold font-encode-sans peer">
@@ -73,7 +73,7 @@
                     </form>
                     @foreach ($subkategoris as $sub)
                     @if ($sub->kategori_id == $kategori->no_kategori)
-                    <form action="{{ route('user.list_products') }}" method="">
+                    <form action="{{ route('list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
@@ -133,7 +133,7 @@
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:mx-auto">
 
                 @foreach ($produks as $produk)
-                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                         alt="">
                     <div class="p-4 pb-5">
@@ -197,7 +197,7 @@
     <div class="bg-white px-3 w-full py-4 overflow-y-auto max-h-72">
         <ul>
             <li class="my-1">
-                <form action="{{ route('user.list_products') }}">
+                <form action="{{ route('list_products') }}">
                     <input type="hidden" value="allproduct" name="filterproduct">
                     <button type="submit"
                         class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
@@ -206,7 +206,7 @@
                 </form>
             </li>
             <li class="my-1">
-                <form action="{{ route('user.list_products') }}">
+                <form action="{{ route('list_products') }}">
                     <input type="hidden" value="newproduct" name="filterproduct">
                     <button type="submit"
                         class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -215,7 +215,7 @@
                 </form>
             </li>
             <li class="my-1">
-                <form action="{{ route('user.list_products') }}">
+                <form action="{{ route('list_products') }}">
                     <input type="hidden" value="hotdeals" name="filterproduct">
                     <button type="submit"
                         class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -224,7 +224,7 @@
                 </form>
             </li>
             <li class="my-1">
-                <form action="{{ route('user.list_products') }}">
+                <form action="{{ route('list_products') }}">
                     <input type="hidden" value="restock" name="filterproduct">
                     <button type="submit"
                         class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -233,7 +233,7 @@
                 </form>
             </li>
             <li class="my-1">
-                <form action="{{ route('user.list_products') }}">
+                <form action="{{ route('list_products') }}">
                     <input type="hidden" value="featured" name="filterproduct">
                     <button type="submit"
                         class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
@@ -255,7 +255,7 @@
             <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
                 @foreach ($allkategoris as $kategori)
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}" method="get">
+                    <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
@@ -264,7 +264,7 @@
                     </form>
                     @foreach ($subkategoris as $sub)
                     @if ($sub->kategori_id == $kategori->no_kategori)
-                    <form action="{{ route('user.list_products') }}" method="">
+                    <form action="{{ route('list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">

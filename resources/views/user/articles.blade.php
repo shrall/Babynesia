@@ -12,7 +12,7 @@
     </div>
     <div class="mt-3 sm:grid sm:grid-cols-3 sm:space-x-3">
         <div class="col-span-2 w-full h-fit bg-white rounded-md shadow-sm pt-8 pb-10 px-8 space-y-5 xl:grid xl:grid-cols-2 xl:gap-4 xl:space-y-0">
-            <a href="{{ route('user.article.detail') }}" class="block">
+            <a href="{{ route('article.detail') }}" class="block">
                 <img src="https://images.unsplash.com/5/unsplash-kitsune-4.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9&s=50827fd8476bfdffe6e04bc9ae0b8c02" alt="" 
                     class="w-full object-cover rounded-lg">
                 <h6 class="font-encode-sans mt-2 text-clip text-slate-900 font-bold text-lg">

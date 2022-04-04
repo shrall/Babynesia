@@ -6,7 +6,7 @@
                     <h1 class="font-concert-one text-white text-5xl mr-5">TokoBayiFiv</h1>
                 </a>
                 <div class="py-2 px-4 rounded-full bg-white w-80">
-                    <form action="{{ route('user.list_products') }}">
+                    <form action="{{ route('list_products') }}">
 
                         <div class="flex justify-between w-full items-center">
                             <input type="text" placeholder="Search by keyword" name="keyword"
@@ -76,39 +76,39 @@
             @endif
             @if (!empty($page)&&$page == "article")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('user.article') }}" aria-expanded="true">
+                <a href="{{ route('article') }}" aria-expanded="true">
                     Article
                 </a>
             </li>
             @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.article') }}" aria-expanded="true">
+                <a href="{{ route('article') }}" aria-expanded="true">
                     Article
                 </a>
             </li>
             @endif
             @if (!empty($page)&&$page == "faq")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('user.faq.index') }}" aria-expanded="true">
+                <a href="{{ route('faq.index') }}" aria-expanded="true">
                     FAQ
                 </a>
             </li>
             @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.faq.index') }}" aria-expanded="true">
+                <a href="{{ route('faq.index') }}" aria-expanded="true">
                     FAQ
                 </a>
             </li>
             @endif
             @if (!empty($page)&&$page == "contact")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('user.contact') }}" aria-expanded="true">
+                <a href="{{ route('contact') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
             @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.contact') }}" aria-expanded="true">
+                <a href="{{ route('contact') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
@@ -139,7 +139,7 @@
                     <ul class="grid grid-rows-5 grid-cols-3 justify-center w-8/10 mx-auto">
                         @foreach ($allkategoris as $kategori)
                         <li class="my-1 group">
-                            <form action="{{ route('user.list_products') }}" method="get" id="kategorifilter"></form>
+                            <form action="{{ route('list_products') }}" method="get" id="kategorifilter"></form>
                             <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter"
                                 form="kategorifilter">
                             <button type="submit" class="text-white font-encode-sans peer" form="kategorifilter"
@@ -149,7 +149,7 @@
                             <ul class="hidden ml-2 text-gray-400 pt-1 hover:block absolute peer-hover:block">
                                 @foreach ($subkategoris as $sub)
                                 @if ($sub->kategori_id == $kategori->no_kategori)
-                                <form action="{{ route('user.list_products') }}" method="" id="subkategori{{ $sub->child_id }}"></form>
+                                <form action="{{ route('list_products') }}" method="" id="subkategori{{ $sub->child_id }}"></form>
                                 <input type="hidden" name="subfilter" value="{{ $sub->child_id }}" form="subkategori{{ $sub->child_id }}">
                                 <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}"
                                     form="subkategori{{ $sub->child_id }}">
@@ -261,19 +261,19 @@
             </div>
         </a>
         <hr>
-        <a href="{{ route('user.article') }}">
+        <a href="{{ route('article') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Article
             </div>
         </a>
         <hr>
-        <a href="{{ route('user.faq.index') }}">
+        <a href="{{ route('faq.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 FAQ
             </div>
         </a>
         <hr>
-        <a href="{{ route('user.contact') }}">
+        <a href="{{ route('contact') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Contact
             </div>
@@ -294,7 +294,7 @@
             <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
                 @foreach ($allkategoris as $kategori)
                 <li class="my-1">
-                    <form action="{{ route('user.list_products') }}" method="get">
+                    <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
@@ -303,7 +303,7 @@
                     </form>
                     @foreach ($subkategoris as $sub)
                     @if ($sub->kategori_id == $kategori->no_kategori)
-                    <form action="{{ route('user.list_products') }}" method="">
+                    <form action="{{ route('list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-{{ $color[1] }}-500">

@@ -16,12 +16,12 @@
                     </a>
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.article') }}">
+                    <a href="{{ route('article') }}">
                         article
                     </a>
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.faq.index') }}">
+                    <a href="{{ route('faq.index') }}">
                         faq
                     </a> </li>
             </ul>

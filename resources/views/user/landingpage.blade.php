@@ -90,7 +90,7 @@
         <div id="divnew">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
                 @foreach ($newproduct as $produk)
-                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                         alt="">
                     <div class="p-4 pb-6">
@@ -127,7 +127,7 @@
         <div id="divhot">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
                 @foreach ($hotdeals as $produk)
-                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                         alt="">
                     <div class="p-4 pb-6">
@@ -162,7 +162,7 @@
         <div id="divrestock">
             <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
                 @foreach ($restock as $produk)
-                <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                         alt="">
                     <div class="p-4 pb-6">
@@ -208,7 +208,7 @@
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 mb-7 xl:mx-auto">
             @foreach ($featured as $produk)
-            <a href="{{ route('user.produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+            <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                 <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-6">
@@ -239,7 +239,7 @@
             @endforeach
         </div>
         <div class="flex justify-center">
-            <a href="{{ route('user.list_products') }}"
+            <a href="{{ route('list_products') }}"
                 class="border-2 hover:bg-{{ $color[2] }}-400 hover:text-white hover:ring-{{ $color[2] }}-300 hover:ring-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
                 More Products
             </a>

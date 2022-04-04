@@ -168,7 +168,7 @@
     </div>
     <div class="mt-5 mb-5">
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
-            <a href="{{ route('user.produk.show', $produk->complement) }}" class="rounded-lg shadow-sm bg-white">
+            <a href="{{ route('produk.show', $produk->complement) }}" class="rounded-lg shadow-sm bg-white">
                 <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
@@ -201,7 +201,7 @@
 
             {{-- manual loop --}}
 
-            <a href="{{ route('user.produk.show', $produk->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
+            <a href="{{ route('produk.show', $produk->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
                 <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
@@ -232,7 +232,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('user.produk.show', $produk->complementary->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
+            <a href="{{ route('produk.show', $produk->complementary->complement->complement) }}" class="rounded-lg shadow-sm bg-white">
                 <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
@@ -263,7 +263,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('user.produk.show', $produk->complementary->complement->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
+            <a href="{{ route('produk.show', $produk->complementary->complement->complementary->complement) }}" class="rounded-lg shadow-sm bg-white">
                 <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->complementary->complement->complementary->complement->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
                     alt="">
                 <div class="p-4 pb-5">
