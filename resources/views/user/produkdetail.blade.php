@@ -7,7 +7,7 @@
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-3 px-3 xl:hidden">
         <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
-            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+            [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
         </h1>
         {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
             Product description goes here
@@ -173,7 +173,7 @@
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complementary->kode_alias }}] {{ $produk->complementary->nama_produk }}
+                        [{{ $produk->complementary->kode_produk }}] {{ $produk->complementary->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -206,7 +206,7 @@
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complementary->complement->kode_alias }}] {{ $produk->complementary->complement->nama_produk }}
+                        [{{ $produk->complementary->complement->kode_produk }}] {{ $produk->complementary->complement->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -237,7 +237,7 @@
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complementary->complement->complementary->kode_alias }}] {{ $produk->complementary->complement->complementary->nama_produk }}
+                        [{{ $produk->complementary->complement->complementary->kode_produk }}] {{ $produk->complementary->complement->complementary->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -268,7 +268,7 @@
                     alt="">
                 <div class="p-4 pb-5">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->complementary->complement->complementary->complement->kode_alias }}] {{ $produk->complementary->complement->complementary->complement->nama_produk }}
+                        [{{ $produk->complementary->complement->complementary->complement->kode_produk }}] {{ $produk->complementary->complement->complementary->complement->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">

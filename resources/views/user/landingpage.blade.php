@@ -17,7 +17,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         {{-- looping goes here --}}
         <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('img/angel-cute-babies-website-header.jpeg') }}" class="block w-full h-vh-50 object-cover" alt="..." />
+            <img src="{{ asset('images/angel-cute-babies-website-header.jpeg') }}" class="block w-full h-vh-50 object-cover" alt="..." />
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">First slide label</h5>
                 <p>Some representative placeholder content for the first slide.</p>
@@ -95,7 +95,7 @@
                         alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+                            [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -132,7 +132,7 @@
                         alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+                            [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -167,7 +167,7 @@
                         alt="">
                     <div class="p-4 pb-6">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+                            [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
                             {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
@@ -213,7 +213,7 @@
                     alt="">
                 <div class="p-4 pb-6">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                        [{{ $produk->kode_alias }}] {{ $produk->nama_produk }}
+                        [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
                         {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">

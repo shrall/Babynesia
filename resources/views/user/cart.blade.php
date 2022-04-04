@@ -54,7 +54,7 @@
                 </div>
                 <div class="ml-2 sm:w-vw-30">
                     <h6 class="font-bold font-encode-sans text-base text-clip text-slate-900">
-                        [{{ $cart->produk->kode_alias }}] {{ $cart->produk->nama_produk }}
+                        [{{ $cart->produk->kode_produk }}] {{ $cart->produk->nama_produk }}
                     </h6>
                     <p class="font-encode-sans text-sm text-gray-400 sm:text-base">
                         <input type="number" form="updatecart" value="{{ $cart->jumlah }}" name="jumlah"
