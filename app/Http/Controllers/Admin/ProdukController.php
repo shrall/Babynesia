@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\ProdukImage;
+use App\Models\ProdukStatus;
 use App\Models\ProdukStock;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -74,7 +75,8 @@ class ProdukController extends Controller
         $categories = Kategori::all();
         $brands = Brand::all();
         $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
-        return view('admin.produk.create', compact('categories', 'brands', 'products'));
+        $produkstatuses = ProdukStatus::all();
+        return view('admin.produk.create', compact('categories', 'brands', 'products', 'produkstatuses'));
     }
 
     /**
@@ -168,7 +170,8 @@ class ProdukController extends Controller
         $categories = Kategori::all();
         $brands = Brand::all();
         $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
-        return view('admin.produk.edit', compact('produk', 'categories', 'brands', 'products'));
+        $produkstatuses = ProdukStatus::all();
+        return view('admin.produk.edit', compact('produk', 'categories', 'brands', 'products', 'produkstatuses'));
     }
 
     /**

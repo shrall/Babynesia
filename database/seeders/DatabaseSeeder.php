@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(WebconfigSeeder::class);
         $this->call(UserStatusSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(ProdukStatusSeeder::class);
     }
 }

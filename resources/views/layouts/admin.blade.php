@@ -44,9 +44,9 @@
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</div>
             </div>
         </div>
-        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
-        </form> --}}
+        </form>
         <div class="w-full grid grid-cols-12">
             @include('admin.inc.sidebar')
             <div class="col-span-10 px-1 py-2 text-black bg-slate-100">
@@ -56,16 +56,6 @@
         <div class="w-full flex flex-col items-center px-24 py-2 bg-slate-800 text-white">
             <div class="w-full flex items-center justify-between">
                 <span class="font-overpass text-5xl">{{ config('app.name', 'Laravel') }}</span>
-                <div class="flex flex-col gap-y-1">
-                    <span>Kontak Kami</span>
-                    <div class="flex items-center gap-x-2">
-                        <a href="" class="fab fa-whatsapp text-xl hover:text-gray-100"></a>
-                        <a href="" class="fab fa-line text-xl hover:text-gray-100"></a>
-                        <a href="" class="fab fa-instagram text-xl hover:text-gray-100"></a>
-                        <a href="" class="fab fa-facebook text-xl hover:text-gray-100"></a>
-                        <a href="" class="fa fa-envelope text-xl hover:text-gray-100"></a>
-                    </div>
-                </div>
             </div>
             <span>Copyright © {{ date('Y') }}. <span class="font-bold">{{ config('app.name') }}</span></span>
             <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>

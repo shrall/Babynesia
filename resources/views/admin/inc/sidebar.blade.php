@@ -3,7 +3,7 @@
     <div class="flex flex-col pl-8">
         <a href="{{ route('adminpage.hotdeals.index') }}" class="hover:text-white">Iklan Utama</a>
         <a href="{{ route('adminpage.webpage') }}" class="hover:text-white">Halaman Web</a>
-        <a href="{{ route('adminpage.sidearea') }}" class="hover:text-white">Halaman Samping</a>
+        {{-- <a href="{{ route('adminpage.sidearea') }}" class="hover:text-white">Halaman Samping</a> --}}
         <a href="{{ route('adminpage.news.index') }}" class="hover:text-white">Berita / Artikel</a>
         <a href="{{ route('adminpage.guestbook.index') }}" class="hover:text-white">Buku Tamu</a>
         <a href="{{ route('adminpage.gallery') }}" class="hover:text-white">Galeri Gambar</a>
