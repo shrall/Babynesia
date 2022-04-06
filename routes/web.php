@@ -88,6 +88,7 @@ use App\Http\Controllers\KategoriParentController;
 use App\Http\Controllers\KlasController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LinkLocationController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentArtController;
@@ -223,6 +224,7 @@ Route::group([
     //@marshall /1nya ini nanti harus dirubah {user} biar ngikutin
     Route::get('/settings/topvisitor/detail/1', [AdminPageController::class, 'topvisitor_detail'])->name('topvisitor.detail');
     Route::get('/settings/sendmail', [AdminPageController::class, 'sendmail'])->name('sendmail');
+    Route::post('/settings/sendmail', [AdminPageController::class, 'sendmail_post'])->name('sendmail.post');
     Route::get('/settings/tutorial', [AdminPageController::class, 'tutorial'])->name('tutorial');
 
     Route::get('/content/webpage', [AdminPageController::class, 'webpage'])->name('webpage');

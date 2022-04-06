@@ -115,7 +115,9 @@ class FakturController extends Controller
     }
     public function filter(Request $request)
     {
-        session()->flush();
+        session()->forget('faktur_date_start');
+        session()->forget('faktur_date_end');
+        session()->forget('faktur_status');
         session(['faktur_date_start' => $request->date_start]);
         session(['faktur_date_end' => $request->date_end]);
         session(['faktur_status' => $request->status]);

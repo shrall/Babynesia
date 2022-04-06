@@ -44,9 +44,9 @@
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</div>
             </div>
         </div>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
-        </form>
+        </form> --}}
         <div class="w-full grid grid-cols-12">
             @include('admin.inc.sidebar')
             <div class="col-span-10 px-1 py-2 text-black bg-slate-100">

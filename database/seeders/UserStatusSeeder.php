@@ -16,7 +16,7 @@ class UserStatusSeeder extends Seeder
     {
         $us = new UserStatus();
         $us->id = 3;
-        $us->user_status = 'Admin Master';
+        $us->user_status = 'Superadmin';
         $us->save();
 
         $us = new UserStatus();

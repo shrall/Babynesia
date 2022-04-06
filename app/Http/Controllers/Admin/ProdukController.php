@@ -324,7 +324,11 @@ class ProdukController extends Controller
     }
     public function search(Request $request)
     {
-        session()->flush();
+        session()->forget('product_search_status');
+        session()->forget('product_search_search');
+        session()->forget('product_search_category');
+        session()->forget('product_search_brand');
+        session()->forget('product_search_rule');
         session(['product_search_status' => $request->status]);
         session(['product_search_search' => $request->search]);
         session(['product_search_category' => $request->category]);
