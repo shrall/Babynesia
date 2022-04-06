@@ -32,13 +32,13 @@
             <div class="flex items-center mt-1 xl:mt-2">
                 <i class="fab fa-facebook text-{{ $color[0] }}-400 text-xl" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
-                    www.facebook.com/babynesia
+                    www.facebook.com/tokobayifiv
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">
                 <i class="fa fa-envelope text-{{ $color[0] }}-400 text-lg" aria-hidden="true"></i>
                 <div class="text-slate-900 font-encode-sans ml-2 text-sm sm:text-base">
-                    babynesia.online@gmail.com
+                    tokobayifiv.online@gmail.com
                 </div>
             </div>
             <div class="flex items-center mt-1 xl:mt-2">

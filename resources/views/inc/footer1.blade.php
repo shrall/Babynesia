@@ -15,11 +15,11 @@
                         about us
                     </a>
                 </li>
-                <li class="font-encode-sans text-white text-sm sm:text-base">
+                {{-- <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('article') }}">
                         article
                     </a>
-                </li>
+                </li> --}}
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('faq.index') }}">
                         faq

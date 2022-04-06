@@ -74,7 +74,7 @@
                 </a>
             </li>
             @endif
-            @if (!empty($page)&&$page == "article")
+            {{-- @if (!empty($page)&&$page == "article")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('article') }}" aria-expanded="true">
                     Article
@@ -86,7 +86,7 @@
                     Article
                 </a>
             </li>
-            @endif
+            @endif --}}
             @if (!empty($page)&&$page == "faq")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('faq.index') }}" aria-expanded="true">
@@ -261,11 +261,11 @@
             </div>
         </a>
         <hr>
-        <a href="{{ route('article') }}">
+        {{-- <a href="{{ route('article') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Article
             </div>
-        </a>
+        </a> --}}
         <hr>
         <a href="{{ route('faq.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
