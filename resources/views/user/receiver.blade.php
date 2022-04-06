@@ -32,13 +32,6 @@
                                 class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
                                 name="pengirim_name" value="{{ Auth::user()->name }}">
                         </div>
-                        {{-- <div class="hidden mt-3 peer-checked:block" id="dropship_receiver">
-                            <div>
-                                <label for="dropship" class="text-sm sm:text-base font-encode-sans text-slate-900">Dropship Receiver</label>
-                            </div>
-                            <input id="dropinput" type="text" class="appearance-none border p-1 w-full rounded-md border-{{ $color[1] }}-500"
-                            name="receiver_dropship">
-                        </div> --}}
                         <div class="mt-4 peer-checked:block hidden">
                             <div> <label for="pengirimaddress"
                                     class="text-sm sm:text-base font-encode-sans text-slate-900">Sender Address</label>
@@ -65,7 +58,7 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Receiver Name</label>
                         </div>
                         <input id="receivername" type="text"
-                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="receiver_name" required>
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="receiver_name" value="{{ Auth::user()->name }}" required>
                     </div>
                     <div class="mt-4">
                         <div> <label for="address"
@@ -73,7 +66,7 @@
                         </div>
                         <textarea id="address" type="text" required
                             class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                            name="address"></textarea>
+                            name="address">{{ Auth::user()->alamat }}</textarea>
                     </div>
                     <div class="mt-4">
                         <div> <label for="postcode"
@@ -143,14 +136,14 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
                         </div>
                         <input id="phone" type="text" required
-                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="phone">
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="phone" value="{{ Auth::user()->telp }}">
                     </div>
                     <div class="mt-4">
                         <div> <label for="handphone"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Handphone</label>
                         </div>
                         <input id="handphone" type="text" required
-                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="hp">
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="hp" value="{{ Auth::user()->hp }}">
                     </div>
                 </div>
 

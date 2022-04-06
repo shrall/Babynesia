@@ -152,7 +152,7 @@
     </div>
     <div class="">
         <div class="w-full text-center mt-3">
-            <a href="{{ route('user.list_products') }}"
+            <a href="{{ route('list_products') }}"
                 class="inline-block border-2 border-{{ $color[2] }}-400 hover:bg-{{ $color[2] }}-400 hover:text-white bg-white font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                 Lanjutkan Belanja
             </a>

@@ -61,11 +61,11 @@ class LoginController extends Controller
             ->first();
         if ($user) {
             Auth::login($user);
-        }else{
+        } else {
             return redirect()->route('login');
         }
         if ($user->user_status_id == 1 || $user->user_status_id == 2) {
-            return redirect()->route('user.landingpage');
+            return redirect()->route('landingpage');
         } else {
             return redirect()->route('adminpage.dashboard');
         }

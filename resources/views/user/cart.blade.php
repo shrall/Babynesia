@@ -83,12 +83,12 @@
                     @endif
                     @endif
 
-                    <div class="hidden sm:block">
+                    {{-- <div class="hidden sm:block">
                         <label for="note{{ $cart->no_detail_cart }}"
                             class="font-encode-sans text-gray-400 text-sm sm:text-base">Note:</label>
                     </div>
                     <textarea name="cartnote" form="updatecart" id="note{{ $cart->no_detail_cart }}"
-                        class="hidden w-full sm:block font-encode-sans border text-gray-400 rounded-md bg-neutral-100 py-1 px-2 text-sm mt-1">{{ $cart->note }}</textarea>
+                        class="hidden w-full sm:block font-encode-sans border text-gray-400 rounded-md bg-neutral-100 py-1 px-2 text-sm mt-1">{{ $cart->note }}</textarea> --}}
 
                 </div>
             </div>
@@ -108,12 +108,12 @@
             </div>
         </div>
         <div class="sm:hidden mt-3">
-            <div>
+            {{-- <div>
                 <label for="note{{ $cart->no_detail_cart }}1"
                     class="font-encode-sans text-gray-400 text-sm sm:text-base">Note:</label>
             </div>
             <textarea name="cartnote1" id="note{{ $cart->no_detail_cart }}1" form="updatecart"
-                class="w-full border font-encode-sans text-gray-400 rounded-md bg-neutral-100 py-1 px-2 text-sm mt-1">{{ $cart->note }}</textarea>
+                class="w-full border font-encode-sans text-gray-400 rounded-md bg-neutral-100 py-1 px-2 text-sm mt-1">{{ $cart->note }}</textarea> --}}
             <hr class="my-3">
             <div class="mt-3 flex justify-between items-center">
                 <div>
@@ -154,7 +154,7 @@
                         </button>
                     </div>
                     <div class="text-center mt-1">
-                        <a href="{{ route('user.list_products') }}"
+                        <a href="{{ route('list_products') }}"
                             class="font-encode-sans text-gray-400 text-sm sm:text-base">
                             Continue Shopping
                         </a>
@@ -170,7 +170,7 @@
                     </button>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="{{ route('user.list_products') }}"
+                    <a href="{{ route('list_products') }}"
                         class="w-full border-2 border-gray-400 hover:bg-neutral-100 hover:border-gray-300 hover:text-gray-300 bg-white font-bold font-encode-sans text-gray-400 px-4 py-2 rounded-full">
                         Continue Shopping
                     </a>

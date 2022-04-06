@@ -36,10 +36,10 @@
                             {{ $cart->produk->stat == 'd' ? substr(number_format($cart->produk->harga_sale,2,",","."), 0, -3) : substr(number_format($cart->produk->harga,2,",","."), 0, -3) }}
 
                         </p>
-                        <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
+                        {{-- <p class="hidden sm:block font-encode-sans text-gray-400 text-sm mt-3 text-clip">
                             Note: <br>
                             {{ $cart->note }}
-                        </p>
+                        </p> --}}
                         @if (!empty($cart->produkstock->size))
                         @if (!empty($cart->produkstock->color))
                         <h6
@@ -79,10 +79,10 @@
                 </div>
             </div>
             <div class="sm:hidden mt-3">
-                <p class="font-encode-sans text-gray-400 text-sm text-clip">
+                {{-- <p class="font-encode-sans text-gray-400 text-sm text-clip">
                     Note: <br>
                     {{ $cart->note }}
-                </p>
+                </p> --}}
                 <hr class="my-3">
                 <div class="mt-3 flex justify-between items-center">
                     <div>
@@ -187,8 +187,8 @@
                 <ul class="ml-2 font-encode-sans text-slate-900 text-sm sm:text-base">
                     <li>{{ $request->receiver_name }}</li>
                     <li>{{ $request->address }}</li>
-                    <li>{{ $request->city }}</li>
-                    <li>{{ $request->province }}</li>
+                    <li>{{ $city }}</li>
+                    <li>{{ $province }}</li>
                     <li>{{ $request->phone }}</li>
                     <li>{{ $request->hp }}</li>
                 </ul>

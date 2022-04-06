@@ -34,28 +34,28 @@
         <h2 class="font-concert-one text-slate-900 text-2xl">
             Send Us Message
         </h2>
-        <form action="{{ route('user.guestbook.store') }}" method="post">
+        <form action="{{ route('user.guestbook.store') }}" method="post" class="px-4">
             @csrf
             <div class="mt-4">
                 <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Name</label>
                 </div>
                 <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="name" required>
+                    name="name" value="{{ Auth::user()->name }} {{ Auth::user()->lastname }}" required>
             </div>
             <div class="mt-4">
                 <div> <label for="email" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Email</label>
                 </div>
                 <input id="email" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="email" required>
+                    name="email" value="{{ Auth::user()->email }}" required>
             </div>
             <div class="mt-4">
                 <div> <label for="location" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Location</label>
                 </div>
                 <input id="location" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="location" required>
+                    name="location" value="{{ Auth::user()->kota }}" required>
             </div>
             <div class="mt-4">
                 <div> <label for="message" class="text-sm sm:text-base font-encode-sans text-slate-900">Message</label>

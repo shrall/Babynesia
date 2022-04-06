@@ -377,6 +377,9 @@
         </div>
 
         @endforeach
+
+        {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
+
     </div>
 
 </div>

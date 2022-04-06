@@ -72,7 +72,7 @@ class PageController extends Controller
         $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
         $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];        
+        $color = [$bg_color->content, $text_color->content, $button_color->content];
         //background image
         $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
@@ -130,22 +130,6 @@ class PageController extends Controller
         $produks->withPath('listproducts');
         $produks->appends($request->all());
         return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color', 'bg_img'));
-    }
-    public function contact()
-    {
-        $page = 'contact';
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.contact', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
     }
 
     public function list_articles()

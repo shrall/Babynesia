@@ -123,7 +123,6 @@ class FakturController extends Controller
                 'subtotal' => $cart->jumlah * $cart->produk->harga,
                 'valuta_id' => 1,
                 'profit' => $cart->jumlah * $cart->produk->harga,
-                'note' => $cart->note
             ]);
 
             //create stock_history
@@ -133,7 +132,6 @@ class FakturController extends Controller
                 'product_id' => $cart->kode_produk,
                 'amount' => -$cart->jumlah,
                 'faktur_id' => $faktur->no_faktur,
-                'notes' => $cart->note
             ]);
 
             //delete semua cart

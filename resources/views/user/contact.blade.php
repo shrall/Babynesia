@@ -55,12 +55,12 @@
             dibawah ini dan akan kami kirimkan jawaban langsung ke email Anda.
             <br><br>
             Thanks,
-            Babynesia
+            TokoBayiFiv
         </p>
         <h2 class="mt-4 font-concert-one text-slate-900 text-2xl">
             Send Us Message
         </h2>
-        <form action="" method="post">
+        <form action="{{ route('contact.store') }}" method="post">
             @csrf
             <div class="mt-4">
                 <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">

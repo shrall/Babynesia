@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
-        $fakturs = Faktur::where('kode_user', Auth::id())->get();
+        $fakturs = Faktur::where('kode_user', Auth::id())->paginate(10);
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
 

@@ -10,7 +10,7 @@
             [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
         </h1>
         {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
-            Product description goes here
+            {!! $produk->ket !!}
         </p> --}}
     </div>
     <div class="xl:grid xl:grid-cols-2 xl:gap-3">
@@ -32,10 +32,10 @@
         <div class="mt-3 px-3 pt-3 pb-8 bg-white rounded-lg h-fit shadow-sm">
             <div class="hidden xl:block">
                 <h1 class="font-concert-one text-{{ $color[1] }}-500 xl:text-4xl">
-                    {{ $produk->nama_produk }}
+                    [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                 </h1>
                 {{-- <p class="text-gray-400 font-encode-sans">
-                    Product description goes here
+                    {!! $produk->ket !!}
                 </p> --}}
             </div>
             <div class="flex xl:mt-6">
@@ -100,20 +100,22 @@
                     <p class="font-encode-sans text-sm sm:text-base text-gray-400"> <del> Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }} </del></p>
                     @endif
                 </div>
+                <input type="hidden" value="{{ $produk->kode_produk }}" name="kode_produk">
+
                 {{-- @if ($produk->stock != 0) --}}
-                @if (Auth::check())
-                <a href="#" role="button" id="open-modal"
+                {{-- @if (Auth::check()) --}}
+                <button type="submit" 
                     class="bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                     Add to Cart
-                </a>
+                </button>
 
-                @else
+                {{-- @else
                 <a href="{{ route('login') }}"
                     class="bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                     Add to Cart
                 </a>
 
-                @endif
+                @endif --}}
                 {{-- @else
                 <button disabled
                     class="bg-neutral-100 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-gray-400 font-encode-sans font-bold">
@@ -123,7 +125,7 @@
                 @endif --}}
 
                 {{-- modal --}}
-                <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
+                {{-- <div class="fixed hidden inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
                     id="my-modal-bg">
                 </div>
 
@@ -146,14 +148,12 @@
                             class="bg-neutral-100 border appearance-none w-full rounded-lg p-1 text-slate-900 font-encode-sans"></textarea>
                     </div>
 
-                    <input type="hidden" value="{{ $produk->kode_produk }}" name="kode_produk">
-
                     <button type="submit"
                         class="mt-5 bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-3 w-full inline-block text-center text-sm sm:text-base text-white font-encode-sans font-bold">
                         Add to Cart
                     </button>
 
-                </div>
+                </div> --}}
                 {{-- modal end --}}
             </form>
         </div>
@@ -298,7 +298,7 @@
     @endif
 </div>
 
-<script>
+{{-- <script>
     let modal = document.getElementById("my-modal");
     let modalbg = document.getElementById("my-modal-bg");
     let btn = document.getElementById("open-modal");
@@ -349,7 +349,7 @@
         document.images["productimg"].src = i;
     }
 
-</script>
+</script> --}}
 
 @include('inc.footer1')
 

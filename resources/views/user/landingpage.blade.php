@@ -23,20 +23,20 @@
                 <p>Some representative placeholder content for the first slide.</p>
             </div> --}}
         </div>
-        <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" class="block w-full h-vh-50 object-cover" alt="..." />
+        {{-- <div class="carousel-item relative float-left w-full">
+            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">Second slide label</h5>
                 <p>Some representative placeholder content for the second slide.</p>
             </div> --}}
-        </div>
+        {{-- </div>
         <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg" class="block w-full h-vh-50 object-cover" alt="..." />
+            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">Third slide label</h5>
                 <p>Some representative placeholder content for the third slide.</p>
             </div> --}}
-        </div>
+        {{-- </div> --}}
     </div>
     <button
         class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
@@ -240,7 +240,7 @@
         </div>
         <div class="flex justify-center">
             <a href="{{ route('list_products') }}"
-                class="border-2 hover:bg-{{ $color[2] }}-400 hover:text-white hover:ring-{{ $color[2] }}-300 hover:ring-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
+                class="border-2 hover:bg-{{ $color[2] }}-400 bg-white hover:text-white hover:ring-{{ $color[2] }}-300 hover:ring-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
                 More Products
             </a>
         </div>
