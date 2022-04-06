@@ -43,7 +43,7 @@
                     Customer Service
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.guestbook.index') }}">
+                    <a href="{{ route('contact.index') }}">
                         contact us
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">

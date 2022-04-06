@@ -102,13 +102,13 @@
             @endif
             @if (!empty($page)&&$page == "contact")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('contact') }}" aria-expanded="true">
+                <a href="{{ route('contact.index') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
             @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('contact') }}" aria-expanded="true">
+                <a href="{{ route('contact.index') }}" aria-expanded="true">
                     Contact
                 </a>
             </li>
@@ -273,7 +273,7 @@
             </div>
         </a>
         <hr>
-        <a href="{{ route('contact') }}">
+        <a href="{{ route('contact.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 Contact
             </div>

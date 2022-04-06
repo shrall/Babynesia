@@ -13,42 +13,19 @@
         </div>
         <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
             <ul class="mt-3">
+                @foreach ($allstatus as $status)
+                @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
-                        <input type="hidden" value="allproduct" name="filterproduct">
+                        <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
                         <button type="submit"
-                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                            All Product
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
+                            {{ $status->name }} Product
                         </button>
                     </form>
                 </li>
-                <li class="my-1">
-                    <form action="{{ route('list_products') }}">
-                        <input type="hidden" value="newproduct" name="filterproduct">
-                        <button type="submit"
-                            class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                            New Product
-                        </button>
-                    </form>
-                </li>
-                <li class="my-1">
-                    <form action="{{ route('list_products') }}">
-                        <input type="hidden" value="hotdeals" name="filterproduct">
-                        <button type="submit"
-                            class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                            Hotdeals
-                        </button>
-                    </form>
-                </li>
-                <li class="my-1">
-                    <form action="{{ route('list_products') }}">
-                        <input type="hidden" value="restock" name="filterproduct">
-                        <button type="submit"
-                            class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                            Restock Product
-                        </button>
-                    </form>
-                </li>
+                @endif
+                @endforeach
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
@@ -98,29 +75,27 @@
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 "{{ $keyword }}"
             </h1>
-            @elseif (!empty($filteredproduct) && $filteredproduct != 'allproduct')
+            @elseif (!empty($filteredproduct))
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
-                @if ($filteredproduct == 'newproduct' )
-                New Product
-                @elseif ($filteredproduct == 'hotdeals')
-                Hot Deals
-                @elseif ($filteredproduct == 'restock')
-                Restock Product
+                @if($filteredproduct != 'featured' && !empty($produks[0]->status->name))
+                {{ $produks[0]->status->name }} Product
                 @elseif ($filteredproduct == 'featured')
                 Featured Product
+                @else
+                Product Not Found
                 @endif
-            </h1>            
+            </h1>
             @elseif (!empty($subfilter))
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 {{ $subsname }}
             </h1>
-            @elseif (!empty($filter))
+            @elseif (!empty($filter) && !empty($produks[0]->category->nama_kategori))
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 {{ $produks[0]->category->nama_kategori }}
             </h1>
             @else
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
-                All Product
+                Product Not Found
             </h1>
             @endif
             <input type="checkbox" name="bottomclick" id="bottomclick" hidden>
@@ -134,27 +109,24 @@
 
                 @foreach ($produks as $produk)
                 <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                    <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}" class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover"
-                        alt="">
+                    <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}"
+                        class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
-                            {{-- @if ($produk->stock <= 0) <h2 class="font-concert-one text-gray-400 xl:text-3xl text-xl">
+
+                            <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
                                 Rp.
                                 {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
-                                </h2>
-                                <h6
-                                    class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                    Sold
-                                </h6>
-                                @else --}}
-                                <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
-                                    Rp.
-                                    {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
-                                </h2>
-                                {{-- @endif --}}
+                            </h2>
+                            @if($produk->stat == 'po')
+                            <h6
+                                class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                PO
+                            </h6>
+                            @endif
                         </div>
                         @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
@@ -171,18 +143,19 @@
             <a href="">
                 <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
             </a>
-            <a href="" class="p-2 bg-{{ $color[0] }}-300 text-sm font-bold font-encode-sans mx-2 rounded-md text-white">1</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">2</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">3</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">4</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">5</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">...</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">32</a>
-            <a href="">
-                <i class="fa fa-chevron-right mx-2" aria-hidden="true"></i> 
-            </a>
-        </div> --}}
-    </div>
+            <a href="" class="p-2 bg-{{ $color[0] }}-300 text-sm font-bold font-encode-sans mx-2 rounded-md
+        text-white">1</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">2</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">3</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">4</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">5</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">...</a>
+        <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">32</a>
+        <a href="">
+            <i class="fa fa-chevron-right mx-2" aria-hidden="true"></i>
+        </a>
+    </div> --}}
+</div>
 </div>
 
 <div class="bgmenulist xl:hidden fixed bg-slate-900 h-screen opacity-20 w-full -bottom-full">
@@ -242,7 +215,7 @@
                 </form>
             </li>
         </ul>
-        
+
         <hr class="my-3">
         <input hidden type="checkbox" class="peer" name="typebottom" id="typebottom">
         <label for="typebottom" class="flex cursor-pointer justify-between items-center">
@@ -257,7 +230,8 @@
                 <li class="my-1">
                     <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="{{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
+                        <button type="submit"
+                            class="{{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -267,7 +241,8 @@
                     <form action="{{ route('list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                        <ul
+                            class="ml-2 {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
                             <li class="appearance-none block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>

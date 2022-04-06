@@ -5,35 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
+use App\Models\ProdukStatus;
 use App\Models\Webconfig;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function landing_page()
+    public function landing_page(Request $request)
     {
-        $produks = Produk::all();
-
-        $newproduct = Produk::whereHas('stocks', function (Builder $query) {
+        $filteredproduct = $request->filterproduct;
+        $produks = Produk::whereHas('stocks', function (Builder $query) {
             $query->where('product_stock', '!=', 0);
-        })->limit(12)
+        })->where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
+            ->limit(12)
             ->where('disable', '!=', 1)
             ->orderBy('kode_produk', 'desc')
-            ->get();
-
-        $hotdeals = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('stat', 'd')
-            ->where('disable', '!=', 1)
-            ->limit(12)
-            ->get();
-
-        $restock = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('stat', 'r')
-            ->where('disable', '!=', 1)
-            ->limit(12)
             ->get();
 
         $featured = Produk::whereHas('stocks', function (Builder $query) {
@@ -46,6 +33,7 @@ class PageController extends Controller
         $page = 'home';
         $subkategoris = KategoriChild::all();
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
 
         //get color webconfig
         $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
@@ -55,7 +43,7 @@ class PageController extends Controller
         //background image
         $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
 
-        return view('user.landingpage', compact('produks', 'newproduct', 'hotdeals', 'restock', 'featured', 'allkategoris', 'subkategoris', 'page', 'color', 'bg_img'));
+        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'allkategoris', 'allstatus', 'subkategoris', 'page', 'color', 'bg_img'));
     }
     public function list_products(Request $request)
     {
@@ -64,6 +52,7 @@ class PageController extends Controller
         $filter = $request->filter;
         $subfilter = $request->subfilter;
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
+        $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
         $subkategoris = KategoriChild::all();
         $subsname = '';
         $filteredproduct = $request->filterproduct;
@@ -78,34 +67,22 @@ class PageController extends Controller
 
         if (!empty($keyword)) {
             $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
-        } else if (!empty($filteredproduct) && $filteredproduct != 'allproduct') {
-            if ($filteredproduct == 'newproduct') {
+        } else if (!empty($filteredproduct)) {
+            if ($filteredproduct != 'featured') {
                 //new product
                 $produks = Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->where('disable', '!=', 1)
+                    ->where('stat', $filteredproduct)
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(9);
-            } else if ($filteredproduct == 'hotdeals') {
-                //hotdeals
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
-                    $query->where('product_stock', '!=', 0);
-                })->where('stat', 'd')
-                    ->where('disable', '!=', 1)
-                    ->paginate(9);
-            } else if ($filteredproduct == 'restock') {
-                //restock
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
-                    $query->where('product_stock', '!=', 0);
-                })->where('stat', 'r')
-                    ->where('disable', '!=', 1)
-                    ->paginate(9);
-            } else if ($filteredproduct == 'featured') {
+            } else {
                 //featured
                 $produks = Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->where('featured', 1)
                     ->where('disable', '!=', 1)
+                    ->orderBy('kode_produk', 'desc')
                     ->paginate(9);
             }
         } else if (!empty($filter)) {
@@ -129,7 +106,7 @@ class PageController extends Controller
         }
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color', 'bg_img'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'allstatus', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color', 'bg_img'));
     }
 
     public function list_articles()

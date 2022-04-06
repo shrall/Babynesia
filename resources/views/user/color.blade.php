@@ -221,6 +221,24 @@
 <div class="peer-checked:border-pink-500"></div>
 <div class="peer-checked:border-rose-500"></div>
 
+<div class="border-red-500"></div>
+<div class="border-orange-500"></div>
+<div class="border-amber-500"></div>
+<div class="border-yellow-500"></div>
+<div class="border-lime-500"></div>
+<div class="border-green-500"></div>
+<div class="border-emerald-500"></div>
+<div class="border-teal-500"></div>
+<div class="border-cyan-500"></div>
+<div class="border-sky-500"></div>
+<div class="border-blue-500"></div>
+<div class="border-indigo-500"></div>
+<div class="border-violet-500"></div>
+<div class="border-purple-500"></div>
+<div class="border-fuchsia-500"></div>
+<div class="border-pink-500"></div>
+<div class="border-rose-500"></div>
+
 {{-- BACKGROUND --}}
 <div class="bg-red-300"></div>
 <div class="bg-orange-300"></div>

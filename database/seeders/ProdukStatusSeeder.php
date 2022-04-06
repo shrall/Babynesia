@@ -25,7 +25,7 @@ class ProdukStatusSeeder extends Seeder
         $ps->save();
 
         $ps = new ProdukStatus();
-        $ps->name = 'Normal';
+        $ps->name = 'New';
         $ps->status_code = '0';
         $ps->save();
 
