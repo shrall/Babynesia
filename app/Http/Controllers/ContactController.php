@@ -54,6 +54,7 @@ class ContactController extends Controller
         $data->subject = $request->subject;
         $data->message = $request->message;
 
+        // ganti receiver mailnya
         Mail::to('receiver-email-id')->send(new ContactMail($data));
 
         if (Mail::failures()) {
