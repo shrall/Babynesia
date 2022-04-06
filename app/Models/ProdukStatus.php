@@ -8,11 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProdukStatus extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $table = 'produk';
     protected $fillable = [
-        'status_code', 'status_desc', 'urutan'
+        'id', 'status_code', 'name'
     ];
-    protected $primaryKey = 'status_code';
-    public $incrementing = false;
 }

@@ -210,31 +210,12 @@
                 </div>
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="stat" checked id="radio-5" value="0"
-                            {{ $produk->stat == '0' ? 'checked' : '' }}>
-                        <label for="radio-5">Ready Stock</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="stat" id="radio-6" value="r"
-                            {{ $produk->stat == 'r' ? 'checked' : '' }}>
-                        <label for="radio-6">Restock Ready</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="stat" id="radio-7" value="d"
-                            {{ $produk->stat == 'd' ? 'checked' : '' }}>
-                        <label for="radio-7">Promo</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="stat" id="radio-8" value="grd"
-                            {{ $produk->stat == 'grd' ? 'checked' : '' }}>
-                        <label for="radio-8">Grosir Ready Stock</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="stat" id="radio-9" value="gpo"
-                            {{ $produk->stat == 'gpo' ? 'checked' : '' }}>
-                        <label for="radio-9">Grosir PO</label>
-                    </div>
+                    @foreach ($produkstatuses as $produkstatus)
+                        <div class="flex items-center gap-2">
+                            <input type="radio" name="stat" {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }} value="{{ $produkstatus->status_code }}">
+                            <label for="radio-5">{{ $produkstatus->name }}</label>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="col-span-3">Harga Promo</div>
                 <div class="col-span-9 flex items-center gap-x-2">

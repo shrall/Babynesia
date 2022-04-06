@@ -4,7 +4,7 @@
     <div class="w-full bg-white mb-2 p-4">
         <span class="font-overpass text-3xl font-bold">Kirim E-Mail</span>
     </div>
-    <form action="" method="post">
+    <form action="{{ route('adminpage.sendmail.post') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="admin-card mb-2">
             <div class="col-span-12">
@@ -12,17 +12,18 @@
             </div>
             <div class="col-span-12">
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-1">
+                    <input type="radio" name="type" id="radio-1" checked value="all">
                     <label for="radio-1">Seluruh Anggota</label>
                 </div>
             </div>
             <div class="col-span-12">
                 <div class="flex items-center gap-2">
-                    <input type="radio" name="" id="radio-2">
+                    <input type="radio" name="type" id="radio-2" value="except">
                     <label for="radio-2">Selain Anggota:</label>
                     <select class="bg-gray-400" id="user-list" name="user[]" multiple="multiple">
-                        <option value="a">user1@gmail.com</option>
-                        <option value="s">user2@gmail.com</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->email }}">{{ $user->email }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -33,7 +34,7 @@
             </div>
             <div class="col-span-3">Judul</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="text" name="" id="" class="admin-input">
+                <input type="text" name="title" id="" class="admin-input">
             </div>
             <div class="col-span-3">Isi E-Mail</div>
             <div class="col-span-12 flex justify-center items-center gap-x-2">

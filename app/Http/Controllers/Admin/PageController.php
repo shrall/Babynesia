@@ -55,7 +55,24 @@ class PageController extends Controller
     }
     public function sendmail()
     {
-        return view('admin.settings.sendmail');
+        $users = User::where('user_status_id', '<=', 2)->get();
+        return view('admin.settings.sendmail', compact('users'));
+    }
+    public function sendmail_post(Request $request)
+    {
+        if ($request->type == 'except') {
+            $emails = User::select('email')->whereNotIn('email', $request->user)->get();
+        }else{
+            $emails = User::select('email')->get();
+        }
+        $emails = User::where('email', 'shrallvierdo@gmail.com')->get();
+        $job = (new \App\Jobs\SendBulkMail($request->title, $emails, $request->content))
+            ->delay(
+                now()
+                    ->addSeconds(2)
+            );
+        dispatch($job);
+        return redirect()->route('adminpage.sendmail');
     }
     public function tutorial()
     {
