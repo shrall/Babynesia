@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faktur;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Webconfig;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -59,13 +61,29 @@ class LoginController extends Controller
             ->first();
         if ($user) {
             Auth::login($user);
-        }else{
+        } else {
             return redirect()->route('login');
         }
         if ($user->user_status_id == 1 || $user->user_status_id == 2) {
+            //disini nambah hitcount
             return redirect()->route('user.landingpage');
         } else {
+            $this->checkOrders();
             return redirect()->route('adminpage.dashboard');
+        }
+    }
+
+    public function checkOrders()
+    {
+        $webconfigs = Webconfig::all();
+
+        $fakturs = Faktur::where('status', '1')->get();
+        foreach ($fakturs as $faktur) {
+            if ((strtotime($faktur->tanggal . ' +' . $webconfigs[30]->content . ' hour') - strtotime(\Carbon\Carbon::now())) < 0) {
+                $faktur->update([
+                    'status' => '5'
+                ]);
+            }
         }
     }
 }

@@ -49,7 +49,7 @@ class DetailCartController extends Controller
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin' => $webconfigs[41]['content'],
+            'origin' => $webconfigs[39]['content'],
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',

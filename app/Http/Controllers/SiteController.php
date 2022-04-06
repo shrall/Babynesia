@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Site;
 use Illuminate\Http\Request;
 
-class SitesController extends Controller
+class SiteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,7 @@ class SitesController extends Controller
      */
     public function index()
     {
-        $sites = Site::all();
-        return view('admin.site.index', compact('sites'));
+        //
     }
 
     /**
@@ -26,7 +24,7 @@ class SitesController extends Controller
      */
     public function create()
     {
-        return view('admin.site.create');
+        //
     }
 
     /**
@@ -37,12 +35,7 @@ class SitesController extends Controller
      */
     public function store(Request $request)
     {
-        Site::create([
-            'code' => $request->title,
-            'isi' => $request->content,
-            'urutan' => $request->order
-        ]);
-        return redirect()->route('adminpage.site.index');
+        //
     }
 
     /**
@@ -64,7 +57,7 @@ class SitesController extends Controller
      */
     public function edit(Site $site)
     {
-        return view('admin.site.edit', compact('site'));
+        //
     }
 
     /**
@@ -76,14 +69,7 @@ class SitesController extends Controller
      */
     public function update(Request $request, Site $site)
     {
-        if ($site->editable == 'yes') {
-            $site->update([
-                'code' => $request->title,
-                'isi' => $request->content,
-                'urutan' => $request->order
-            ]);
-        }
-        return redirect()->route('adminpage.site.index');
+        //
     }
 
     /**
@@ -94,22 +80,6 @@ class SitesController extends Controller
      */
     public function destroy(Site $site)
     {
-        if ($site->editable == 'yes') {
-            $site->delete();
-        }
-        return redirect()->route('adminpage.site.index');
-    }
-    public function upload_photo(Request $request)
-    {
-        if ($request->has('upload')) {
-            $upload = 'site-' . time() . '-' . $request['upload']->getClientOriginalName();
-            $request->upload->move(public_path('uploads'), $upload);
-        } else {
-            $upload = null;
-        }
-        return response()->json([
-            "uploaded" => true,
-            'url' => config('app.url')  . '/uploads/' .  $upload,
-        ]);
+        //
     }
 }

@@ -194,7 +194,7 @@ Route::group([
     Route::resource('produkstockhistory', ProdukStockHistoryController::class);
     Route::resource('promo', PromoController::class);
     Route::resource('receiver', ReceiverController::class);
-    Route::resource('sites', SitesController::class);
+    Route::resource('site', SitesController::class);
     Route::resource('sitesadmin', SitesAdminController::class);
     Route::resource('sitesadminkategori', SitesAdminKategoriController::class);
     Route::resource('sitesadminstatus', SitesAdminStatusController::class);
@@ -247,6 +247,8 @@ Route::group([
 
     Route::post('news/uploadphoto', [AdminNewsController::class, 'upload_photo'])->name('news.uploadphoto');
 
+    Route::post('site/uploadphoto', [AdminSitesController::class, 'upload_photo'])->name('site.uploadphoto');
+
     Route::get('/faktur/filter', [AdminFakturController::class, 'index_filter'])->name('faktur.filter.index');
     Route::post('/faktur/filter', [AdminFakturController::class, 'filter'])->name('faktur.filter');
 
@@ -294,7 +296,7 @@ Route::group([
     Route::resource('produkstockhistory', AdminProdukStockHistoryController::class);
     Route::resource('promo', AdminPromoController::class);
     Route::resource('receiver', AdminReceiverController::class);
-    Route::resource('sites', AdminSitesController::class);
+    Route::resource('site', AdminSitesController::class);
     Route::resource('sitesadmin', AdminSitesAdminController::class);
     Route::resource('sitesadminkategori', AdminSitesAdminKategoriController::class);
     Route::resource('sitesadminstatus', AdminSitesAdminStatusController::class);

@@ -15,7 +15,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        //
+        $faqs = Faq::all();
+        return view('admin.faq.index', compact('faqs'));
     }
 
     /**
@@ -25,7 +26,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.faq.create');
     }
 
     /**
@@ -36,7 +37,14 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Faq::create(
+            [
+                'no_faq' => count(Faq::all()) + 1,
+                'pertanyaan' => $request->pertanyaan,
+                'jawaban' => $request->jawaban
+            ]
+        );
+        return redirect()->route('adminpage.faq.index');
     }
 
     /**
@@ -47,7 +55,6 @@ class FaqController extends Controller
      */
     public function show(Faq $faq)
     {
-        //
     }
 
     /**
@@ -58,7 +65,7 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        //
+        return view('admin.faq.edit', compact('faq'));
     }
 
     /**
@@ -70,7 +77,11 @@ class FaqController extends Controller
      */
     public function update(Request $request, Faq $faq)
     {
-        //
+        $faq->update([
+            'pertanyaan' => $request->pertanyaan,
+            'jawaban' => $request->jawaban
+        ]);
+        return redirect()->route('adminpage.faq.index');
     }
 
     /**
@@ -81,6 +92,7 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        //
+        $faq->delete();
+        return redirect()->route('adminpage.faq.index');
     }
 }

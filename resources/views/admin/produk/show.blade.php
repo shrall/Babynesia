@@ -107,7 +107,10 @@
                             <tr>
                                 <td>{{ $history->trxdate }}</td>
                                 <td>{{ $history->admin }}</td>
-                                <td>{{ $history->faktur_id }}</td>
+                                <td><a class="underline text-blue-400" target="popup"
+                                        href="{{ route('adminpage.faktur.show', $history->faktur_id) }}"
+                                        onclick="window.open('{{ route('adminpage.faktur.show', $history->faktur_id) }}','name','width=700,height=550')">{{ $history->faktur_id }}</a>
+                                </td>
                                 <td>{{ $history->notes }}</td>
                                 <td>{{ $history->amount }}</td>
                                 <td>{{ $stock }}</td>

@@ -24,7 +24,8 @@ class ProdukController extends Controller
         $products = Produk::paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
-        return view('admin.produk.index', compact('products', 'categories', 'brands'));
+        $tipeproduk = ' ';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
 
     public function index_promo()
@@ -74,7 +75,7 @@ class ProdukController extends Controller
     {
         $categories = Kategori::all();
         $brands = Brand::all();
-        $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
+        $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
         return view('admin.produk.create', compact('categories', 'brands', 'products', 'produkstatuses'));
     }
@@ -169,7 +170,7 @@ class ProdukController extends Controller
     {
         $categories = Kategori::all();
         $brands = Brand::all();
-        $products = Produk::where('disable', 0)->orderBy('nama_produk', 'asc')->get();
+        $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
         return view('admin.produk.edit', compact('produk', 'categories', 'brands', 'products', 'produkstatuses'));
     }

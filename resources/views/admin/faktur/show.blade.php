@@ -1167,7 +1167,7 @@
                         <td>&nbsp;&nbsp;Total Berat : {{ $faktur->total_weight ?? 0 }} gram</td>
                     </tr>
                     <tr>
-                        <td colspan="2">&nbsp;</td>
+                        <td colspan="2">{!! $faktur->admin_note !!}</td>
                     </tr>
                     <tr>
                         <td width="50%" valign="top">

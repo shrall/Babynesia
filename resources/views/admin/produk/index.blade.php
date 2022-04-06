@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
-        @if (!$tipeproduk)
+        @if ($tipeproduk == ' ')
             <form action="{{ route('adminpage.produk.search') }}" method="post">
                 @csrf
                 <div class="admin-card">

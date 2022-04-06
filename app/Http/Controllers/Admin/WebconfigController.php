@@ -74,7 +74,7 @@ class WebconfigController extends Controller
             $webconfigs[30]->update([
                 'content' => $request->wait_time
             ]);
-            $webconfigs[41]->update([
+            $webconfigs[39]->update([
                 'content' => $request->kota_pengirim
             ]);
             // $webconfigs[16]->update([
@@ -112,16 +112,16 @@ class WebconfigController extends Controller
             $webconfigs[22]->update([
                 'content' => $image
             ]);
-            $webconfigs[37]->update([
+            $webconfigs[35]->update([
                 'content' => $request->bg_color
             ]);
-            $webconfigs[38]->update([
+            $webconfigs[36]->update([
                 'content' => $request->text_color
             ]);
-            $webconfigs[39]->update([
+            $webconfigs[37]->update([
                 'content' => $request->button_color
             ]);
-            $webconfigs[40]->update([
+            $webconfigs[38]->update([
                 'content' => $request->web_layout
             ]);
             return redirect()->route('adminpage.layoutdesign');

@@ -88,7 +88,7 @@
                     <select name="kota_pengirim" id="kota_pengirim" class="admin-input">
                         @foreach ($cities as $city)
                             <option value={{ $city['city_id'] }}
-                                {{ $city['city_id'] == $webconfigs[41]['content'] ? 'selected' : '' }}>
+                                {{ $city['city_id'] == $webconfigs[39]['content'] ? 'selected' : '' }}>
                                 {{ $city['city_name'] }}</option>
                         @endforeach
                     </select>

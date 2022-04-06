@@ -151,7 +151,8 @@
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
                         <div class="flex items-center gap-2">
-                            <input type="radio" name="stat" {{$loop->iteration == 1 ? 'checked' : ''}} value="{{ $produkstatus->status_code }}">
+                            <input type="radio" name="stat" {{ $loop->iteration == 1 ? 'checked' : '' }}
+                                value="{{ $produkstatus->status_code }}">
                             <label for="radio-5">{{ $produkstatus->name }}</label>
                         </div>
                     @endforeach
@@ -165,7 +166,8 @@
                 <div class="col-span-9 flex gap-x-2">
                     <select name="complement" id="complement" class="admin-input">
                         @foreach ($products as $product)
-                            <option value="{{ $product->kode_produk }}">{{ $product->nama_produk }}</option>
+                            <option value="{{ $product->kode_produk }}">[{{ $product->kode_produk }}] -
+                                {{ $product->nama_produk }}</option>
                         @endforeach
                     </select>
                 </div>

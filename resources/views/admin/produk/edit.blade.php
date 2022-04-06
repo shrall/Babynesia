@@ -227,7 +227,7 @@
                     <select name="complement" id="complement" class="admin-input">
                         @foreach ($products as $product)
                             <option {{ $produk->complement == $product->kode_produk ? 'selected' : '' }}
-                                value="{{ $product->kode_produk }}">{{ $product->nama_produk }}</option>
+                                value="{{ $product->kode_produk }}">[{{ $product->kode_produk }}] - {{ $product->nama_produk }}</option>
                         @endforeach
                     </select>
                 </div>
