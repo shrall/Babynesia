@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Faktur;
+use App\Models\Hitcounter;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -65,7 +66,21 @@ class LoginController extends Controller
             return redirect()->route('login');
         }
         if ($user->user_status_id == 1 || $user->user_status_id == 2) {
-            //disini nambah hitcount
+            $hcs = Hitcounter::where('month', date('Y-M', strtotime(Carbon::now())))->exists();
+            if ($hcs) {
+                $hc = Hitcounter::where('month', date('Y-M', strtotime(Carbon::now())))->first();
+                $hc->update([
+                    'registered' => $hc->registered + 1,
+                    'total' => $hc->total + 1
+                ]);
+            } else {
+                Hitcounter::create([
+                    'month' => date('Y-M', strtotime(Carbon::now())),
+                    'registered' => 1,
+                    'unregistered' => 1,
+                    'total' => 1
+                ]);
+            };
             return redirect()->route('user.landingpage');
         } else {
             $this->checkOrders();

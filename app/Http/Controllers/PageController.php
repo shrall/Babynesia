@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hitcounter;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
 use App\Models\Webconfig;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -13,6 +15,20 @@ class PageController extends Controller
 {
     public function landing_page()
     {
+        $hcs = Hitcounter::where('month', date('Y-M', strtotime(Carbon::now())))->exists();
+        if ($hcs) {
+            $hc = Hitcounter::where('month', date('Y-M', strtotime(Carbon::now())))->first();
+            $hc->update([
+                'unregistered' => $hc->unregistered + 1,
+                'total' => $hc->total + 1
+            ]);
+        } else {
+            Hitcounter::create([
+                'month' => date('Y-M', strtotime(Carbon::now())),
+                'unregistered' => 1,
+                'total' => 1
+            ]);
+        };
         $produks = Produk::all();
 
         $newproduct = Produk::whereHas('stocks', function (Builder $query) {
