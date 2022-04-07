@@ -94,7 +94,9 @@
                             <th>Nama</th>
                             <th>Kategori</th>
                             <th>Merk</th>
-                            <th>HPP</th>
+                            @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                <th>HPP</th>
+                            @endif
                             <th>Harga</th>
                             <th>Promo</th>
                             <th>Stok Sisa</th>
@@ -121,7 +123,9 @@
                                 </td>
                                 <td>{{ $produk->category->nama_kategori ?? '-' }}</td>
                                 <td>{{ $produk->brand->nama_brand ?? '-' }}</td>
-                                <td>{{ AppHelper::rp(intval($produk->harga_pokok)) }}</td>
+                                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                    <td>{{ AppHelper::rp(intval($produk->harga_pokok)) }}</td>
+                                @endif
                                 <td>{{ AppHelper::rp(intval($produk->harga)) }}</td>
                                 <td>{{ AppHelper::rp(intval($produk->harga_sale)) }}</td>
                                 @php

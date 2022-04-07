@@ -60,10 +60,12 @@
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="order" id="order" class="admin-input" value="{{ $produk->sort_nr }}">
                 </div>
-                <div class="col-span-3">HPP</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="number" name="hpp" id="hpp" class="admin-input" value="{{ $produk->hpp }}">rupiah
-                </div>
+                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                    <div class="col-span-3">HPP</div>
+                    <div class="col-span-9 flex items-center gap-x-2">
+                        <input type="number" name="hpp" id="hpp" class="admin-input" value="{{ $produk->hpp }}">rupiah
+                    </div>
+                @endif
                 <div class="col-span-3">Harga Web</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga" id="harga" class="admin-input" value="{{ $produk->harga }}"
@@ -212,7 +214,9 @@
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
                         <div class="flex items-center gap-2">
-                            <input type="radio" name="stat" {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }} value="{{ $produkstatus->status_code }}">
+                            <input type="radio" name="stat"
+                                {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
+                                value="{{ $produkstatus->status_code }}">
                             <label for="radio-5">{{ $produkstatus->name }}</label>
                         </div>
                     @endforeach
@@ -227,7 +231,8 @@
                     <select name="complement" id="complement" class="admin-input">
                         @foreach ($products as $product)
                             <option {{ $produk->complement == $product->kode_produk ? 'selected' : '' }}
-                                value="{{ $product->kode_produk }}">[{{ $product->kode_produk }}] - {{ $product->nama_produk }}</option>
+                                value="{{ $product->kode_produk }}">[{{ $product->kode_produk }}] -
+                                {{ $product->nama_produk }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -246,15 +251,29 @@
                     @foreach ($produk->stocks as $key => $stok)
                         <input type="text" name="stock_code[{{ $loop->iteration }}]" value="{{ $stok->id }}"
                             readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                        <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
-                            class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                        <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
-                            class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                        <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
-                            class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                        <input type="text" name="stock_left[{{ $loop->iteration }}]"
-                            value="{{ $stok->product_stock }}"
-                            class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
+                        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                        {{-- ini tampil kalau bukan staff --}}
+                            <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                            <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                            <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                            <input type="text" name="stock_left[{{ $loop->iteration }}]"
+                                value="{{ $stok->product_stock }}"
+                                class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
+                        @else
+                        {{-- ini tampil kalau staff --}}
+                            <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                            <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                            <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                            <input type="text" name="stock_left[{{ $loop->iteration }}]"
+                                value="{{ $stok->product_stock }}"
+                                class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}" readonly>
+                        @endif
                         @php
                             $orderedstock = 0;
                         @endphp
@@ -265,10 +284,13 @@
                         @endforeach
                         <input type="text" name="stock_ordered[{{ $loop->iteration }}]" value="{{ $orderedstock }}"
                             readonly class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
+
+                        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
                         <a onclick="deleteType({{ $loop->iteration }});"
                             class="admin-action-button-danger cursor-pointer col-span-2 stock-input-{{ $loop->iteration }}">
                             <span class="fa fa-fw fa-trash-alt"></span>
                         </a>
+                        @endif
                     @endforeach
                 </div>
                 <div class="col-span-12 flex mx-auto" onclick="addType();">

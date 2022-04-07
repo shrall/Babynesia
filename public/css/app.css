@@ -3908,6 +3908,9 @@ textarea.form-control.is-invalid{
 .grid-cols-12{
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
+.grid-cols-10{
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
 .grid-rows-5{
   grid-template-rows: repeat(5, minmax(0, 1fr));
 }
@@ -3964,9 +3967,6 @@ textarea.form-control.is-invalid{
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
 }
-.gap-y-1{
-  row-gap: 0.25rem;
-}
 .gap-y-4{
   row-gap: 1rem;
 }
@@ -3976,6 +3976,9 @@ textarea.form-control.is-invalid{
 .gap-x-8{
   -moz-column-gap: 2rem;
        column-gap: 2rem;
+}
+.gap-y-1{
+  row-gap: 0.25rem;
 }
 .space-y-1 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
@@ -4739,13 +4742,13 @@ textarea.form-control.is-invalid{
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
+}
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .text-6xl{
   font-size: 3.75rem;
@@ -5552,11 +5555,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
 .hover\:text-white:hover{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.hover\:text-gray-100:hover{
-  --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
 .hover\:text-gray-300:hover{

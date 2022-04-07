@@ -16,12 +16,35 @@
                     <div class="col-span-9">
                         <div class="flex flex-col gap-1">
                             @foreach ($fakturstatuses as $fs)
-                                <div class="flex items-center gap-2">
-                                    <input type="radio" name="faktur_status" value="{{$fs->id}}"
-                                        {{ $fs->id == $faktur->status ? 'checked' : '' }} id="radio-fs-{{ $fs->id }}">
-                                    <label for="radio-fs-{{ $fs->id }}"
-                                        style="color: {{ $fs->color }};">{{ $fs->status }}</label>
-                                </div>
+                                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                    {{-- muncul kalau admin --}}
+                                    <div class="flex items-center gap-2">
+                                        <input type="radio" name="faktur_status" value="{{ $fs->id }}"
+                                            {{ $fs->id == $faktur->status ? 'checked' : '' }}
+                                            id="radio-fs-{{ $fs->id }}">
+                                        <label for="radio-fs-{{ $fs->id }}"
+                                            style="color: {{ $fs->color }};">{{ $fs->status }}</label>
+                                    </div>
+                                @else
+                                    {{-- muncul kalau staff --}}
+                                    @if ($faktur->status == 1 && $fs->id != 2 && $fs->id != 3)
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="faktur_status" value="{{ $fs->id }}"
+                                                {{ $fs->id == $faktur->status ? 'checked' : '' }}
+                                                id="radio-fs-{{ $fs->id }}">
+                                            <label for="radio-fs-{{ $fs->id }}"
+                                                style="color: {{ $fs->color }};">{{ $fs->status }}</label>
+                                        </div>
+                                    @elseif ($faktur->status == 2 && $fs->id != 1)
+                                        <div class="flex items-center gap-2">
+                                            <input type="radio" name="faktur_status" value="{{ $fs->id }}"
+                                                {{ $fs->id == $faktur->status ? 'checked' : '' }}
+                                                id="radio-fs-{{ $fs->id }}">
+                                            <label for="radio-fs-{{ $fs->id }}"
+                                                style="color: {{ $fs->color }};">{{ $fs->status }}</label>
+                                        </div>
+                                    @endif
+                                @endif
                             @endforeach
                         </div>
                     </div>

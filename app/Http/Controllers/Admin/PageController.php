@@ -37,7 +37,8 @@ class PageController extends Controller
     }
     public function administrator()
     {
-        return view('admin.settings.administrator');
+        $admins = User::where('user_status_id', '>=', '3')->get();
+        return view('admin.settings.administrator', compact('admins'));
     }
     public function administratorcreate()
     {

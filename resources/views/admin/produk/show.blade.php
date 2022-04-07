@@ -53,19 +53,20 @@
             <div class="col-span-3">No. Urut</div>
             <div class="col-span-9"> {{ $produk->sort_nr }}</div>
             <hr class="col-span-12">
-            @php
-                function getDiscPercent($normalPrice, $HPP)
-                {
-                    $percent = (($normalPrice - $HPP) / $normalPrice) * 100;
-                    $percent = round($percent);
-                    return $percent;
-                }
-            @endphp
-            <div class="col-span-3">HPP</div>
-            <div class="col-span-9">
-                {{ AppHelper::rp(intval($produk->harga_pokok)) .' (' .getDiscPercent(intval($produk->harga), intval($produk->harga_pokok)) .'%)' }}
-            </div>
-            {{-- @marshall harga harga perlu ditanya --}}
+            @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                @php
+                    function getDiscPercent($normalPrice, $HPP)
+                    {
+                        $percent = (($normalPrice - $HPP) / $normalPrice) * 100;
+                        $percent = round($percent);
+                        return $percent;
+                    }
+                @endphp
+                <div class="col-span-3">HPP</div>
+                <div class="col-span-9">
+                    {{ AppHelper::rp(intval($produk->harga_pokok)) .' (' .getDiscPercent(intval($produk->harga), intval($produk->harga_pokok)) .'%)' }}
+                </div>
+            @endif
             <div class="col-span-3">Harga Web</div>
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga)) }}</div>
             <div class="col-span-3">Harga Toko</div>

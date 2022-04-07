@@ -5,10 +5,12 @@
         <div class="flex flex-col gap-1">
             <span class="font-overpass text-3xl font-bold">Daftar Anggota</span>
         </div>
-        <a href="{{ route('adminpage.user.create') }}" class="admin-button">Tambah Anggota</a>
+        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+            <a href="{{ route('adminpage.user.create') }}" class="admin-button">Tambah Anggota</a>
+        @endif
     </div>
     <div class="w-full h-vh-90 flex items-center justify-center show-first">
-        <img src="{{asset('svg/loading.svg')}}" class="animate-spin mb-24">
+        <img src="{{ asset('svg/loading.svg') }}" class="animate-spin mb-24">
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4 hide-first invisible">
         <div class="admin-card">
@@ -38,19 +40,21 @@
                                             class="admin-action-button-info cursor-pointer">
                                             <span class="fa fa-fw fa-eye"></span>
                                         </a>
-                                        <a target="blank" href="{{ route('adminpage.user.edit', $user->no_user) }}"
-                                            class="admin-action-button-warning cursor-pointer">
-                                            <span class="fa fa-fw fa-edit"></span>
-                                        </a>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-member-form-{{ $user->no_user }}').submit();"
-                                            class="admin-action-button-danger cursor-pointer">
-                                            <span class="fa fa-fw fa-times"></span>
-                                        </a>
-                                        <form action="{{ route('adminpage.user.destroy', $user->no_user) }}"
-                                            id="delete-member-form-{{ $user->no_user }}" method="post">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                        </form>
+                                        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                            <a target="blank" href="{{ route('adminpage.user.edit', $user->no_user) }}"
+                                                class="admin-action-button-warning cursor-pointer">
+                                                <span class="fa fa-fw fa-edit"></span>
+                                            </a>
+                                            <a onclick="event.preventDefault(); document.getElementById('delete-member-form-{{ $user->no_user }}').submit();"
+                                                class="admin-action-button-danger cursor-pointer">
+                                                <span class="fa fa-fw fa-times"></span>
+                                            </a>
+                                            <form action="{{ route('adminpage.user.destroy', $user->no_user) }}"
+                                                id="delete-member-form-{{ $user->no_user }}" method="post">
+                                                @csrf
+                                                <input name="_method" type="hidden" value="DELETE">
+                                            </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
