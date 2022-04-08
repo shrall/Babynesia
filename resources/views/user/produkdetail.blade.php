@@ -93,9 +93,18 @@
                     </div>
                 </div>
                 <div class="my-4 xl:my-7">
-                    <h1 class="text-3xl font-concert-one text-slate-900">
-                        Rp. {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
-                    </h1>
+                    <div class="flex justify-between">
+                        <h1 class="text-3xl font-concert-one text-slate-900">
+                            Rp. {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
+                        </h1>
+                        @if($produk->stat == 'po')
+                        <h6
+                            class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
+                            PO
+                        </h6>
+                        @endif
+                    </div>
+                    
                     @if ($produk->stat == 'd')
                     <p class="font-encode-sans text-sm sm:text-base text-gray-400"> <del> Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }} </del></p>
                     @endif

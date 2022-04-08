@@ -25,7 +25,7 @@ class DetailCartController extends Controller
     {
         $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::all();
-        $payments = PaymentMethod::all();
+        $payments = PaymentMethod::limit(2)->get();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
         //hitung total harga dan total berat
