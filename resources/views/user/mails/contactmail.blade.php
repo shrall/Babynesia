@@ -1,4 +1,4 @@
-Hello <i>{{ $demo->receiver }}</i>,
+Hello <i>{{ $contactMail->name }}</i>,
 <p>New email from customer.</p>
  <br>
 <p>Name&nbsp;: {{ $contactMail->name }}</p>
@@ -13,4 +13,4 @@ Hello <i>{{ $demo->receiver }}</i>,
  
 Thank You,
 <br/>
-<i>{{ $contactMail->sender }}</i>
+<i>{{ $contactMail->name }}</i>

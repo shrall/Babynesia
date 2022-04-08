@@ -1,4 +1,4 @@
-Hello {{ $demo->receiver }},
+Hello {{ $contactMail->name }},
 New email from customer.
 
 Name&nbsp;: {{ $contactMail->name }}
@@ -11,5 +11,4 @@ value:
 
 
 Thank You,
-
-{{ $contactMail->sender }}
+{{ $contactMail->name }}

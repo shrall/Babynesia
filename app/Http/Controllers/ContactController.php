@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Models\Kategori;
+use App\Models\KategoriChild;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+
 
 class ContactController extends Controller
 {
@@ -55,12 +59,12 @@ class ContactController extends Controller
         $data->message = $request->message;
 
         // ganti receiver mailnya
-        Mail::to('receiver-email-id')->send(new ContactMail($data));
+        Mail::to('ezralfredoo@gmail.com')->send(new ContactMail($data));
 
         if (Mail::failures()) {
-            return response()->Fail('Sorry! Please try again latter');
+            return redirect('contact')->with('status', 'Sorry! Please try again latter');
         } else {
-            return response()->success('Great! Successfully send in your mail');
+            return redirect('contact')->with('status', 'Great! Successfully send in your mail');
         }
     }
 
