@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('user_status_id', '<=', '2')->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -147,6 +147,13 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $redirect = null;
+        if($user->user_status_id <= 2){
+            $redirect = redirect()->route('adminpage.user.index');
+        }else{
+            $redirect = redirect()->route('adminpage.administrator');
+        }
+        $user->delete();
+        return $redirect;
     }
 }

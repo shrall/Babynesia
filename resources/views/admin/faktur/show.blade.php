@@ -1132,7 +1132,7 @@
                                             <td align="center">{{ $item->jumlah }}</td>
                                             <td class="">
                                                 {{ $item->kode_produk . '-' . $item->kode_produk_stock }}&nbsp; OK 71
-                                                {{ $item->product->nama_produk }}
+                                                {{ $item->product->nama_produk ?? '-' }}
                                             </td>
                                             <td class="column_number">{{ AppHelper::rp($item->harga_satuan ?? 0) }}
                                             </td>

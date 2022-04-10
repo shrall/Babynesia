@@ -21,15 +21,6 @@
                         class="admin-action-button-warning cursor-pointer">
                         <span class="fa fa-fw fa-edit"></span>
                     </a>
-                    <a onclick="event.preventDefault(); document.getElementById('delete-product-form').submit();"
-                        class="admin-action-button-danger cursor-pointer">
-                        <span class="fa fa-fw fa-times"></span>
-                    </a>
-                    <form action="{{ route('adminpage.produk.destroy', $produk->kode_produk) }}" id="delete-product-form"
-                        method="post">
-                        @csrf
-                        <input name="_method" type="hidden" value="DELETE">
-                    </form>
                 </div>
             </div>
         </div>

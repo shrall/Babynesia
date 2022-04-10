@@ -158,15 +158,10 @@
                                             class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>
-                                        <a onclick="event.preventDefault(); document.getElementById('delete-produk-form').submit();"
+                                        <a onclick="openModal('delete-{{ $produk->kode_produk }}')"
                                             class="admin-action-button-danger cursor-pointer">
                                             <span class="fa fa-fw fa-times"></span>
                                         </a>
-                                        <form action="{{ route('adminpage.produk.destroy', $produk->kode_produk) }}"
-                                            id="delete-produk-form" method="post">
-                                            @csrf
-                                            <input name="_method" type="hidden" value="DELETE">
-                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -192,4 +187,32 @@
             });
         });
     </script>
+@endsection
+
+@section('modals')
+    @foreach ($products as $produk)
+        <div class="fixed w-screen h-screen hidden items-center justify-center modal z-50 text-black"
+            id="delete-{{ $produk->kode_produk }}-modal">
+            <div class="bg-black opacity-50 w-screen h-screen absolute background-modal" onclick="closeModal();"></div>
+            <div class="rounded-lg bg-white px-8 pt-8 pb-6 absolute flex flex-col gap-y-4 w-128">
+                <span class="fa fa-fw fa-times text-xl hover:text-red-600 absolute top-4 right-4 cursor-pointer"
+                    onclick="closeModal();"></span>
+                <div class="flex items-center justify-center px-8 py-4">
+                    <div class="flex flex-col gap-y-2 text-center">
+                        <span>Apakah kamu yakin ingin menghapus data dengan nama {{ $produk->nama_produk }}?</span>
+                    </div>
+                </div>
+                <div class="admin-action-button-danger w-full cursor-pointer"
+                    onclick="event.preventDefault(); document.getElementById('delete-produk-form-{{ $produk->kode_produk }}').submit();">
+                    Hapus
+                    <span class=" fa fa-fw fa-trash-alt ml-2"></span>
+                </div>
+                <form action="{{ route('adminpage.produk.destroy', $produk->kode_produk) }}"
+                    id="delete-produk-form-{{ $produk->kode_produk }}" method="post">
+                    @csrf
+                    <input name="_method" type="hidden" value="DELETE">
+                </form>
+            </div>
+        </div>
+    @endforeach
 @endsection

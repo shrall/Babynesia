@@ -324,7 +324,8 @@ class ProdukController extends Controller
         $products = $products->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
-        return view('admin.produk.index', compact('products', 'categories', 'brands'));
+        $tipeproduk = " ";
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
     public function search(Request $request)
     {
@@ -355,7 +356,8 @@ class ProdukController extends Controller
 
         $categories = Kategori::all();
         $brands = Brand::all();
-        return view('admin.produk.index', compact('products', 'categories', 'brands'));
+        $tipeproduk = " ";
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
 
     public function add_type(Request $request)
