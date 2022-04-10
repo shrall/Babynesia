@@ -119,21 +119,17 @@
                     <input type="checkbox" name="hide_soldout" id="hide_soldout" class="admin-input"
                         {{ $webconfigs[32]['content'] == '' ? '' : 'checked' }}>
                 </div>
-                <div class="col-span-5">Ijinkan Stok Produk Minus</div>
-                <div class="col-span-7 flex items-center gap-x-2">
-                    <input type="checkbox" name="allow_minus" id="allow_minus" class="admin-input"
-                        {{ $webconfigs[33]['content'] == '' ? '' : 'checked' }}>
-                </div>
                 <div class="col-span-5">Sembunyikan Produk Tanpa Gambar</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="hide_noimage" id="hide_noimage" class="admin-input"
                         {{ $webconfigs[35]['content'] == '' ? '' : 'checked' }}>
                 </div>
-                <div class="col-span-5">Gunakan Harga Toko</div>
+                {{-- ini khusus BBN --}}
+                {{-- <div class="col-span-5">Gunakan Harga Toko</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="use_store_price" id="use_store_price" class="admin-input"
                         {{ $webconfigs[36]['content'] == '' ? '' : 'checked' }}>
-                </div>
+                </div> --}}
                 <div class="col-span-12">
                     <button type="submit" class="admin-button">Simpan</button>
                 </div>

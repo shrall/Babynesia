@@ -79,6 +79,7 @@ class FakturController extends Controller
     {
         $faktur->update([
             'admin_note' => $request->admin_note,
+            'deliveryResi' => $request->no_resi
         ]);
         if ($request->faktur_status) {
             $faktur->update([

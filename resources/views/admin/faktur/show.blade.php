@@ -970,7 +970,7 @@
         }
 
         #table_invoice_product_print {
-            width: 95%;
+            width: 100%;
             border-collapse: collapse;
         }
 
@@ -1164,10 +1164,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;&nbsp;Total Berat : {{ $faktur->total_weight ?? 0 }} gram</td>
+                        <td>Total Berat : {{ $faktur->total_weight ?? 0 }} gram</td>
                     </tr>
                     <tr>
-                        <td colspan="2">{!! $faktur->admin_note !!}</td>
+                        <td>Admin Note : {!! $faktur->admin_note !!}</td>
                     </tr>
                     <tr>
                         <td width="50%" valign="top">
@@ -1182,7 +1182,9 @@
                                         <td colspan="3">
                                             <p><b>{{ $faktur->receiver->receiver_name }} </b><br>
                                                 {{ $faktur->receiver->address }}<br> {{ $faktur->receiver->city }}
-                                                <br> {{ $faktur->receiver->province }}<br> <br> Phone
+                                                <br> {{ $faktur->receiver->province }}<br><br>
+                                                Kurir : {{ $faktur->deliveryExpedition ?? 'Belum Dikirim' }}<br>No Resi
+                                                : {{ $faktur->deliveryResi ?? 'Nomor Resi Belum Ada' }}<br> <br> Phone
                                                 : {{ $faktur->receiver->phone }} <br> Mobile :
                                                 {{ $faktur->receiver->hp }}
                                             </p>

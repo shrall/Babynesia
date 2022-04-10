@@ -123,6 +123,13 @@
                 </div>
                 <div class="col-span-3">Pembayaran</div>
                 <div class="col-span-9">{{ $faktur->payment->description }}</div>
+                <div class="col-span-3">Kurir</div>
+                <div class="col-span-9">{{ $faktur->deliveryExpedition ?? '-' }}</div>
+                <div class="col-span-3">Nomor Resi</div>
+                <div class="col-span-9">
+                    <input type="text" name="no_resi" id="no_resi" class="admin-input"
+                        value="{{ $faktur->deliveryResi }}">
+                </div>
                 <div class="col-span-3 place-self-start text-red-500">Catatan Admin</div>
                 <div class="col-span-9">
                     <textarea type="text" name="admin_note" id="input-content"

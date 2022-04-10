@@ -21,7 +21,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = Produk::paginate(15);
+        $products = Produk::where('disable', 0)->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = ' ';
@@ -302,7 +302,9 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        $produk->delete();
+        $produk->update([
+            'disable' => 1
+        ]);
         return redirect()->back();
     }
 

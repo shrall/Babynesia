@@ -252,7 +252,7 @@
                         <input type="text" name="stock_code[{{ $loop->iteration }}]" value="{{ $stok->id }}"
                             readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                         @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                        {{-- ini tampil kalau bukan staff --}}
+                            {{-- ini tampil kalau bukan staff --}}
                             <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
@@ -263,13 +263,13 @@
                                 value="{{ $stok->product_stock }}"
                                 class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
                         @else
-                        {{-- ini tampil kalau staff --}}
+                            {{-- ini tampil kalau staff --}}
                             <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
-                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
-                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
-                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                                class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_left[{{ $loop->iteration }}]"
                                 value="{{ $stok->product_stock }}"
                                 class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}" readonly>
@@ -286,10 +286,12 @@
                             readonly class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
 
                         @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                        <a onclick="deleteType({{ $loop->iteration }});"
-                            class="admin-action-button-danger cursor-pointer col-span-2 stock-input-{{ $loop->iteration }}">
-                            <span class="fa fa-fw fa-trash-alt"></span>
-                        </a>
+                            <a onclick="deleteType({{ $loop->iteration }});"
+                                class="admin-action-button-danger cursor-pointer col-span-2 stock-input-{{ $loop->iteration }}">
+                                <span class="fa fa-fw fa-trash-alt"></span>
+                            </a>
+                        @else
+                            <a href="#"></a>
                         @endif
                     @endforeach
                 </div>

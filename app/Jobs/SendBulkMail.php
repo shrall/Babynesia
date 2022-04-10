@@ -19,16 +19,18 @@ class SendBulkMail implements ShouldQueue
     public $subject;
     public $emails;
     public $content;
+    public $sender;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($subject, $emails, $content)
+    public function __construct($subject, $emails, $content, $sender)
     {
         $this->subject = $subject;
         $this->emails = $emails;
         $this->content = $content;
+        $this->sender = $sender;
     }
 
     /**
@@ -39,7 +41,7 @@ class SendBulkMail implements ShouldQueue
     public function handle()
     {
         foreach ($this->emails as $value) {
-            Mail::to($value->email)->send(new BulkMail($this->subject, $this->content));
+            Mail::to($value->email)->send(new BulkMail($this->subject, $this->content, $this->sender));
         }
     }
 }

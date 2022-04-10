@@ -23,33 +23,69 @@
                     </thead>
                     <tbody>
                         @foreach ($admins as $user)
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->status->user_status }}</td>
-                                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                                    <td>
-                                        <div class="flex items-center justify-center gap-2">
-                                            <a target="blank" href="{{ route('adminpage.user.edit', $user->no_user) }}"
-                                                class="admin-button-warning cursor-pointer">
-                                                <span class="fa fa-fw fa-edit"></span>
-                                            </a>
-                                            <a onclick="openModal('delete-{{$user->no_user}}');"
-                                                class="admin-button-danger cursor-pointer">
-                                                <span class="fa fa-fw fa-times"></span>
-                                            </a>
-                                        </div>
-                                    </td>
-                                @elseif($user->no_user == Auth::user()->no_user)
-                                    <td>
-                                        <div class="flex items-center justify-center gap-2">
-                                            <a target="blank" href="{{ route('adminpage.user.edit', $user->no_user) }}"
-                                                class="admin-button-warning cursor-pointer">
-                                                <span class="fa fa-fw fa-edit"></span>
-                                            </a>
-                                        </div>
-                                    </td>
+                            @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->status->user_status }}</td>
+                                    @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                        <td>
+                                            <div class="flex items-center justify-center gap-2">
+                                                <a target="blank"
+                                                    href="{{ route('adminpage.user.edit', $user->no_user) }}"
+                                                    class="admin-button-warning cursor-pointer">
+                                                    <span class="fa fa-fw fa-edit"></span>
+                                                </a>
+                                                <a onclick="openModal('delete-{{ $user->no_user }}');"
+                                                    class="admin-button-danger cursor-pointer">
+                                                    <span class="fa fa-fw fa-times"></span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    @elseif($user->no_user == Auth::user()->no_user)
+                                        <td>
+                                            <div class="flex items-center justify-center gap-2">
+                                                <a target="blank"
+                                                    href="{{ route('adminpage.user.edit', $user->no_user) }}"
+                                                    class="admin-button-warning cursor-pointer">
+                                                    <span class="fa fa-fw fa-edit"></span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @else
+                                @if ($user->no_user == Auth::user()->no_user)
+                                    <tr>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->status->user_status }}</td>
+                                        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                            <td>
+                                                <div class="flex items-center justify-center gap-2">
+                                                    <a target="blank"
+                                                        href="{{ route('adminpage.user.edit', $user->no_user) }}"
+                                                        class="admin-button-warning cursor-pointer">
+                                                        <span class="fa fa-fw fa-edit"></span>
+                                                    </a>
+                                                    <a onclick="openModal('delete-{{ $user->no_user }}');"
+                                                        class="admin-button-danger cursor-pointer">
+                                                        <span class="fa fa-fw fa-times"></span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        @elseif($user->no_user == Auth::user()->no_user)
+                                            <td>
+                                                <div class="flex items-center justify-center gap-2">
+                                                    <a target="blank"
+                                                        href="{{ route('adminpage.user.edit', $user->no_user) }}"
+                                                        class="admin-button-warning cursor-pointer">
+                                                        <span class="fa fa-fw fa-edit"></span>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        @endif
+                                    </tr>
                                 @endif
-                            </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

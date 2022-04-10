@@ -5,7 +5,9 @@
         <div class="flex flex-col gap-1">
             <span class="font-overpass text-3xl font-bold">Anggota - {{ $user->name }}</span>
         </div>
-        <a href="{{ route('adminpage.user.edit', $user->no_user) }}" class="admin-button">Edit Data</a>
+        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+            <a href="{{ route('adminpage.user.edit', $user->no_user) }}" class="admin-button">Edit Data</a>
+        @endif
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4">
         <div class="admin-card">

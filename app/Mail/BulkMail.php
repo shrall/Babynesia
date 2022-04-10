@@ -13,15 +13,17 @@ class BulkMail extends Mailable
 
     public $subject;
     public $content;
+    public $sender;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $content)
+    public function __construct($subject, $content, $sender)
     {
         $this->subject = $subject;
         $this->content = $content;
+        $this->sender = $sender;
     }
 
     /**
@@ -31,6 +33,9 @@ class BulkMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)->markdown('emails.bulk');
+        return $this
+            ->from($address = $this->sender, $name = $this->sender)
+            ->subject($this->subject)
+            ->markdown('emails.bulk');
     }
 }

@@ -19,7 +19,7 @@
         <a href="{{ route('adminpage.produk.index.promo') }}" class="hover:text-white">Produk Promo</a>
         <a href="{{ route('adminpage.produk.index.restock') }}" class="hover:text-white">Produk Restock</a>
         <a href="{{ route('adminpage.produk.index.soldout') }}" class="hover:text-white">Produk Sold Out</a>
-        <a href="{{ route('adminpage.produk.index.disabled') }}" class="hover:text-white">Produk Non-Aktif</a>
+        {{-- <a href="{{ route('adminpage.produk.index.disabled') }}" class="hover:text-white">Produk Non-Aktif</a> --}}
         {{-- <a href="#" class="hover:text-white">Produk Pelengkap</a> --}}
         {{-- <a href="#" class="hover:text-white">Kupon Diskon</a> --}}
         <a href="{{ route('adminpage.faktur.index') }}" class="hover:text-white">Laporan Penjualan</a>
@@ -36,7 +36,9 @@
         <a href="{{ route('adminpage.administrator') }}" class="hover:text-white">Administrator</a>
         <a href="{{ route('adminpage.hitcounter') }}" class="hover:text-white">Hit Counter</a>
         <a href="{{ route('adminpage.visitcounter.index') }}" class="hover:text-white">Top Visitor</a>
-        <a href="{{ route('adminpage.sendmail') }}" class="hover:text-white">Send Mail</a>
+        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+            <a href="{{ route('adminpage.sendmail') }}" class="hover:text-white">Send Mail</a>
+        @endif
         {{-- <a href="#" class="hover:text-white">Webmail</a> --}}
         <a href="{{ route('adminpage.tutorial') }}" class="hover:text-white">Tutorial</a>
     </div>
