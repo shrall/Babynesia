@@ -1,7 +1,7 @@
 <div class="w-full bg-white rounded-md shadow-sm mt-3 px-8 pt-7 pb-10">
     <div class="flex justify-between items-center">
         <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">{{ $faktur->sender_name }}</h1>
-        <h2 class="font-concert-one text-3xl text-{{ $color[2] }}-400">Invoice</h2>
+        <h2 class="font-encode-sans text-lg text-white font-bold px-3 py-2 rounded-lg" style="background-color: {{ $faktur->fakturstatus->color }}">{{ $faktur->fakturstatus->status }}</h2>
     </div>
     <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
         <div class="col-span-2 flex">
@@ -130,18 +130,15 @@
             <h6 class="font-encode-sans font-bold text-slate-900">
                 Payment
             </h6>
-            @foreach ($payments as $payment)
                 
             <div class="mt-2">
                 <h6 class="font-encode-sans font-bold text-slate-900">
-                    {{ $payment->info }}
+                    {{ $faktur->payment->info }}
                 </h6>
                 <p class="font-encode-sans text-gray-400">
-                    {{ $payment->description }}
+                    {{ $faktur->payment->description }}
                 </p>
             </div>
-
-            @endforeach
             <a href="{{ route('user.faktur.showfaktur', $faktur) }}" target="_blank" 
                 class="absolute right-0 bottom-0 py-2 px-4 rounded-full bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 text-white font-bold font-encode-sans">
                 <i class="fa fa-print mr-1" aria-hidden="true"></i>

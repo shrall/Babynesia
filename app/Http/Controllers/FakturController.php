@@ -63,7 +63,7 @@ class FakturController extends Controller
             'kode_user' => Auth::id(),
             'status' => 1,
             'tanggal' => $dt,
-            // 'cara_bayar' => ,
+            'cara_bayar' => $request->payment,
             'total_pembayaran' => $request->total,
             'valuta_id' => 1,
             'total_profit' => $request->total,
@@ -160,16 +160,12 @@ class FakturController extends Controller
      */
     public function show(Faktur $faktur)
     {
-        $payments = PaymentMethod::limit(1)->get();
-
-        return view('user.invoice', compact('faktur', 'payments'));
+        return view('user.invoice', compact('faktur'));
     }
 
     public function showDetail(Faktur $faktur)
     {
-        $payments = PaymentMethod::limit(1)->get();
-
-        return view('user.detailinvoice', compact('faktur', 'payments'));
+        return view('user.detailinvoice', compact('faktur'));
     }
 
     public function showFaktur(Faktur $faktur)

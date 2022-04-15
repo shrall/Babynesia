@@ -179,42 +179,19 @@
     </div>
     <div class="bg-white px-3 w-full py-4 overflow-y-auto max-h-72">
         <ul>
-            <li class="my-1">
-                <form action="{{ route('list_products') }}">
-                    <input type="hidden" value="allproduct" name="filterproduct">
-                    <button type="submit"
-                        class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == 'allproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                        All Product
-                    </button>
-                </form>
-            </li>
-            <li class="my-1">
-                <form action="{{ route('list_products') }}">
-                    <input type="hidden" value="newproduct" name="filterproduct">
-                    <button type="submit"
-                        class="{{ $filteredproduct == 'newproduct' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                        New Product
-                    </button>
-                </form>
-            </li>
-            <li class="my-1">
-                <form action="{{ route('list_products') }}">
-                    <input type="hidden" value="hotdeals" name="filterproduct">
-                    <button type="submit"
-                        class="{{ $filteredproduct == 'hotdeals' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                        Hotdeals
-                    </button>
-                </form>
-            </li>
-            <li class="my-1">
-                <form action="{{ route('list_products') }}">
-                    <input type="hidden" value="restock" name="filterproduct">
-                    <button type="submit"
-                        class="{{ $filteredproduct == 'restock' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
-                        Restock Product
-                    </button>
-                </form>
-            </li>
+            @foreach ($allstatus as $status)
+                @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
+                <li class="my-1">
+                    <form action="{{ route('list_products') }}">
+                        <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
+                        <button type="submit"
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
+                            {{ $status->name }} Product
+                        </button>
+                    </form>
+                </li>
+                @endif
+                @endforeach
             <li class="my-1">
                 <form action="{{ route('list_products') }}">
                     <input type="hidden" value="featured" name="filterproduct">

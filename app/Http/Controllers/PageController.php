@@ -92,6 +92,7 @@ class PageController extends Controller
     }
     public function list_products(Request $request)
     {
+        $page = $request->pagehighlight;
 
         $keyword = $request->keyword;
         $filter = $request->filter;
@@ -223,7 +224,7 @@ class PageController extends Controller
 
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct',));
+        return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
     }
 
     public function list_articles()

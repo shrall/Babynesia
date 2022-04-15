@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PaymentArt;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 
 class PaymentArtController extends Controller
@@ -12,9 +13,10 @@ class PaymentArtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.payment');
+        $payments = PaymentMethod::limit(2)->get();
+        return view('user.payment', compact('payments', 'request'));
     }
 
     /**

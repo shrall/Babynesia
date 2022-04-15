@@ -14,7 +14,7 @@
             Receiver
         </h1>
     </div>
-    <form action="{{ route('user.detailcart.index') }}" method="get">
+    <form action="{{ route('user.paymentart.index') }}" method="get">
         @csrf
         <div class="xl:flex xl:justify-between">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4 xl:w-5/6">
@@ -156,7 +156,7 @@
                         </button>
                     </div>
                     <div class="text-center mt-1">
-                        <a href="{{ route('user.cart.index') }}"
+                        <a href="javascript:history.back()"
                             class="font-encode-sans text-gray-400 text-sm sm:text-base">
                             Back
                         </a>

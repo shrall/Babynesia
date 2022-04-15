@@ -317,10 +317,13 @@
                 <div class="">
                     <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                         Invoice No. <span class="text-slate-900 font-bold">{{ $faktur->no_faktur }}</span>
-                        <a href="#">
+                        {{-- <a href="#">
                             <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                 aria-hidden="true"></i>
-                        </a>
+                        </a> --}}
+                    </p>
+                    <p class="my-2 py-1 px-2 w-fit rounded-md font-encode-sans text-sm text-white font-bold" style="background-color: {{ $faktur->fakturstatus->color }}">
+                        {{ $faktur->fakturstatus->status }}
                     </p>
                     <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
                         {{ count($faktur->items) }} barang

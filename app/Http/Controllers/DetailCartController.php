@@ -23,7 +23,7 @@ class DetailCartController extends Controller
      */
     public function index(Request $request)
     {
-        $payments = PaymentMethod::limit(1)->get();
+        $payment = PaymentMethod::where('id', $request->payment)->get()->last();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
         //hitung total harga dan total berat
@@ -81,7 +81,7 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment'));
     }
 
     /**

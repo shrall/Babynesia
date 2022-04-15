@@ -61,6 +61,22 @@
                 </a>
             </li>
             @endif
+
+            @foreach ($statmenus as $menu)
+            @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
+            <li class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white' }}">
+                <form action="{{ route('list_products') }}" id="filtermenu{{ $menu->status_code }}">
+                    
+                </form>
+                <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu{{ $menu->status_code }}">
+                <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu{{ $menu->status_code }}">
+                <button type="submit" form="filtermenu{{ $menu->status_code }}" class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : '' }}">
+                    {{ $menu->name }}
+                </button>
+            </li>
+            @endif
+            @endforeach
+
             @if (!empty($page)&&$page == "about")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="" aria-expanded="true">
@@ -216,10 +232,10 @@
     </div>
 </nav>
 
-<div class="bgmenu xl:hidden fixed bg-slate-900 h-screen opacity-20 w-full -left-full top-0">
+<div class="bgmenu xl:hidden fixed bg-slate-900 h-screen opacity-20 w-full z-50 -left-full top-0">
     <label for="menu" class="inline-block w-full h-full"></label>
 </div>
-<div class="transition-all duration-300 menulist xl:hidden sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
+<div class="transition-all duration-300 menulist xl:hidden z-50 sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
     <div class="bg-{{ $color[0] }}-300 py-4 w-full">
         <div class="flex justify-between px-4">
             <div class="flex items-center">
@@ -255,6 +271,21 @@
             </div>
         </a>
         <hr>
+
+        @foreach ($statmenus as $menu)
+            @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
+            <form action="{{ route('list_products') }}" id="filtermenu1{{ $menu->status_code }}">
+            </form>
+            <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu1{{ $menu->status_code }}">
+            <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu1{{ $menu->status_code }}">
+
+            <button type="submit" form="filtermenu1{{ $menu->status_code }}" class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                {{ $menu->name }}
+            </button>
+            <hr>
+            @endif
+            @endforeach
+
         <a href="">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 About

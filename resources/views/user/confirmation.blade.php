@@ -9,6 +9,7 @@
         <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
             <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>
             <a href="{{ route('user.receiver.create') }}" class="text-gray-400">Receiver ></a>
+            <a href="{{ route('user.paymentart.index') }}" class="text-gray-400">Payment ></a>
             <a href="{{ route('user.detailcart.index') }}">Confirmation</a>
         </p>
         <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
@@ -227,8 +228,6 @@
         <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Payment</h6>
         <div class="px-7 mt-3">
             <ul class="list-disc space-y-2">
-                @foreach ($payments as $payment)
-
                 <li>
                     <div>
                         <h6 class="text-sm sm:text-base font-bold text-slate-900">
@@ -242,8 +241,6 @@
                         </p>
                     </div>
                 </li>
-
-                @endforeach
             </ul>
         </div>
         <h6 class="font-bold mt-4 font-encode-sans text-red-500 text-sm sm:text-base">
@@ -299,7 +296,8 @@
     <input type="hidden" value="{{ $request->delivery }}" name="delivery">
     <input type="hidden" value="{{ $request->phone }}" name="phone">
     <input type="hidden" value="{{ $request->hp }}" name="hp">
-    <input type="hidden" value="{{ $request->note }}" name="note">
+    <input type="hidden" value="{{ $payment->name }}" name="payment">
+    {{-- <input type="hidden" value="{{ $request->note }}" name="note"> --}}
     <input type="hidden" value="{{ $total }}" name="total">
     <input type="hidden" value="{{ $berat }}" name="berat">
     <input type="hidden" value="{{ $jumlahCart }}" name="jumlahCart">
@@ -323,7 +321,7 @@
                     </button>
                 </div>
                 <div class="text-center mt-1">
-                    <a href="{{ route('user.paymentart.index') }}"
+                    <a href="javascript:history.back()"
                         class="font-encode-sans text-gray-400 hover:text-gray-300 text-sm sm:text-base">
                         Back
                     </a>
