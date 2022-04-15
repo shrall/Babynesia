@@ -117,12 +117,12 @@ class FakturController extends Controller
                 'kode_produk_stock' => $cart->kode_produk_stock,
                 'jumlah' => $cart->jumlah,
                 'tanggal' => $dt,
-                'harga_satuan' => $cart->produk->harga,
+                'harga_satuan' => $cart->produk->stat == 'd' ? $cart->produk->harga_sale : $cart->produk->harga,
                 'destination_city_id' => $cart->destination_city_id,
                 'ongkos_kirim' => 0,
-                'subtotal' => $cart->jumlah * $cart->produk->harga,
+                'subtotal' => $cart->produk->stat == 'd' ? $cart->jumlah * $cart->produk->harga_sale : $cart->jumlah * $cart->produk->harga,
                 'valuta_id' => 1,
-                'profit' => $cart->jumlah * $cart->produk->harga,
+                'profit' => $cart->produk->stat == 'd' ? $cart->jumlah * $cart->produk->harga_sale : $cart->jumlah * $cart->produk->harga,
             ]);
 
             //create stock_history
@@ -160,36 +160,16 @@ class FakturController extends Controller
      */
     public function show(Faktur $faktur)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-        $payments = PaymentMethod::all();
+        $payments = PaymentMethod::limit(1)->get();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.invoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments', 'color', 'bg_img'));
+        return view('user.invoice', compact('faktur', 'payments'));
     }
 
     public function showDetail(Faktur $faktur)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $payments = PaymentMethod::all();
-        $subkategoris = KategoriChild::all();
+        $payments = PaymentMethod::limit(1)->get();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.detailinvoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments', 'color', 'bg_img'));
+        return view('user.detailinvoice', compact('faktur', 'payments'));
     }
 
     public function showFaktur(Faktur $faktur)

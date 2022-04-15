@@ -1,4 +1,4 @@
-Hello <i>{{ $contactMail->name }}</i>,
+Hello,
 <p>New email from customer.</p>
  <br>
 <p>Name&nbsp;: {{ $contactMail->name }}</p>

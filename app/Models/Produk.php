@@ -48,4 +48,13 @@ class Produk extends Model
     {
         return $this->belongsTo(Produk::class, 'complement', 'kode_produk');
     }
+
+    public function countStock(Produk $produk)
+    {
+        $count = 0;
+        foreach ($produk->stocks as $stock) {
+            $count += $stock->product_stock;
+        }
+        return $count;
+    }
 }

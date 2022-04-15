@@ -12,38 +12,83 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    private $isHiddenSold;
+    private $isHiddenImage;
+
+    public function __construct()
+    {
+        $hide_product_sold = Webconfig::where('name', 'hide_sold_product')->get()->last();
+        $hide_product_non_img = Webconfig::where('name', 'hide_product_non_img')->get()->last();
+        $this->isHiddenSold = $hide_product_sold->isHidden;
+        $this->isHiddenImage = $hide_product_non_img->isHidden;
+    }
+
     public function landing_page(Request $request)
     {
-        $filteredproduct = $request->filterproduct;
-        $produks = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
-            ->limit(12)
-            ->where('disable', '!=', 1)
-            ->orderBy('kode_produk', 'desc')
-            ->get();
+        $filteredproduct = !empty($request->filterproduct) ? $request->filterproduct : '0';
 
-        $featured = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('featured', 1)
-            ->where('disable', '!=', 1)
-            ->limit(4)
-            ->get();
+        if ($this->isHiddenImage != 1) {
+            $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                $query->where('product_stock', '!=', 0);
+            })->where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
+                ->limit(12)
+                ->where('disable', '!=', 1)
+                ->orderBy('kode_produk', 'desc')
+                ->get()
+
+                : Produk::where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
+                ->limit(12)
+                ->where('disable', '!=', 1)
+                ->orderBy('kode_produk', 'desc')
+                ->get();
+
+            $featured = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                $query->where('product_stock', '!=', 0);
+            })->where('featured', 1)
+                ->where('disable', '!=', 1)
+                ->limit(4)
+                ->get()
+
+                : Produk::where('featured', 1)
+                ->where('disable', '!=', 1)
+                ->limit(4)
+                ->get();
+        } else {
+            $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                $query->where('product_stock', '!=', 0);
+            })->where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
+                ->limit(12)
+                ->where('disable', '!=', 1)
+                ->where('image', '!=', null)
+                ->orderBy('kode_produk', 'desc')
+                ->get()
+
+                : Produk::where('stat', !empty($filteredproduct) ? $filteredproduct : '0')
+                ->limit(12)
+                ->where('disable', '!=', 1)
+                ->where('image', '!=', null)
+                ->orderBy('kode_produk', 'desc')
+                ->get();
+
+            $featured = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                $query->where('product_stock', '!=', 0);
+            })->where('featured', 1)
+                ->where('disable', '!=', 1)
+                ->where('image', '!=', null)
+                ->limit(4)
+                ->get()
+
+                : Produk::where('featured', 1)
+                ->where('disable', '!=', 1)
+                ->where('image', '!=', null)
+                ->limit(4)
+                ->get();
+        }
 
         $page = 'home';
-        $subkategoris = KategoriChild::all();
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'allkategoris', 'allstatus', 'subkategoris', 'page', 'color', 'bg_img'));
+        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'allstatus', 'page'));
     }
     public function list_products(Request $request)
     {
@@ -51,95 +96,147 @@ class PageController extends Controller
         $keyword = $request->keyword;
         $filter = $request->filter;
         $subfilter = $request->subfilter;
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
         $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
-        $subkategoris = KategoriChild::all();
         $subsname = '';
         $filteredproduct = $request->filterproduct;
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
+        if ($this->isHiddenImage != 1) {
 
-        if (!empty($keyword)) {
-            $produks = Produk::where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
-        } else if (!empty($filteredproduct)) {
-            if ($filteredproduct != 'featured') {
-                //new product
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
+
+            if (!empty($keyword)) {
+                $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('disable', '!=', 1)
-                    ->where('stat', $filteredproduct)
-                    ->orderBy('kode_produk', 'desc')
-                    ->paginate(9);
+                })->where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9)
+                    : Produk::where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
+            } else if (!empty($filteredproduct)) {
+                if ($filteredproduct != 'featured') {
+                    //new product
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('disable', '!=', 1)
+                        ->where('stat', $filteredproduct)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9)
+                        : Produk::where('disable', '!=', 1)
+                        ->where('stat', $filteredproduct)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9);
+                } else {
+                    //featured
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('featured', 1)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9)
+                        : Produk::where('featured', 1)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9);
+                }
+            } else if (!empty($filter)) {
+                $kategori = Kategori::where('no_kategori', $filter)->get()->first();
+                if (!empty($subfilter)) {
+                    $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9)
+                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9);
+                    $subsname = $subs->child_name->child_name;
+                } else {
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9)
+                        : Produk::where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9);
+                }
             } else {
-                //featured
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
+                $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('featured', 1)
-                    ->where('disable', '!=', 1)
-                    ->orderBy('kode_produk', 'desc')
-                    ->paginate(9);
-            }
-        } else if (!empty($filter)) {
-            $kategori = Kategori::where('no_kategori', $filter)->get()->first();
-            if (!empty($subfilter)) {
-                $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
-                    $query->where('product_stock', '!=', 0);
-                })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(9);
-                $subsname = $subs->child_name->child_name;
-            } else {
-                $produks = Produk::whereHas('stocks', function (Builder $query) {
-                    $query->where('product_stock', '!=', 0);
-                })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(9);
+                })->paginate(9)
+                    : Produk::paginate(9);
+                $filteredproduct = 'allproduct';
             }
         } else {
-            $produks = Produk::whereHas('stocks', function (Builder $query) {
-                $query->where('product_stock', '!=', 0);
-            })->paginate(9);
-            $filteredproduct = 'allproduct';
+
+
+            //image 0 hidden
+            if (!empty($keyword)) {
+                $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9)
+                    : Produk::where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(9);
+            } else if (!empty($filteredproduct)) {
+                if ($filteredproduct != 'featured') {
+                    //new product
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('disable', '!=', 1)
+                        ->where('stat', $filteredproduct)
+                        ->where('image', '!=', null)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9)
+                        : Produk::where('disable', '!=', 1)
+                        ->where('stat', $filteredproduct)
+                        ->where('image', '!=', null)
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(9);
+                } else {
+                    //featured
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('featured', 1)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('image', '!=', null)
+                        ->paginate(9)
+                        : Produk::where('featured', 1)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('image', '!=', null)
+                        ->paginate(9);
+                }
+            } else if (!empty($filter)) {
+                $kategori = Kategori::where('no_kategori', $filter)->get()->first();
+                if (!empty($subfilter)) {
+                    $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(9)
+                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(9);
+                    $subsname = $subs->child_name->child_name;
+                } else {
+                    $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(9)
+                        : Produk::where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(9);
+                }
+            } else {
+                $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
+                    $query->where('product_stock', '!=', 0);
+                })->where('image', '!=', null)->paginate(9)
+                    : Produk::where('image', '!=', null)->paginate(9);
+                $filteredproduct = 'allproduct';
+            }
         }
+
+
+
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allkategoris', 'allstatus', 'subkategoris', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'color', 'bg_img'));
+        return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct',));
     }
 
     public function list_articles()
     {
         $page = 'article';
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.articles', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
+        return view('user.articles', compact('page'));
     }
 
     public function article_detail()
     {
         $page = 'article';
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.detailarticle', compact('page', 'allkategoris', 'subkategoris', 'color', 'bg_img'));
+        return view('user.detailarticle', compact('page'));
     }
 }

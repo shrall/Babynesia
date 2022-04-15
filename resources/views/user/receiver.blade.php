@@ -151,7 +151,7 @@
                     <input type="hidden" value="{{ $note }}" name="note">
                     <div class="text-center">
                         <button type="submit"
-                            class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
+                            class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:text-white hover:bg-{{ $color[2] }}-400 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
                             Next Step
                         </button>
                     </div>

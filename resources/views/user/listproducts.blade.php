@@ -113,7 +113,7 @@
                         class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                            [{{ $produk->kode_produk }}] {{ $produk->nama_produk }}
+                            {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
 
@@ -121,12 +121,22 @@
                                 Rp.
                                 {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
-                            @if($produk->stat == 'po')
-                            <h6
-                                class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                PO
-                            </h6>
-                            @endif
+                            <div class="flex space-x-2">
+                                @if($produk->stat == 'po')
+                                <h6
+                                    class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                    PO
+                                </h6>
+                                @endif
+                                @if($hideconfig[1] == 0)
+                                @if($produk->countStock($produk) == 0)
+                                <h6
+                                    class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                    Sold
+                                </h6>
+                                @endif
+                                @endif
+                            </div>
                         </div>
                         @if ($produk->stat == 'd')
                         <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">

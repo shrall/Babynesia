@@ -1,4 +1,4 @@
-Hello {{ $contactMail->name }},
+Hello,
 New email from customer.
 
 Name&nbsp;: {{ $contactMail->name }}

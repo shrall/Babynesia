@@ -20,19 +20,9 @@ class CartController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-            $subkategoris = KategoriChild::all();
             $carts = DetailCart::where('no_user', Auth::id())->get();
 
-            //get color webconfig
-            $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-            $text_color = Webconfig::where('name', 'text_color')->get()->last();
-            $button_color = Webconfig::where('name', 'button_color')->get()->last();
-            $color = [$bg_color->content, $text_color->content, $button_color->content];
-            //background image
-            $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-            return view('user.cart', compact('allkategoris', 'carts', 'subkategoris', 'color', 'bg_img'));
+            return view('user.cart', compact('carts'));
         }
 
         return redirect()->route('login');

@@ -23,9 +23,7 @@ class DetailCartController extends Controller
      */
     public function index(Request $request)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-        $payments = PaymentMethod::limit(2)->get();
+        $payments = PaymentMethod::limit(1)->get();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
         //hitung total harga dan total berat
@@ -83,15 +81,7 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-        //background image
-        $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
-
-        return view('user.confirmation', compact('request', 'allkategoris', 'subkategoris', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments', 'color', 'bg_img'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payments'));
     }
 
     /**
@@ -159,16 +149,16 @@ class DetailCartController extends Controller
      */
     public function update(Request $request, DetailCart $detailCart)
     {
-        if (!empty($request->cartnote)) {
-            $note = $request->cartnote;
-        } else {
-            $note = $request->cartnote1;
-        }
+        // if (!empty($request->cartnote)) {
+        //     $note = $request->cartnote;
+        // } else {
+        //     $note = $request->cartnote1;
+        // }
 
         $detailCart = DetailCart::where('no_detail_cart', $request->idcart)->get()->last();
         $detailCart->update([
-            'jumlah' => $request->jumlah,
-            'note' => $note
+            'jumlah' => $request->jumlah != $detailCart->jumlah ? $request->jumlah : $request->jumlah1,
+            // 'note' => $note
         ]);
         return redirect()->route('user.cart.index');
     }
@@ -187,9 +177,11 @@ class DetailCartController extends Controller
 
     public function customDestroy(Request $request)
     {
-        foreach ($request->select as $select) {
-            $cart = DetailCart::where('no_detail_cart', $select);
-            $cart->delete();
+        if (!empty($request->select)) {
+            foreach ($request->select as $select) {
+                $cart = DetailCart::where('no_detail_cart', $select);
+                $cart->delete();
+            }
         }
         return redirect()->route('user.cart.index');
     }
