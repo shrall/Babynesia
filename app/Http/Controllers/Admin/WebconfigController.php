@@ -95,7 +95,7 @@ class WebconfigController extends Controller
             $webconfigs[33]->update([
                 'content' => $request->allow_minus
             ]);
-            $webconfigs[35]->update([
+            $webconfigs[40]->update([
                 'content' => $request->hide_noimage
             ]);
             $webconfigs[36]->update([

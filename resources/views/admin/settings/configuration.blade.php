@@ -122,7 +122,7 @@
                 <div class="col-span-5">Sembunyikan Produk Tanpa Gambar</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="hide_noimage" id="hide_noimage" class="admin-input"
-                        {{ $webconfigs[35]['content'] == '' ? '' : 'checked' }}>
+                        {{ $webconfigs[40]['content'] == '' ? '' : 'checked' }}>
                 </div>
                 {{-- ini khusus BBN --}}
                 {{-- <div class="col-span-5">Gunakan Harga Toko</div>
