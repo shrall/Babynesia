@@ -29,7 +29,7 @@
 
     @endforeach
     
-    <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
+    {{-- <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
         <input type="checkbox" name="faq" id="pertanyaan1" class="peer" hidden>
         <label for="pertanyaan1" class="cursor-pointer inline-block h-full w-full absolute"></label>
         <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
@@ -265,7 +265,7 @@
                 tes isi
             </p>
         </div>
-    </div>
+    </div> --}}
 
 
 </div>

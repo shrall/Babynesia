@@ -10,7 +10,7 @@
         <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
             <div>
                 <input type="radio" name="test" onclick="showcontent()" id="profile" value="profile" class="peer"
-                    checked hidden>
+                    {{ $checker == 'profile' ? 'checked' : '' }} hidden>
                 <label for="profile" type="button"
                     class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     Profile Info
@@ -28,7 +28,7 @@
             <hr class="my-3">
             <div>
                 <input type="radio" name="test" onclick="showcontent()" id="history" value="history" class="peer"
-                    hidden>
+                {{ $checker == 'history' ? 'checked' : '' }} hidden>
                 <label for="history" type="button"
                     class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     History Transaksi
@@ -400,7 +400,11 @@
         profile_info.style.display = "block";
         profile_edit.style.display = "none";
         profile_history.style.display = "none";
-    }
+    } else if (historyCheck.checked) {
+            profile_edit.style.display = "none";
+            profile_info.style.display = "none";
+            profile_history.style.display = "block";
+        }
 
     function showcontent() {
         if (profileCheck.checked) {

@@ -19,13 +19,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $fakturs = Faktur::where('kode_user', Auth::id())->orderBy('no_faktur', 'desc')->paginate(10);
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
+        $checker = $request->checker;
+        if (empty($checker)) {
+            $checker = 'profile';
+        }
 
-        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces'));
+        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker'));
     }
 
     /**

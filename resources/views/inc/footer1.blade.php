@@ -11,7 +11,7 @@
                     TokoBayiFiv
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
+                    <a href="{{ route('about') }}">
                         about us
                     </a>
                 </li>
@@ -34,9 +34,12 @@
                         account
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.user.index') }}">
+                    <form action="{{ route('user.user.index') }}" id="formchecker"></form>
+                    <input type="hidden" name="checker" value="history" form="formchecker">
+                    <button type="submit" form="formchecker">
                         transaction history
-                    </a> </li>
+                    </button> 
+                </li>
             </ul>
             <ul>
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">
