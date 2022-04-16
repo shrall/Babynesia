@@ -1083,7 +1083,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            <h1>{{ config('app.name') }}</h1>
+                            <h1>TokoBayiFiv</h1>
                             <p></p>
                         </th>
                         <th>
