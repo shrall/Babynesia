@@ -355,10 +355,6 @@
                 </div>
             </div>
             <div class="sm:hidden mt-2">
-                <h6
-                    class="sm:hidden py-1 px-2 w-fit bg-amber-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
-                    Menunggu Konfirmasi
-                </h6>
                 <div class="mt-2 flex justify-between items-center">
                     <div>
                         <p class="font-encode-sans text-sm sm:text-base text-gray-400">
