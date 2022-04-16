@@ -18,6 +18,7 @@
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
+                        <input type="hidden" name="pagehighlight" value="{{ $status->name }}"">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
                             {{ $status->name }} Product
@@ -184,6 +185,7 @@
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
+                        <input type="hidden" name="pagehighlight" value="{{ $status->name }}">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
                             {{ $status->name }} Product

@@ -136,17 +136,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/register', [RegisterController::class, 'getRegister'])->name('register');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.request');
-Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showForgotForm'])->name('password.reset');
-Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
-
 // reload captcha
 Route::get('/reload', [CaptchaController::class, 'reload'])->name('reload');
 
 // bisa diakses sebelum login
 Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
 Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
+Route::get('/about', [PageController::class, 'about'])->name('about');
 // Route::get('/article', [PageController::class, 'list_articles'])->name('article');
 // Route::get('/article/detail', [PageController::class, 'article_detail'])->name('article.detail');
 Route::resource('contact', ContactController::class);

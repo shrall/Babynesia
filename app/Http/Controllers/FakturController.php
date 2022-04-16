@@ -138,14 +138,15 @@ class FakturController extends Controller
             $cart->delete();
 
             //kurangin stock produk
-            $cart->produk->update([
-                'stock' => $cart->produk->stock - 1
-            ]);
+            // $cart->produk->update([
+            //     'stock' => $cart->produk->stock - $cart->jumlah
+            // ]);
+            // gadipake karna emang udah
 
             //kurangin produk stock
 
             $cart->produkstock->update([
-                'produk_stock' => $cart->produkstock->produk_stock - 1
+                'produk_stock' => $cart->produkstock->produk_stock - $cart->jumlah
             ]);
         }
 

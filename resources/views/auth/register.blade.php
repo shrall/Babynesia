@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="min-h-screen sm:flex sm:justify-center px-3 pt-4 pb-14">
+@include('inc.navbar1')
+<div class="min-h-screen sm:flex sm:justify-center px-3 pt-8 pb-14">
     <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
         <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-500">Registration</h1>
         <p class="text-gray-400 font-encode-sans text-sm sm:text-base text-clip mt-3">
@@ -298,4 +299,5 @@
 </div>
 </div>
 </div> --}}
+@include('inc.footer1')
 @endsection

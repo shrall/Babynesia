@@ -227,6 +227,12 @@ class PageController extends Controller
         return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
     }
 
+    public function about()
+    {
+        $page = 'about';
+        return view('user.about', compact('page'));
+    }
+
     public function list_articles()
     {
         $page = 'article';

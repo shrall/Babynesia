@@ -79,14 +79,14 @@
 
             @if (!empty($page)&&$page == "about")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="" aria-expanded="true">
-                    About
+                <a href="{{ route('about') }}" aria-expanded="true">
+                    {{ $navmenus[0]->code }}
                 </a>
             </li>
             @else
             <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="" aria-expanded="true">
-                    About
+                <a href="{{ route('about') }}" aria-expanded="true">
+                    {{ $navmenus[0]->code }}
                 </a>
             </li>
             @endif
@@ -103,6 +103,32 @@
                 </a>
             </li>
             @endif --}}
+            @if (!empty($page)&&$page == "contact")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
+                <a href="{{ route('contact.index') }}" aria-expanded="true">
+                    {{ $navmenus[1]->code }}
+                </a>
+            </li>
+            @else
+            <li class="ml-4 inline-block font-encode-sans text-white">
+                <a href="{{ route('contact.index') }}" aria-expanded="true">
+                    {{ $navmenus[1]->code }}
+                </a>
+            </li>
+            @endif
+            @if (!empty($page)&&$page == "guestbook")
+            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
+                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
+                    {{ $navmenus[2]->code }}
+                </a>
+            </li>
+            @else
+            <li class="ml-4 inline-block font-encode-sans text-white">
+                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
+                    {{ $navmenus[2]->code }}
+                </a>
+            </li>
+            @endif
             @if (!empty($page)&&$page == "faq")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('faq.index') }}" aria-expanded="true">
@@ -113,32 +139,6 @@
             <li class="ml-4 inline-block font-encode-sans text-white">
                 <a href="{{ route('faq.index') }}" aria-expanded="true">
                     FAQ
-                </a>
-            </li>
-            @endif
-            @if (!empty($page)&&$page == "contact")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('contact.index') }}" aria-expanded="true">
-                    Contact
-                </a>
-            </li>
-            @else
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('contact.index') }}" aria-expanded="true">
-                    Contact
-                </a>
-            </li>
-            @endif
-            @if (!empty($page)&&$page == "guestbook")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
-                    Guestbook
-                </a>
-            </li>
-            @else
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
-                    Guestbook
                 </a>
             </li>
             @endif
@@ -286,9 +286,9 @@
             @endif
             @endforeach
 
-        <a href="">
+        <a href="{{ route('about') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                About
+                {{ $navmenus[0]->code }}
             </div>
         </a>
         <hr>
@@ -298,21 +298,21 @@
             </div>
         </a> --}}
         <hr>
-        <a href="{{ route('faq.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                FAQ
-            </div>
-        </a>
-        <hr>
         <a href="{{ route('contact.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                Contact
+                {{ $navmenus[1]->code }}
             </div>
         </a>
         <hr>
         <a href="{{ route('user.guestbook.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "guestbook" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                Guestbook
+                {{ $navmenus[2]->code }}
+            </div>
+        </a>
+        <hr>
+        <a href="{{ route('faq.index') }}">
+            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                FAQ
             </div>
         </a>
         <hr>

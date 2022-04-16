@@ -48,18 +48,12 @@ class AppServiceProvider extends ServiceProvider
         $hideconfig = [$hide_product_code->isHidden, $hide_product_sold->isHidden, $hide_product_non_img->isHidden];
 
         //sites untuk navbar
-        $navmenus = Sites::where('no', '!=', 36)
-            ->where('no', '!=', 37)
-            ->where('no', '!=', 38)
-            ->where('no', '!=', 39)
-            ->where('no', '!=', 10)
-            ->where('no', '!=', 28)
-            ->where('no', '!=', 29)
-            ->where('no', '!=', 30)
-            ->where('no', '!=', 33) //ongkos kirim
-            ->where('no', '!=', 34)
-            ->where('no', '!=', 35)
-            ->get();
+
+        $site1 = Sites::where('no', '=', 23)->get()->last();
+        $site2 = Sites::where('no', '=', 32)->get()->last();
+        $site3 = Sites::where('no', '=', 4)->get()->last();
+
+        $navmenus = [$site1, $site2, $site3];
 
         $statmenus = ProdukStatus::orderBy('status_code', 'asc')->get();
 
@@ -71,5 +65,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('bg_img', $bg_img);
         View::share('hideconfig', $hideconfig);
         View::share('statmenus', $statmenus);
+        View::share('navmenus', $navmenus);
     }
 }

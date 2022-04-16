@@ -3497,6 +3497,9 @@ textarea.form-control.is-invalid{
 .top-1\/2{
   top: 50%;
 }
+.bottom-0{
+  bottom: 0px;
+}
 .left-0{
   left: 0px;
 }
@@ -3505,12 +3508,6 @@ textarea.form-control.is-invalid{
 }
 .top-24{
   top: 6rem;
-}
-.top-4{
-  top: 1rem;
-}
-.bottom-0{
-  bottom: 0px;
 }
 .-bottom-full{
   bottom: -100%;
@@ -3530,11 +3527,11 @@ textarea.form-control.is-invalid{
 .col-span-12{
   grid-column: span 12 / span 12;
 }
-.col-span-10{
-  grid-column: span 10 / span 10;
-}
 .col-span-2{
   grid-column: span 2 / span 2;
+}
+.col-span-10{
+  grid-column: span 10 / span 10;
 }
 .col-span-11{
   grid-column: span 11 / span 11;
@@ -3574,6 +3571,10 @@ textarea.form-control.is-invalid{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
 .mx-3{
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -3585,10 +3586,6 @@ textarea.form-control.is-invalid{
 .my-3{
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
-}
-.my-6{
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
 }
 .mx-2{
   margin-left: 0.5rem;
@@ -3646,6 +3643,12 @@ textarea.form-control.is-invalid{
 .mb-4{
   margin-bottom: 1rem;
 }
+.ml-7{
+  margin-left: 1.75rem;
+}
+.mr-1{
+  margin-right: 0.25rem;
+}
 .mr-5{
   margin-right: 1.25rem;
 }
@@ -3667,14 +3670,8 @@ textarea.form-control.is-invalid{
 .mb-5{
   margin-bottom: 1.25rem;
 }
-.ml-7{
-  margin-left: 1.75rem;
-}
 .mb-7{
   margin-bottom: 1.75rem;
-}
-.mr-1{
-  margin-right: 0.25rem;
 }
 .mt-6{
   margin-top: 1.5rem;
@@ -3721,13 +3718,13 @@ textarea.form-control.is-invalid{
 .h-5{
   height: 1.25rem;
 }
-.h-screen{
-  height: 100vh;
-}
 .h-fit{
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+.h-screen{
+  height: 100vh;
 }
 .h-full{
   height: 100%;
@@ -3804,9 +3801,6 @@ textarea.form-control.is-invalid{
 .w-7{
   width: 1.75rem;
 }
-.w-40{
-  width: 10rem;
-}
 .w-fit{
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -3820,6 +3814,9 @@ textarea.form-control.is-invalid{
 }
 .w-96{
   width: 24rem;
+}
+.w-40{
+  width: 10rem;
 }
 .w-28{
   width: 7rem;
@@ -3841,9 +3838,6 @@ textarea.form-control.is-invalid{
 }
 .max-w-6xl{
   max-width: 72rem;
-}
-.max-w-2xl{
-  max-width: 42rem;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -3920,9 +3914,6 @@ textarea.form-control.is-invalid{
 .flex-wrap{
   flex-wrap: wrap;
 }
-.items-start{
-  align-items: flex-start;
-}
 .items-end{
   align-items: flex-end;
 }
@@ -3987,11 +3978,6 @@ textarea.form-control.is-invalid{
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
-.space-y-4 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
-}
 .space-y-2 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -4007,11 +3993,6 @@ textarea.form-control.is-invalid{
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
-.space-x-1 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
 .place-self-start{
   place-self: start;
 }
@@ -4020,9 +4001,6 @@ textarea.form-control.is-invalid{
 }
 .overflow-y-auto{
   overflow-y: auto;
-}
-.overflow-x-hidden{
-  overflow-x: hidden;
 }
 .text-clip{
   text-overflow: clip;
@@ -4038,10 +4016,6 @@ textarea.form-control.is-invalid{
 }
 .rounded-sm{
   border-radius: 0.125rem;
-}
-.rounded-t{
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
 }
 .rounded-t-lg{
   border-top-left-radius: 0.5rem;
@@ -4073,9 +4047,6 @@ textarea.form-control.is-invalid{
 }
 .border-l-2{
   border-left-width: 2px;
-}
-.border-b{
-  border-bottom-width: 1px;
 }
 .border-b-4{
   border-bottom-width: 4px;
@@ -4336,6 +4307,10 @@ textarea.form-control.is-invalid{
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
+.bg-amber-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
+}
 .bg-red-500{
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
@@ -4411,10 +4386,6 @@ textarea.form-control.is-invalid{
 .bg-orange-400{
   --tw-bg-opacity: 1;
   background-color: rgb(251 146 60 / var(--tw-bg-opacity));
-}
-.bg-amber-400{
-  --tw-bg-opacity: 1;
-  background-color: rgb(251 191 36 / var(--tw-bg-opacity));
 }
 .bg-yellow-400{
   --tw-bg-opacity: 1;
@@ -4585,9 +4556,6 @@ textarea.form-control.is-invalid{
 .p-2{
   padding: 0.5rem;
 }
-.p-5{
-  padding: 1.25rem;
-}
 .py-4{
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -4616,17 +4584,17 @@ textarea.form-control.is-invalid{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.py-6{
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
+.py-3{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 .px-4{
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.py-3{
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+.py-6{
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 .px-10{
   padding-left: 2.5rem;
@@ -4659,14 +4627,14 @@ textarea.form-control.is-invalid{
 .pt-8{
   padding-top: 2rem;
 }
-.pt-4{
-  padding-top: 1rem;
-}
 .pb-14{
   padding-bottom: 3.5rem;
 }
 .pb-10{
   padding-bottom: 2.5rem;
+}
+.pt-7{
+  padding-top: 1.75rem;
 }
 .pb-6{
   padding-bottom: 1.5rem;
@@ -4683,14 +4651,14 @@ textarea.form-control.is-invalid{
 .pb-5{
   padding-bottom: 1.25rem;
 }
+.pt-4{
+  padding-top: 1rem;
+}
 .pb-7{
   padding-bottom: 1.75rem;
 }
 .pl-4{
   padding-left: 1rem;
-}
-.pt-7{
-  padding-top: 1.75rem;
 }
 .pl-8{
   padding-left: 2rem;
@@ -4706,9 +4674,6 @@ textarea.form-control.is-invalid{
 }
 .pb-8{
   padding-bottom: 2rem;
-}
-.pl-3{
-  padding-left: 0.75rem;
 }
 .text-left{
   text-align: left;
@@ -6268,9 +6233,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .sm\:top-20{
     top: 5rem;
   }
-  .sm\:col-span-2{
-    grid-column: span 2 / span 2;
-  }
   .sm\:col-span-3{
     grid-column: span 3 / span 3;
   }
@@ -6287,9 +6249,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .sm\:mt-0{
     margin-top: 0px;
-  }
-  .sm\:mt-3{
-    margin-top: 0.75rem;
   }
   .sm\:mt-4{
     margin-top: 1rem;
@@ -6315,8 +6274,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .sm\:w-3\/4{
     width: 75%;
   }
-  .sm\:w-44{
-    width: 11rem;
+  .sm\:w-28{
+    width: 7rem;
   }
   .sm\:w-vw-30{
     width: 30vw;
@@ -6324,26 +6283,17 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .sm\:w-40{
     width: 10rem;
   }
-  .sm\:w-32{
-    width: 8rem;
-  }
-  .sm\:w-36{
-    width: 9rem;
-  }
-  .sm\:w-28{
-    width: 7rem;
-  }
   .sm\:flex-1{
     flex: 1 1 0%;
+  }
+  .sm\:grid-cols-4{
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .sm\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .sm\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .sm\:grid-cols-4{
-    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
   .sm\:items-center{
     align-items: center;
@@ -6384,10 +6334,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
   }
-  .sm\:py-2{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
   .sm\:px-24{
     padding-left: 6rem;
     padding-right: 6rem;
@@ -6416,31 +6362,19 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
     font-size: 1rem;
     line-height: 1.5rem;
   }
-  .sm\:text-8xl{
-    font-size: 6rem;
-    line-height: 1;
-  }
   .sm\:text-lg{
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
+  .sm\:text-8xl{
+    font-size: 6rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 768px){
-  .md\:inset-0{
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-  }
   .md\:block{
     display: block;
-  }
-  .md\:h-full{
-    height: 100%;
-  }
-  .md\:h-auto{
-    height: auto;
   }
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6485,9 +6419,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:mt-20{
     margin-top: 5rem;
   }
-  .xl\:mt-8{
-    margin-top: 2rem;
-  }
   .xl\:mt-2{
     margin-top: 0.5rem;
   }
@@ -6499,6 +6430,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .xl\:ml-48{
     margin-left: 12rem;
+  }
+  .xl\:mt-8{
+    margin-top: 2rem;
   }
   .xl\:block{
     display: block;
