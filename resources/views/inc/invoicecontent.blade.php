@@ -1,6 +1,6 @@
 <div class="w-full bg-white rounded-md shadow-sm mt-3 px-8 pt-7 pb-10">
     <div class="flex justify-between items-center">
-        <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">{{ $faktur->sender_name }}</h1>
+        <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">TokoBayiFiv</h1>
         <h2 class="font-encode-sans text-lg text-white font-bold px-3 py-2 rounded-lg" style="background-color: {{ $faktur->fakturstatus->color }}">{{ $faktur->fakturstatus->status }}</h2>
     </div>
     <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
@@ -16,9 +16,9 @@
                 <li>:</li>
             </ul>
             <ul class="ml-2 font-encode-sans text-slate-900">
-                <li>{{ Auth::user()->name }}</li>
+                <li>{{ !empty($faktur->sender_name) ? $faktur->sender_name : Auth::user()->name }}</li>
                 <li>{{ Auth::user()->email }}</li>
-                <li>{{ Auth::user()->telp }}</li>
+                <li>{{ !empty($faktur->sender_phone) ? $faktur->sender_phone : Auth::user()->telp }}</li>
             </ul>
         </div>
         <div class="text-center hidden sm:block">

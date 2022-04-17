@@ -142,12 +142,14 @@ Route::get('/reload', [CaptchaController::class, 'reload'])->name('reload');
 // bisa diakses sebelum login
 Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
 Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
-Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/About Us', [PageController::class, 'about'])->name('About Us');
 // Route::get('/article', [PageController::class, 'list_articles'])->name('article');
 // Route::get('/article/detail', [PageController::class, 'article_detail'])->name('article.detail');
 Route::resource('contact', ContactController::class);
 Route::resource('produk', ProdukController::class);
 Route::resource('faq', FaqController::class);
+Route::resource('sites', SitesController::class);
+Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpage');
 
 
 Route::group([
@@ -197,7 +199,6 @@ Route::group([
     Route::resource('produkstockhistory', ProdukStockHistoryController::class);
     Route::resource('promo', PromoController::class);
     Route::resource('receiver', ReceiverController::class);
-    Route::resource('sites', SitesController::class);
     Route::resource('sitesadmin', SitesAdminController::class);
     Route::resource('sitesadminkategori', SitesAdminKategoriController::class);
     Route::resource('sitesadminstatus', SitesAdminStatusController::class);

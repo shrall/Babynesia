@@ -18,10 +18,6 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        $page = 'guestbook';
-        $guestbooks = Guestbook::all();
-
-        return view('user.guestbook', compact('page', 'guestbooks'));
     }
 
     /**
@@ -53,7 +49,7 @@ class GuestbookController extends Controller
             'message' => $request->message,
         ]);
 
-        return redirect()->route('user.guestbook.index');
+        return redirect()->route('showpage', $request->nosites);
     }
 
     /**

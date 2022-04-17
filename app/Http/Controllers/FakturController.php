@@ -52,9 +52,9 @@ class FakturController extends Controller
 
         //pengecekan stock
         foreach ($carts as $cart) {
-            if ($cart->produkstock->product_stock < 1) {
+            if ($cart->produkstock->product_stock < $cart->jumlah) {
                 // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
-                return redirect()->back()->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk penuh.');
+                return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk tidak cukup.');
             }
         }
 
@@ -72,7 +72,7 @@ class FakturController extends Controller
             'deliveryExpedition' => $request->delivery,
             // 'deliveryResi',
             'tanggal2' => Carbon::now(),
-            'sender_name' => 'TokoBayiFiv',
+            // 'sender_name' => 'TokoBayiFiv',
             // 'discount',
             'note' => $request->note,
             // 'admin_note',

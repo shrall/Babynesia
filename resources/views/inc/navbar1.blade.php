@@ -77,19 +77,16 @@
             @endif
             @endforeach
 
-            @if (!empty($page)&&$page == "about")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('about') }}" aria-expanded="true">
-                    {{ $navmenus[0]->code }}
+            @foreach ($navmenus as $menu)
+            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+            <li class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white' }}">
+                <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
+                    {{ $menu->code }}
                 </a>
             </li>
-            @else
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('about') }}" aria-expanded="true">
-                    {{ $navmenus[0]->code }}
-                </a>
-            </li>
+
             @endif
+            @endforeach
             {{-- @if (!empty($page)&&$page == "article")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('article') }}" aria-expanded="true">
@@ -103,32 +100,6 @@
                 </a>
             </li>
             @endif --}}
-            @if (!empty($page)&&$page == "contact")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('contact.index') }}" aria-expanded="true">
-                    {{ $navmenus[1]->code }}
-                </a>
-            </li>
-            @else
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('contact.index') }}" aria-expanded="true">
-                    {{ $navmenus[1]->code }}
-                </a>
-            </li>
-            @endif
-            @if (!empty($page)&&$page == "guestbook")
-            <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
-                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
-                    {{ $navmenus[2]->code }}
-                </a>
-            </li>
-            @else
-            <li class="ml-4 inline-block font-encode-sans text-white">
-                <a href="{{ route('user.guestbook.index') }}" aria-expanded="true">
-                    {{ $navmenus[2]->code }}
-                </a>
-            </li>
-            @endif
             @if (!empty($page)&&$page == "faq")
             <li class="ml-4 inline-block font-encode-sans py-1 px-2 rounded-full bg-white text-{{ $color[2] }}-400 font-bold">
                 <a href="{{ route('faq.index') }}" aria-expanded="true">
@@ -286,30 +257,19 @@
             @endif
             @endforeach
 
-        <a href="{{ route('about') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "about" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                {{ $navmenus[0]->code }}
-            </div>
-        </a>
-        <hr>
-        {{-- <a href="{{ route('article') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "article" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                Article
-            </div>
-        </a> --}}
-        <hr>
-        <a href="{{ route('contact.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "contact" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                {{ $navmenus[1]->code }}
-            </div>
-        </a>
-        <hr>
-        <a href="{{ route('user.guestbook.index') }}">
-            <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "guestbook" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                {{ $navmenus[2]->code }}
-            </div>
-        </a>
-        <hr>
+            @foreach ($navmenus as $menu)
+            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+
+            <a href="{{ route('showpage', $menu->no) }}">
+                <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == $menu->code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                    {{ $menu->code }}
+                </div>
+            </a>
+            <hr>
+
+            @endif
+            @endforeach
+
         <a href="{{ route('faq.index') }}">
             <div class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 FAQ

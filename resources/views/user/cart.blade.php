@@ -5,6 +5,13 @@
 @include('inc.navbar1')
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+    @if (session('alert'))
+    <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
+        <p class="font-encode-sans text-red-500 text-center">
+            {{ session('alert') }}
+        </p>
+    </div>
+    @endif
     <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="customdestroy">@csrf</form>
     @csrf
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
@@ -18,7 +25,7 @@
             </h1>
             @if (!empty($carts[0]))
             <button type="submit" form="customdestroy"
-                class="py-2 px-3 rounded-full border-red-500 border-2 text-red-500 text-sm sm:text-base hover:bg-red-500 hover:text-white text-center font-bold font-encode-sans">
+                class="py-1 px-2 rounded-full border-red-500 border-2 text-red-500 text-sm hover:bg-red-500 hover:text-white text-center font-bold font-encode-sans">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 Delete
             </button>

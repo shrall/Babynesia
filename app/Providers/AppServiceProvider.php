@@ -49,11 +49,11 @@ class AppServiceProvider extends ServiceProvider
 
         //sites untuk navbar
 
-        $site1 = Sites::where('no', '=', 23)->get()->last();
-        $site2 = Sites::where('no', '=', 32)->get()->last();
-        $site3 = Sites::where('no', '=', 4)->get()->last();
+        // $site1 = Sites::where('no', '=', 23)->get()->last();
+        // $site2 = Sites::where('no', '=', 32)->get()->last();
+        // $site3 = Sites::where('no', '=', 4)->get()->last();
 
-        $navmenus = [$site1, $site2, $site3];
+        $navmenus = Sites::all();
 
         $statmenus = ProdukStatus::orderBy('status_code', 'asc')->get();
 

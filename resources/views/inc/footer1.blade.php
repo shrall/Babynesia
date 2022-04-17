@@ -11,7 +11,7 @@
                     TokoBayiFiv
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('about') }}">
+                    <a href="{{ route('About Us') }}">
                         about us
                     </a>
                 </li>

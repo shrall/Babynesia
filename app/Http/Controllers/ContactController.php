@@ -19,9 +19,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $page = 'contact';
-
-        return view('user.contact', compact('page'));
+        //
     }
 
     /**
@@ -52,9 +50,9 @@ class ContactController extends Controller
         Mail::to('ezralfredoo@gmail.com')->send(new ContactMail($data));
 
         if (Mail::failures()) {
-            return redirect('contact')->with('status', 'Sorry! Please try again latter');
+            return redirect(route('showpage', $request->nosites))->with('status', 'Sorry! Please try again latter');
         } else {
-            return redirect('contact')->with('status', 'Great! Successfully send in your mail');
+            return redirect(route('showpage', $request->nosites))->with('status', 'Great! Successfully send in your mail');
         }
     }
 

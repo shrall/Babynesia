@@ -64,6 +64,8 @@
             </div>
 
             @if ($request->dropship == 'yes')
+            <input type="hidden" value="{{ $request->dropship }}" name="dropship">
+
     <input type="hidden" value="{{ $request->pengirim_name }}" name="pengirim_name">
     <input type="hidden" value="{{ $request->pengirim_address }}" name="pengirim_address">
     <input type="hidden" value="{{ $request->pengirim_hp }}" name="pengirim_hp">

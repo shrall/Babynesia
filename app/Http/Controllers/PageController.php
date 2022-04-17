@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guestbook;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
 use App\Models\ProdukStatus;
+use App\Models\Sites;
 use App\Models\Webconfig;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Auth;
 
 class PageController extends Controller
 {
@@ -227,10 +230,23 @@ class PageController extends Controller
         return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
     }
 
-    public function about()
+
+    public function showpage($id)
     {
-        $page = 'about';
-        return view('user.about', compact('page'));
+        $sites = Sites::findOrFail($id);
+        $page = $sites->code;
+
+        if ($sites->no == 4) {
+            if (Auth::check()) {
+            } else {
+                return redirect(route('login'));
+            }
+            $values = Guestbook::all();
+        } else {
+            $values = null;
+        }
+
+        return view('user.' . $sites->code, compact('page', 'sites', 'values'));
     }
 
     public function list_articles()

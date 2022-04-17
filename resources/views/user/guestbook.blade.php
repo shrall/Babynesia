@@ -15,7 +15,7 @@
             User Reviews
         </h2>
         <div class="mt-4 space-y-3 max-h-128 overflow-y-auto px-4">
-            @foreach ($guestbooks as $guestbook)
+            @foreach ($values as $guestbook)
             <div class="bg-neutral-100 px-3 pt-3 pb-4 w-full">
                 <h6 class="font-encode-sans text-sm sm:text-base text-slate-900">
                     {{ $guestbook->name }}
@@ -86,6 +86,7 @@
                 </span>
                 @enderror
             </div>
+            <input type="hidden" value="{{ $sites->no }}" name="nosites">
             <div class="mt-5 text-center">
                 <button type="submit"
                     class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-200 focus:ring-2 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">

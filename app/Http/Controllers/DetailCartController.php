@@ -23,6 +23,7 @@ class DetailCartController extends Controller
      */
     public function index(Request $request)
     {
+
         $payment = PaymentMethod::where('id', $request->payment)->get()->last();
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
