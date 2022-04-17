@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>{{ config('app.name') }} - Invoice No {{ $faktur->no_faktur }}</title>
+    <title>TokoBayiFiv - Invoice No {{ $faktur->no_faktur }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <style type="text/css">
         body {
@@ -1098,7 +1098,7 @@
                                     <tr>
                                         <td width="16%" class="boldtext">Name</td>
                                         <td width="3%" align="center">:</td>
-                                        <td width="39%">{{ $faktur->user->name }}</td>
+                                        <td width="39%">{{ !empty($faktur->sender_name) ? $faktur->sender_name : Auth::user()->name }}</td>
                                     </tr>
                                     <tr>
                                         <td class="boldtext">Email</td>
@@ -1108,7 +1108,7 @@
                                     <tr>
                                         <td class="boldtext" valign="top">Phone</td>
                                         <td align="center" valign="top">:</td>
-                                        <td>{{ $faktur->user->telp . '/' . $faktur->user->hp }}</td>
+                                        <td>{{ !empty($faktur->sender_phone) ? $faktur->sender_phone : $faktur->user->telp . '/' . $faktur->user->hp }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1124,6 +1124,7 @@
                                     <tr align="center">
                                         <th valign="middle">QUANTITY</th>
                                         <th valign="middle">PRODUCT</th>
+                                        <th valign="middle">SIZE/COLOR</th>
                                         <th valign="middle">PRICE</th>
                                         <th valign="middle">SUBTOTAL</th>
                                     </tr>
@@ -1132,7 +1133,21 @@
                                             <td align="center">{{ $item->jumlah }}</td>
                                             <td class="">
                                                 {{ $item->kode_produk . '-' . $item->kode_produk_stock }}&nbsp; OK 71
-                                                {{ $item->product->nama_produk }}
+                                                {{ $item->product->nama_produk }} 
+                                                {{ $item->product->stat == 'po' ? '(PO)' : '' }}
+                                            </td>
+                                            <td class="">
+                                                @if (!empty($item->productstock->size))
+                    @if (!empty($item->productstock->color))
+                        {{ $item->productstock->size }} - {{ $item->productstock->color }}
+                    @else
+                        {{ $item->productstock->size }}
+                    @endif
+                    @else
+                    @if (!empty($item->productstock->color))
+                        {{ $item->productstock->color }}
+                    @endif
+                    @endif
                                             </td>
                                             <td class="column_number">{{ AppHelper::rp($item->harga_satuan ?? 0) }}
                                             </td>
@@ -1140,24 +1155,24 @@
                                         </tr>
                                     @endforeach
                                     <tr id="chart">
-                                        <th colspan="3" align="right"> SUBTOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <th colspan="4" align="right"> SUBTOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
                                             {{ AppHelper::rp($faktur->total_profit ?? 0) }}</th>
                                     </tr>
                                     <tr id="chart">
-                                        <th colspan="3" align="right"> Ongkos Kirim : &nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <th colspan="4" align="right"> Ongkos Kirim : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
                                             {{ AppHelper::rp($faktur->deliverycost ?? 0) }}</th>
                                     </tr>
                                     <tr id="chart">
-                                        <th colspan="3" align="right"> Diskon : &nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <th colspan="4" align="right"> Diskon : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
                                             {{ AppHelper::rp($faktur->discount ?? 0) }}</th>
                                     </tr>
                                     <tr id="chart">
-                                        <th colspan="3" align="right"> TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                        <th colspan="4" align="right"> TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
-                                            {{ AppHelper::rp($faktur->total_pembayaran+intval(substr($faktur->no_faktur, -3)) ?? 0) }}</th>
+                                            {{ AppHelper::rp($faktur->total_pembayaran+$faktur->deliverycost+intval(substr($faktur->no_faktur, -3)) ?? 0) }}</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1205,6 +1220,14 @@
                                                 {{-- {{ $faktur->payment->description }}<br>  --}}
                                                 Payment information:
                                                 Invoice no.{{ $faktur->no_faktur }} </p>
+                                                <div class="">
+                                                    <h3 class="">
+                                                        {{ $faktur->payment->info }}
+                                                    </h3>
+                                                    <p class="">
+                                                        {{ $faktur->payment->description }}
+                                                    </p>
+                                                </div>
                                         </td>
                                     </tr>
                                     <tr>
