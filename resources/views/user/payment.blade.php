@@ -7,9 +7,9 @@
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
         <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
-            <a href="{{ route('user.cart.index') }}" class="text-gray-400">Cart > </a>
-            <a href="{{ route('user.receiver.create') }}" class="text-gray-400">Receiver ></a>
-            <a href="{{ route('user.paymentart.index') }}">Payment</a>
+            <a href="#" class="text-gray-400">Cart > </a>
+            <a href="#" class="text-gray-400">Receiver ></a>
+            <a href="#">Payment</a>
         </p>
         <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
             Payment
