@@ -106,8 +106,7 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->image ?? '#' }}"
-                                class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->image }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="0" checked id="">
@@ -125,8 +124,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->images[1] ?? '#' }}"
-                                class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[1] }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="1" checked id="">
@@ -144,8 +142,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->images[1] ?? '#' }}"
-                                class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[2] }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="2" checked id="">
@@ -163,8 +160,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->images[1] ?? '#' }}"
-                                class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->image[3] }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="3" checked id="">
@@ -182,8 +178,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->images[1] ?? '#' }}"
-                                class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[4] }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="4" checked id="">

@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\ProdukStatus;
+use App\Models\Site;
 use App\Models\Sites;
 use App\Models\Webconfig;
 use Illuminate\Support\Facades\View;
@@ -53,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
         // $site2 = Sites::where('no', '=', 32)->get()->last();
         // $site3 = Sites::where('no', '=', 4)->get()->last();
 
-        $navmenus = Sites::all();
+        $navmenus = Site::all();
 
         $statmenus = ProdukStatus::orderBy('status_code', 'asc')->get();
 

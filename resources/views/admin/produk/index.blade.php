@@ -109,10 +109,8 @@
                             <tr>
                                 <td>{{ $produk->kode_produk }}<br><span
                                         class="text-gray-400">{{ $produk->kode_alias }}</span></td>
-                                {{-- @marshall image ini belum --}}
                                 <td>
-                                    <img src="{{ 'http://www.tokobayifiv.com/images/produk/' }}{{ $produk->image ?? '#' }}"
-                                        class="h-24">
+                                    <img src="{{ asset('uploads/') . '/' . $produk->image }}" class="h-24">
                                 </td>
                                 <td class="text-center">
                                     <div class="flex flex-col items-center gap-1">
