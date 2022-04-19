@@ -18,19 +18,6 @@ class GuestbookController extends Controller
      */
     public function index()
     {
-        $page = 'guestbook';
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-
-        $guestbooks = Guestbook::all();
-
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('user.guestbook', compact('page', 'allkategoris', 'subkategoris', 'guestbooks', 'color'));
     }
 
     /**
@@ -50,6 +37,10 @@ class GuestbookController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'captcha' => ['required', 'captcha'],
+        ]);
+
         Guestbook::create([
             'datum' => Carbon::now(),
             'name' => $request->name,
@@ -58,7 +49,7 @@ class GuestbookController extends Controller
             'message' => $request->message,
         ]);
 
-        return redirect()->route('user.guestbook.index');
+        return redirect()->route('showpage', $request->nosites);
     }
 
     /**

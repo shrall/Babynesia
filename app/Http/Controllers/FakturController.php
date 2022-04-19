@@ -51,18 +51,19 @@ class FakturController extends Controller
         $carts = unserialize(base64_decode($request->carts));
 
         //pengecekan stock
-        // foreach ($carts as $cart) {
-        // if ($cart->produkstock->product_stock < 1) {
-        // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
-        // }
-        // }
+        foreach ($carts as $cart) {
+            if ($cart->produkstock->product_stock < $cart->jumlah) {
+                // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
+                return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk tidak cukup.');
+            }
+        }
 
 
         $faktur = Faktur::create([
             'kode_user' => Auth::id(),
             'status' => 1,
             'tanggal' => $dt,
-            // 'cara_bayar' => ,
+            'cara_bayar' => $request->payment,
             'total_pembayaran' => $request->total,
             'valuta_id' => 1,
             'total_profit' => $request->total,
@@ -71,7 +72,7 @@ class FakturController extends Controller
             'deliveryExpedition' => $request->delivery,
             // 'deliveryResi',
             'tanggal2' => Carbon::now(),
-            'sender_name' => 'TokoBayiFiv',
+            // 'sender_name' => 'TokoBayiFiv',
             // 'discount',
             'note' => $request->note,
             // 'admin_note',
@@ -116,13 +117,12 @@ class FakturController extends Controller
                 'kode_produk_stock' => $cart->kode_produk_stock,
                 'jumlah' => $cart->jumlah,
                 'tanggal' => $dt,
-                'harga_satuan' => $cart->produk->harga,
+                'harga_satuan' => $cart->produk->stat == 'd' ? $cart->produk->harga_sale : $cart->produk->harga,
                 'destination_city_id' => $cart->destination_city_id,
                 'ongkos_kirim' => 0,
-                'subtotal' => $cart->jumlah * $cart->produk->harga,
+                'subtotal' => $cart->produk->stat == 'd' ? $cart->jumlah * $cart->produk->harga_sale : $cart->jumlah * $cart->produk->harga,
                 'valuta_id' => 1,
-                'profit' => $cart->jumlah * $cart->produk->harga,
-                'note' => $cart->note
+                'profit' => $cart->produk->stat == 'd' ? $cart->jumlah * $cart->produk->harga_sale : $cart->jumlah * $cart->produk->harga,
             ]);
 
             //create stock_history
@@ -132,21 +132,21 @@ class FakturController extends Controller
                 'product_id' => $cart->kode_produk,
                 'amount' => -$cart->jumlah,
                 'faktur_id' => $faktur->no_faktur,
-                'notes' => $cart->note
             ]);
 
             //delete semua cart
             $cart->delete();
 
             //kurangin stock produk
-            $cart->produk->update([
-                'stock' => $cart->produk->stock - 1
-            ]);
+            // $cart->produk->update([
+            //     'stock' => $cart->produk->stock - $cart->jumlah
+            // ]);
+            // gadipake karna emang udah
 
             //kurangin produk stock
 
             $cart->produkstock->update([
-                'produk_stock' => $cart->produkstock->produk_stock - 1
+                'produk_stock' => $cart->produkstock->produk_stock - $cart->jumlah
             ]);
         }
 
@@ -161,32 +161,12 @@ class FakturController extends Controller
      */
     public function show(Faktur $faktur)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-        $payments = PaymentMethod::all();
-
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('user.invoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments', 'color'));
+        return view('user.invoice', compact('faktur'));
     }
 
     public function showDetail(Faktur $faktur)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $payments = PaymentMethod::all();
-        $subkategoris = KategoriChild::all();
-
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('user.detailinvoice', compact('allkategoris', 'subkategoris', 'faktur', 'payments', 'color'));
+        return view('user.detailinvoice', compact('faktur'));
     }
 
     public function showFaktur(Faktur $faktur)

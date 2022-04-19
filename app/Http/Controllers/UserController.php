@@ -19,21 +19,17 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
-        $fakturs = Faktur::where('kode_user', Auth::id())->get();
+        $fakturs = Faktur::where('kode_user', Auth::id())->orderBy('no_faktur', 'desc')->paginate(10);
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
+        $checker = $request->checker;
+        if (empty($checker)) {
+            $checker = 'profile';
+        }
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('user.profile', compact('allkategoris', 'subkategoris', 'fakturs', 'countries', 'indoprovinces', 'color'));
+        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker'));
     }
 
     /**

@@ -10,7 +10,7 @@
         <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
             <div>
                 <input type="radio" name="test" onclick="showcontent()" id="profile" value="profile" class="peer"
-                    checked hidden>
+                    {{ $checker == 'profile' ? 'checked' : '' }} hidden>
                 <label for="profile" type="button"
                     class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     Profile Info
@@ -28,7 +28,7 @@
             <hr class="my-3">
             <div>
                 <input type="radio" name="test" onclick="showcontent()" id="history" value="history" class="peer"
-                    hidden>
+                {{ $checker == 'history' ? 'checked' : '' }} hidden>
                 <label for="history" type="button"
                     class="appearance-none peer-checked:font-bold peer-checked:text-{{ $color[1] }}-500 cursor-pointer font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                     History Transaksi
@@ -317,10 +317,13 @@
                 <div class="">
                     <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                         Invoice No. <span class="text-slate-900 font-bold">{{ $faktur->no_faktur }}</span>
-                        <a href="#">
+                        {{-- <a href="#">
                             <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                 aria-hidden="true"></i>
-                        </a>
+                        </a> --}}
+                    </p>
+                    <p class="my-2 py-1 px-2 w-fit rounded-md font-encode-sans text-sm text-white font-bold" style="background-color: {{ $faktur->fakturstatus->color }}">
+                        {{ $faktur->fakturstatus->status }}
                     </p>
                     <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
                         {{ count($faktur->items) }} barang
@@ -352,10 +355,6 @@
                 </div>
             </div>
             <div class="sm:hidden mt-2">
-                <h6
-                    class="sm:hidden py-1 px-2 w-fit bg-amber-400 mt-5 rounded-md font-bold font-encode-sans text-white text-sm sm:text-base">
-                    Menunggu Konfirmasi
-                </h6>
                 <div class="mt-2 flex justify-between items-center">
                     <div>
                         <p class="font-encode-sans text-sm sm:text-base text-gray-400">
@@ -377,6 +376,9 @@
         </div>
 
         @endforeach
+
+        {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
+
     </div>
 
 </div>
@@ -394,7 +396,11 @@
         profile_info.style.display = "block";
         profile_edit.style.display = "none";
         profile_history.style.display = "none";
-    }
+    } else if (historyCheck.checked) {
+            profile_edit.style.display = "none";
+            profile_info.style.display = "none";
+            profile_history.style.display = "block";
+        }
 
     function showcontent() {
         if (profileCheck.checked) {

@@ -29,11 +29,11 @@
 
     @endforeach
     
-    <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
+    {{-- <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
         <input type="checkbox" name="faq" id="pertanyaan1" class="peer" hidden>
         <label for="pertanyaan1" class="cursor-pointer inline-block h-full w-full absolute"></label>
         <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
-            Bagaimana cara belanja di Babynesia
+            Bagaimana cara belanja di TokoBayiFiv
         </h6>
         <i class="fa fa-chevron-down text-xl text-slate-900 peer-checked:rotate-180 w-fit" aria-hidden="true"></i>
         <div class="mt-2 peer-checked:block hidden pb-5 col-span-12">
@@ -43,7 +43,7 @@
                 <li>Cantumkan alamat tujuan kirim (bisa berbeda dari alamat yang terdaftar saat registrasi)</li>
                 <li>Pilih bank tujuan transfer.</li>
                 <li>Konfirmasi dan selesai.</li>
-                <li>Tunggu email konfirmasi dari Babynesia berisi rincian order.</li>
+                <li>Tunggu email konfirmasi dari TokoBayiFiv berisi rincian order.</li>
                 <li>Lakukan pembayaran max 48 jam setelah email diterima ke rekening bank yang tercantum di email.
                     <span class="text-{{ $color[2] }}-400 font-bold">Waktu tunggu / keep adalah 24 jam.</span> Bila pembayaran
                     belum diterima dalam kurun waktu tersebut, order akan otomatis dibatalkan dan barang kembali
@@ -145,7 +145,7 @@
         <input type="checkbox" name="faq" id="pertanyaan8" class="peer" hidden>
         <label for="pertanyaan8" class="cursor-pointer inline-block h-full w-full absolute"></label>
         <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
-            Mau contact Babynesia dimana?
+            Mau contact TokoBayiFiv dimana?
         </h6>
         <i class="fa fa-chevron-down text-xl text-slate-900 peer-checked:rotate-180 w-fit" aria-hidden="true"></i>
         <div class="mt-2 peer-checked:block hidden pb-5 col-span-12">
@@ -265,7 +265,7 @@
                 tes isi
             </p>
         </div>
-    </div>
+    </div> --}}
 
 
 </div>

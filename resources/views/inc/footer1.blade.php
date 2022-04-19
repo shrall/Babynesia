@@ -11,17 +11,17 @@
                     TokoBayiFiv
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="">
+                    <a href="{{ route('About Us') }}">
                         about us
                     </a>
                 </li>
-                <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.article') }}">
+                {{-- <li class="font-encode-sans text-white text-sm sm:text-base">
+                    <a href="{{ route('article') }}">
                         article
                     </a>
-                </li>
+                </li> --}}
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.faq.index') }}">
+                    <a href="{{ route('faq.index') }}">
                         faq
                     </a> </li>
             </ul>
@@ -34,16 +34,19 @@
                         account
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.user.index') }}">
+                    <form action="{{ route('user.user.index') }}" id="formchecker"></form>
+                    <input type="hidden" name="checker" value="history" form="formchecker">
+                    <button type="submit" form="formchecker">
                         transaction history
-                    </a> </li>
+                    </button> 
+                </li>
             </ul>
             <ul>
                 <li class="font-encode-sans font-bold mb-2 text-white text-sm sm:text-base">
                     Customer Service
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.guestbook.index') }}">
+                    <a href="{{ route('contact.index') }}">
                         contact us
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">

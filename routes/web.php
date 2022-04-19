@@ -63,9 +63,11 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplementaryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DeliveryCostController;
 use App\Http\Controllers\DestinationCityController;
@@ -134,22 +136,27 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/register', [RegisterController::class, 'getRegister'])->name('register');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.request');
-Route::get('/password/reset/{token}', [ForgotPasswordController::class, 'showForgotForm'])->name('password.reset');
-Route::get('/password/confirm', [ConfirmPasswordController::class, 'showConfirmForm'])->name('password.confirm');
+// reload captcha
+Route::get('/reload', [CaptchaController::class, 'reload'])->name('reload');
+
+// bisa diakses sebelum login
+Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
+Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
+Route::get('/About Us', [PageController::class, 'about'])->name('About Us');
+// Route::get('/article', [PageController::class, 'list_articles'])->name('article');
+// Route::get('/article/detail', [PageController::class, 'article_detail'])->name('article.detail');
+Route::resource('contact', ContactController::class);
+Route::resource('produk', ProdukController::class);
+Route::resource('faq', FaqController::class);
+Route::resource('sites', SitesController::class);
+Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpage');
 
 
 Route::group([
-    // 'middleware' => ['user'], !ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya
+    'middleware' => ['user'], //!ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya
     'as' => 'user.'
 ], function () {
-    Route::get('/', [PageController::class, 'landing_page'])->name('landingpage');
-    Route::get('/listproducts', [PageController::class, 'list_products'])->name('list_products');
-    Route::get('/article', [PageController::class, 'list_articles'])->name('article');
-    Route::get('/article/detail', [PageController::class, 'article_detail'])->name('article.detail');
 
-    Route::get('/contact', [PageController::class, 'contact'])->name('contact');
     Route::get('/faktur/showdetail/{faktur}', [FakturController::class, 'showDetail'])->name('faktur.showdetail');
     Route::get('/faktur/showfaktur/{faktur}', [FakturController::class, 'showfaktur'])->name('faktur.showfaktur');
     Route::post('/detailcart/customdestroy', [DetailCartController::class, 'customDestroy'], '_token')->name('detailcart.customdestroy');
@@ -168,7 +175,6 @@ Route::group([
     Route::resource('event', EventController::class);
     Route::resource('faktur', FakturController::class);
     Route::resource('fakturstatus', FakturStatusController::class);
-    Route::resource('faq', FaqController::class);
     Route::resource('guestbook', GuestbookController::class);
     Route::resource('hitcounter', HitcounterController::class);
     Route::resource('hotdeals', HotdealsController::class);
@@ -185,7 +191,6 @@ Route::group([
     Route::resource('news', NewsController::class);
     Route::resource('paymentart', PaymentArtController::class);
     Route::resource('paymentmethod', PaymentMethodController::class);
-    Route::resource('produk', ProdukController::class);
     Route::resource('produkdestinationcity', ProdukDestinationCityController::class);
     Route::resource('produkevent', ProdukEventController::class);
     Route::resource('produkimage', ProdukImageController::class);

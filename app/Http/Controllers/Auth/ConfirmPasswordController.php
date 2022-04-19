@@ -38,13 +38,4 @@ class ConfirmPasswordController extends Controller
     {
         $this->middleware('auth');
     }
-
-    public function showConfirmForm() {
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();            $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('auth.passwords.confirm', compact('color'));
-    }
 }

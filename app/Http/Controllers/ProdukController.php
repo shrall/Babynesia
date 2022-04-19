@@ -49,17 +49,9 @@ class ProdukController extends Controller
      */
     public function show(Produk $produk)
     {
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
         $stocks = $produk->stocks->where('product_stock', '!=', 0);
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('user.produkdetail', compact('produk', 'stocks', 'allkategoris', 'subkategoris', 'color'));
+        return view('user.produkdetail', compact('produk', 'stocks'));
     }
 
     /**

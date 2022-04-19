@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
+use App\Models\Webconfig;
 use Illuminate\Http\Request;
 
 class FaqController extends Controller
@@ -18,10 +19,8 @@ class FaqController extends Controller
     {
         $page = 'faq';
         $faqs = Faq::all();
-        $allkategoris = Kategori::orderBy('no_kategori', 'desc')->get();
-        $subkategoris = KategoriChild::all();
 
-        return view('user.faq', compact('page', 'allkategoris', 'subkategoris', 'faqs'));
+        return view('user.faq', compact('page', 'faqs'));
     }
 
     /**

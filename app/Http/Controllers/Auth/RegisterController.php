@@ -49,13 +49,7 @@ class RegisterController extends Controller
         $countries = Country::all();
         $indoprovinces = IndonesiaProvince::all();
 
-        //get color webconfig
-        $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
-        $text_color = Webconfig::where('name', 'text_color')->get()->last();
-        $button_color = Webconfig::where('name', 'button_color')->get()->last();
-        $color = [$bg_color->content, $text_color->content, $button_color->content];
-
-        return view('auth.register', compact('countries', 'indoprovinces', 'color'));
+        return view('auth.register', compact('countries', 'indoprovinces'));
     }
 
     /**
@@ -70,7 +64,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'captcha' => ['required', 'captcha'],
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
     }
 
     /**

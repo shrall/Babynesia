@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guestbook;
 use App\Models\Sites;
 use Illuminate\Http\Request;
 
