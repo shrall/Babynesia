@@ -90,13 +90,13 @@ class WebconfigController extends Controller
                 'content' => $request->hide_code
             ]);
             $webconfigs[32]->update([
-                'content' => $request->hide_soldout
+                'isHidden' => $request->hide_soldout == 'on' ? 1 : 0
             ]);
             $webconfigs[33]->update([
-                'content' => $request->allow_minus
+                'isHidden' => $request->allow_minus == 'on' ? 1 : 0
             ]);
             $webconfigs[40]->update([
-                'content' => $request->hide_noimage
+                'isHidden' => $request->hide_noimage == 'on' ? 1 : 0
             ]);
             $webconfigs[36]->update([
                 'content' => $request->use_store_price

@@ -112,17 +112,17 @@
                 <div class="col-span-5">Sembunyikan Kode Produk</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="hide_code" id="hide_code" class="admin-input"
-                        {{ $webconfigs[27]['content'] == '' ? '' : 'checked' }}>
+                        {{ $webconfigs[27]['isHidden'] == 0 ? '' : 'checked' }}>
                 </div>
                 <div class="col-span-5">Sembunyikan Produk Stok Kosong</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="hide_soldout" id="hide_soldout" class="admin-input"
-                        {{ $webconfigs[32]['content'] == '' ? '' : 'checked' }}>
+                        {{ $webconfigs[32]['isHidden'] == 0 ? '' : 'checked' }}>
                 </div>
                 <div class="col-span-5">Sembunyikan Produk Tanpa Gambar</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="checkbox" name="hide_noimage" id="hide_noimage" class="admin-input"
-                        {{ $webconfigs[40]['content'] == '' ? '' : 'checked' }}>
+                        {{ $webconfigs[40]['isHidden'] == 0 ? '' : 'checked' }}>
                 </div>
                 {{-- ini khusus BBN --}}
                 {{-- <div class="col-span-5">Gunakan Harga Toko</div>
