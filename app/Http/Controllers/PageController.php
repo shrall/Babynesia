@@ -91,7 +91,7 @@ class PageController extends Controller
         $page = 'home';
         $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
 
-        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'allstatus', 'page'));
+        return view('user.babynesia.landingpage', compact('produks', 'featured', 'filteredproduct', 'allstatus', 'page'));
     }
     public function list_products(Request $request)
     {
