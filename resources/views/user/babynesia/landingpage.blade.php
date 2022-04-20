@@ -4,4 +4,7 @@
 
 @include('inc.navbar2')
 
+<div class="my-10"></div>
+
+@include('inc.footer2')
 @endsection

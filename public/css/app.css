@@ -3595,6 +3595,10 @@ textarea.form-control.is-invalid{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.my-10{
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
 .ml-4{
   margin-left: 1rem;
 }
@@ -3789,6 +3793,9 @@ textarea.form-control.is-invalid{
 .w-128{
   width: 36rem;
 }
+.w-136{
+  width: 40rem;
+}
 .w-screen{
   width: 100vw;
 }
@@ -3835,9 +3842,6 @@ textarea.form-control.is-invalid{
 }
 .w-4{
   width: 1rem;
-}
-.w-136{
-  width: 40rem;
 }
 .max-w-6xl{
   max-width: 72rem;
@@ -4048,14 +4052,14 @@ textarea.form-control.is-invalid{
 .border-t{
   border-top-width: 1px;
 }
+.border-b{
+  border-bottom-width: 1px;
+}
 .border-l-2{
   border-left-width: 2px;
 }
 .border-b-4{
   border-bottom-width: 4px;
-}
-.border-b{
-  border-bottom-width: 1px;
 }
 .border-gray-200{
   --tw-border-opacity: 1;
@@ -6806,6 +6810,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:mt-8{
     margin-top: 2rem;
   }
+  .xl\:mt-10{
+    margin-top: 2.5rem;
+  }
   .xl\:block{
     display: block;
   }
@@ -6887,6 +6894,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .xl\:pb-10{
     padding-bottom: 2.5rem;
+  }
+  .xl\:pt-10{
+    padding-top: 2.5rem;
   }
   .xl\:text-4xl{
     font-size: 2.25rem;
