@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', 'TokoBayiFiv')
 @section('content')
 
 @include('inc.navbar1')

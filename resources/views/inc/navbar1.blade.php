@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center">
             <div class="flex items-center">
                 <a href="/">
-                    <h1 class="font-concert-one text-white text-5xl mr-5">TokoBayiFiv</h1>
+                    <h1 class="font-concert-one text-white text-5xl mr-5">{{ config('app.name') }}</h1>
                 </a>
                 <div class="py-2 px-4 rounded-full bg-white w-80">
                     <form action="{{ route('list_products') }}">
@@ -171,7 +171,7 @@
                 </label>
             </div>
             <h1 class="text-3xl font-concert-one text-white">
-                TokoBayiFiv
+                {{ config('app.name') }}
             </h1>
             @if (Auth::check())
             <a href="{{ route('user.cart.index') }}" class="flex items-center">

@@ -1,6 +1,6 @@
 <div class="w-full bg-white rounded-md shadow-sm mt-3 px-8 pt-7 pb-10">
     <div class="flex justify-between items-center">
-        <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">TokoBayiFiv</h1>
+        <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">{{ config('app.name') }}</h1>
         <h2 class="font-encode-sans text-lg text-white font-bold px-3 py-2 rounded-lg" style="background-color: {{ $faktur->fakturstatus->color }}">{{ $faktur->fakturstatus->status }}</h2>
     </div>
     <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
