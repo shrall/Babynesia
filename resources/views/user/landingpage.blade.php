@@ -56,8 +56,7 @@
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm py-5">
         <ul class="flex justify-center space-x-2">
-            @foreach ($allstatus as $status)
-            @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
+            @foreach ($statmenus as $status)
             <form action="{{ route('landingpage') }}" id="filter{{ $loop->iteration }}"></form>
 
             <li class="inline-block">
@@ -68,8 +67,6 @@
                     {{ $status->name }} Product
                 </button>
             </li>
-
-            @endif
             @endforeach
         </ul>
         <h1 class="text-center font-concert-one text-4xl mt-3 text-{{ $color[1] }}-500">

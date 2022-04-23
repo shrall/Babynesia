@@ -899,10 +899,6 @@ textarea.form-control.is-invalid{
 .tab-content > .active{
   display: block;
 }
-.navbar-collapse{
-  -ms-flex-basis: 100%;
-  flex-basis: 100%;
-}
 .navbar-expand .navbar-nav{
   flex-direction: row;
 }
@@ -912,14 +908,6 @@ textarea.form-control.is-invalid{
 .navbar-expand .navbar-nav .nav-link{
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-}
-.navbar-expand .navbar-collapse{
-  display: flex !important;
-  -ms-flex-basis: auto;
-  flex-basis: auto;
-}
-.navbar-expand .navbar-toggler{
-  display: none;
 }
 .navbar-expand .offcanvas{
   position: inherit;
@@ -941,18 +929,6 @@ textarea.form-control.is-invalid{
   color: rgba(0, 0, 0, 0.9);
 }
 .navbar-light .navbar-nav .nav-link.active{
-  color: rgba(0, 0, 0, 0.9);
-}
-.navbar-light .navbar-text{
-  color: rgba(0, 0, 0, 0.55);
-}
-.navbar-light .navbar-text a{
-  color: rgba(0, 0, 0, 0.9);
-}
-.navbar-light .navbar-text a:hover{
-  color: rgba(0, 0, 0, 0.9);
-}
-.navbar-light .navbar-text a:focus{
   color: rgba(0, 0, 0, 0.9);
 }
 .navbar-dark .navbar-nav .nav-link.disabled{
@@ -3595,10 +3571,6 @@ textarea.form-control.is-invalid{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.my-10{
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
 .ml-4{
   margin-left: 1rem;
 }
@@ -3665,11 +3637,11 @@ textarea.form-control.is-invalid{
 .ml-5{
   margin-left: 1.25rem;
 }
-.ml-3{
-  margin-left: 0.75rem;
-}
 .mt-1{
   margin-top: 0.25rem;
+}
+.ml-3{
+  margin-left: 0.75rem;
 }
 .mb-5{
   margin-bottom: 1.25rem;
@@ -3975,15 +3947,15 @@ textarea.form-control.is-invalid{
 .gap-y-1{
   row-gap: 0.25rem;
 }
-.space-y-1 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-y-reverse: 0;
-  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
-  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
 .space-y-3 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.space-y-1 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 .space-y-5 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
@@ -4008,6 +3980,9 @@ textarea.form-control.is-invalid{
 }
 .overflow-y-auto{
   overflow-y: auto;
+}
+.overflow-y-scroll{
+  overflow-y: scroll;
 }
 .text-clip{
   text-overflow: clip;
@@ -4799,9 +4774,6 @@ textarea.form-control.is-invalid{
 .pb-7{
   padding-bottom: 1.75rem;
 }
-.pb-4{
-  padding-bottom: 1rem;
-}
 .pt-4{
   padding-top: 1rem;
 }
@@ -4814,8 +4786,26 @@ textarea.form-control.is-invalid{
 .pr-5{
   padding-right: 1.25rem;
 }
+.pb-4{
+  padding-bottom: 1rem;
+}
 .pb-8{
   padding-bottom: 2rem;
+}
+.pb-56{
+  padding-bottom: 14rem;
+}
+.pb-40{
+  padding-bottom: 10rem;
+}
+.pb-32{
+  padding-bottom: 8rem;
+}
+.pb-20{
+  padding-bottom: 5rem;
+}
+.pb-24{
+  padding-bottom: 6rem;
 }
 .text-left{
   text-align: left;
@@ -6795,6 +6785,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:mt-20{
     margin-top: 5rem;
   }
+  .xl\:mt-10{
+    margin-top: 2.5rem;
+  }
   .xl\:mt-2{
     margin-top: 0.5rem;
   }
@@ -6809,9 +6802,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .xl\:mt-8{
     margin-top: 2rem;
-  }
-  .xl\:mt-10{
-    margin-top: 2.5rem;
   }
   .xl\:block{
     display: block;
@@ -6841,11 +6831,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:grid-flow-row-dense{
     grid-auto-flow: row dense;
   }
-  .xl\:grid-cols-3{
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
   .xl\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .xl\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .xl\:grid-cols-4{
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -6859,11 +6849,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:justify-between{
     justify-content: space-between;
   }
-  .xl\:gap-3{
-    gap: 0.75rem;
-  }
   .xl\:gap-4{
     gap: 1rem;
+  }
+  .xl\:gap-3{
+    gap: 0.75rem;
   }
   .xl\:space-y-0 > :not([hidden]) ~ :not([hidden]){
     --tw-space-y-reverse: 0;
@@ -6889,14 +6879,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:pt-20{
     padding-top: 5rem;
   }
+  .xl\:pt-10{
+    padding-top: 2.5rem;
+  }
   .xl\:pt-6{
     padding-top: 1.5rem;
   }
   .xl\:pb-10{
     padding-bottom: 2.5rem;
-  }
-  .xl\:pt-10{
-    padding-top: 2.5rem;
   }
   .xl\:text-4xl{
     font-size: 2.25rem;

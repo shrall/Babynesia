@@ -40,7 +40,6 @@
                 </a>
             </li>
             @foreach ($statmenus as $menu)
-            @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
             <li class="{{ !empty($page)&&$page == "$menu->name" ? 'text-'.$color[1].'-600' : 'text-slate-900' }} hover:text-{{ $color[1] }}-600">
                 <form action="{{ route('list_products') }}" id="filtermenu{{ $menu->status_code }}"></form>
                 <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu{{ $menu->status_code }}">
@@ -49,7 +48,6 @@
                     {{ $menu->name }}
                 </button>
             </li>
-            @endif
             @endforeach
             @foreach ($navmenus as $menu)
             @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
@@ -181,7 +179,6 @@
         <hr>
 
         @foreach ($statmenus as $menu)
-            @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
             <form action="{{ route('list_products') }}" id="filtermenu1{{ $menu->status_code }}">
             </form>
             <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu1{{ $menu->status_code }}">
@@ -191,7 +188,6 @@
                 {{ $menu->name }}
             </button>
             <hr>
-            @endif
             @endforeach
 
             @foreach ($navmenus as $menu)

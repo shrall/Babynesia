@@ -12,8 +12,7 @@
         </div>
         <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
             <ul class="mt-3">
-                @foreach ($allstatus as $status)
-                @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
+                @foreach ($statmenus as $status)
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
@@ -24,7 +23,6 @@
                         </button>
                     </form>
                 </li>
-                @endif
                 @endforeach
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
@@ -179,8 +177,7 @@
     </div>
     <div class="bg-white px-3 w-full py-4 overflow-y-auto max-h-72">
         <ul>
-            @foreach ($allstatus as $status)
-                @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
+            @foreach ($statmenus as $status)
                 <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
@@ -191,7 +188,6 @@
                         </button>
                     </form>
                 </li>
-                @endif
                 @endforeach
             <li class="my-1">
                 <form action="{{ route('list_products') }}">

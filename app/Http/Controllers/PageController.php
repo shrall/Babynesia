@@ -89,9 +89,8 @@ class PageController extends Controller
         }
 
         $page = 'home';
-        $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
 
-        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'allstatus', 'page'));
+        return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'page'));
     }
     public function list_products(Request $request)
     {
@@ -100,7 +99,6 @@ class PageController extends Controller
         $keyword = $request->keyword;
         $filter = $request->filter;
         $subfilter = $request->subfilter;
-        $allstatus = ProdukStatus::orderBy('status_code', 'asc')->get();
         $subsname = '';
         $filteredproduct = $request->filterproduct;
 
@@ -227,7 +225,7 @@ class PageController extends Controller
 
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'allstatus', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
+        return view('user.listproducts', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
     }
 
 

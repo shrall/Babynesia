@@ -34,4 +34,8 @@ return [
         'token' => env('RAJAONGKIR_TOKEN'),
     ],
 
+    'app' => [
+        'type' => env('APP_TYPE'),
+    ]
+
 ];
