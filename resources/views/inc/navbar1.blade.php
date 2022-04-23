@@ -243,19 +243,71 @@
         </a>
         <hr>
 
-        @foreach ($statmenus as $menu)
-            @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
-            <form action="{{ route('list_products') }}" id="filtermenu1{{ $menu->status_code }}">
-            </form>
-            <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu1{{ $menu->status_code }}">
-            <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu1{{ $menu->status_code }}">
+            <a href="">
+                <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-{{ $color[1] }}-500">
+                    Type
+                </div>
+            </a>
+            <div class="ml-4">
+                <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
+                    @foreach ($statmenus as $menu)
+                    @if ($menu->status_code != 'grd' && $menu->status_code != 'gpo')
+                    
+                    
+                    <li class="my-1">
 
-            <button type="submit" form="filtermenu1{{ $menu->status_code }}" class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                {{ $menu->name }}
-            </button>
+                        <form action="{{ route('list_products') }}" id="filtermenu1{{ $menu->status_code }}">
+                        </form>
+                        <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu1{{ $menu->status_code }}">
+                        <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu1{{ $menu->status_code }}">
+        
+                        <button type="submit" form="filtermenu1{{ $menu->status_code }}" class="font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                            {{ $menu->name }} Product
+                        </button>
+                    </li>
+                    @endif
+                    @endforeach
+                    
+    
+                </ul>
+            </div>
+
             <hr>
-            @endif
-            @endforeach
+
+            <a href="">
+                <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-{{ $color[1] }}-500">
+                    Products
+                </div>
+            </a>
+            <div class="ml-4">
+                <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
+                    @foreach ($allkategoris as $kategori)
+                    <li class="my-1">
+                        <form action="{{ route('list_products') }}" method="get">
+                            <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                            <button type="submit" class="{{ !empty($filter)&&$filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500 font-encode-sans"
+                                {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
+                                {{ $kategori->nama_kategori }}
+                            </button>
+                        </form>
+                        @foreach ($subkategoris as $sub)
+                        @if ($sub->kategori_id == $kategori->no_kategori)
+                        <form action="{{ route('list_products') }}" method="">
+                            <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
+                            <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
+                            <ul class="ml-2 {{ !empty($subfilter)&&$subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                                <li class="appearance-none block whitespace-no-wrap">
+                                    <button type="submit" class="text-left">{{ $sub->child_name }}</button>
+                                </li>
+                            </ul>
+                        </form>
+                        @endif
+                        @endforeach
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            <hr>
 
             @foreach ($navmenus as $menu)
             @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
@@ -275,40 +327,6 @@
                 FAQ
             </div>
         </a>
-        <hr>
-        <a href="">
-            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-{{ $color[1] }}-500">
-                Products
-            </div>
-        </a>
-        <div class="ml-4">
-            <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
-                @foreach ($allkategoris as $kategori)
-                <li class="my-1">
-                    <form action="{{ route('list_products') }}" method="get">
-                        <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-500 font-encode-sans"
-                            {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
-                            {{ $kategori->nama_kategori }}
-                        </button>
-                    </form>
-                    @foreach ($subkategoris as $sub)
-                    @if ($sub->kategori_id == $kategori->no_kategori)
-                    <form action="{{ route('list_products') }}" method="">
-                        <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
-                        <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
-                            <li class="appearance-none block whitespace-no-wrap">
-                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
-                            </li>
-                        </ul>
-                    </form>
-                    @endif
-                    @endforeach
-                </li>
-                @endforeach
-            </ul>
-        </div>
     </div>
 </div>
 
