@@ -56,7 +56,15 @@ class AppServiceProvider extends ServiceProvider
 
         $navmenus = Site::all();
 
-        $statmenus = ProdukStatus::orderBy('status_code', 'asc')->get();
+        if (config('services.app.type') == 1) {
+            $statmenus = ProdukStatus::orderBy('status_code', 'asc')
+                ->where('status_code', '!=', 'grd')
+                ->where('status_code', '!=', 'gpo')
+                ->get();
+        } else {
+            $statmenus = ProdukStatus::orderBy('status_code', 'asc')
+                ->get();
+        }
 
 
         View::share('tagline', Webconfig::where('name', 'tagline')->get()->last());

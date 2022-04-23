@@ -1,29 +1,60 @@
 @extends('layouts.app')
-@section('title', 'TokoBayiFiv')
 @section('content')
 
     @include('inc.navbar1')
 
-    <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
-        <div class="hidden xl:block">
-            <div class="bg-{{ $color[0] }}-300 rounded-t-lg px-4 py-3">
-                <h6 class="font-encode-sans text-white text-sm font-bold">
-                    Our Products
-                </h6>
-            </div>
-            <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
-                <ul class="mt-3">
-                    @foreach ($allstatus as $status)
-                        @if ($status->status_code != 'grd' && $status->status_code != 'gpo')
-                            <li class="my-1">
-                                <form action="{{ route('list_products') }}">
-                                    <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
-                                    <input type="hidden" name="pagehighlight" value="{{ $status->name }}"">
-                            <button type=" submit"
-                                        class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-' . $color[1] . '-500' : 'text-slate-900' }} font-encode-sans">
-                                    {{ $status->name }} Product
-                                    </button>
-                                </form>
+<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
+    <div class="hidden xl:block">
+        <div class="bg-{{ $color[0] }}-300 rounded-t-lg px-4 py-3">
+            <h6 class="font-encode-sans text-white text-sm font-bold">
+                Our Products
+            </h6>
+        </div>
+        <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
+            <ul class="mt-3">
+                @foreach ($statmenus as $status)
+                <li class="my-1">
+                    <form action="{{ route('list_products') }}">
+                        <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
+                        <input type="hidden" name="pagehighlight" value="{{ $status->name }}"">
+                        <button type="submit"
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
+                            {{ $status->name }} Product
+                        </button>
+                    </form>
+                </li>
+                @endforeach
+                <li class="my-1">
+                    <form action="{{ route('list_products') }}">
+                        <input type="hidden" value="featured" name="filterproduct">
+                        <button type="submit"
+                            class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                            Featured Product
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <hr class="my-3">
+            <h2 class="font-concert-one text-slate-900 text-2xl">Our Products</h2>
+            <ul class="mt-3">
+                @foreach ($allkategoris as $kategori)
+                <li class="my-1 group">
+                    <form action="{{ route('list_products') }}" method="get">
+                        <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                        <button type="submit" {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}
+                            class="text-left appearance-none {{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} hover:text-{{ $color[1] }}-500 text-sm font-bold font-encode-sans peer">
+                            {{ $kategori->nama_kategori }}
+                        </button>
+                    </form>
+                    @foreach ($subkategoris as $sub)
+                    @if ($sub->kategori_id == $kategori->no_kategori)
+                    <form action="{{ route('list_products') }}" method="">
+                        <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
+                        <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
+                        <ul class="hidden ml-2 text-gray-400 pt-1 group-hover:block space-y-1">
+                            <li
+                                class="appearance-none {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} hover:text-{{ $color[1] }}-500  block whitespace-no-wrap">
+                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>
                         @endif
                     @endforeach
@@ -168,6 +199,80 @@
             <i class="fa fa-chevron-right mx-2" aria-hidden="true"></i>
         </a>
     </div> --}}
+</div>
+</div>
+
+<div class="bgmenulist xl:hidden fixed bg-slate-900 h-screen opacity-20 w-full -bottom-full">
+    <label for="bottomclick" class="inline-block w-full h-full"></label>
+</div>
+<div class="transition-all duration-300 bottomfilterlist xl:hidden w-full fixed -bottom-full -translate-x-1/2 left-1/2">
+    <div class="bg-{{ $color[0] }}-300 px-3 py-3 w-full rounded-t-lg">
+        <h6 class="font-encode-sans text-white font-bold">
+            Filter
+        </h6>
+    </div>
+    <div class="bg-white px-3 w-full py-4 overflow-y-auto max-h-72">
+        <ul>
+            @foreach ($statmenus as $status)
+                <li class="my-1">
+                    <form action="{{ route('list_products') }}">
+                        <input type="hidden" value="{{ $status->status_code }}" name="filterproduct">
+                        <input type="hidden" name="pagehighlight" value="{{ $status->name }}">
+                        <button type="submit"
+                            class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
+                            {{ $status->name }} Product
+                        </button>
+                    </form>
+                </li>
+                @endforeach
+            <li class="my-1">
+                <form action="{{ route('list_products') }}">
+                    <input type="hidden" value="featured" name="filterproduct">
+                    <button type="submit"
+                        class="{{ $filteredproduct == 'featured' ? 'text-'.$color[1].'-500' : 'text-slate-900' }} text-sm font-bold hover:text-{{ $color[1] }}-500 font-encode-sans">
+                        Featured Product
+                    </button>
+                </form>
+            </li>
+        </ul>
+
+        <hr class="my-3">
+        <input hidden type="checkbox" class="peer" name="typebottom" id="typebottom">
+        <label for="typebottom" class="flex cursor-pointer justify-between items-center">
+            <h2 class="font-concert-one text-2xl text-slate-900">
+                Our Products
+            </h2>
+            <i class="text-slate-900 text-xl fa fa-chevron-down"></i>
+        </label>
+        <div class="mt-3 ml-4 peer-checked:block hidden">
+            <ul class="font-encode-sans text-slate-900 text-sm md:text-base">
+                @foreach ($allkategoris as $kategori)
+                <li class="my-1">
+                    <form action="{{ route('list_products') }}" method="get">
+                        <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
+                        <button type="submit"
+                            class="{{ $filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-gray-400' }} font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
+                            {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
+                            {{ $kategori->nama_kategori }}
+                        </button>
+                    </form>
+                    @foreach ($subkategoris as $sub)
+                    @if ($sub->kategori_id == $kategori->no_kategori)
+                    <form action="{{ route('list_products') }}" method="">
+                        <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
+                        <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
+                        <ul
+                            class="ml-2 {{ $subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                            <li class="appearance-none block whitespace-no-wrap">
+                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
+                            </li>
+                        </ul>
+                    </form>
+                    @endif
+                    @endforeach
+                </li>
+                @endforeach
+            </ul>
         </div>
     </div>
 

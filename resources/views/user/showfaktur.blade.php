@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>TokoBayiFiv - Invoice No {{ $faktur->no_faktur }}</title>
+    <title>{{ config('app.name') }} - Invoice No {{ $faktur->no_faktur }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <style type="text/css">
         body {
@@ -1083,7 +1083,7 @@
                 <tbody>
                     <tr>
                         <th>
-                            <h1>TokoBayiFiv</h1>
+                            <h1>{{ config('app.name') }}</h1>
                             <p></p>
                         </th>
                         <th>

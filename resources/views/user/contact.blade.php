@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', 'TokoBayiFiv')
 @section('content')
 
 @include('inc.navbar1')
@@ -61,7 +60,7 @@
             dibawah ini dan akan kami kirimkan jawaban langsung ke email Anda.
             <br><br>
             Thanks,
-            TokoBayiFiv
+            {{ config('app.name') }}
         </p>
         <h2 class="mt-4 font-concert-one text-slate-900 text-2xl">
             Send Us Message
