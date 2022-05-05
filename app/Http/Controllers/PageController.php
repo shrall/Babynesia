@@ -291,7 +291,7 @@ class PageController extends Controller
             $values = null;
         }
 
-        return view('user.' . $sites->code, compact('page', 'sites', 'values'));
+        return view('user.' . strtolower($sites->code), compact('page', 'sites', 'values'));
     }
 
     public function list_articles()
