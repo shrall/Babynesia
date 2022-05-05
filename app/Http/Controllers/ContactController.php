@@ -47,7 +47,8 @@ class ContactController extends Controller
         $data->message = $request->message;
 
         // ganti receiver mailnya
-        Mail::to('ezralfredoo@gmail.com')->send(new ContactMail($data));
+        $webconfig = Webconfig::where('name', 'email_from')->first();
+        Mail::to($webconfig['content'])->send(new ContactMail($data));
 
         if (Mail::failures()) {
             return redirect(route('showpage', $request->nosites))->with('status', 'Sorry! Please try again latter');
