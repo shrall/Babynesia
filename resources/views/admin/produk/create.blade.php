@@ -66,10 +66,10 @@
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                <div class="col-span-3">Harga Grosir</div>
+                {{-- <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input" required>rupiah
-                </div>
+                </div> --}}
                 <div class="col-span-3">Diskon 1</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="disc1" id="disc1" class="admin-input">%
