@@ -24,7 +24,7 @@
                     </form>
                 </li>
                 @endforeach
-                <li class="my-1">
+                {{-- <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
                         <button type="submit"
@@ -32,7 +32,7 @@
                             Featured Product
                         </button>
                     </form>
-                </li>
+                </li> --}}
             </ul>
             <hr class="my-3">
             <h2 class="font-concert-one text-slate-900 text-2xl">Our Products</h2>
