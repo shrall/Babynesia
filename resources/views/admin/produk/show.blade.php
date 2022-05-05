@@ -61,8 +61,8 @@
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga)) }}</div>
             <div class="col-span-3">Harga Toko</div>
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_toko)) }}</div>
-            <div class="col-span-3">Harga Grosir</div>
-            <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_grosir)) }}</div>
+            {{-- <div class="col-span-3">Harga Grosir</div>
+            <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_grosir)) }}</div> --}}
             <hr class="col-span-12">
             <div class="col-span-12 font-bold">Status</div>
             <div class="col-span-3">Status</div>

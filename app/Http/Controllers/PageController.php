@@ -205,7 +205,6 @@ class PageController extends Controller
             }
         } else {
 
-
             //image 0 hidden
             if (!empty($keyword)) {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
@@ -213,6 +212,7 @@ class PageController extends Controller
                 })->where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12)
                     : Produk::where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12);
             } else if (!empty($filteredproduct)) {
+
                 if ($filteredproduct != 'featured') {
                     //new product
                     $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
@@ -260,8 +260,10 @@ class PageController extends Controller
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('image', '!=', null)->paginate(12)
-                    : Produk::where('image', '!=', null)->paginate(12);
+                })->where('image', '!=', null)
+                ->orderBy('kode_produk', 'desc')->paginate(12)
+                    : Produk::where('image', '!=', null)
+                    ->orderBy('kode_produk', 'desc')->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         }
