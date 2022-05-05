@@ -81,7 +81,7 @@ class LoginController extends Controller
                     'total' => 1
                 ]);
             };
-            return redirect()->route('user.landingpage');
+            return redirect()->route('landingpage');
         } else {
             $this->checkOrders();
             return redirect()->route('adminpage.dashboard');
