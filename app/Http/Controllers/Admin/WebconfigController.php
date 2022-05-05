@@ -37,6 +37,7 @@ class WebconfigController extends Controller
     public function store(Request $request)
     {
         $webconfigs = Webconfig::all();
+        dd($webconfigs);
         if ($request->type == 'configuration') {
             $webconfigs[5]->update([
                 'content' => $request->client_name
