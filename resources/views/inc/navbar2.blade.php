@@ -50,7 +50,7 @@
             </li>
             @endforeach
             @foreach ($navmenus as $menu)
-            @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+            @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4)
             <li class="{{ !empty($page)&&$page == "$menu->code" ? 'text-'.$color[1].'-600' : 'text-slate-900' }} hover:text-{{ $color[1] }}-600">
                 <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
                     {{ $menu->code }}
@@ -191,7 +191,7 @@
             @endforeach
 
             @foreach ($navmenus as $menu)
-            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4)
 
             <a href="{{ route('showpage', $menu->no) }}">
                 <div class="my-3 font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">

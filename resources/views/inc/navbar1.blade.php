@@ -126,7 +126,7 @@
             </div>
 
             @foreach ($navmenus as $menu)
-            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+            @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4)
             <li
                 class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white' }}">
                 <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
@@ -323,7 +323,7 @@
         <hr>
 
         @foreach ($navmenus as $menu)
-        @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+        @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4)
 
         <a href="{{ route('showpage', $menu->no) }}">
             <div

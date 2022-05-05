@@ -282,10 +282,10 @@ class PageController extends Controller
         $page = $sites->code;
 
         if ($sites->no == 4) {
-            if (Auth::check()) {
-            } else {
-                return redirect(route('login'));
-            }
+            // if (Auth::check()) {
+            // } else {
+            //     return redirect(route('login'));
+            // }
             $values = Guestbook::all();
         } else {
             $values = null;

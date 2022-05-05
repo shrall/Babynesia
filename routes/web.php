@@ -153,7 +153,7 @@ Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpag
 
 
 Route::group([
-    'middleware' => ['user'], //!ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya
+    'middleware' => ['user'],
     'as' => 'user.'
 ], function () {
 
