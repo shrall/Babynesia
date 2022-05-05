@@ -192,7 +192,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-span-3">Featured Product</div>
+                {{-- <div class="col-span-3">Featured Product</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="featured" value="0" {{ $produk->featured == '0' ? 'checked' : '' }}
@@ -204,7 +204,7 @@
                             id="radio-4">
                         <label for="radio-4">Featured</label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
