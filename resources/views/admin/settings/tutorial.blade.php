@@ -444,7 +444,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>Artikel
+                        {{-- <li>Artikel
                             <br>
                             <br>
                             <ul>
@@ -481,7 +481,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li>Anggota
                             <br>
                             <br>

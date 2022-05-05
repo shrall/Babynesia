@@ -6,7 +6,7 @@
             <a href="{{ route('adminpage.site.index') }}" class="hover:text-white">Halaman Web</a>
         @endif
         {{-- <a href="{{ route('adminpage.sidearea') }}" class="hover:text-white">Halaman Samping</a> --}}
-        <a href="{{ route('adminpage.news.index') }}" class="hover:text-white">Berita / Artikel</a>
+        {{-- <a href="{{ route('adminpage.news.index') }}" class="hover:text-white">Berita / Artikel</a> --}}
         <a href="{{ route('adminpage.guestbook.index') }}" class="hover:text-white">Buku Tamu</a>
         <a href="{{ route('adminpage.faq.index') }}" class="hover:text-white">FAQ</a>
     </div>
