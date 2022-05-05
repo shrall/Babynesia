@@ -1,34 +1,31 @@
 @extends('layouts.app')
 @section('content')
+    @include('inc.navbar1')
 
-@include('inc.navbar1')
-
-<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
-    <div class="w-full bg-white rounded-md shadow-sm py-3 px-3">
-        <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
-            FAQ
-        </h1>
-    </div>
-
-    @foreach ($faqs as $faq)
-        
-    <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
-        <input type="checkbox" name="faq" id="pertanyaan2" class="peer" hidden>
-        <label for="pertanyaan2" class="cursor-pointer inline-block h-full w-full absolute"></label>
-        <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
-            {{ $faq->pertanyaan }}
-        </h6>
-        <i class="fa fa-chevron-down text-xl text-slate-900 peer-checked:rotate-180 w-fit" aria-hidden="true"></i>
-        <div class="mt-2 peer-checked:block hidden pb-5 col-span-12">
-            <p class="px-5 text-gray-400 font-encode-sans text-sm sm:text-base">
-                {{ $faq->jawaban }}
-            </p>
+    <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+        <div class="w-full bg-white rounded-md shadow-sm py-3 px-3">
+            <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                FAQ
+            </h1>
         </div>
-    </div>
 
-    @endforeach
-    
-    {{-- <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
+        @foreach ($faqs as $faq)
+            <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
+                <input type="checkbox" name="faq" id="pertanyaan{{$faq->no_faq}}" class="peer" hidden>
+                <label for="pertanyaan{{$faq->no_faq}}" class="cursor-pointer inline-block h-full w-full absolute"></label>
+                <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
+                    {{ $faq->pertanyaan }}
+                </h6>
+                <i class="fa fa-chevron-down text-xl text-slate-900 peer-checked:rotate-180 w-fit" aria-hidden="true"></i>
+                <div class="mt-2 peer-checked:block hidden pb-5 col-span-12">
+                    <p class="px-5 text-gray-400 font-encode-sans text-sm sm:text-base">
+                        {{ $faq->jawaban }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+
+        {{-- <div class="mt-3 w-full bg-white rounded-md shadow-sm py-3 px-3 relative grid grid-cols-12 justify-between">
         <input type="checkbox" name="faq" id="pertanyaan1" class="peer" hidden>
         <label for="pertanyaan1" class="cursor-pointer inline-block h-full w-full absolute"></label>
         <h6 class="font-encode-sans font-bold text-slate-900 w-full text-sm sm:text-base col-span-11">
@@ -267,7 +264,7 @@
     </div> --}}
 
 
-</div>
+    </div>
 
-@include('inc.footer1')
+    @include('inc.footer1')
 @endsection
