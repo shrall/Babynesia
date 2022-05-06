@@ -51,7 +51,7 @@
                     </p>
                     <p class="font-bold sm:text-base font-encode-sans text-slate-900 text-sm ml-2 leading-7">
                         {{ $produk->category->nama_kategori }} <br>
-                        {{ $produk->brand->nama_brand }} <br>
+                        {{ !empty($produk->brand->nama_brand) ? $produk->brand->nama_brand : 'A/N' }} <br>
                         {{ $produk->weight }} gram
                     </p>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="my-4 xl:my-7">
                         <div class="flex justify-between">
-                            <h1 class="text-3xl font-concert-one text-slate-900">
+                            <h1 class="text-3xl font-concert-one {{ $produk->countStock($produk) != 0 ? 'text-slate-900' : 'text-gray-400' }}">
                                 Rp.
                                 {{ $produk->stat == 'd'? substr(number_format($produk->harga_sale, 2, ',', '.'), 0, -3): substr(number_format($produk->harga, 2, ',', '.'), 0, -3) }}
                             </h1>
@@ -189,7 +189,7 @@
                             </h6>
                             <div class="flex justify-between items-center sm:my-3 my-2">
 
-                                <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                <h2 class="font-concert-one {{ $produk->complementary->countStock($produk->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                                     Rp.
                                     {{ $produk->complementary->stat == 'd'? substr(number_format($produk->complementary->harga_sale, 2, ',', '.'), 0, -3): substr(number_format($produk->complementary->harga, 2, ',', '.'), 0, -3) }}
                                 </h2>
@@ -201,7 +201,7 @@
                                             PO
                                         </h6>
                                     @endif
-                                    @if ($hideconfig[1] == 0)
+                                    @if ($hideconfig[1] == 1)
                                         @if ($produk->countStock($produk) == 0)
                                             <h6
                                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
@@ -233,7 +233,7 @@
                             </h6>
                             <div class="flex justify-between items-center sm:my-3 my-2">
 
-                                <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                <h2 class="font-concert-one {{ $produk->complementary->complementary->countStock($produk->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                                     Rp.
                                     {{ $produk->complementary->complementary->stat == 'd'? substr(number_format($produk->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3): substr(number_format($produk->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
                                 </h2>
@@ -244,7 +244,7 @@
                                             PO
                                         </h6>
                                     @endif
-                                    @if ($hideconfig[1] == 0)
+                                    @if ($hideconfig[1] == 1)
                                         @if ($produk->countStock($produk) == 0)
                                             <h6
                                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
@@ -274,7 +274,7 @@
                             </h6>
                             <div class="flex justify-between items-center sm:my-3 my-2">
 
-                                <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                <h2 class="font-concert-one {{ $produk->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                                     Rp.
                                     {{ $produk->complementary->complementary->complementary->stat == 'd'? substr(number_format($produk->complementary->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3): substr(number_format($produk->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
                                 </h2>
@@ -285,7 +285,7 @@
                                             PO
                                         </h6>
                                     @endif
-                                    @if ($hideconfig[1] == 0)
+                                    @if ($hideconfig[1] == 1)
                                         @if ($produk->countStock($produk) == 0)
                                             <h6
                                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
@@ -315,7 +315,7 @@
                             </h6>
                             <div class="flex justify-between items-center sm:my-3 my-2">
 
-                                <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                                <h2 class="font-concert-one {{ $produk->complementary->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                                     Rp.
                                     {{ $produk->complementary->complementary->complementary->complementary->stat == 'd'? substr(number_format($produk->complementary->complementary->complementary->complementary->harga_sale, 2, ',', '.'),0,-3): substr(number_format($produk->complementary->complementary->complementary->complementary->harga, 2, ',', '.'),0,-3) }}
                                 </h2>
@@ -326,7 +326,7 @@
                                             PO
                                         </h6>
                                     @endif
-                                    @if ($hideconfig[1] == 0)
+                                    @if ($hideconfig[1] == 1)
                                         @if ($produk->countStock($produk) == 0)
                                             <h6
                                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">

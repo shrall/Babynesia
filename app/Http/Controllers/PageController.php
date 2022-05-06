@@ -36,35 +36,7 @@ class PageController extends Controller
                 'total' => 1
             ]);
         };
-        $produks = Produk::all();
 
-        $newproduct = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->limit(12)
-            ->where('disable', '!=', 1)
-            ->orderBy('kode_produk', 'desc')
-            ->get();
-
-        $hotdeals = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('stat', 'd')
-            ->where('disable', '!=', 1)
-            ->limit(12)
-            ->get();
-
-        $restock = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('stat', 'r')
-            ->where('disable', '!=', 1)
-            ->limit(12)
-            ->get();
-
-        $featured = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', '!=', 0);
-        })->where('featured', 1)
-            ->where('disable', '!=', 1)
-            ->limit(4)
-            ->get();
         $hide_product_sold = Webconfig::where('name', 'hide_sold_product')->get()->last();
         $hide_product_non_img = Webconfig::where('name', 'hide_product_non_img')->get()->last();
         $this->isHiddenSold = $hide_product_sold->isHidden;

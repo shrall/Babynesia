@@ -88,7 +88,7 @@
                         {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
-                        <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                        <h2 class="font-concert-one {{ $produk->countStock($produk) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                             Rp.
                             {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h2>
@@ -99,7 +99,7 @@
                                 PO
                             </h6>
                             @endif
-                            @if($hideconfig[1] == 0)
+                            @if($hideconfig[1] == 1)
                             @if($produk->countStock($produk) == 0)
                             <h6
                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
@@ -139,7 +139,7 @@
                         {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
                     </h6>
                     <div class="flex justify-between items-center sm:my-3 my-2">
-                        <h2 class="font-concert-one text-slate-900 xl:text-3xl text-xl">
+                        <h2 class="font-concert-one {{ $produk->countStock($produk) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
                             Rp. {{ substr(number_format($produk->harga,2,",","."), 0, -3) }}
                         </h2>
                         <div class="flex space-x-2">
@@ -149,7 +149,7 @@
                                 PO
                             </h6>
                             @endif
-                            @if($hideconfig[1] == 0)
+                            @if($hideconfig[1] == 1)
                             @if($produk->countStock($produk) == 0)
                             <h6
                                 class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
