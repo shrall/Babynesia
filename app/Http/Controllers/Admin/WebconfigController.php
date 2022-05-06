@@ -36,70 +36,70 @@ class WebconfigController extends Controller
      */
     public function store(Request $request)
     {
-        $webconfigs = Webconfig::all();
         if ($request->type == 'configuration') {
-            $webconfigs[5]->update([
+            $webconfig = Webconfig::where('name', 'customer_name')->first();
+            $webconfig->update([
                 'content' => $request->client_name
             ]);
-            $webconfigs[6]->update([
+            $webconfig = Webconfig::where('name', 'customer_email')->first();
+            $webconfig->update([
                 'content' => $request->client_email
             ]);
-            $webconfigs[7]->update([
+            $webconfig = Webconfig::where('name', 'customer_address')->first();
+            $webconfig->update([
                 'content' => $request->client_address
             ]);
-            $webconfigs[8]->update([
+            $webconfig = Webconfig::where('name', 'customer_mobile')->first();
+            $webconfig->update([
                 'content' => $request->client_hp
             ]);
-            $webconfigs[9]->update([
+            $webconfig = Webconfig::where('name', 'customer_phone')->first();
+            $webconfig->update([
                 'content' => $request->client_phone
             ]);
-            $webconfigs[10]->update([
+            $webconfig = Webconfig::where('name', 'company_name')->first();
+            $webconfig->update([
                 'content' => $request->company_name
             ]);
-            $webconfigs[11]->update([
+            $webconfig = Webconfig::where('name', 'tagline')->first();
+            $webconfig->update([
                 'content' => $request->tagline
             ]);
-            $webconfigs[12]->update([
+            $webconfig = Webconfig::where('name', 'email')->first();
+            $webconfig->update([
                 'content' => $request->main_email
             ]);
-            $webconfigs[13]->update([
+            $webconfig = Webconfig::where('name', 'email_from')->first();
+            $webconfig->update([
                 'content' => $request->sender_email
             ]);
-            $webconfigs[28]->update([
+            $webconfig = Webconfig::where('name', 'fb')->first();
+            $webconfig->update([
                 'content' => $request->facebook
             ]);
-            $webconfigs[29]->update([
+            $webconfig = Webconfig::where('name', 'twitter')->first();
+            $webconfig->update([
                 'content' => $request->twitter
             ]);
-            $webconfigs[30]->update([
+            $webconfig = Webconfig::where('name', 'waittime')->first();
+            $webconfig->update([
                 'content' => $request->wait_time
             ]);
-            $webconfigs[39]->update([
+            $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+            $webconfig->update([
                 'content' => $request->kota_pengirim
             ]);
-            // $webconfigs[16]->update([
-            //     'content' => $request->ongkir_note
-            // ]);
-            // $webconfigs[24]->update([
-            //     'content' => $request->auto_email
-            // ]);
-            // $webconfigs[25]->update([
-            //     'content' => $request->starting_code
-            // ]);
-            $webconfigs[27]->update([
-                'content' => $request->hide_code
+            $webconfig = Webconfig::where('name', 'hide_product_code')->first();
+            $webconfig->update([
+                'isHidden' => $request->hide_code == 'on' ? 1 : 0
             ]);
-            $webconfigs[32]->update([
+            $webconfig = Webconfig::where('name', 'hide_sold_product')->first();
+            $webconfig->update([
                 'isHidden' => $request->hide_soldout == 'on' ? 1 : 0
             ]);
-            $webconfigs[33]->update([
-                'isHidden' => $request->allow_minus == 'on' ? 1 : 0
-            ]);
-            $webconfigs[40]->update([
+            $webconfig = Webconfig::where('name', 'hide_product_non_img')->first();
+            $webconfig->update([
                 'isHidden' => $request->hide_noimage == 'on' ? 1 : 0
-            ]);
-            $webconfigs[36]->update([
-                'content' => $request->use_store_price
             ]);
             return redirect()->route('adminpage.configuration');
         } else if ($request->type == 'design') {
@@ -107,21 +107,27 @@ class WebconfigController extends Controller
                 $image = 'header-' . time() . '-' . $request['image']->getClientOriginalName();
                 $request->image->move(public_path('uploads/'), $image);
             } else {
-                $image = $webconfigs[22]->content;
+                $webconfig = Webconfig::where('name', 'bg_img')->first();
+                $image = $webconfig->content;
             }
-            $webconfigs[22]->update([
+            $webconfig = Webconfig::where('name', 'bg_img')->first();
+            $webconfig->update([
                 'content' => $image
             ]);
-            $webconfigs[35]->update([
+            $webconfig = Webconfig::where('name', 'bg_color')->first();
+            $webconfig->update([
                 'content' => $request->bg_color
             ]);
-            $webconfigs[36]->update([
+            $webconfig = Webconfig::where('name', 'text_color')->first();
+            $webconfig->update([
                 'content' => $request->text_color
             ]);
-            $webconfigs[37]->update([
+            $webconfig = Webconfig::where('name', 'button_color')->first();
+            $webconfig->update([
                 'content' => $request->button_color
             ]);
-            $webconfigs[38]->update([
+            $webconfig = Webconfig::where('name', 'web_layout')->first();
+            $webconfig->update([
                 'content' => $request->web_layout
             ]);
             return redirect()->route('adminpage.layoutdesign');

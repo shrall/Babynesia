@@ -66,10 +66,10 @@
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                <div class="col-span-3">Harga Grosir</div>
+                {{-- <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input" required>rupiah
-                </div>
+                </div> --}}
                 <div class="col-span-3">Diskon 1</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="disc1" id="disc1" class="admin-input">%
@@ -136,7 +136,7 @@
                         Gambar Utama
                     </div>
                 </div>
-                <div class="col-span-3">Featured Product</div>
+                {{-- <div class="col-span-3">Featured Product</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="featured" value="0" checked id="radio-3">
@@ -146,7 +146,7 @@
                         <input type="radio" name="featured" value="1" id="radio-4">
                         <label for="radio-4">Featured</label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)

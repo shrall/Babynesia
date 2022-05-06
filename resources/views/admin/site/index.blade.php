@@ -15,7 +15,7 @@
                         <tr>
                             <th>Urutan</th>
                             <th>Nama</th>
-                            <th>Isi</th>
+                            {{-- <th>Isi</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -24,7 +24,7 @@
                             <tr>
                                 <td>{{ $site->urutan }}</td>
                                 <td>{{ $site->code }}</td>
-                                <td>{{ $site->isi }}</td>
+                                {{-- <td>{{ $site->isi }}</td> --}}
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.site.edit', $site->no) }}"

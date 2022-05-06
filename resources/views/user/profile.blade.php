@@ -34,11 +34,11 @@
                 </label>
             </div>
 
-            <hr class="my-3">
+            {{-- <hr class="my-3">
             <a href="#" type="button"
                 class="appearance-none font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500 text-sm sm:text-base ">
                 Chat Us
-            </a>
+            </a> --}}
             <hr class="my-3">
             <form action="{{ route('logout') }}" method="post">
                 @csrf

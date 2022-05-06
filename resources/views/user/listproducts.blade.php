@@ -24,7 +24,7 @@
                     </form>
                 </li>
                 @endforeach
-                <li class="my-1">
+                {{-- <li class="my-1">
                     <form action="{{ route('list_products') }}">
                         <input type="hidden" value="featured" name="filterproduct">
                         <button type="submit"
@@ -32,7 +32,7 @@
                             Featured Product
                         </button>
                     </form>
-                </li>
+                </li> --}}
             </ul>
             <hr class="my-3">
             <h2 class="font-concert-one text-slate-900 text-2xl">Our Products</h2>
@@ -107,7 +107,7 @@
 
                 @foreach ($produks as $produk)
                 <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                    <img src="http://www.tokobayifiv.com/images/produk/{{ $produk->image }}"
+                    <img src="{{ asset('uploads/') . '/' . $produk->image }}"
                         class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-4 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">

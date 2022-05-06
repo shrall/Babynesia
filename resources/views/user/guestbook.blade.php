@@ -40,21 +40,21 @@
                         Name</label>
                 </div>
                 <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="name" value="{{ Auth::user()->name }} {{ Auth::user()->lastname }}" required>
+                    name="name" required>
             </div>
             <div class="mt-4">
                 <div> <label for="email" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Email</label>
                 </div>
                 <input id="email" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="email" value="{{ Auth::user()->email }}" required>
+                    name="email" required>
             </div>
             <div class="mt-4">
                 <div> <label for="location" class="text-sm sm:text-base font-encode-sans text-slate-900">
                         Location</label>
                 </div>
                 <input id="location" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="location" value="{{ Auth::user()->kota }}" required>
+                    name="location" required>
             </div>
             <div class="mt-4">
                 <div> <label for="message" class="text-sm sm:text-base font-encode-sans text-slate-900">Message</label>
@@ -99,7 +99,7 @@
 @include('inc.footer1')
 
 @push('scripts')
-    
+
 <script type="text/javascript">
 $("#reload").click(function(e) {
         e.preventDefault();

@@ -21,7 +21,7 @@ class Admin
             if (Auth::user()->user_status_id != 1 && Auth::user()->user_status_id != 2) {
                 return $next($request);
             } else {
-                return redirect()->route('user.landingpage');
+                return redirect()->route('landingpage');
             }
         } else {
             return redirect()->route('login');

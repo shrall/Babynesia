@@ -151,9 +151,14 @@ Route::resource('faq', FaqController::class);
 Route::resource('sites', SitesController::class);
 Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpage');
 
+Route::group([
+    'as' => 'user.'
+], function () {
+    Route::resource('guestbook', GuestbookController::class);
+});
 
 Route::group([
-    'middleware' => ['user'], //!ini biar nanti kalo udah nyambung backend, dia harus login dlu kalo mau make routenya
+    'middleware' => ['user'],
     'as' => 'user.'
 ], function () {
 
@@ -175,7 +180,6 @@ Route::group([
     Route::resource('event', EventController::class);
     Route::resource('faktur', FakturController::class);
     Route::resource('fakturstatus', FakturStatusController::class);
-    Route::resource('guestbook', GuestbookController::class);
     Route::resource('hitcounter', HitcounterController::class);
     Route::resource('hotdeals', HotdealsController::class);
     Route::resource('hotdealsarea', HotdealsAreaController::class);
