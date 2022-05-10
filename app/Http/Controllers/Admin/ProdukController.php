@@ -21,7 +21,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = Produk::where('disable', 0)->paginate(15);
+        $products = Produk::where('disable', 0)->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = ' ';
@@ -30,7 +30,7 @@ class ProdukController extends Controller
 
     public function index_promo()
     {
-        $products = Produk::where('stat', 'd')->paginate(15);
+        $products = Produk::where('stat', 'd')->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Promo';
@@ -39,7 +39,7 @@ class ProdukController extends Controller
 
     public function index_restock()
     {
-        $products = Produk::where('stat', 'r')->paginate(15);
+        $products = Produk::where('stat', 'r')->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Restock';
@@ -48,7 +48,7 @@ class ProdukController extends Controller
 
     public function index_disabled()
     {
-        $products = Produk::where('disable', 1)->paginate(15);
+        $products = Produk::where('disable', 1)->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Non-Aktif';
@@ -59,7 +59,7 @@ class ProdukController extends Controller
     {
         $products = Produk::whereHas('stocks', function (Builder $query) {
             $query->where('product_stock', 0);
-        })->paginate(15);
+        })->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
