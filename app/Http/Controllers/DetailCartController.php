@@ -53,7 +53,7 @@ class DetailCartController extends Controller
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',
-        ])->json()['rajaongkir']['results'][0];
+        ])->json();
         dd($shipments);
 
         if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
