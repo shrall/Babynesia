@@ -46,11 +46,10 @@ class DetailCartController extends Controller
         //Rajaongkir
         // $webconfigs = Webconfig::all();
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
-        dd($webconfig);
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin' => $webconfig,
+            'origin' => $webconfig->content,
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',
