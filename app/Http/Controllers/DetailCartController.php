@@ -46,6 +46,7 @@ class DetailCartController extends Controller
         //Rajaongkir
         // $webconfigs = Webconfig::all();
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+        dd($webconfig);
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
@@ -53,8 +54,7 @@ class DetailCartController extends Controller
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',
-        ])->json();
-        dd($shipments);
+        ])->json()['rajaongkir']['results'][0];
 
         if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
