@@ -44,7 +44,7 @@ class DetailCartController extends Controller
 
         //hitung delivery cost
         //Rajaongkir
-        $webconfigs = Webconfig::all();
+        // $webconfigs = Webconfig::all();
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
@@ -54,6 +54,7 @@ class DetailCartController extends Controller
             'weight' => $berat,
             'courier' => 'jne',
         ])->json()['rajaongkir']['results'][0];
+        dd($shipments);
 
         if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
