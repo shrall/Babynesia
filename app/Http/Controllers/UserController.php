@@ -113,6 +113,8 @@ class UserController extends Controller
             'telp' => $request->telp,
             'hp' => $request->hp,
         ]);
+
+        return redirect(route('user.user.index'));
     }
 
     /**
