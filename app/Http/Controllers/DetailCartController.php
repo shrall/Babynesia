@@ -44,11 +44,12 @@ class DetailCartController extends Controller
 
         //hitung delivery cost
         //Rajaongkir
-        $webconfigs = Webconfig::all();
+        // $webconfigs = Webconfig::all();
+        $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
         ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin' => $webconfigs[39]['content'],
+            'origin' => $webconfig->content,
             'destination' => $request->city,
             'weight' => $berat,
             'courier' => 'jne',
