@@ -76,7 +76,7 @@ class FakturController extends Controller
             // 'discount',
             'note' => $request->note,
             // 'admin_note',
-            // 'total_weight' => $request->berat
+            'total_weight' => $request->berat
         ]);
 
         if (!empty($request->pengirim_name)) {
