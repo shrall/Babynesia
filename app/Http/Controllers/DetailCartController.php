@@ -77,13 +77,46 @@ class DetailCartController extends Controller
             'key' => config('services.rajaongkir.token'),
         ])->get('https://api.rajaongkir.com/starter/province')
             ->json()['rajaongkir']['results'];
-        $city = $cities[$request->city]['city_name'];
-        $province = $provinces[$request->province]['province'];
+
+
+        $webcongudang = Webconfig::where('name', 'kota_pengirim')->get()->last();
+
+        foreach ($cities as $kota) {
+            if ($kota['city_id'] == $request->city) {
+                $city = $kota['city_name'];
+                break;
+            } else {
+                $city = "";
+            }
+        }
+
+        foreach ($cities as $kota) {
+            if ($kota['city_id'] == $webcongudang->content) {
+                $gudang = $kota['city_name'];
+                break;
+            } else {
+                $gudang = "";
+            }
+        }
+
+        foreach ($provinces as $provinsi) {
+            if ($provinsi['province_id'] == $request->province) {
+                $province = $provinsi['province'];
+                break;
+            } else {
+                $province = "";
+            }
+        }
+
+        // $city = $cities[$request->city - 1]['city_name'];
+        // $province = $provinces[$request->province - 1]['province'];
+
+        // $gudang = $cities[$webcongudang->content - 1]['city_name'];
 
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment', 'gudang'));
     }
 
     /**

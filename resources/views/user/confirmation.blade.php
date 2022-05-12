@@ -180,7 +180,7 @@
                         <li>:</li>
                     </ul>
                     <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
-                        <li>Gudang</li>
+                        <li>{{ $gudang }}</li>
                         <li>{{ $city }}</li>
                         <li>+- {{ $berat }} kg</li>
                         <li>{{ $request->delivery }}</li>
@@ -195,6 +195,29 @@
         </div>
         <div class="sm:grid sm:grid-cols-2 sm:gap-3">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
+                @if (!empty($request->pengirim_name))
+                    
+                <h6 class="font-encode-sans font-bold text-red-500 text-sm sm:text-base">Dropship</h6>
+                <div class="px-7 mt-3 mb-4 flex">
+                    <ul class="font-encode-sans text-gray-400 text-sm sm:text-base">
+                        <li>Sender Name</li>
+                        <li>Sender Address</li>
+                        <li>Nomor Hp Pengirim</li>
+                    </ul>
+                    <ul class="ml-7 font-encode-sans text-gray-400 text-sm sm:text-base">
+                        <li>:</li>
+                        <li>:</li>
+                        <li>:</li>
+                    </ul>
+                    <ul class="ml-2 font-encode-sans text-slate-900 text-sm sm:text-base">
+                        <li>{{ $request->pengirim_name }}</li>
+                        <li>{{ $request->pengirim_address }}</li>
+                        <li>{{ $request->pengirim_hp }}</li>
+                    </ul>
+                </div>
+
+                @endif
+
                 <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Receiver</h6>
                 <div class="px-7 mt-3 flex">
                     <ul class="font-encode-sans text-gray-400 text-sm sm:text-base">
@@ -297,7 +320,7 @@
             <input type="hidden" value="{{ $request->phone }}" name="phone">
             <input type="hidden" value="{{ $request->hp }}" name="hp">
             <input type="hidden" value="{{ $payment->name }}" name="payment">
-            {{-- <input type="hidden" value="{{ $request->note }}" name="note"> --}}
+            <input type="hidden" value="{{ $request->note }}" name="note">
             <input type="hidden" value="{{ $total }}" name="total">
             <input type="hidden" value="{{ $berat }}" name="berat">
             <input type="hidden" value="{{ $jumlahCart }}" name="jumlahCart">

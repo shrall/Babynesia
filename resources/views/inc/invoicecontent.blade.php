@@ -3,20 +3,34 @@
         <h1 class="font-concert-one text-4xl text-{{ $color[1] }}-500">{{ config('app.name') }}</h1>
         <h2 class="font-encode-sans text-lg text-white font-bold px-3 py-2 rounded-lg" style="background-color: {{ $faktur->fakturstatus->color }}">{{ $faktur->fakturstatus->status }}</h2>
     </div>
+    @if (!empty($faktur->sender_name))
+    <div class="text-red-500 mt-4 text-lg font-bold">
+        Dropship
+    </div>
+    @endif
     <div class="mt-4 grid grid-cols-3 sm:grid-cols-4">
         <div class="col-span-2 flex">
             <ul class="font-encode-sans text-gray-400">
-                <li>Name</li>
+                <li>{{ !empty($faktur->sender_name) ? 'Sender Name' : 'Name' }}</li>
+                @if(!empty($faktur->sender_name))
+                <li>Sender Address</li>
+                @endif
                 <li>Email</li>
-                <li>Phone</li>
+                <li>{{ !empty($faktur->sender_name) ? 'No Hp Pengirim' : 'Phone' }}</li>
             </ul>
             <ul class="ml-7 font-encode-sans text-gray-400">
                 <li>:</li>
+                @if(!empty($faktur->sender_name))
+                <li>:</li>
+                @endif
                 <li>:</li>
                 <li>:</li>
             </ul>
             <ul class="ml-2 font-encode-sans text-slate-900">
                 <li>{{ !empty($faktur->sender_name) ? $faktur->sender_name : Auth::user()->name }}</li>
+                @if(!empty($faktur->sender_name))
+                <li>{{ $faktur->sender_address }}</li>
+                @endif
                 <li>{{ Auth::user()->email }}</li>
                 <li>{{ !empty($faktur->sender_phone) ? $faktur->sender_phone : Auth::user()->telp }}</li>
             </ul>

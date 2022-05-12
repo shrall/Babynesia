@@ -32,15 +32,15 @@
                     Account Details
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
-                    <a href="{{ route('user.user.index') }}">
-                        account
-                    </a> </li>
-                <li class="font-encode-sans text-white text-sm sm:text-base">
                     <form action="{{ route('user.user.index') }}" id="formchecker"></form>
-                    <input type="hidden" name="checker" value="history" form="formchecker">
+                    <input type="hidden" name="checker" value="profile" form="formchecker">
                     <button type="submit" form="formchecker">
-                        transaction history
+                        account
                     </button>
+                <li class="font-encode-sans text-white text-sm sm:text-base">
+                    <a href="{{ route('user.user.index') }}">
+                        transaction history
+                    </a>
                 </li>
             </ul>
             <ul>

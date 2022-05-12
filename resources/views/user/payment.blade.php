@@ -74,6 +74,7 @@
     <input type="hidden" value="{{ $request->postcode }}" name="postcode">
     <input type="hidden" value="{{ $request->city }}" name="city">
     <input type="hidden" value="{{ $request->province }}" name="province">
+    <input type="hidden" value="{{ $request->note }}" name="note">
     <input type="hidden" value="{{ $request->delivery }}" name="delivery">
     <input type="hidden" value="{{ $request->phone }}" name="phone">
     <input type="hidden" value="{{ $request->hp }}" name="hp">

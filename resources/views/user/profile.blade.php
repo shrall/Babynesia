@@ -315,7 +315,13 @@
             <div class="sm:flex sm:justify-between ">
                 <div class="">
                     <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
-                        Invoice No. <span class="text-slate-900 font-bold">{{ $faktur->no_faktur }}</span>
+                        @if (!empty($faktur->sender_name))
+                        <span class="text-red-500 font-bold"> Dropship </span>   
+                        <br> 
+                        @endif
+                        Invoice No. <span class="text-slate-900 font-bold">{{ $faktur->no_faktur }}</span> 
+                        
+                        
                         {{-- <a href="#">
                             <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 hover:text-{{ $color[0] }}-500 hover:border-{{ $color[0] }}-500 rounded-md border-{{ $color[0] }}-400"
                                 aria-hidden="true"></i>
@@ -376,7 +382,9 @@
 
         @endforeach
 
-        {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
+        <div class="mt-3">
+            {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
+        </div>
 
     </div>
 

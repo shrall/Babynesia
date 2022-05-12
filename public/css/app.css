@@ -3494,6 +3494,9 @@ textarea.form-control.is-invalid{
 .top-20{
   top: 5rem;
 }
+.top-4{
+  top: 1rem;
+}
 .right-4{
   right: 1rem;
 }
@@ -4766,6 +4769,12 @@ textarea.form-control.is-invalid{
 .pt-1{
   padding-top: 0.25rem;
 }
+.pt-4{
+  padding-top: 1rem;
+}
+.pb-24{
+  padding-bottom: 6rem;
+}
 .pt-0{
   padding-top: 0px;
 }
@@ -4781,9 +4790,6 @@ textarea.form-control.is-invalid{
 .pb-7{
   padding-bottom: 1.75rem;
 }
-.pt-4{
-  padding-top: 1rem;
-}
 .pl-4{
   padding-left: 1rem;
 }
@@ -4798,21 +4804,6 @@ textarea.form-control.is-invalid{
 }
 .pb-8{
   padding-bottom: 2rem;
-}
-.pb-56{
-  padding-bottom: 14rem;
-}
-.pb-40{
-  padding-bottom: 10rem;
-}
-.pb-32{
-  padding-bottom: 8rem;
-}
-.pb-20{
-  padding-bottom: 5rem;
-}
-.pb-24{
-  padding-bottom: 6rem;
 }
 .text-left{
   text-align: left;
@@ -4866,10 +4857,6 @@ textarea.form-control.is-invalid{
 .text-base{
   font-size: 1rem;
   line-height: 1.5rem;
-}
-.text-xl{
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 .text-6xl{
   font-size: 3.75rem;
@@ -5836,7 +5823,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   background-color: rgb(244 114 182 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-rsose-400:hover{
+.hover\:bg-rose-400:hover{
   --tw-bg-opacity: 1;
   background-color: rgb(251 113 133 / var(--tw-bg-opacity));
 }

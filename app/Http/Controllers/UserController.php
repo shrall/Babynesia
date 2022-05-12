@@ -26,7 +26,7 @@ class UserController extends Controller
         $indoprovinces = IndonesiaProvince::all();
         $checker = $request->checker;
         if (empty($checker)) {
-            $checker = 'profile';
+            $checker = 'history';
         }
 
         return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker'));

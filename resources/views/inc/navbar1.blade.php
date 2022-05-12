@@ -22,10 +22,12 @@
 
             <div class="flex items-center">
                 @if (Auth::check())
-                <a href="{{ route('user.user.index') }}" class=" ml-8 flex items-center">
+                <form action="{{ route('user.user.index') }}" id="formcheckernav"></form>
+                <input type="hidden" name="checker" value="profile" form="formcheckernav">
+                <button type="submit" form="formcheckernav" class=" ml-8 flex items-center">
                     <i class="fa fa-user-circle size text-4xl text-white"></i>
                     <div class="mx-3 font-encode-sans font-bold text-white">{{ Auth::user()->name }}</div>
-                </a>
+                </button>
                 @else
                 <a href="{{ route('login') }}" class=" ml-8 flex items-center">
                     <i class="fa fa-user-circle size text-4xl text-white"></i>
@@ -225,12 +227,12 @@
                     <i class="fas fa-times sm:text-4xl text-3xl text-white"></i>
                 </label>
                 @if (Auth::checK())
-                <a href="{{ route('user.user.index') }}" class="ml-5 flex items-center">
+                <button type="submit" form="formcheckernav" class="ml-5 flex items-center">
                     <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
                     <div class="mx-3 font-encode-sans font-bold text-white text-sm sm:text-base">
                         {{ Auth::user()->name }}
                     </div>
-                </a>
+                </button>
                 @else
                 <a href="{{ route('login') }}" class="ml-5 flex items-center">
                     <i class="fa fa-user-circle size sm:text-4xl text-3xl text-white"></i>
