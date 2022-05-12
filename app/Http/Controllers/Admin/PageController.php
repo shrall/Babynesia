@@ -66,9 +66,9 @@ class PageController extends Controller
         }else{
             $emails = User::select('email')->get();
         }
-        $webconfigs = Webconfig::all();
+        $webconfig = Webconfig::where('name', 'email_from')->first();
         $emails = User::where('email', 'user@tbf.com')->get();
-        $job = (new \App\Jobs\SendBulkMail($request->title, $emails, $request->content, $webconfigs[13]->content))
+        $job = (new \App\Jobs\SendBulkMail($request->title, $emails, $request->content, $webconfig["content"]->content))
             ->delay(
                 now()
                     ->addSeconds(2)
