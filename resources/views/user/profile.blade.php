@@ -348,7 +348,7 @@
                             Total Harga
                         </p>
                         <h6 class="font-encode-sans font-bold text-slate-900">
-                            Rp. {{ substr(number_format($faktur->total_pembayaran,2,",","."), 0, -3) }}
+                            Rp. {{ substr(number_format($faktur->total_pembayaran+$faktur->deliverycost+intval(substr($faktur->no_faktur, -3)),2,",","."), 0, -3) }}
                         </h6>
                     </div>
                     <div class="mt-8">
