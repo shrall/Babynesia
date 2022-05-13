@@ -59,6 +59,7 @@
                     </thead>
                     <tbody>
                         @foreach ($fakturs as $faktur)
+                        {{dd($faktur->receiver)}}
                             <tr>
                                 <td>{{ $faktur->no_faktur }}</td>
                                 <td style="color: {{ $faktur->fakturstatus->color }};">
