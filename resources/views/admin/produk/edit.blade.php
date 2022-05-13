@@ -106,10 +106,10 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->image }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[0]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="0" checked id="">
+                            <input type="radio" name="image_primary" value="0" {{$produk->image == $produk->images[0]->imageurl ? "checked" : ""}} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -122,12 +122,12 @@
                 </div>
                 <div class="col-span-3">Gambar 2</div>
                 <div class="col-span-9">
-                    @if ($produk->images->count() == 2)
+                    @if ($produk->images->count() >= 2)
                         <div class="flex items-center gap-2">
                             <img src="{{ asset('uploads/') . '/' . $produk->images[1]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="1" checked id="">
+                            <input type="radio" name="image_primary" value="1" {{$produk->image == $produk->images[1]->imageurl ? "checked" : ""}} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -140,12 +140,12 @@
                 </div>
                 <div class="col-span-3">Gambar 3</div>
                 <div class="col-span-9">
-                    @if ($produk->images->count() == 3)
+                    @if ($produk->images->count() >= 3)
                         <div class="flex items-center gap-2">
                             <img src="{{ asset('uploads/') . '/' . $produk->images[2]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="2" checked id="">
+                            <input type="radio" name="image_primary" value="2" {{$produk->image == $produk->images[2]->imageurl ? "checked" : ""}} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -158,12 +158,12 @@
                 </div>
                 <div class="col-span-3">Gambar 4</div>
                 <div class="col-span-9">
-                    @if ($produk->images->count() == 4)
+                    @if ($produk->images->count() >= 4)
                         <div class="flex items-center gap-2">
                             <img src="{{ asset('uploads/') . '/' . $produk->images[3]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="3" checked id="">
+                            <input type="radio" name="image_primary" value="3" {{$produk->image == $produk->images[3]->imageurl ? "checked" : ""}} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -176,12 +176,12 @@
                 </div>
                 <div class="col-span-3">Gambar 5</div>
                 <div class="col-span-9">
-                    @if ($produk->images->count() == 5)
+                    @if ($produk->images->count() >= 5)
                         <div class="flex items-center gap-2">
                             <img src="{{ asset('uploads/') . '/' . $produk->images[4]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="4" checked id="">
+                            <input type="radio" name="image_primary" value="4" {{$produk->image == $produk->images[4]->imageurl ? "checked" : ""}} id="">
                             Gambar Utama
                         </div>
                     @else

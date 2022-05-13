@@ -222,9 +222,6 @@ class ProdukController extends Controller
                 }
             }
         }
-        foreach ($keys as $key => $value) {
-            $truekey = $key;
-        }
         $produk->update([
             'kode_alias' => $request->alias_code,
             'stat' => $request->status,
@@ -248,7 +245,13 @@ class ProdukController extends Controller
             'complement' => $request->complement
         ]);
         if ($request->image) {
-            foreach ($request->image as $key => $value) {
+            // dd($images);
+            $oldImages = ProdukImage::where("produk_id", $produk->kode_produk)->get();
+            // dd($oldImages);
+            foreach ($oldImages as $key => $oldimage){
+                $oldimage->delete();
+            }
+            foreach ($images as $key => $value) {
                 ProdukImage::create([
                     'produk_id' => $produk->kode_produk,
                     'produk_id_alias' => $produk->kode_alias,
