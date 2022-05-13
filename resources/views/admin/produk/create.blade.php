@@ -253,6 +253,7 @@
         }
 
         function refresh_type() {
+            console.log(url)
             $('#product-types').val(typescounter);
             $.post(url + "/adminpage/produk/add_type", {
                     _token: CSRF_TOKEN,
