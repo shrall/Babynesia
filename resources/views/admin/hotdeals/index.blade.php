@@ -97,7 +97,7 @@
                     Hapus
                     <span class=" fa fa-fw fa-trash-alt ml-2"></span>
                 </div>
-                <form action="{{ route('adminpage.hotdeal.destroy', $hotdeal->id) }}"
+                <form action="{{ route('adminpage.hotdeals.destroy', $hotdeal->id) }}"
                     id="delete-hotdeal-form-{{ $hotdeal->id }}" method="post">
                     @csrf
                     <input name="_method" type="hidden" value="DELETE">
