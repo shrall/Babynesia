@@ -54,7 +54,7 @@ class DetailCartController extends Controller
             'weight' => $berat,
             'courier' => 'jne',
         ])->json()['rajaongkir']['results'][0];
-
+            dd($shipments);
         if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
         } else if ($request->delivery == "JNE REG" && !empty($shipments['costs'])) {
