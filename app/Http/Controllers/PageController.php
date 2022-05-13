@@ -159,20 +159,20 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(12)
-                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->paginate(12);
+                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
+                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(12)
-                        : Produk::where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
+                        : Produk::where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->paginate(12)
-                    : Produk::paginate(12);
+                })->orderBy('kode_produk', 'desc')->paginate(12)
+                    : Produk::orderBy('kode_produk', 'desc')->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         } else {
@@ -220,14 +220,14 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(12)
-                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(12);
+                    })->where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
+                        : Produk::where('kategory', $kategori->no_kategori . '-' . $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(12)
-                        : Produk::where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
+                        : Produk::where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
