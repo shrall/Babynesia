@@ -54,7 +54,7 @@ class DetailCartController extends Controller
             'weight' => $berat,
             'courier' => 'jne',
         ])->json()['rajaongkir']['results'][0];
-            dd($shipments);
+
         if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
             $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
         } else if ($request->delivery == "JNE REG" && !empty($shipments['costs'])) {
@@ -77,46 +77,13 @@ class DetailCartController extends Controller
             'key' => config('services.rajaongkir.token'),
         ])->get('https://api.rajaongkir.com/starter/province')
             ->json()['rajaongkir']['results'];
-
-
-        $webcongudang = Webconfig::where('name', 'kota_pengirim')->get()->last();
-
-        foreach ($cities as $kota) {
-            if ($kota['city_id'] == $request->city) {
-                $city = $kota['city_name'];
-                break;
-            } else {
-                $city = "";
-            }
-        }
-
-        foreach ($cities as $kota) {
-            if ($kota['city_id'] == $webcongudang->content) {
-                $gudang = $kota['city_name'];
-                break;
-            } else {
-                $gudang = "";
-            }
-        }
-
-        foreach ($provinces as $provinsi) {
-            if ($provinsi['province_id'] == $request->province) {
-                $province = $provinsi['province'];
-                break;
-            } else {
-                $province = "";
-            }
-        }
-
-        // $city = $cities[$request->city - 1]['city_name'];
-        // $province = $provinces[$request->province - 1]['province'];
-
-        // $gudang = $cities[$webcongudang->content - 1]['city_name'];
+        $city = $cities[$request->city]['city_name'];
+        $province = $provinces[$request->province]['province'];
 
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment', 'gudang'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment'));
     }
 
     /**
