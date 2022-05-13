@@ -267,89 +267,93 @@
                         </a>
                     @endif
 
-                    <a href="{{ route('produk.show', $produk->complementary->complementary->complementary) }}"
-                        class="rounded-lg shadow-sm bg-white">
-                        <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->image }}"
-                            class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
-                        <div class="p-4 pb-5">
-                            <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                                {{ $hideconfig[0] != 1 ? '[' . $produk->complementary->kode_produk . ']' : '' }}
-                                {{ $produk->complementary->complementary->complementary->nama_produk }}
-                            </h6>
-                            <div class="flex justify-between items-center sm:my-3 my-2">
+                    @if (!empty($produk->complementary->complementary->complementary))
+                        <a href="{{ route('produk.show', $produk->complementary->complementary->complementary) }}"
+                            class="rounded-lg shadow-sm bg-white">
+                            <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->image }}"
+                                class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
+                            <div class="p-4 pb-5">
+                                <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                                    {{ $hideconfig[0] != 1 ? '[' . $produk->complementary->kode_produk . ']' : '' }}
+                                    {{ $produk->complementary->complementary->complementary->nama_produk }}
+                                </h6>
+                                <div class="flex justify-between items-center sm:my-3 my-2">
 
-                                <h2
-                                    class="font-concert-one {{ $produk->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
-                                    Rp.
-                                    {{ $produk->complementary->complementary->complementary->stat == 'd' ? substr(number_format($produk->complementary->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3) : substr(number_format($produk->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
-                                </h2>
-                                <div class="flex space-x-2">
-                                    @if ($produk->stat == 'po')
-                                        <h6
-                                            class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                            PO
-                                        </h6>
-                                    @endif
-                                    @if ($hideconfig[1] == 1)
-                                        @if ($produk->countStock($produk) == 0)
+                                    <h2
+                                        class="font-concert-one {{ $produk->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
+                                        Rp.
+                                        {{ $produk->complementary->complementary->complementary->stat == 'd' ? substr(number_format($produk->complementary->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3) : substr(number_format($produk->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
+                                    </h2>
+                                    <div class="flex space-x-2">
+                                        @if ($produk->stat == 'po')
                                             <h6
-                                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                                Sold
+                                                class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                                PO
                                             </h6>
                                         @endif
-                                    @endif
+                                        @if ($hideconfig[1] == 1)
+                                            @if ($produk->countStock($produk) == 0)
+                                                <h6
+                                                    class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                                    Sold
+                                                </h6>
+                                            @endif
+                                        @endif
+                                    </div>
                                 </div>
+                                @if ($produk->stat == 'd')
+                                    <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                                        <del>Rp.
+                                            {{ substr(number_format($produk->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}</del>
+                                    </h6>
+                                @endif
                             </div>
-                            @if ($produk->stat == 'd')
-                                <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                                    <del>Rp.
-                                        {{ substr(number_format($produk->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}</del>
+                        </a>
+                    @endif
+
+                    @if (!empty($produk->complementary->complementary->complementary->complementary))
+                        <a href="{{ route('produk.show', $produk->complementary->complementary->complementary->complementary) }}"
+                            class="rounded-lg shadow-sm bg-white">
+                            <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->complementary->image }}"
+                                class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
+                            <div class="p-4 pb-5">
+                                <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
+                                    {{ $hideconfig[0] != 1 ? '[' . $produk->complementary->kode_produk . ']' : '' }}
+                                    {{ $produk->complementary->complementary->complementary->complementary->nama_produk }}
                                 </h6>
-                            @endif
-                        </div>
-                    </a>
+                                <div class="flex justify-between items-center sm:my-3 my-2">
 
-                    <a href="{{ route('produk.show', $produk->complementary->complementary->complementary->complementary) }}"
-                        class="rounded-lg shadow-sm bg-white">
-                        <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->complementary->image }}"
-                            class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
-                        <div class="p-4 pb-5">
-                            <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                                {{ $hideconfig[0] != 1 ? '[' . $produk->complementary->kode_produk . ']' : '' }}
-                                {{ $produk->complementary->complementary->complementary->complementary->nama_produk }}
-                            </h6>
-                            <div class="flex justify-between items-center sm:my-3 my-2">
-
-                                <h2
-                                    class="font-concert-one {{ $produk->complementary->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
-                                    Rp.
-                                    {{ $produk->complementary->complementary->complementary->complementary->stat == 'd' ? substr(number_format($produk->complementary->complementary->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3) : substr(number_format($produk->complementary->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
-                                </h2>
-                                <div class="flex space-x-2">
-                                    @if ($produk->stat == 'po')
-                                        <h6
-                                            class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                            PO
-                                        </h6>
-                                    @endif
-                                    @if ($hideconfig[1] == 1)
-                                        @if ($produk->countStock($produk) == 0)
+                                    <h2
+                                        class="font-concert-one {{ $produk->complementary->complementary->complementary->complementary->countStock($produk->complementary->complementary->complementary->complementary) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
+                                        Rp.
+                                        {{ $produk->complementary->complementary->complementary->complementary->stat == 'd' ? substr(number_format($produk->complementary->complementary->complementary->complementary->harga_sale, 2, ',', '.'), 0, -3) : substr(number_format($produk->complementary->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}
+                                    </h2>
+                                    <div class="flex space-x-2">
+                                        @if ($produk->stat == 'po')
                                             <h6
-                                                class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
-                                                Sold
+                                                class="py-1 px-2 rounded-md bg-amber-400 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                                PO
                                             </h6>
                                         @endif
-                                    @endif
+                                        @if ($hideconfig[1] == 1)
+                                            @if ($produk->countStock($produk) == 0)
+                                                <h6
+                                                    class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                                    Sold
+                                                </h6>
+                                            @endif
+                                        @endif
+                                    </div>
                                 </div>
+                                @if ($produk->stat == 'd')
+                                    <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
+                                        <del>Rp.
+                                            {{ substr(number_format($produk->complementary->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}</del>
+                                    </h6>
+                                @endif
                             </div>
-                            @if ($produk->stat == 'd')
-                                <h6 class="font-encode-sans text-gray-400 sm:text-base text-sm">
-                                    <del>Rp.
-                                        {{ substr(number_format($produk->complementary->complementary->complementary->complementary->harga, 2, ',', '.'), 0, -3) }}</del>
-                                </h6>
-                            @endif
-                        </div>
-                    </a>
+                        </a>
+                    @endif
                 </div>
             </div>
         @endif
