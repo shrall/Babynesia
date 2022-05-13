@@ -12,14 +12,29 @@
                 <div class="col-span-12 flex flex-col gap-y-2">
                     <div class="text-xl font-bold">Gambar Header</div>
                     <div class="flex">
-                        <img @if ( array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"] == null) src="{{ asset('svg/images.svg') }}"
-                            @else src="{{ asset('uploads/' .  array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"]) }}" @endif
+                        <img @if ( array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"] == null) src="{{ asset('svg/images.svg') }}"
+                            @else src="{{ asset('uploads/' .  array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"]) }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-header-image">
-                        <input type="file" name="image" id="header-image" class="invisible w-2"
+                        <input type="file" name="header" id="header-image" class="invisible w-2"
                             onchange="loadFile(event, 'header-image')" accept="image/*">
                     </div>
                     <div class="flex">
                         <label for="header-image" class="admin-button">Upload Header</label>
+                    </div>
+                </div>
+            </div>
+            <div class="admin-card">
+                <div class="col-span-12 flex flex-col gap-y-2">
+                    <div class="text-xl font-bold">Gambar Background</div>
+                    <div class="flex">
+                        <img @if ( array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"] == null) src="{{ asset('svg/images.svg') }}"
+                            @else src="{{ asset('uploads/' .  array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"]) }}" @endif
+                            class="w-vw-50 h-vh-20 bg-gray-300" id="preview-bg-image">
+                        <input type="file" name="bg" id="bg-image" class="invisible w-2"
+                            onchange="loadFile(event, 'bg-image')" accept="image/*">
+                    </div>
+                    <div class="flex">
+                        <label for="bg-image" class="admin-button">Upload Header</label>
                     </div>
                 </div>
             </div>

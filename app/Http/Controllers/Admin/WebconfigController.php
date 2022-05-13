@@ -103,16 +103,27 @@ class WebconfigController extends Controller
             ]);
             return redirect()->route('adminpage.configuration');
         } else if ($request->type == 'design') {
-            if ($request->image) {
-                $image = 'header-' . time() . '-' . $request['image']->getClientOriginalName();
-                $request->image->move(public_path('uploads/'), $image);
+            if ($request->header) {
+                $imageh = 'header-' . time() . '-' . $request['header']->getClientOriginalName();
+                $request->header->move(public_path('uploads/'), $imageh);
+            } else {
+                $webconfig = Webconfig::where('name', 'header_image')->first();
+                $imageh = $webconfig["content"];
+            }
+            if ($request->bg) {
+                $imagebg = 'bg-' . time() . '-' . $request['bg']->getClientOriginalName();
+                $request->bg->move(public_path('uploads/'), $imagebg);
             } else {
                 $webconfig = Webconfig::where('name', 'bg_img')->first();
-                $image = $webconfig->content;
+                $imagebg = $webconfig["content"];
             }
+            $webconfig = Webconfig::where('name', 'header_image')->first();
+            $webconfig->update([
+                'content' => $imageh
+            ]);
             $webconfig = Webconfig::where('name', 'bg_img')->first();
             $webconfig->update([
-                'content' => $image
+                'content' => $imagebg
             ]);
             $webconfig = Webconfig::where('name', 'bg_color')->first();
             $webconfig->update([

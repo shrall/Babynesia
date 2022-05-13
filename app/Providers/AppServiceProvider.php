@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $color = [$bg_color->content, $text_color->content, $button_color->content];
         //background image
         $bg_img = Webconfig::where('name', 'bg_img')->get()->last();
+        $head_img = Webconfig::where('name', 'header_image')->get()->last();
 
         //webconfig toggle view on off
         $hide_product_code = Webconfig::where('name', 'hide_product_code')->get()->last();
@@ -72,6 +73,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('subkategoris', $subkategoris);
         View::share('color', $color);
         View::share('bg_img', $bg_img);
+        View::share('head_img', $head_img);
         View::share('hideconfig', $hideconfig);
         View::share('statmenus', $statmenus);
         View::share('navmenus', $navmenus);
