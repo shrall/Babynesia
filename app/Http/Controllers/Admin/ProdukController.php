@@ -323,7 +323,7 @@ class ProdukController extends Controller
         if (session('product_search_rule') == '2') {
             $products->whereNotNull('image');
         }
-        $products = $products->paginate(15);
+        $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = " ";
@@ -354,7 +354,7 @@ class ProdukController extends Controller
         if ($request->rule == '2') {
             $products->whereNotNull('image');
         }
-        $products = $products->paginate(15);
+        $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
 
         $categories = Kategori::all();
         $brands = Brand::all();
