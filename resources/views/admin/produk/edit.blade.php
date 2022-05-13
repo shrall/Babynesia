@@ -63,7 +63,7 @@
                 @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
                     <div class="col-span-3">HPP</div>
                     <div class="col-span-9 flex items-center gap-x-2">
-                        <input type="number" name="hpp" id="hpp" class="admin-input" value="{{ $produk->hpp }}">rupiah
+                        <input type="number" name="hpp" id="hpp" class="admin-input" value="{{ $produk->harga_pokok }}">rupiah
                     </div>
                 @endif
                 <div class="col-span-3">Harga Web</div>
@@ -124,7 +124,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[1] }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[1]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="1" checked id="">
@@ -142,7 +142,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[2] }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[2]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="2" checked id="">
@@ -160,7 +160,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->image[3] }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[3]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="3" checked id="">
@@ -178,7 +178,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() == 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[4] }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[4]->imageurl }}" class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="4" checked id="">
