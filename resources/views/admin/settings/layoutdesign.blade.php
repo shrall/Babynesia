@@ -23,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="admin-card">
+            {{-- <div class="admin-card">
                 <div class="col-span-12">
                     <div class="text-xl font-bold">Layout Halaman</div>
                 </div>
@@ -43,7 +43,7 @@
                         <label for="layout-2">Layout 2</label>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="admin-card">
                 <div class="col-span-12 flex flex-col gap-2">
                     <div class="text-xl font-bold">Warna Background</div>
