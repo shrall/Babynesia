@@ -70,7 +70,7 @@
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input" required>rupiah
                 </div> --}}
-                <div class="col-span-3">Diskon 1</div>
+                {{-- <div class="col-span-3">Diskon 1</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="disc1" id="disc1" class="admin-input">%
                 </div>
@@ -81,7 +81,7 @@
                 <div class="col-span-3">Diskon 3</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="disc3" id="disc3" class="admin-input">%
-                </div>
+                </div> --}}
 
             </div>
             <div class="admin-card">

@@ -62,13 +62,15 @@ class PageController extends Controller
     public function sendmail_post(Request $request)
     {
         if ($request->type == 'except') {
-            $emails = User::select('email')->whereNotIn('email', $request->user)->get();
+            $emails = User::select('email')->whereIn('email', $request->user)->get();
         }else{
             $emails = User::select('email')->get();
         }
+        // dd($emails);
         $webconfig = Webconfig::where('name', 'email_from')->first();
-        $emails = User::where('email', 'user@tbf.com')->get();
-        $job = (new \App\Jobs\SendBulkMail($request->title, $emails, $request->content, $webconfig["content"]->content))
+        // dd($webconfig["content"]);
+        // $emails = User::where('email', 'user@tbf.com')->get();
+        $job = (new \App\Jobs\SendBulkMail($request->title, $emails, $request->content, $webconfig["content"]))
             ->delay(
                 now()
                     ->addSeconds(2)
