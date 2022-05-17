@@ -1184,10 +1184,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>&nbsp;&nbsp;Total Berat : {{ $faktur->total_weight ?? 0 }} gram</td>
+                        <td>Total Berat : {{ $faktur->total_weight ?? 0 }} gram</td>
                     </tr>
                     <tr>
-                        <td colspan="2">&nbsp;</td>
+                        <td>Catatan Pembeli : {!! $faktur->note ?? '-' !!}</td>
                     </tr>
                     <tr>
                         <td width="50%" valign="top">

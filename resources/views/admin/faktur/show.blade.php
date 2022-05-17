@@ -1186,11 +1186,14 @@
                         <td>Admin Note : {!! $faktur->admin_note !!}</td>
                     </tr>
                     <tr>
+                        <td>Catatan Pembeli : {!! $faktur->note !!}</td>
+                    </tr>
+                    <tr>
                         <td width="50%" valign="top">
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td colspan="3" height="20px">
+                                        <td colspan="3">
                                             <h3 class="blue">Receiver</h3>
                                         </td>
                                     </tr>

@@ -120,6 +120,12 @@
     <div class="flex justify-between">
         <div>
             <h6 class="font-encode-sans font-bold text-slate-900">
+                Catatan
+            </h6>
+            <div class="flex text-gray-400 font-encode-sans">
+                {{$faktur->note ?? '-'}}
+            </div>
+            <h6 class="font-encode-sans font-bold text-slate-900">
                 Receiver
             </h6>
             <div class="flex">
