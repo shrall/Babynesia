@@ -47,7 +47,7 @@ class FakturController extends Controller
      */
     public function store(Request $request)
     {
-        $dt = Carbon::now()->format('d-m-y');
+        $dt = Carbon::now()->format('d-m-Y');
         $carts = unserialize(base64_decode($request->carts));
 
         //pengecekan stock
@@ -98,12 +98,12 @@ class FakturController extends Controller
             'province' => $request->province,
             'phone' => $request->phone,
             'hp' => $request->hp,
-            // 'email' => $request->email, 
-            // 'message' => $request->message, 
-            // 'message_from' => $request->, 
+            // 'email' => $request->email,
+            // 'message' => $request->message,
+            // 'message_from' => $request->,
             'delivery_date' => '0000-00-00',
             'alternativ_deliverry_date' => '0000-00-00',
-            // 'reminder', 
+            // 'reminder',
             // 'remider_subject'
         ]);
 
