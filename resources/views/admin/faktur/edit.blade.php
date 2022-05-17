@@ -107,7 +107,7 @@
                         <span class="font-bold">{{ $faktur->user->name }}</span>
                         <span>{{ $faktur->user->alamat }}</span>
                         <span>{{ $faktur->user->kota }}</span>
-                        <span>{{ $faktur->user->propinsi . ' - ' . $faktur->user->country->name }}</span>
+                        <span>{{ $faktur->user->propinsi ?? ' ' }} - {{ $faktur->user->country->name ?? ' ' }}</span>
                         <span>{{ $faktur->user->telp . '/' . $faktur->user->hp }}</span>
                         <span>{{ $faktur->user->email }}</span>
                     </div>
@@ -117,8 +117,20 @@
                     <div class="flex flex-col">
                         <span class="font-bold">{{ $faktur->receiver->receiver_name }}</span>
                         <span>{{ $faktur->receiver->address }}</span>
-                        <span>{{ $faktur->receiver->city }}</span>
+                        <span>{{ $faktur->receiver->city }} - {{$faktur->receiver->postcode}}</span>
                         <span>{{ $faktur->receiver->phone . '/' . $faktur->receiver->hp }}</span>
+                    </div>
+                </div>
+                <div class="col-span-3 place-self-start">Dropship</div>
+                <div class="col-span-9">
+                    <div class="flex flex-col">
+                        @if ($faktur->sender_name)
+                            <span class="font-bold">{{ $faktur->sender_name }}</span>
+                            <span>{{ $faktur->sender_address }}</span>
+                            <span>{{ $faktur->sender_phone }}</span>
+                        @else
+                            <span>-</span>
+                        @endif
                     </div>
                 </div>
                 <div class="col-span-3">Pembayaran</div>

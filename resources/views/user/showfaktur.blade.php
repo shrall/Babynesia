@@ -1098,7 +1098,9 @@
                                     <tr>
                                         <td width="16%" class="boldtext">Name</td>
                                         <td width="3%" align="center">:</td>
-                                        <td width="39%">{{ !empty($faktur->sender_name) ? $faktur->sender_name : Auth::user()->name }}</td>
+                                        <td width="39%">
+                                            {{ !empty($faktur->sender_name) ? $faktur->sender_name : Auth::user()->name }}
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="boldtext">Email</td>
@@ -1108,7 +1110,8 @@
                                     <tr>
                                         <td class="boldtext" valign="top">Phone</td>
                                         <td align="center" valign="top">:</td>
-                                        <td>{{ !empty($faktur->sender_phone) ? $faktur->sender_phone : $faktur->user->telp . '/' . $faktur->user->hp }}</td>
+                                        <td>{{ !empty($faktur->sender_phone) ? $faktur->sender_phone : $faktur->user->telp . '/' . $faktur->user->hp }}
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1132,22 +1135,23 @@
                                         <tr>
                                             <td align="center">{{ $item->jumlah }}</td>
                                             <td class="">
-                                                {{ $item->kode_produk . '-' . $item->kode_produk_stock }}&nbsp; OK 71
-                                                {{ $item->product->nama_produk }} 
+                                                {{ $item->kode_produk . '-' . $item->kode_produk_stock }}
+                                                {{ $item->product->nama_produk }}
                                                 {{ $item->product->stat == 'po' ? '(PO)' : '' }}
                                             </td>
                                             <td class="">
                                                 @if (!empty($item->productstock->size))
-                    @if (!empty($item->productstock->color))
-                        {{ $item->productstock->size }} - {{ $item->productstock->color }}
-                    @else
-                        {{ $item->productstock->size }}
-                    @endif
-                    @else
-                    @if (!empty($item->productstock->color))
-                        {{ $item->productstock->color }}
-                    @endif
-                    @endif
+                                                    @if (!empty($item->productstock->color))
+                                                        {{ $item->productstock->size }} -
+                                                        {{ $item->productstock->color }}
+                                                    @else
+                                                        {{ $item->productstock->size }}
+                                                    @endif
+                                                @else
+                                                    @if (!empty($item->productstock->color))
+                                                        {{ $item->productstock->color }}
+                                                    @endif
+                                                @endif
                                             </td>
                                             <td class="column_number">{{ AppHelper::rp($item->harga_satuan ?? 0) }}
                                             </td>
@@ -1172,7 +1176,8 @@
                                     <tr id="chart">
                                         <th colspan="4" align="right"> TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
-                                            {{ AppHelper::rp($faktur->total_pembayaran+$faktur->deliverycost+intval(substr($faktur->no_faktur, -3)) ?? 0) }}</th>
+                                            {{ AppHelper::rp($faktur->total_pembayaran + $faktur->deliverycost + intval(substr($faktur->no_faktur, -3)) ?? 0) }}
+                                        </th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1196,10 +1201,19 @@
                                     <tr>
                                         <td colspan="3">
                                             <p><b>{{ $faktur->receiver->receiver_name }} </b><br>
-                                                {{ $faktur->receiver->address }}<br> {{ $faktur->receiver->city }}
+                                                {{ $faktur->receiver->address }}<br>
+                                                {{ $faktur->receiver->city }} - {{$faktur->receiver->postcode}}
                                                 <br> {{ $faktur->receiver->province }}<br> <br> Phone
                                                 : {{ $faktur->receiver->phone }} <br> Mobile :
                                                 {{ $faktur->receiver->hp }}
+                                                <br><br><b>Dropship </b><br>
+                                                @if ($faktur->sender_name)
+                                                    Pengirim: {{ $faktur->sender_name }}<br>
+                                                    Alamat: {{ $faktur->sender_address }}<br>
+                                                    Phone: {{ $faktur->sender_phone }}<br>
+                                                @else
+                                                    -
+                                                @endif
                                             </p>
                                         </td>
                                     </tr>
@@ -1217,17 +1231,17 @@
                                     <tr>
                                         <td colspan="3">
                                             <p>
-                                                {{-- {{ $faktur->payment->description }}<br>  --}}
+                                                {{-- {{ $faktur->payment->description }}<br> --}}
                                                 Payment information:
                                                 Invoice no.{{ $faktur->no_faktur }} </p>
-                                                <div class="">
-                                                    <h3 class="">
-                                                        {{ $faktur->payment->info }}
-                                                    </h3>
-                                                    <p class="">
-                                                        {{ $faktur->payment->description }}
-                                                    </p>
-                                                </div>
+                                            <div class="">
+                                                <h3 class="">
+                                                    {{ $faktur->payment->info }}
+                                                </h3>
+                                                <p class="">
+                                                    {{ $faktur->payment->description }}
+                                                </p>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>

@@ -90,11 +90,10 @@ class LoginController extends Controller
 
     public function checkOrders()
     {
-        $webconfigs = Webconfig::all();
-
+        $webconfig = Webconfig::where("name", "waittime")->first();
         $fakturs = Faktur::where('status', '1')->get();
         foreach ($fakturs as $faktur) {
-            if ((strtotime($faktur->tanggal . ' +' . $webconfigs[30]->content . ' hour') - strtotime(\Carbon\Carbon::now())) < 0) {
+            if ((strtotime($faktur->tanggal . ' +' . $webconfig["content"] . ' hour') - strtotime(\Carbon\Carbon::now())) < 0) {
                 $faktur->update([
                     'status' => '5'
                 ]);

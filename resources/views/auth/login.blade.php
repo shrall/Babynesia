@@ -4,7 +4,7 @@
 @include('inc.navbar1')
 <div class="sm:flex sm:justify-center px-3 pt-8 pb-14">
     <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
-        <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-500">TokoBayiFiv Login</h1>
+        <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-500">{{env('APP_NAME')}} Login</h1>
         <p class="text-gray-400 font-encode-sans text-sm sm:text-base text-center">
             Member baru? <span><a href="{{ route('register') }}" class="text-{{ $color[1] }}-500">Daftar disini</a></span>
         </p>
