@@ -101,6 +101,8 @@
                 </div>
                 <div class="col-span-3">Total Berat</div>
                 <div class="col-span-9">{{ $faktur->total_weight ?? 0 }} gram</div>
+                <div class="col-span-3">Catatan Pembeli</div>
+                <div class="col-span-9">{{ $faktur->note ?? '-' }}</div>
                 <div class="col-span-3 place-self-start">Pembeli</div>
                 <div class="col-span-9">
                     <div class="flex flex-col">
@@ -117,7 +119,7 @@
                     <div class="flex flex-col">
                         <span class="font-bold">{{ $faktur->receiver->receiver_name }}</span>
                         <span>{{ $faktur->receiver->address }}</span>
-                        <span>{{ $faktur->receiver->city }} - {{$faktur->receiver->postcode}}</span>
+                        <span>{{ $faktur->receiver->city }} - {{ $faktur->receiver->postcode }}</span>
                         <span>{{ $faktur->receiver->phone . '/' . $faktur->receiver->hp }}</span>
                     </div>
                 </div>
