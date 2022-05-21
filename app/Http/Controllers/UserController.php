@@ -27,9 +27,12 @@ class UserController extends Controller
         $checker = $request->checker;
         if (empty($checker)) {
             $checker = 'history';
+            $page = 'history';
+        } else {
+            $page = $checker;
         }
 
-        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker'));
+        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker', 'page'));
     }
 
     /**

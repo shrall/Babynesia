@@ -11,7 +11,7 @@
                     {{ config('app.name') }}
                 </li>
                 @foreach ($navmenus as $menu)
-                @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+                @if ($menu->no == 23 || $menu->no == 32)
 
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('showpage', $menu->no) }}">
@@ -35,11 +35,11 @@
                     <form action="{{ route('user.user.index') }}" id="formchecker"></form>
                     <input type="hidden" name="checker" value="profile" form="formchecker">
                     <button type="submit" form="formchecker">
-                        account
+                        Account
                     </button>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('user.user.index') }}">
-                        transaction history
+                        Transaction History
                     </a>
                 </li>
             </ul>
@@ -49,15 +49,15 @@
                 </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('faq.index') }}">
-                        faq
+                        FaQ
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="">
-                        chat us
+                        Chat Us
                     </a> </li>
                 <li class="font-encode-sans text-white text-sm sm:text-base">
                     <a href="{{ route('user.cart.index') }}">
-                        cart
+                        Cart
                     </a> </li>
             </ul>
         </div>

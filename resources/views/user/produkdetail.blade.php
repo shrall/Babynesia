@@ -58,7 +58,7 @@
                 <form action="{{ route('user.detailcart.store') }}" method="post">
                     @csrf
                     @if ($produk->countStock($produk) != 0)
-                        <div class="mt-3 xl:mt-6 relative border-2 border-{{ $color[0] }}-400 rounded-lg">
+                        {{-- <div class="mt-3 xl:mt-6 relative border-2 border-{{ $color[0] }}-400 rounded-lg">
                             <select name="ukuran" id=""
                                 class="appearance-none cursor-pointer bg-white w-full font-bold py-2 px-3 font-encode-sans text-{{ $color[0] }}-400">
                                 @foreach ($stocks as $stock)
@@ -72,7 +72,24 @@
                             </select>
                             <i class="fa fa-chevron-down absolute text-{{ $color[0] }}-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                                 aria-hidden="true"></i>
+                        </div> --}}
+                        <div class="mt-3 xl:mt-6">
+                            <h6 class="font-encode-sans text-slate-900 font-bold text-sm sm:text-base">
+
+                            </h6>
+                            @foreach ($stocks as $stock)
+                            <div>
+                            @if (!empty($stock->size))
+                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}">
+                                <label for="ukuran{{ $stock->id }}" class="ml-2 cursor-pointer font-encode-sans text-gray-400">{{ $stock->size }} - {{ $stock->color }}</label>
+                            @else
+                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}">
+                                <label for="ukuran{{ $stock->id }}" class="ml-2 cursor-pointer font-encode-sans text-gray-400">{{ $stock->color }}</label>
+                            @endif
                         </div>
+                        @endforeach
+                        </div>
+                        
                     @endif
 
                     <div class="mt-4 xl:mt-7 flex items-center justify-between">

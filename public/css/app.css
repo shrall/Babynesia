@@ -3506,6 +3506,9 @@ textarea.form-control.is-invalid{
 .z-0{
   z-index: 0;
 }
+.z-10{
+  z-index: 10;
+}
 .col-span-12{
   grid-column: span 12 / span 12;
 }
@@ -3631,6 +3634,9 @@ textarea.form-control.is-invalid{
 .mr-1{
   margin-right: 0.25rem;
 }
+.mb-10{
+  margin-bottom: 2.5rem;
+}
 .mr-5{
   margin-right: 1.25rem;
 }
@@ -3666,6 +3672,9 @@ textarea.form-control.is-invalid{
 }
 .-ml-px{
   margin-left: -1px;
+}
+.mb-72{
+  margin-bottom: 18rem;
 }
 .block{
   display: block;
@@ -3737,6 +3746,9 @@ textarea.form-control.is-invalid{
 }
 .h-vh-90{
   height: 90vh;
+}
+.h-36{
+  height: 9rem;
 }
 .max-h-128{
   max-height: 36rem;
@@ -3866,6 +3878,9 @@ textarea.form-control.is-invalid{
 }
 .resize{
   resize: both;
+}
+.scroll-mb-72{
+  scroll-margin-bottom: 18rem;
 }
 .list-disc{
   list-style-type: disc;
@@ -4804,6 +4819,15 @@ textarea.form-control.is-invalid{
 }
 .pb-8{
   padding-bottom: 2rem;
+}
+.pb-32{
+  padding-bottom: 8rem;
+}
+.pb-28{
+  padding-bottom: 7rem;
+}
+.pb-2{
+  padding-bottom: 0.5rem;
 }
 .text-left{
   text-align: left;
