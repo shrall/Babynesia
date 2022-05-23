@@ -169,8 +169,12 @@ class PageController extends Controller
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->orderBy('kode_produk', 'desc')->paginate(12)
-                    : Produk::orderBy('kode_produk', 'desc')->paginate(12);
+                })->orderBy('kode_produk', 'desc')
+                    ->where('stat', '0')
+                    ->paginate(12)
+                    : Produk::orderBy('kode_produk', 'desc')
+                    ->where('stat', '0')
+                    ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         } else {
@@ -231,9 +235,13 @@ class PageController extends Controller
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')->paginate(12)
+                    ->orderBy('kode_produk', 'desc')
+                    ->where('stat', '0')
+                    ->paginate(12)
                     : Produk::where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')->paginate(12);
+                    ->orderBy('kode_produk', 'desc')
+                    ->where('stat', '0')
+                    ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         }
