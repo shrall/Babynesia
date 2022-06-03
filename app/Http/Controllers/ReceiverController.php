@@ -6,8 +6,11 @@ use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Receiver;
 use App\Models\Webconfig;
+use App\Models\DetailCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+
+use Auth;
 
 class ReceiverController extends Controller
 {
@@ -27,6 +30,9 @@ class ReceiverController extends Controller
      */
     public function create(Request $request)
     {
+
+        $carts = DetailCart::where('no_user', Auth::id())->get();
+
         //cities rajaongkir
         $cities = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
@@ -41,7 +47,25 @@ class ReceiverController extends Controller
 
         $note = $request->note;
 
-        return view('user.receiver', compact('note', 'cities', 'provinces'));
+        $weight = 0;
+        foreach ($carts as $cart) {
+            $weight += $cart->produk->weight * $cart->jumlah;
+        }
+
+        //temp
+        // $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+        // $shipments = Http::withHeaders([
+        //     'key' => config('services.rajaongkir.token'),
+        // ])->post('https://api.rajaongkir.com/starter/cost', [
+        //     'origin' => $webconfig->content, //@marshall ini perlu dirubah ke asal pengirim
+        //     'destination' => 5,
+        //     'weight' => $weight,
+        //     'courier' => 'jne',
+        // ])->json()['rajaongkir']['results'][0];
+        // dd($shipments);
+
+
+        return view('user.receiver', compact('note', 'cities', 'provinces', 'weight'));
     }
 
     /**
@@ -98,5 +122,30 @@ class ReceiverController extends Controller
     public function destroy(Receiver $receiver)
     {
         //
+    }
+
+    public function get_shipment(Request $request)
+    {
+        $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+        $shipments = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->post('https://api.rajaongkir.com/starter/cost', [
+            'origin' => $webconfig->content, //@marshall ini perlu dirubah ke asal pengirim
+            'destination' => $request->city_id,
+            'weight' => $request->weight,
+            'courier' => 'jne',
+        ])->json()['rajaongkir']['results'][0];
+        // return view('inc.shipment_list', compact('shipments'));
+        return $shipments;
+    }
+
+    public function get_city(Request $request)
+    {
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+        $cities = collect($cities)->where('province_id', $request->province);
+        return $cities;
     }
 }

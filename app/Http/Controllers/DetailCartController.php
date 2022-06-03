@@ -46,23 +46,10 @@ class DetailCartController extends Controller
         //Rajaongkir
         // $webconfigs = Webconfig::all();
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
-        $shipments = Http::withHeaders([
-            'key' => config('services.rajaongkir.token'),
-        ])->post('https://api.rajaongkir.com/starter/cost', [
-            'origin' => $webconfig->content,
-            'destination' => $request->city,
-            'weight' => $berat,
-            'courier' => 'jne',
-        ])->json()['rajaongkir']['results'][0];
-        if ($request->delivery == "JNE OKE" && !empty($shipments['costs'])) {
-            $deliveryCost = $shipments['costs'][0]['cost'][0]['value'];
-        } else if ($request->delivery == "JNE REG" && !empty($shipments['costs'])) {
-            $deliveryCost = $shipments['costs'][1]['cost'][0]['value'];
-        } else if ($request->delivery == "JNE YES" && !empty($shipments['costs'])) {
-            $deliveryCost = $shipments['costs'][2]['cost'][0]['value'];
-        } else {
-            $deliveryCost = -1;
-        }
+
+        $delivery_explode = explode('|', $request->delivery);
+        $deliveryCost = (int)$delivery_explode[1];
+        $delivery = 'JNE ' . $delivery_explode[0];
 
         //get city & province yang dipilih
         //cities rajaongkir
@@ -115,7 +102,7 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'deliveryCost', 'city', 'province', 'payment', 'gudang'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payment', 'gudang'));
     }
 
     /**

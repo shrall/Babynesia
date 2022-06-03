@@ -165,6 +165,8 @@ Route::group([
     Route::get('/faktur/showdetail/{faktur}', [FakturController::class, 'showDetail'])->name('faktur.showdetail');
     Route::get('/faktur/showfaktur/{faktur}', [FakturController::class, 'showfaktur'])->name('faktur.showfaktur');
     Route::post('/detailcart/customdestroy', [DetailCartController::class, 'customDestroy'], '_token')->name('detailcart.customdestroy');
+    Route::post('receiver/getshipment', [ReceiverController::class, 'get_shipment'])->name('receiver.getshipment');
+    Route::post('receiver/getcity', [ReceiverController::class, 'get_city'])->name('receiver.getcity');
 
     Route::resource('admin', AdminController::class);
     Route::resource('adminstatus', AdminStatusController::class);

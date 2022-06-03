@@ -38,7 +38,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img->content) ? 'background: url('.asset('uploads/'.$bg_img->content).')' : '' }}">
+    <div id="app" class="bg-neutral-100" style="">
         @yield('content')
     </div>
 

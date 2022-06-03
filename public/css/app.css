@@ -3482,9 +3482,6 @@ textarea.form-control.is-invalid{
 .-left-full{
   left: -100%;
 }
-.top-24{
-  top: 6rem;
-}
 .-bottom-full{
   bottom: -100%;
 }
@@ -3505,9 +3502,6 @@ textarea.form-control.is-invalid{
 }
 .z-0{
   z-index: 0;
-}
-.z-10{
-  z-index: 10;
 }
 .col-span-12{
   grid-column: span 12 / span 12;
@@ -3634,9 +3628,6 @@ textarea.form-control.is-invalid{
 .mr-1{
   margin-right: 0.25rem;
 }
-.mb-10{
-  margin-bottom: 2.5rem;
-}
 .mr-5{
   margin-right: 1.25rem;
 }
@@ -3672,9 +3663,6 @@ textarea.form-control.is-invalid{
 }
 .-ml-px{
   margin-left: -1px;
-}
-.mb-72{
-  margin-bottom: 18rem;
 }
 .block{
   display: block;
@@ -3714,6 +3702,9 @@ textarea.form-control.is-invalid{
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-36{
+  height: 9rem;
+}
 .h-screen{
   height: 100vh;
 }
@@ -3747,9 +3738,6 @@ textarea.form-control.is-invalid{
 .h-vh-90{
   height: 90vh;
 }
-.h-36{
-  height: 9rem;
-}
 .max-h-128{
   max-height: 36rem;
 }
@@ -3779,9 +3767,6 @@ textarea.form-control.is-invalid{
 }
 .w-5\/6{
   width: 83.333333%;
-}
-.w-128{
-  width: 36rem;
 }
 .w-136{
   width: 40rem;
@@ -3823,6 +3808,9 @@ textarea.form-control.is-invalid{
 }
 .w-2{
   width: 0.5rem;
+}
+.w-128{
+  width: 36rem;
 }
 .w-vw-50{
   width: 50vw;
@@ -3878,9 +3866,6 @@ textarea.form-control.is-invalid{
 }
 .resize{
   resize: both;
-}
-.scroll-mb-72{
-  scroll-margin-bottom: 18rem;
 }
 .list-disc{
   list-style-type: disc;
@@ -4784,23 +4769,20 @@ textarea.form-control.is-invalid{
 .pt-1{
   padding-top: 0.25rem;
 }
+.pb-3{
+  padding-bottom: 0.75rem;
+}
 .pt-4{
   padding-top: 1rem;
 }
-.pb-24{
-  padding-bottom: 6rem;
-}
-.pt-0{
-  padding-top: 0px;
+.pb-28{
+  padding-bottom: 7rem;
 }
 .pt-3{
   padding-top: 0.75rem;
 }
 .pb-5{
   padding-bottom: 1.25rem;
-}
-.pb-3{
-  padding-bottom: 0.75rem;
 }
 .pb-7{
   padding-bottom: 1.75rem;
@@ -4819,15 +4801,6 @@ textarea.form-control.is-invalid{
 }
 .pb-8{
   padding-bottom: 2rem;
-}
-.pb-32{
-  padding-bottom: 8rem;
-}
-.pb-28{
-  padding-bottom: 7rem;
-}
-.pb-2{
-  padding-bottom: 0.5rem;
 }
 .text-left{
   text-align: left;
@@ -5637,10 +5610,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
 .even\:bg-neutral-100:nth-child(even){
   --tw-bg-opacity: 1;
   background-color: rgb(245 245 245 / var(--tw-bg-opacity));
-}
-
-.hover\:visible:hover{
-  visibility: visible;
 }
 
 .hover\:block:hover{
@@ -6585,12 +6554,12 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.peer:hover ~ .peer-hover\:visible{
-  visibility: visible;
-}
-
 .peer:hover ~ .peer-hover\:block{
   display: block;
+}
+
+.peer:disabled ~ .peer-disabled\:hidden{
+  display: none;
 }
 
 @media (prefers-color-scheme: dark){

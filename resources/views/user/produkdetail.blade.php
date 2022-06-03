@@ -80,10 +80,10 @@
                             @foreach ($stocks as $stock)
                             <div>
                             @if (!empty($stock->size))
-                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}">
+                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
                                 <label for="ukuran{{ $stock->id }}" class="ml-2 cursor-pointer font-encode-sans text-gray-400">{{ $stock->size }} - {{ $stock->color }}</label>
                             @else
-                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}">
+                                <input type="radio" name="ukuran" id="ukuran{{ $stock->id }}" value="{{ $stock->id }}" {{ $loop->iteration == 1 ? 'checked' : '' }}>
                                 <label for="ukuran{{ $stock->id }}" class="ml-2 cursor-pointer font-encode-sans text-gray-400">{{ $stock->color }}</label>
                             @endif
                         </div>

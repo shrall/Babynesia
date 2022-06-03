@@ -74,30 +74,15 @@
                         <input id="postcode" type="text" required
                             class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="postcode">
                     </div>
+                    
                     <div class="mt-4">
-                        <div> <label for="city"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
-                        </div>
-                        <div class="relative border rounded-md">
-                            <select name="city" id="city" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
-                                @foreach ($cities as $city)
-                                    
-                                <option value="{{ $city['city_id'] }}">
-                                    {{ $city['city_name'] }}
-                                </option>
-    
-                                @endforeach
-                            </select>
-                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
-                            aria-hidden="true"></i>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <div> <label for="province"
+                        <div> <label for="provinces"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Province</label>
                         </div>
                         <div class="border relative rounded-md">
-                            <select name="province" id="province" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
+                            <select name="province" id="provinces" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                <option value="" hidden>Pilih provinsi</option>
+
                                 @foreach ($provinces as $province)
                                     
                                 <option value="{{ $province['province_id'] }}">
@@ -111,12 +96,30 @@
                         </div>
                     </div>
                     <div class="mt-4">
+                        <div> <label for="cities"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select name="city" id="cities" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                {{-- @foreach ($cities as $city)
+                                    
+                                <option value="{{ $city['city_id'] }}" onChange="get_shipment({{ $city['city_id'] }})">
+                                    {{ $city['city_name'] }}
+                                </option>
+    
+                                @endforeach --}}
+                            </select>
+                            <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
                         <div> <label for="expedition"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Ekspedisi Delivery</label>
                         </div>
                         <div class="relative border rounded-md">
-                            <select name="delivery" id="expedition" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
-                                <option value="JNE OKE">
+                            <select name="delivery" id="expedition" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                {{-- <option value="JNE OKE">
                                     JNE OKE
                                 </option>
                                 <option value="JNE REG">
@@ -124,9 +127,9 @@
                                 </option>
                                 <option value="JNE YES">
                                     JNE YES
-                                </option>
+                                </option> --}}
                             </select>
-                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                         </div>
                     </div>
@@ -183,4 +186,79 @@
 </div>
 
 @include('inc.footer1')
+
+<script>
+
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+function get_shipment(city_id) {
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+    $.post(url + "/receiver/getshipment", {
+            _token: CSRF_TOKEN,
+            weight: {{ $weight }},
+            city_id: city_id,
+        })
+        .done(function(data) {
+            // $('#container-shipment').html(data);
+            // refreshSummary();
+            let rupiah = Intl.NumberFormat('id-ID');
+            $('#expedition').prop("disabled", false);
+            $('#expedition').html('');
+            console.log('arraynya '+data);
+            Object.values(data['costs']).forEach((element, index) => {
+                $('#expedition').append('<option value="' + element.service + '|' + element['cost'][0]['value'] +
+                    '"> JNE ' +
+                    element.service + ' - ' + 'Rp. ' + rupiah.format(element['cost'][0]['value']) + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+}
+
+$('#provinces').on('change', function(e) {
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+
+    $.post(url + "/receiver/getcity", {
+            _token: CSRF_TOKEN,
+            province: $('#provinces').val(),
+        })
+        .done(function(data) {
+            // $('.tempprovince').remove();
+            $('#cities').prop("disabled", false);
+            $('#expedition').prop("disabled", false);
+            $('#cities').html('');
+            console.log('arraynya '+data);
+            Object.values(data).forEach((element, index) => {
+                if (index == 0) {
+                    get_shipment(element.city_id);
+                }
+                $('#cities').append('<option value="' + element.city_id +
+                    '">' +
+                    element.city_name + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+});
+
+$('#cities').on('change', function(e) {
+    get_shipment($('#cities').val())
+});
+
+</script>
+
 @endsection

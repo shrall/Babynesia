@@ -183,7 +183,7 @@
                         <li>{{ $gudang }}</li>
                         <li>{{ $city }}</li>
                         <li>+- {{ $berat }} kg</li>
-                        <li>{{ $request->delivery }}</li>
+                        <li>{{ $delivery }}</li>
                         @if ($deliveryCost == -1)
                             <li>Ongkos kirim akan diinformasikan terpisah</li>
                         @else
@@ -316,7 +316,7 @@
             <input type="hidden" value="{{ $request->postcode }}" name="postcode">
             <input type="hidden" value="{{ $city }}" name="city">
             <input type="hidden" value="{{ $province }}" name="province">
-            <input type="hidden" value="{{ $request->delivery }}" name="delivery">
+            <input type="hidden" value="{{ $delivery }}" name="delivery">
             <input type="hidden" value="{{ $request->phone }}" name="phone">
             <input type="hidden" value="{{ $request->hp }}" name="hp">
             <input type="hidden" value="{{ $payment->name }}" name="payment">
