@@ -84,7 +84,7 @@
                                 form="filtermenu{{ $menu->status_code }}">
                             <button type="submit" form="filtermenu{{ $menu->status_code }}"
                                 class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : '' }}">
-                                {{ $menu->name == 'Promo' ? "SALE !!" : $menu->name }}
+                                {{ $menu->name }}
                             </button>
                         </li>
                         @endforeach
@@ -307,7 +307,7 @@
 
                     <button type="submit" form="filtermenu1{{ $menu->status_code }}"
                         class="font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
-                        {{ $menu->name == 'Promo' ? "SALE !!" : $menu->name.' Product' }}
+                        {{ $menu->name }} Product
                     </button>
                 </li>
                 @endforeach

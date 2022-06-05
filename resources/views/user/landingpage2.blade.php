@@ -68,7 +68,7 @@
                         <input type="hidden" name="pagehighlight" value="{{ $status->name }}"">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                            {{ $status->name == 'Promo' ? "SALE !!" : $status->name." Product" }}
+                            {{ $status->name }} Product
                         </button>
                     </form>
                 </li>
@@ -233,7 +233,7 @@
                         <input type="hidden" name="pagehighlight" value="{{ $status->name }}">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                            {{ $status->name == 'Promo' ? "SALE !!" : $status->name." Product" }}
+                            {{ $status->name }} Product
                         </button>
                     </form>
                 </li>
