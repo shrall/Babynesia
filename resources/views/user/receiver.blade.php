@@ -13,7 +13,10 @@
             Receiver
         </h1>
     </div>
-    <form action="{{ route('user.paymentart.index') }}" method="get">
+    <form action="{{ 
+        // route('user.paymentart.index')
+        route('user.detailcart.index')
+    }}" method="get">
         @csrf
         <div class="xl:flex xl:justify-between">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4 xl:w-5/6">
@@ -166,6 +169,10 @@
                 </div>
 
             </div>
+
+            {{-- if langsung ke confirmation --}}
+            <input type="hidden" name="payment" value="1">
+
             <div class="hidden xl:block">
                 <div class="w-full text-center mt-3">
                     <button type="submit"

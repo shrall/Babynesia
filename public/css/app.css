@@ -3821,6 +3821,9 @@ textarea.form-control.is-invalid{
 .w-4{
   width: 1rem;
 }
+.w-10{
+  width: 2.5rem;
+}
 .max-w-6xl{
   max-width: 72rem;
 }
@@ -3977,6 +3980,11 @@ textarea.form-control.is-invalid{
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-5 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .place-self-start{
   place-self: start;
@@ -6869,6 +6877,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   .xl\:px-80{
     padding-left: 20rem;
     padding-right: 20rem;
+  }
+  .xl\:px-28{
+    padding-left: 7rem;
+    padding-right: 7rem;
   }
   .xl\:pt-20{
     padding-top: 5rem;

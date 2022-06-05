@@ -8,7 +8,7 @@
             <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
                 <a href="#" class="text-gray-400">Cart > </a>
                 <a href="#" class="text-gray-400">Receiver ></a>
-                <a href="#" class="text-gray-400">Payment ></a>
+                {{-- <a href="#" class="text-gray-400">Payment ></a> --}}
                 <a href="#">Confirmation</a>
             </p>
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">

@@ -19,7 +19,7 @@
                         <input type="hidden" name="pagehighlight" value="{{ $status->name }}"">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                            {{ $status->name }} Product
+                            {{ $status->name == 'Promo' ? "SALE !!" : $status->name." Product" }}
                         </button>
                     </form>
                 </li>
@@ -76,7 +76,7 @@
             @elseif (!empty($filteredproduct))
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 @if($filteredproduct != 'featured' && !empty($produks[0]->status->name))
-                {{ $produks[0]->status->name }} Product
+                {{ $produks[0]->status->name == 'Promo' ? "SALE !!" : $produks[0]->status->name." Product" }}
                 @elseif ($filteredproduct == 'featured')
                 Featured Product
                 @else
@@ -184,7 +184,7 @@
                         <input type="hidden" name="pagehighlight" value="{{ $status->name }}">
                         <button type="submit"
                             class="text-sm font-bold hover:text-{{ $color[1] }}-500 {{ $filteredproduct == $status->status_code ? 'text-'.$color[1].'-500' : 'text-slate-900' }} font-encode-sans">
-                            {{ $status->name }} Product
+                            {{ $status->name == 'Promo' ? "SALE !!" : $status->name." Product" }}
                         </button>
                     </form>
                 </li>
