@@ -3,7 +3,7 @@
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex items-center space-x-5">
             <div class="w-28">
-                <img src="{{ asset('images/logofiv.jpeg') }}" alt="" class="object-cover w-full mr-4">
+                <img src="{{ asset('images/logofiv.jpeg') }}" alt="" class="object-cover w-full mr-4 rounded-full">
             </div>
             <div class="w-full">
                 <div class="flex justify-between items-center">
