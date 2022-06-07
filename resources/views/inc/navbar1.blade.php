@@ -2,7 +2,7 @@
 <nav class="bg-{{ $color[0] }}-300 shadow-sm py-6 fixed w-full" style="z-index: 5000">
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex items-center space-x-5">
-            <div class="w-28 mr-4">
+            <div class="w-28 pr-4">
                 <img src="{{ asset('images/logofiv.jpeg') }}" alt="" class="object-cover w-full">
             </div>
             <div class="w-full">
