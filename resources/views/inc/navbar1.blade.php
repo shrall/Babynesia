@@ -2,7 +2,7 @@
 <nav class="bg-{{ $color[0] }}-300 shadow-sm py-6 fixed w-full" style="z-index: 5000">
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex items-center space-x-5">
-            <div class="w-28">
+            <div class="w-28 mr-4">
                 <img src="{{ asset('images/logofiv.jpeg') }}" alt="" class="object-cover w-full">
             </div>
             <div class="w-full">
@@ -13,7 +13,7 @@
                         </a>
                         <div class="py-2 px-4 rounded-full bg-white w-80">
                             <form action="{{ route('list_products') }}">
-        
+
                                 <div class="flex justify-between w-full items-center">
                                     <input type="text" placeholder="Search by keyword" name="keyword"
                                         value="{{ !empty($keyword) ? $keyword : ''}}"
@@ -25,7 +25,7 @@
                             </form>
                         </div>
                     </div>
-        
+
                     <div class="flex items-center">
                         @if (Auth::check())
                         <form action="{{ route('user.user.index') }}" id="formcheckernav"></form>
@@ -45,13 +45,13 @@
                             <div class="mx-3 font-encode-sans font-bold text-white">Cart</div>
                         </a>
                         @if (Auth::check())
-        
+
                         @else
                         <a href="{{ route('register') }}"
                             class="ml-4 bg-white hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-300 focus:ring-2 font-bold font-encode-sans text-{{ $color[2] }}-400 px-4 py-2 rounded-full">
                             Daftar
                         </a>
-        
+
                         @endif
                     </div>
                 </div>
@@ -71,12 +71,12 @@
                             </a>
                         </li>
                         @endif
-            
+
                         @foreach ($statmenus as $menu)
                         <li
                             class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white' }}">
                             <form action="{{ route('list_products') }}" id="filtermenu{{ $menu->status_code }}">
-            
+
                             </form>
                             <input type="hidden" name="pagehighlight" value="{{ $menu->name }}"
                                 form="filtermenu{{ $menu->status_code }}">
@@ -88,9 +88,9 @@
                             </button>
                         </li>
                         @endforeach
-            
+
                         <div class="group inline-block">
-            
+
                             <li class="peer ml-4 font-encode-sans text-white">
                                 <div class="cursor-pointer">
                                     Products
@@ -125,15 +125,15 @@
                                             </li>
                                             @endif
                                             @endforeach
-            
+
                                         </ul>
                                     </li>
-            
+
                                     @endforeach
                                 </ul>
                             </div>
                         </div>
-            
+
                         @foreach ($navmenus as $menu)
                         @if ($menu->no == 23 || $menu->no == 32)
                         <li
@@ -142,7 +142,7 @@
                                 {{ $menu->code }}
                             </a>
                         </li>
-            
+
                         @endif
                         @endforeach
                         {{-- @if (!empty($page)&&$page == "article")
@@ -173,9 +173,9 @@
                             </a>
                         </li>
                         @endif
-            
+
                     </ul>
-        
+
                     <ul class="mt-4">
                         <li
                             class="inline-block font-encode-sans {{ !empty($page)&&$page == 'profile' ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white' }}">
@@ -185,7 +185,7 @@
                                 Account
                             </button>
                         </li>
-                        <li 
+                        <li
                             class="inline-block ml-4 font-encode-sans {{ !empty($page)&&$page == 'history' ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white' }}">
                             <a href="{{ route('user.user.index') }}">
                                 Transaction History
@@ -195,9 +195,9 @@
                 </div>
             </div>
         </div>
-        
-        
-        
+
+
+
 
 
     </div>
@@ -385,7 +385,7 @@
             </button>
         </div>
         <hr>
-        
+
         <a href="{{ route('user.user.index') }}">
             <div
                 class="my-3 font-encode-sans font-bold {{ !empty($page)&&$page == "history" ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
