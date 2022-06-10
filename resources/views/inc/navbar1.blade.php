@@ -1,6 +1,6 @@
 <div class=" relative h-36">
 <nav class="bg-{{ $color[0] }}-300 shadow-sm py-6 fixed w-full" style="z-index: 5000">
-    <div class="container mx-auto xl:px-32 hidden xl:block">
+    <div class="container mx-auto xl:px-20 hidden xl:block">
         <div class="flex items-center space-x-5">
             <div class="w-28">
                 <img src="{{ asset('images/logofiv.jpeg') }}" alt="" class="object-cover w-full mr-4 rounded-full">

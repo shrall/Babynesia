@@ -1,5 +1,5 @@
 <footer class="bg-{{ $color[0] }}-300 shadow-sm xl:pt-20 pt-8">
-    <div class="container mx-auto xl:px-32 px-3 xl:flex xl:justify-between">
+    <div class="container mx-auto xl:px-20 px-3 xl:flex xl:justify-between">
         <a href="/">
             <h1 class="font-concert-one text-4xl mt-3 text-white">
                 {{ config('app.name') }}

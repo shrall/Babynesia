@@ -52,7 +52,7 @@
     </button> --}}
 </div>
 
-<div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
+<div class="container mx-auto xl:px-20 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5 xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
     <div class="hidden xl:block">
         <div class="bg-{{ $color[0] }}-300 rounded-t-lg px-4 py-3">
             <h6 class="font-encode-sans text-white text-sm font-bold">
@@ -152,19 +152,19 @@
             </label>
         </div>
         <div class="mt-5 mb-5">
-            <div class="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 xl:mx-auto">
+            <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
 
                 @foreach ($produks as $produk)
                 <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
                     <img src="{{ asset('uploads/') . '/' . $produk->image }}"
                         class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
-                    <div class="p-4 pb-5">
+                    <div class="p-3 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                             {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
                         </h6>
                         <div class="flex justify-between items-center sm:my-3 my-2">
 
-                            <h2 class="font-concert-one {{ $produk->countStock($produk) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-3xl text-xl">
+                            <h2 class="font-concert-one {{ $produk->countStock($produk) != 0 ? 'text-slate-900' : 'text-gray-400' }} xl:text-2xl text-xl">
                                 Rp.
                                 {{ $produk->stat == 'd' ? substr(number_format($produk->harga_sale,2,",","."), 0, -3) : substr(number_format($produk->harga,2,",","."), 0, -3) }}
                             </h2>
