@@ -15,7 +15,8 @@ class PaymentMethodController extends Controller
      */
     public function index()
     {
-        //
+        $methods = PaymentMethod::all();
+        return view('admin.paymentmethod.index', compact('methods'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.paymentmethod.create');
     }
 
     /**
@@ -36,7 +37,12 @@ class PaymentMethodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        PaymentMethod::create([
+            'name' => 'bank',
+            'info' => $request->info,
+            'description' => $request->description
+        ]);
+        return redirect()->route('adminpage.paymentmethod.index');
     }
 
     /**
@@ -58,7 +64,7 @@ class PaymentMethodController extends Controller
      */
     public function edit(PaymentMethod $paymentMethod)
     {
-        //
+        return view('admin.paymentmethod.edit', compact('paymentMethod'));
     }
 
     /**
@@ -70,7 +76,11 @@ class PaymentMethodController extends Controller
      */
     public function update(Request $request, PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod->update([
+            'info' => $request->info,
+            'description' => $request->description
+        ]);
+        return redirect()->route('adminpage.paymentmethod.index');
     }
 
     /**
@@ -81,6 +91,7 @@ class PaymentMethodController extends Controller
      */
     public function destroy(PaymentMethod $paymentMethod)
     {
-        //
+        $paymentMethod->delete();
+        return redirect()->route('adminpage.paymentmethod.index');
     }
 }

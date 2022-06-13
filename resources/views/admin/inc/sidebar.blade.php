@@ -32,13 +32,14 @@
         @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
             <a href="{{ route('adminpage.configuration') }}" class="hover:text-white">Konfigurasi</a>
             <a href="{{ route('adminpage.layoutdesign') }}" class="hover:text-white">Layout & Design</a>
+            <a href="{{ route('adminpage.paymentmethod.index') }}" class="hover:text-white">Metode Pembayaran</a>
         @endif
         <a href="{{ route('adminpage.administrator') }}" class="hover:text-white">Administrator</a>
         <a href="{{ route('adminpage.hitcounter') }}" class="hover:text-white">Hit Counter</a>
         <a href="{{ route('adminpage.visitcounter.index') }}" class="hover:text-white">Top Visitor</a>
-        @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+        {{-- @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
             <a href="{{ route('adminpage.sendmail') }}" class="hover:text-white">Send Mail</a>
-        @endif
+        @endif --}}
         {{-- <a href="#" class="hover:text-white">Webmail</a> --}}
         <a href="{{ route('adminpage.tutorial') }}" class="hover:text-white">Tutorial</a>
     </div>

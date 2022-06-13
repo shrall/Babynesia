@@ -297,7 +297,9 @@ Route::group([
     Route::resource('linklocation', AdminLinkLocationController::class);
     Route::resource('news', AdminNewsController::class);
     Route::resource('paymentart', AdminPaymentArtController::class);
-    Route::resource('paymentmethod', AdminPaymentMethodController::class);
+    Route::resource('paymentmethod', AdminPaymentMethodController::class)->parameters([
+        'paymentmethod' => 'paymentMethod'
+    ]);
     Route::resource('produk', AdminProdukController::class);
     Route::resource('produkdestinationcity', AdminProdukDestinationCityController::class);
     Route::resource('produkevent', AdminProdukEventController::class);
