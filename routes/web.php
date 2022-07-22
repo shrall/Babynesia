@@ -51,6 +51,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\UserStatusController as AdminUserStatusController;
 use App\Http\Controllers\Admin\ValutaController as AdminValutaController;
 use App\Http\Controllers\Admin\VisitCounterController as AdminVisitCounterController;
+use App\Http\Controllers\Admin\VoucherController as AdminVoucherController;
 use App\Http\Controllers\Admin\WebconfigController as AdminWebconfigController;
 use App\Http\Controllers\Admin\WebDesignController as AdminWebDesignController;
 use App\Http\Controllers\Admin\WebImageController as AdminWebImageController;
@@ -114,6 +115,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserStatusController;
 use App\Http\Controllers\ValutaController;
 use App\Http\Controllers\VisitCounterController;
+use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\WebconfigController;
 use App\Http\Controllers\WebDesignController;
 use App\Http\Controllers\WebImageController;
@@ -149,6 +151,7 @@ Route::resource('contact', ContactController::class);
 Route::resource('produk', ProdukController::class);
 Route::resource('faq', FaqController::class);
 Route::resource('sites', SitesController::class);
+// Route::resource('voucher', VoucherController::class);
 Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpage');
 
 Route::group([
@@ -319,6 +322,7 @@ Route::group([
     Route::resource('userstatus', AdminUserStatusController::class);
     Route::resource('valuta', AdminValutaController::class);
     Route::resource('visitcounter', AdminVisitCounterController::class);
+    Route::resource('voucher', AdminVoucherController::class);
     Route::resource('webconfig', AdminWebconfigController::class);
     Route::resource('webdesign', AdminWebDesignController::class);
     Route::resource('webimage', AdminWebImageController::class);
