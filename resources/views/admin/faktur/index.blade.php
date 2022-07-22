@@ -51,9 +51,9 @@
                             <th>Diskon</th>
                             <th>Ongkos Kirim</th>
                             <th>Total</th>
-                            @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                                <th>Bank</th>
-                            @endif
+                            {{-- @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7) --}}
+                                <th>Voucher</th>
+                            {{-- @endif --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -70,9 +70,9 @@
                                 <td>{{ AppHelper::rp($faktur->discount ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->deliverycost ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->total_pembayaran ?? 0) }}</td>
-                                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                                    <td>{{ $faktur->payment ? $faktur->payment->info : '-' }}</td>
-                                @endif
+                                {{-- @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7) --}}
+                                    <td>{{ $faktur->voucher_id ? $faktur->voucher->name : '-' }}</td>
+                                {{-- @endif --}}
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="popup" href="{{ route('adminpage.faktur.show', $faktur->no_faktur) }}"
