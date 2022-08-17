@@ -4777,8 +4777,6 @@ textarea.form-control.is-invalid{
 .pt-7{
   padding-top: 1.75rem;
 }
-.pb-40{
-  padding-bottom: 10rem;}
 .pb-32{
   padding-bottom: 8rem;
 }
@@ -4820,9 +4818,6 @@ textarea.form-control.is-invalid{
 }
 .pb-8{
   padding-bottom: 2rem;
-}
-.pb-32{
-  padding-bottom: 8rem;
 }
 .text-left{
   text-align: left;
@@ -6105,14 +6100,14 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
-.disabled\:bg-neutral-100:disabled{
-  --tw-bg-opacity: 1;
-  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
-}
-
 .disabled\:bg-neutral-300:disabled{
   --tw-bg-opacity: 1;
   background-color: rgb(212 212 212 / var(--tw-bg-opacity));
+}
+
+.disabled\:bg-neutral-100:disabled{
+  --tw-bg-opacity: 1;
+  background-color: rgb(245 245 245 / var(--tw-bg-opacity));
 }
 
 .disabled\:text-gray-300:disabled{
@@ -6862,9 +6857,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .xl\:items-start{
     align-items: flex-start;
-  }
-  .xl\:items-center{
-    align-items: center;
   }
   .xl\:justify-end{
     justify-content: flex-end;
