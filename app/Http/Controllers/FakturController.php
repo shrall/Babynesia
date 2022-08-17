@@ -11,6 +11,7 @@ use App\Models\PaymentMethod;
 use App\Models\Produk;
 use App\Models\ProdukStockHistory;
 use App\Models\Receiver;
+use App\Models\Voucher;
 use App\Models\Webconfig;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -58,15 +59,40 @@ class FakturController extends Controller
             }
         }
 
+        $voucher = null;
+        $potongan = 0;
+        if (!empty($request->voucher)) {
+            $voucher = Voucher::findOrFail($request->voucher);
+            if ($voucher->vouchertype_id == 1) {
+                $potongan = $request->total / $voucher->amount;
+            } else {
+                $potongan = $voucher->amount;
+            }
+            if ($voucher->limit != null) {
+                if ($voucher->limit != 0) {
+                    // minus voucher
+                    $voucher->update([
+                        'limit' => $voucher->limit - 1,
+                    ]);
+                } else {
+                    $voucher->update([
+                        'isLimited' => 1,
+                    ]);
+                    return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, voucher sudah tidak berlaku.');
+                }
+            }
+        }
+
 
         $faktur = Faktur::create([
             'kode_user' => Auth::id(),
             'status' => 1,
             'tanggal' => $dt,
             'cara_bayar' => $request->payment,
-            'total_pembayaran' => $request->total,
+            // perlu ditanya
+            'total_pembayaran' => $request->total + $request->deliveryCost - $potongan,
             'valuta_id' => 1,
-            'total_profit' => $request->total,
+            'total_profit' => $request->total - $potongan,
             'deliverycost' => $request->deliveryCost,
             'deliveryDate' => '0000-00-00',
             'deliveryExpedition' => $request->delivery,
@@ -76,7 +102,8 @@ class FakturController extends Controller
             // 'discount',
             'note' => $request->note,
             // 'admin_note',
-            'total_weight' => $request->berat
+            'total_weight' => $request->berat,
+            'voucher_id' => $voucher != null ? $voucher->id : null
         ]);
 
         if (!empty($request->pengirim_name)) {
@@ -161,12 +188,49 @@ class FakturController extends Controller
      */
     public function show(Faktur $faktur)
     {
-        return view('user.invoice', compact('faktur'));
+        $subtotal = 0;
+        foreach ($faktur->items as $cart) {
+            if ($cart->product->stat == 'd') {
+                $temp = $cart->product->harga_sale * $cart->jumlah;
+            } else {
+                $temp = $cart->product->harga * $cart->jumlah;
+            }
+            $subtotal += $temp;
+        }
+        $potongan = 0;
+        if (!empty($faktur->voucher)) {
+            if ($faktur->voucher->vouchertype_id == 1) {
+                $potongan = $subtotal / $faktur->voucher->amount;
+            } else {
+                $potongan = $faktur->voucher->amount;
+            }
+        }
+        $payments = PaymentMethod::all();
+
+        return view('user.invoice', compact('faktur', 'payments', 'potongan', 'subtotal'));
     }
 
     public function showDetail(Faktur $faktur)
     {
-        return view('user.detailinvoice', compact('faktur'));
+        $subtotal = 0;
+        foreach ($faktur->items as $cart) {
+            if ($cart->product->stat == 'd') {
+                $temp = $cart->product->harga_sale * $cart->jumlah;
+            } else {
+                $temp = $cart->product->harga * $cart->jumlah;
+            }
+            $subtotal += $temp;
+        }
+        $potongan = 0;
+        if (!empty($faktur->voucher)) {
+            if ($faktur->voucher->vouchertype_id == 1) {
+                $potongan = $subtotal / $faktur->voucher->amount;
+            } else {
+                $potongan = $faktur->voucher->amount;
+            }
+        }
+        $payments = PaymentMethod::all();
+        return view('user.detailinvoice', compact('faktur', 'payments', 'potongan', 'subtotal'));
     }
 
     public function showFaktur(Faktur $faktur)

@@ -11,6 +11,8 @@ use App\Models\Webconfig;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
+
 
 class RegisterController extends Controller
 {
@@ -47,9 +49,14 @@ class RegisterController extends Controller
     protected function getRegister()
     {
         $countries = Country::all();
-        $indoprovinces = IndonesiaProvince::all();
+        // $indoprovinces = IndonesiaProvince::all();
 
-        return view('auth.register', compact('countries', 'indoprovinces'));
+        $provinces = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/province')
+            ->json()['rajaongkir']['results'];
+
+        return view('auth.register', compact('countries', 'provinces'));
     }
 
     /**
@@ -82,10 +89,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if (!empty($data['propinsi2'])) {
+
+        if ($data['indonesia'] != "indonesia") {
             $propinsi = $data['propinsi2'];
+            $kota = $data['kota2'];
         } else {
-            $propinsi = $data['propinsi'];
+            $cities = Http::withHeaders([
+                'key' => config('services.rajaongkir.token'),
+            ])->get('https://api.rajaongkir.com/starter/city')
+                ->json()['rajaongkir']['results'];
+            $cities = collect($cities)->where('province_id', $data['propinsi']);
+            foreach ($cities as $city) {
+                $propinsi = $city['province'];
+                break;
+            }
+            $kota = $data['kota'];
         }
 
         return User::create([
@@ -94,7 +112,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => md5($data['password']),
             'alamat' => $data['alamat'],
-            'kota' => $data['kota'],
+            'kota' => $kota,
             'propinsi' => $propinsi,
             'negara' => $data['negara'],
             'kodepos' => $data['kodepos'],

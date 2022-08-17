@@ -250,6 +250,8 @@
                 <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Payment</h6>
                 <div class="px-7 mt-3">
                     <ul class="list-disc space-y-2">
+                        @foreach ($payments as $payment)
+                            
                         <li>
                             <div>
                                 <h6 class="text-sm sm:text-base font-bold text-slate-900">
@@ -257,10 +259,17 @@
                                 </h6>
                                 <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
                                     {{ $payment->description }}
-                                    {{-- <i class="fa fa-copy ml-1 text-{{ $color[0] }}-400 border p-1 rounded-md
-                            border-{{ $color[0] }}-400"
-                            aria-hidden="true"></i> --}}
                                 </p>
+                            </div>
+                        </li>
+
+                        @endforeach
+                        <li>
+                            <div>
+                                <h6 class="text-sm sm:text-base font-bold text-slate-900">
+                                    Q-Ris
+                                </h6>
+                                <img src="{{ asset('images/payment/qrpayment.jpeg') }}" alt="">
                             </div>
                         </li>
                     </ul>
@@ -289,6 +298,14 @@
                         <td class="py-3 ml-3">&nbsp;&nbsp;&nbsp;Subtotal Produk</td>
                         <td class="py-3">Rp. {{ substr(number_format($total, 2, ',', '.'), 0, -3) }}</td>
                     </tr>
+                    @if (!empty ($voucher))
+                        
+                    <tr>
+                        <td class="py-3 ml-3">&nbsp;&nbsp;&nbsp;Potongan Voucher ({{ $voucher->vouchertype_id == 1 ? $voucher->amount."%" : "Rp. ".substr(number_format($voucher->amount, 2, ',', '.'), 0, -3) }})</td>
+                        <td class="py-3">- Rp. {{ substr(number_format($potongan, 2, ',', '.'), 0, -3) }}</td>
+                    </tr>
+
+                    @endif
                     <tr class="even:bg-neutral-100">
                         <td class="py-3 ml-3">&nbsp;&nbsp;&nbsp;Ongkos kirim</td>
                         <td class="py-3">Rp. {{ substr(number_format($deliveryCost, 2, ',', '.'), 0, -3) }}</td>
@@ -298,7 +315,9 @@
                     <tr>
                         <td class="py-3 text-left">&nbsp;&nbsp;&nbsp;Total</td>
                         <td class="py-3">Rp.
-                            {{ substr(number_format($total + $deliveryCost, 2, ',', '.'), 0, -3) }}</td>
+                            {{ substr(number_format(empty ($voucher) 
+                            ? $total + $deliveryCost 
+                            : $total + $deliveryCost - $potongan, 2, ',', '.'), 0, -3) }}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -319,12 +338,13 @@
             <input type="hidden" value="{{ $delivery }}" name="delivery">
             <input type="hidden" value="{{ $request->phone }}" name="phone">
             <input type="hidden" value="{{ $request->hp }}" name="hp">
-            <input type="hidden" value="{{ $payment->name }}" name="payment">
+            <input type="hidden" value="{{ $payments[0]->name }}" name="payment">
             <input type="hidden" value="{{ $request->note }}" name="note">
             <input type="hidden" value="{{ $total }}" name="total">
             <input type="hidden" value="{{ $berat }}" name="berat">
             <input type="hidden" value="{{ $jumlahCart }}" name="jumlahCart">
             <input type="hidden" value="{{ $deliveryCost }}" name="deliveryCost">
+            <input type="hidden" value="{{ $voucher != null ? $voucher->id : "" }}" name="voucher">
             <input type="hidden" value="{{ base64_encode(serialize($carts)) }}" name="carts">
 
 

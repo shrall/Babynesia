@@ -84,14 +84,18 @@
                         </div>
                         <div class="border relative rounded-md">
                             <select name="province" id="provinces" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
-                                <option value="" hidden>Pilih provinsi</option>
+                                @if ($propinsi_id == null)
+                                <option value="" hidden>Pilih Provinsi</option>
+                                @else
+                                <option value="{{ $propinsi_id }}" hidden>{{ Auth::user()->propinsi }}</option>
+                                @endif
 
                                 @foreach ($provinces as $province)
-                                    
+
                                 <option value="{{ $province['province_id'] }}">
                                     {{ $province['province'] }}
                                 </option>
-    
+
                                 @endforeach
                             </select>
                             <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
@@ -103,14 +107,13 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                         </div>
                         <div class="relative border rounded-md">
-                            <select name="city" id="cities" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
-                                {{-- @foreach ($cities as $city)
+                            <select name="city" id="cities" {{ $kota_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                @if ($kota_id != null)
                                     
-                                <option value="{{ $city['city_id'] }}" onChange="get_shipment({{ $city['city_id'] }})">
-                                    {{ $city['city_name'] }}
-                                </option>
-    
-                                @endforeach --}}
+                                <option value="{{ $kota_id }}" hidden>{{ Auth::user()->kota }}</option>
+
+                                @endif
+
                             </select>
                             <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
@@ -153,7 +156,6 @@
                 </div>
 
                 <div class="xl:hidden mt-7">
-                    <input type="hidden" value="{{ $note }}" name="note">
                     <div class="text-center">
                         <button type="submit"
                             class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:text-white hover:bg-{{ $color[2] }}-400 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
@@ -171,6 +173,8 @@
             </div>
 
             {{-- if langsung ke confirmation --}}
+            <input type="hidden" value="{{ $note }}" name="note">
+            <input type="hidden" value="{{ $voucher }}" name="voucher">
             <input type="hidden" name="payment" value="1">
 
             <div class="hidden xl:block">
@@ -229,6 +233,11 @@ function get_shipment(city_id) {
         });
 }
 
+function runShipment () {
+    get_shipment($('#cities').val());
+};
+runShipment();
+
 $('#provinces').on('change', function(e) {
     var hostname = "{{ request()->getHost() }}"
     var url = ""
@@ -245,7 +254,7 @@ $('#provinces').on('change', function(e) {
         .done(function(data) {
             // $('.tempprovince').remove();
             $('#cities').prop("disabled", false);
-            $('#expedition').prop("disabled", false);
+            // $('#expedition').prop("disabled", false);
             $('#cities').html('');
             console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
