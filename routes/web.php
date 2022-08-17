@@ -151,8 +151,10 @@ Route::resource('contact', ContactController::class);
 Route::resource('produk', ProdukController::class);
 Route::resource('faq', FaqController::class);
 Route::resource('sites', SitesController::class);
-// Route::resource('voucher', VoucherController::class);
 Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpage');
+
+Route::post('/getcity', [ReceiverController::class, 'get_city'])->name('getcity');
+
 
 Route::group([
     'as' => 'user.'
@@ -222,6 +224,7 @@ Route::group([
     Route::resource('webdesign', WebDesignController::class);
     Route::resource('webimage', WebImageController::class);
     Route::resource('weblayout', WebLayoutController::class);
+    Route::resource('voucher', VoucherController::class);
 });
 
 Route::group([

@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\PaymentMethod;
 use App\Models\Produk;
+use App\Models\Voucher;
 use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,10 @@ class DetailCartController extends Controller
     public function index(Request $request)
     {
 
-        $payment = PaymentMethod::where('id', $request->payment)->get()->last();
+        // $payment = PaymentMethod::where('id', $request->payment)->get()->last();
+        $payments = PaymentMethod::all();
+
+
         $carts = DetailCart::where('no_user', Auth::id())->get();
 
         //hitung total harga dan total berat
@@ -94,6 +98,17 @@ class DetailCartController extends Controller
             }
         }
 
+        $voucher = null;
+        $potongan = 0;
+        if (!empty($request->voucher)) {
+            $voucher = Voucher::findOrFail($request->voucher);
+            if ($voucher->vouchertype_id == 1) {
+                $potongan = $total / $voucher->amount;
+            } else {
+                $potongan = $voucher->amount;
+            }
+        }
+
         // $city = $cities[$request->city - 1]['city_name'];
         // $province = $provinces[$request->province - 1]['province'];
 
@@ -102,7 +117,7 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payment', 'gudang'));
+        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payments', 'gudang', 'voucher', 'potongan'));
     }
 
     /**

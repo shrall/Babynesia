@@ -158,11 +158,71 @@
             </div>
         @endforeach
         @if (!empty($carts[0]))
+        <form action="{{ route('user.cart.index') }}" method="get" id="checkVoucher">@csrf</form>
+        <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-5">
+            <div>
+                <label for="voucher"
+                    class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
+                    Kode Voucher (Opsional)
+                </label>
+            </div>
+            <div>
+                <input id="voucher" form="checkVoucher" type="text" value="{{ $voucher != null ? $voucher->code : null }}"
+                class="appearance-none border p-1 mt-2 rounded-md bg-neutral-100" name="voucher">
+    
+                <button type="submit" form="checkVoucher"
+                    class="ml-2 bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-1 px-2 text-center text-sm sm:text-base text-white font-encode-sans font-bold">
+                    <p class="font-encode-sans font-bold text-white text-sm">Check</p>
+                </button>    
+            </div>
+            @if ($textVoucher != "")
+                <p class="font-encode-sans {{ $textVoucher == "Voucher berhasil digunakan" ? 'text-green-500' : 'text-red-500' }} text-sm sm:text-base">{{ $textVoucher }}</p>
+            @endif
+        </div>
+        <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-5">
+            <div class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
+                Harga
+            </div>
+            @if ($voucher != null)
+            <div class="flex justify-between mt-2">
+                <h2 class="font-encode-sans text-slate-900 text-sm sm:text-base">
+                    Subtotal
+                </h2>
+                <p class="font-encode-sans text-sm sm:text-base text-slate-900">
+                    Rp. {{ substr(number_format($total, 2, ',', '.'), 0, -3) }}
+                </p>
+            </div>
+            <div class="flex justify-between mt-1">
+                <h2 class="font-encode-sans text-slate-900 text-sm sm:text-base">
+                    Potongan Voucher ({{ $voucher->vouchertype_id == 1 ? $voucher->amount."%" : "Rp. ".substr(number_format($voucher->amount, 2, ',', '.'), 0, -3) }})
+                </h2>
+                <p class="font-encode-sans text-sm sm:text-base text-slate-900">
+                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total/$voucher->amount : $voucher->amount, 2, ',', '.'), 0, -3) }}
+                </p>
+            </div>
+            <div class="flex justify-between mt-1">
+                <h2 class="font-encode-sans text-slate-900 text-sm sm:text-base">
+                    Total
+                </h2>
+                <p class="font-encode-sans text-sm sm:text-base font-bold text-slate-900">
+                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total - ($total/$voucher->amount) : $total - $voucher->amount, 2, ',', '.'), 0, -3) }}
+                </p>
+            </div>
+            @else
+            <div class="flex justify-between mt-1">
+                <h2 class="font-encode-sans text-slate-900 text-sm sm:text-base">
+                    Total
+                </h2>
+                <p class="font-encode-sans text-sm sm:text-base font-bold text-slate-900">
+                    Rp. {{ substr(number_format($total, 2, ',', '.'), 0, -3) }}
+                </p>
+            </div>
+            @endif
+        </div>
             <form action="{{ route('user.receiver.create') }}" method="get">
                 @csrf
-                <div class="xl:flex xl:items-center">
+                <div class="xl:flex xl:items-start">
                     <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-5 xl:w-8/10">
-
                         <div>
                             <label for="catatan-tambahan"
                                 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
@@ -171,6 +231,7 @@
                         </div>
                         <textarea name="note" id="catatan-tambahan"
                             class="mt-2 py-1 px-2 appearance-none bg-neutral-100 border-2 rounded-lg w-full"></textarea>
+                        <input type="hidden" value="{{ $voucher != null ? $voucher->id : null }}" name="voucher">
                         <div class="xl:hidden">
                             <div class="text-center mt-2">
                                 <button type="submit"

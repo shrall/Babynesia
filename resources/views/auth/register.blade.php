@@ -96,12 +96,6 @@
                     name="alamat"></textarea>
             </div>
             <div class="mt-4">
-                <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
-                </div>
-                <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                    name="kota">
-            </div>
-            <div class="mt-4">
                 <div> <label for="postcode"
                         class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
                 </div>
@@ -124,26 +118,64 @@
 
             </div>
             <div class="mt-4">
-                <div> <label for="provinsi-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
-                        (Indonesia)</label>
+                <input type="checkbox" checked class="peer" id="loc-check" name="indonesia" value="indonesia">
+                <label for="loc-check"
+                    class="text-sm sm:text-base font-encode-sans cursor-pointer text-slate-900">Indonesia</label>
+
+                <div class="peer-checked:block hidden">
+                    <div class="mt-4">
+                        <div> <label for="provinsi-indo"
+                                class="ml-2 text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
+                                (Indonesia)</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select id="provinsi-indo"
+                                class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100"
+                                name="propinsi">
+                                <option value="" hidden>Pilih provinsi</option>
+                                @foreach ($provinces as $province)
+                                <option value="{{ $province['province_id'] }}">{{ $province['province'] }}</option>
+                                @endforeach
+                            </select>
+                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                                aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div> <label for="city-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota
+                                (Indonesia)</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select id="city-indo" disabled
+                                class="appearance-none cursor-pointer p-1 w-full rounded-md disabled:bg-neutral-300 bg-neutral-100" name="kota">
+                                {{-- @foreach ($cities as $city)
+                            <option value="{{ $province['province'] }}">{{ $province['province'] }}</option>
+                                @endforeach --}}
+                            </select>
+                            <i class="fa fa-chevron-down peer-disabled:hidden absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                                aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="relative border rounded-md">
-                    <select id="provinsi-indo"
-                        class="appearance-none p-1 cursor-pointer w-full rounded-md bg-neutral-100" name="propinsi">
-                        @foreach ($indoprovinces as $province)
-                        <option value="{{ $province->name }}">{{ $province->name }}</option>
-                        @endforeach
-                    </select>
-                    <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
-                        aria-hidden="true"></i>
+
+                <div class="peer-checked:hidden">
+                    <div class="mt-4">
+                        <div> <label for="provinsi-notindo"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain
+                                Indonesia)</label>
+                        </div>
+                        <input id="provinsi-notindo" type="text"
+                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2">
+                    </div>
+
+                    <div class="mt-4">
+                        <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota
+                                (Selain Indonesia)</label>
+                        </div>
+                        <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                            name="kota2">
+                    </div>
                 </div>
-            </div>
-            <div class="mt-4">
-                <div> <label for="provinsi-notindo"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
-                </div>
-                <input id="provinsi-notindo" type="text"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2">
             </div>
             <div class="mt-4">
                 <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
@@ -167,7 +199,8 @@
                     <span id="captcha-img">
                         {!! captcha_img('flat') !!}
                     </span>
-                    <button type="button" class="ml-2 py-1 px-2 bg-{{ $color[0] }}-300 hover:bg-{{ $color[0] }}-400 rounded-md text-white aspect-square h-fit text-xl"
+                    <button type="button"
+                        class="ml-2 py-1 px-2 bg-{{ $color[0] }}-300 hover:bg-{{ $color[0] }}-400 rounded-md text-white aspect-square h-fit text-xl"
                         id="reload">
                         &#x21bb;
                     </button>
@@ -201,18 +234,51 @@
 </div>
 
 @push('scripts')
-    
+
 <script type="text/javascript">
-    $("#reload").click(function(e) {
+    $("#reload").click(function (e) {
         e.preventDefault();
         $.ajax({
             url: "reload",
             type: 'GET',
             dataType: 'html',
-            success: function(res) {
+            success: function (res) {
                 $('#captcha-img').html(res);
             }
         });
+    });
+
+    // untuk province rajaongkir
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+    $('#provinsi-indo').on('change', function (e) {
+        var hostname = "{{ request()->getHost() }}"
+        var url = ""
+        if (hostname.includes('www')) {
+            url = "https://" + hostname
+        } else {
+            url = "{{ config('app.url') }}"
+        }
+
+        $.post(url + "/getcity", {
+                _token: CSRF_TOKEN,
+                province: $('#provinsi-indo').val(),
+            })
+            .done(function (data) {
+                // $('.tempprovince').remove();
+                $('#city-indo').prop("disabled", false);
+                // $('#expedition').prop("disabled", false);
+                $('#city-indo').html('');
+                console.log('arraynya ' + data);
+                Object.values(data).forEach((element, index) => {
+                    $('#city-indo').append('<option value="' + element.city_name +
+                        '">' +
+                        element.city_name + '</option>')
+                });
+            })
+            .fail(function (e) {
+                console.log(e);
+            });
     });
 
 </script>

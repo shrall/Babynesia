@@ -94,13 +94,23 @@
                     </tr>
                 @endforeach
             </tbody>
-            <tfoot class="bg-{{ $color[0] }}-300 font-bold font-encode-sans text-white">
+            <tfoot class="bg-{{ $color[0] }}-300 font-encode-sans text-white">
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 text-left">Subtotal</td>
                     <td class="py-3">Rp.
-                        {{ substr(number_format($faktur->total_pembayaran, 2, ',', '.'), 0, -3) }}</td>
+                        {{ substr(number_format($subtotal, 2, ',', '.'), 0, -3) }}</td>
                 </tr>
+                @if ($faktur->voucher != null)
+                    
+                <tr>
+                    <td colspan="3" class="py-3">&nbsp;</td>
+                    <td class="py-3 text-left">Potongan Voucher ({{ $faktur->voucher->vouchertype_id == 1 ? $faktur->voucher->amount."%" : "Rp. ".substr(number_format($faktur->voucher->amount, 2, ',', '.'), 0, -3) }})</td>
+                    <td class="py-3">- Rp.
+                        {{ substr(number_format($potongan, 2, ',', '.'), 0, -3) }}</td>
+                </tr>
+
+                @endif
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 text-left">Ongkos kirim ({{ $faktur->deliveryExpedition }})</td>
@@ -109,9 +119,9 @@
                 </tr>
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
-                    <td class="py-3 text-left">Total</td>
-                    <td class="py-3">Rp.
-                        {{ substr(number_format($faktur->total_pembayaran + $faktur->deliverycost + intval(substr($faktur->no_faktur, -3)), 2, ',', '.'), 0, -3) }}
+                    <td class="py-3 font-bold text-left">Total</td>
+                    <td class="py-3 font-bold">Rp.
+                        {{ substr(number_format($faktur->total_pembayaran + intval(substr($faktur->no_faktur, -3)), 2, ',', '.'), 0, -3) }}
                     </td>
                 </tr>
             </tfoot>
@@ -125,7 +135,7 @@
             <div class="flex text-gray-400 font-encode-sans">
                 {{$faktur->note ?? '-'}}
             </div>
-            <h6 class="font-encode-sans font-bold text-slate-900">
+            <h6 class="mt-2 font-encode-sans font-bold text-slate-900">
                 Receiver
             </h6>
             <div class="flex">
@@ -154,7 +164,7 @@
                     <li>{{ $faktur->receiver->hp }}</li>
                 </ul>
             </div>
-            <h6 class="font-encode-sans font-bold text-slate-900">
+            <h6 class="mt-2 font-encode-sans font-bold text-slate-900">
                 Dropship
             </h6>
             <div class="flex">
@@ -181,19 +191,30 @@
                 @endif
             </div>
         </div>
-        <div class="text-right relative">
+        <div class="text-right relative pb-32">
             <h6 class="font-encode-sans font-bold text-slate-900">
                 Payment
             </h6>
 
+            @foreach ($payments as $payment)
             <div class="mt-2">
                 <h6 class="font-encode-sans font-bold text-slate-900">
-                    {{ $faktur->payment->info }}
+                    {{ $payment->info }}
                 </h6>
                 <p class="font-encode-sans text-gray-400">
-                    {{ $faktur->payment->description }}
+                    {{ $payment->description }}
                 </p>
             </div>
+            @endforeach
+            <div class="mt-2">
+                <h6 class="font-encode-sans font-bold text-slate-900">
+                    Q-Ris
+                </h6>
+                <div class="flex justify-end">
+                    <img src="{{ asset('images/payment/qrpayment.jpeg') }}" width="300" alt="">
+                </div>
+            </div>
+
             <a href="{{ route('user.faktur.showfaktur', $faktur) }}" target="_blank"
                 class="absolute right-0 bottom-0 py-2 px-4 rounded-full bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 text-white font-bold font-encode-sans">
                 <i class="fa fa-print mr-1" aria-hidden="true"></i>

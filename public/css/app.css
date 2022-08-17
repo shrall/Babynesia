@@ -4778,7 +4778,9 @@ textarea.form-control.is-invalid{
   padding-top: 1.75rem;
 }
 .pb-40{
-  padding-bottom: 10rem;
+  padding-bottom: 10rem;}
+.pb-32{
+  padding-bottom: 8rem;
 }
 .pb-6{
   padding-bottom: 1.5rem;

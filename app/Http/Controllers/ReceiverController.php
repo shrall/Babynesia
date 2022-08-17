@@ -30,14 +30,9 @@ class ReceiverController extends Controller
      */
     public function create(Request $request)
     {
+        $voucher = $request->voucher;
 
         $carts = DetailCart::where('no_user', Auth::id())->get();
-
-        //cities rajaongkir
-        $cities = Http::withHeaders([
-            'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/city')
-            ->json()['rajaongkir']['results'];
 
         //province rajaongkir
         $provinces = Http::withHeaders([
@@ -45,8 +40,28 @@ class ReceiverController extends Controller
         ])->get('https://api.rajaongkir.com/starter/province')
             ->json()['rajaongkir']['results'];
 
-        $note = $request->note;
+        // dd($provinces);
 
+        $propinsi_id = null;
+        $propinsis = collect($provinces)->where('province', Auth::user()->propinsi);
+        foreach ($propinsis as $propinsi) {
+            $propinsi_id = $propinsi['province_id'];
+            break;
+        }
+
+        $kota_id = null;
+        $cities = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/city')
+            ->json()['rajaongkir']['results'];
+        $cities = collect($cities)->where('province_id', $propinsi_id);
+        $cities = collect($cities)->where('city_name', Auth::user()->kota);
+        foreach ($cities as $city) {
+            $kota_id = $city['city_id'];
+            break;
+        }
+
+        $note = $request->note;
         $weight = 0;
         foreach ($carts as $cart) {
             $weight += $cart->produk->weight * $cart->jumlah;
@@ -65,7 +80,7 @@ class ReceiverController extends Controller
         // dd($shipments);
 
 
-        return view('user.receiver', compact('note', 'cities', 'provinces', 'weight'));
+        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'weight', 'voucher'));
     }
 
     /**
@@ -146,6 +161,7 @@ class ReceiverController extends Controller
         ])->get('https://api.rajaongkir.com/starter/city')
             ->json()['rajaongkir']['results'];
         $cities = collect($cities)->where('province_id', $request->province);
+
         return $cities;
     }
 }

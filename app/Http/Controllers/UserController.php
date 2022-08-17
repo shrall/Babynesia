@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class UserController extends Controller
 {
@@ -23,7 +24,14 @@ class UserController extends Controller
     {
         $fakturs = Faktur::where('kode_user', Auth::id())->orderBy('no_faktur', 'desc')->paginate(10);
         $countries = Country::all();
-        $indoprovinces = IndonesiaProvince::all();
+
+        // $indoprovinces = IndonesiaProvince::all();
+        //province rajaongkir
+        $provinces = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://api.rajaongkir.com/starter/province')
+            ->json()['rajaongkir']['results'];
+
         $checker = $request->checker;
         if (empty($checker)) {
             $checker = 'history';
@@ -32,7 +40,7 @@ class UserController extends Controller
             $page = $checker;
         }
 
-        return view('user.profile', compact('fakturs', 'countries', 'indoprovinces', 'checker', 'page'));
+        return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
     }
 
     /**
@@ -98,18 +106,36 @@ class UserController extends Controller
             ]);
         }
 
-        if (!empty($request->propinsi2)) {
+        if ($request->indonesia != "indonesia") {
             $propinsi = $request->propinsi2;
+            $kota = $request->kota2;
         } else {
-            $propinsi = $request->propinsi;
+            $cities = Http::withHeaders([
+                'key' => config('services.rajaongkir.token'),
+            ])->get('https://api.rajaongkir.com/starter/city')
+                ->json()['rajaongkir']['results'];
+            $cities = collect($cities)->where('province_id', $request->propinsi);
+            $propinsi = null;
+            foreach ($cities as $city) {
+                $propinsi = $city['province'];
+                break;
+            }
+
+            if ($propinsi == null) {
+                $propinsi = $request->propinsi;
+            }
+
+            $kota = $request->kota;
         }
+
+
         $user->update([
             'name' => $request->name,
             'lastname' => $request->lastname,
             // 'email' => $request->email,
             // 'password' => Hash::make($request->password),
             'alamat' => $request->alamat,
-            'kota' => $request->kota,
+            'kota' => $kota,
             'propinsi' => $propinsi,
             'negara' => $request->negara,
             'kodepos' => $request->kodepos,
