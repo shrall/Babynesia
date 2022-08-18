@@ -103,7 +103,7 @@ class DetailCartController extends Controller
         if (!empty($request->voucher)) {
             $voucher = Voucher::findOrFail($request->voucher);
             if ($voucher->vouchertype_id == 1) {
-                $potongan = $total / $voucher->amount;
+                $potongan = $total * ($voucher->amount / 100);
             } else {
                 $potongan = $voucher->amount;
             }

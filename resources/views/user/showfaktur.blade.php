@@ -1161,7 +1161,7 @@
                                     <tr id="chart">
                                         <th colspan="4" align="right"> SUBTOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
-                                            {{ AppHelper::rp($faktur->total_profit ?? 0) }}</th>
+                                            {{ AppHelper::rp($subtotal ?? 0) }}</th>
                                     </tr>
                                     <tr id="chart">
                                         <th colspan="4" align="right"> Ongkos Kirim : &nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -1176,7 +1176,7 @@
                                     <tr id="chart">
                                         <th colspan="4" align="right"> TOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         <th>
-                                            {{ AppHelper::rp($faktur->total_pembayaran + $faktur->deliverycost + intval(substr($faktur->no_faktur, -3)) ?? 0) }}
+                                            {{ AppHelper::rp($faktur->total_pembayaran + intval(substr($faktur->no_faktur, -3)) ?? 0) }}
                                         </th>
                                     </tr>
                                 </tbody>
@@ -1235,12 +1235,25 @@
                                                 Payment information:
                                                 Invoice no.{{ $faktur->no_faktur }} </p>
                                             <div class="">
-                                                <h3 class="">
+                                                {{-- <h3 class="">
                                                     {{ $faktur->payment->info }}
                                                 </h3>
                                                 <p class="">
                                                     {{ $faktur->payment->description }}
+                                                </p> --}}
+                                                @foreach ($payments as $payment)
+                                                <h3 class="">
+                                                    {{ $payment->info }}
+                                                </h3>
+                                                <p class="">
+                                                    {{ $payment->description }}
                                                 </p>
+                                                @endforeach
+
+                                                <h3 class="">
+                                                    Q-Ris
+                                                </h3>
+                                                <img src="{{ asset('images/payment/qrpayment.jpeg') }}" width="300" alt="">
                                             </div>
                                         </td>
                                     </tr>

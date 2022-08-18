@@ -101,22 +101,23 @@
                     <td class="py-3">Rp.
                         {{ substr(number_format($subtotal, 2, ',', '.'), 0, -3) }}</td>
                 </tr>
-                @if ($faktur->voucher != null)
-                    
-                <tr>
-                    <td colspan="3" class="py-3">&nbsp;</td>
-                    <td class="py-3 text-left">Potongan Voucher ({{ $faktur->voucher->vouchertype_id == 1 ? $faktur->voucher->amount."%" : "Rp. ".substr(number_format($faktur->voucher->amount, 2, ',', '.'), 0, -3) }})</td>
-                    <td class="py-3">- Rp.
-                        {{ substr(number_format($potongan, 2, ',', '.'), 0, -3) }}</td>
-                </tr>
-
-                @endif
+                
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 text-left">Ongkos kirim ({{ $faktur->deliveryExpedition }})</td>
                     <td class="py-3">Rp.
                         {{ substr(number_format($faktur->deliverycost, 2, ',', '.'), 0, -3) }}</td>
                 </tr>
+                @if ($faktur->voucher != null)
+                    
+                <tr>
+                    <td colspan="3" class="py-3">&nbsp;</td>
+                    <td class="py-3 text-left">Potongan Voucher ({{ $faktur->voucher->vouchertype_id == 1 ? $faktur->voucher->amount."%" : "Rp. ".substr(number_format($faktur->voucher->amount, 2, ',', '.'), 0, -3) }})</td>
+                    <td class="py-3">- Rp.
+                        {{ substr(number_format($faktur->discount, 2, ',', '.'), 0, -3) }}</td>
+                </tr>
+
+                @endif
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 font-bold text-left">Total</td>

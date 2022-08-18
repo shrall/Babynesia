@@ -197,7 +197,7 @@
                     Potongan Voucher ({{ $voucher->vouchertype_id == 1 ? $voucher->amount."%" : "Rp. ".substr(number_format($voucher->amount, 2, ',', '.'), 0, -3) }})
                 </h2>
                 <p class="font-encode-sans text-sm sm:text-base text-slate-900">
-                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total/$voucher->amount : $voucher->amount, 2, ',', '.'), 0, -3) }}
+                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total*($voucher->amount/100) : $voucher->amount, 2, ',', '.'), 0, -3) }}
                 </p>
             </div>
             <div class="flex justify-between mt-1">
@@ -205,7 +205,7 @@
                     Total
                 </h2>
                 <p class="font-encode-sans text-sm sm:text-base font-bold text-slate-900">
-                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total - ($total/$voucher->amount) : $total - $voucher->amount, 2, ',', '.'), 0, -3) }}
+                    Rp. {{ substr(number_format($voucher->vouchertype_id == 1 ? $total - ($total*($voucher->amount/100)) : $total - $voucher->amount, 2, ',', '.'), 0, -3) }}
                 </p>
             </div>
             @else

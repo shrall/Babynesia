@@ -64,7 +64,7 @@ class FakturController extends Controller
         if (!empty($request->voucher)) {
             $voucher = Voucher::findOrFail($request->voucher);
             if ($voucher->vouchertype_id == 1) {
-                $potongan = $request->total / $voucher->amount;
+                $potongan = $request->total * ($voucher->amount / 100);
             } else {
                 $potongan = $voucher->amount;
             }
@@ -103,7 +103,8 @@ class FakturController extends Controller
             'note' => $request->note,
             // 'admin_note',
             'total_weight' => $request->berat,
-            'voucher_id' => $voucher != null ? $voucher->id : null
+            'voucher_id' => $voucher != null ? $voucher->id : null,
+            'discount' => $potongan,
         ]);
 
         if (!empty($request->pengirim_name)) {
@@ -197,17 +198,9 @@ class FakturController extends Controller
             }
             $subtotal += $temp;
         }
-        $potongan = 0;
-        if (!empty($faktur->voucher)) {
-            if ($faktur->voucher->vouchertype_id == 1) {
-                $potongan = $subtotal / $faktur->voucher->amount;
-            } else {
-                $potongan = $faktur->voucher->amount;
-            }
-        }
         $payments = PaymentMethod::all();
 
-        return view('user.invoice', compact('faktur', 'payments', 'potongan', 'subtotal'));
+        return view('user.invoice', compact('faktur', 'payments', 'subtotal'));
     }
 
     public function showDetail(Faktur $faktur)
@@ -221,21 +214,23 @@ class FakturController extends Controller
             }
             $subtotal += $temp;
         }
-        $potongan = 0;
-        if (!empty($faktur->voucher)) {
-            if ($faktur->voucher->vouchertype_id == 1) {
-                $potongan = $subtotal / $faktur->voucher->amount;
-            } else {
-                $potongan = $faktur->voucher->amount;
-            }
-        }
         $payments = PaymentMethod::all();
-        return view('user.detailinvoice', compact('faktur', 'payments', 'potongan', 'subtotal'));
+        return view('user.detailinvoice', compact('faktur', 'payments', 'subtotal'));
     }
 
     public function showFaktur(Faktur $faktur)
     {
-        return view('user.showfaktur', compact('faktur'));
+        $subtotal = 0;
+        foreach ($faktur->items as $cart) {
+            if ($cart->product->stat == 'd') {
+                $temp = $cart->product->harga_sale * $cart->jumlah;
+            } else {
+                $temp = $cart->product->harga * $cart->jumlah;
+            }
+            $subtotal += $temp;
+        }
+        $payments = PaymentMethod::all();
+        return view('user.showfaktur', compact('faktur', 'subtotal', 'payments'));
     }
 
     /**
