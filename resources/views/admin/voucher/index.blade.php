@@ -31,7 +31,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $voucher->name }}</td>
                                 <td>{{ $voucher->code }}</td>
-                                <td>{{ $voucher->amount }}</td>
+                                @if ($voucher->vouchertype_id == 1)
+                                    <td>{{ $voucher->amount }}%</td>
+                                @else
+                                    <td>Rp. {{ $voucher->amount }}</td>
+                                @endif
                                 <td>{{ $voucher->type->name }}</td>
                                 <td>{{ $voucher->deadline }}</td>
                                 <td>{{ $voucher->isLimited == 1 ? $voucher->limit : '-' }}</td>
