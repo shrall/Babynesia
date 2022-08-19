@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
     protected function getRegister()
     {
-        $countries = Country::all();
+        $countries = Country::orderByRaw('name = ? desc', ['Indonesia'])->get();
         // $indoprovinces = IndonesiaProvince::all();
 
         $provinces = Http::withHeaders([

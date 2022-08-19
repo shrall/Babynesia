@@ -165,11 +165,11 @@
                     <li>{{ $faktur->receiver->hp }}</li>
                 </ul>
             </div>
+            @if ($faktur->sender_name)
             <h6 class="mt-2 font-encode-sans font-bold text-slate-900">
                 Dropship
             </h6>
             <div class="flex">
-                @if ($faktur->sender_name)
                     <ul class="font-encode-sans text-gray-400">
                         <li>Name</li>
                         <li>Address</li>
@@ -185,12 +185,8 @@
                         <li>{{ $faktur->sender_address }}</li>
                         <li>{{ $faktur->sender_phone }}</li>
                     </ul>
-                @else
-                    <ul class="font-encode-sans text-gray-400">
-                        <li>-</li>
-                    </ul>
-                @endif
             </div>
+            @endif
         </div>
         <div class="text-right relative pb-32">
             <h6 class="font-encode-sans font-bold text-slate-900">

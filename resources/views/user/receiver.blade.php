@@ -74,7 +74,7 @@
                         <div> <label for="postcode"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
                         </div>
-                        <input id="postcode" type="text" required
+                        <input id="postcode" type="text" value="{{ Auth::user()->kodepos }}" required
                             class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="postcode">
                     </div>
                     
