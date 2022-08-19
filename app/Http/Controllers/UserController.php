@@ -106,7 +106,7 @@ class UserController extends Controller
             ]);
         }
 
-        if ($request->indonesia != "indonesia") {
+        if ($request->negara != "Indonesia") {
             $propinsi = $request->propinsi2;
             $kota = $request->kota2;
         } else {

@@ -90,7 +90,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        if ($data['indonesia'] != "indonesia") {
+        if ($data['negara'] != "Indonesia") {
             $propinsi = $data['propinsi2'];
             $kota = $data['kota2'];
         } else {
