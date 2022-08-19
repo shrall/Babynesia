@@ -39,6 +39,9 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'code' => 'required|unique:vouchers',
+        ]);
         $voucher = Voucher::create([
             'name' => $request->name,
             'code' => $request->code,

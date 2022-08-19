@@ -12,9 +12,18 @@
                 <input type="text" name="name" id="name" class="admin-input" required>
             </div>
             <div class="col-span-3">Kode</div>
-            <div class="col-span-9 flex items-center">
-                <input type="text" name="code" id="code" class="admin-input" required>
-            </div>
+            @if ($errors->any())
+                <div class="col-span-9 flex flex-col items-start">
+                    <input type="text" name="code" id="code" class="admin-input border-2 border-red-400" required>
+                    <span class="text-xs text-red-500">
+                        Kode sudah ada di database!</span>
+                </div>
+            @else
+                <div class="col-span-9 flex flex-col items-start">
+                    <input type="text" name="code" id="code" class="admin-input"
+                        required>
+                </div>
+            @endif
             <div class="col-span-3">Tipe</div>
             <div class="col-span-9 flex items-center">
                 <div class="flex items-center gap-2">
