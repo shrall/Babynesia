@@ -20,8 +20,8 @@
                             <th>Kode</th>
                             <th>Jumlah</th>
                             <th>Tipe</th>
-                            <th>Tanggal</th>
-                            <th>Limit</th>
+                            <th>Berlaku Hingga</th>
+                            <th>Kuota</th>
                             <th>Action</th>
                         </tr>
                     </thead>
