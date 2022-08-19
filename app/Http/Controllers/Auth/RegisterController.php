@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
     protected function getRegister()
     {
-        $countries = Country::all();
+        $countries = Country::orderByRaw('name = ? desc', ['Indonesia'])->get();
         // $indoprovinces = IndonesiaProvince::all();
 
         $provinces = Http::withHeaders([
@@ -90,7 +90,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-        if ($data['indonesia'] != "indonesia") {
+        if ($data['negara'] != "Indonesia") {
             $propinsi = $data['propinsi2'];
             $kota = $data['kota2'];
         } else {

@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $fakturs = Faktur::where('kode_user', Auth::id())->orderBy('no_faktur', 'desc')->paginate(10);
-        $countries = Country::all();
+        $countries = Country::orderByRaw('name = ? desc', ['Indonesia'])->get();
 
         // $indoprovinces = IndonesiaProvince::all();
         //province rajaongkir
@@ -106,7 +106,7 @@ class UserController extends Controller
             ]);
         }
 
-        if ($request->indonesia != "indonesia") {
+        if ($request->negara != "Indonesia") {
             $propinsi = $request->propinsi2;
             $kota = $request->kota2;
         } else {

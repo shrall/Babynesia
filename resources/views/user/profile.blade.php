@@ -61,7 +61,7 @@
             <div class="ml-4">
                 <div class="sm:mt-4">
                     <h1 class="font-concert-one text-{{ $color[2] }}-400 text-3xl sm:text-4xl">
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name . " " . Auth::user()->lastname }}
                     </h1>
                     <p class="mt-1 font-encode-sans text-gray-400 text-sm sm:text-base">
                         {{ Auth::user()->email }}
@@ -79,7 +79,15 @@
                     <div>
                         <div>
                             <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
-                                City
+                                Country
+                            </p>
+                            <p class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
+                                {{ Auth::user()->negara }}
+                            </p>
+                        </div>
+                        <div class="mt-4">
+                            <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
+                                Kota
                             </p>
                             <p class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
                                 {{ Auth::user()->kota }}
@@ -101,6 +109,14 @@
                             </p>
                             <p class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
                                 {{ Auth::user()->propinsi }}
+                            </p>
+                        </div>
+                        <div class="mt-4">
+                            <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
+                                Post Code
+                            </p>
+                            <p class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
+                                {{ Auth::user()->kodepos }}
                             </p>
                         </div>
                         <div class="mt-4">
@@ -161,12 +177,14 @@
                     name="kodepos" required value="{{ Auth::user()->kodepos }}">
             </div>
             <div class="mt-4">
-                <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
+                <div> <label for="countryselection" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
                 <div class="relative border rounded-md">
-                    <select id="country" type="text"
+                    <select id="countryselection" type="text"
                         class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="negara">
+                        @if (Auth::user()->negara != "Indonesia")
                         <option hidden value="{{ Auth::user()->negara }}">{{ Auth::user()->negara }}</option>
+                        @endif
                         @foreach ($countries as $country)
                         <option value="{{ $country->name }}">{{ $country->name }}</option>
                         @endforeach
@@ -175,62 +193,57 @@
                         aria-hidden="true"></i>
                 </div>
             </div>
-            
-            <div class="mt-4">
-                    <input type="checkbox" checked class="peer" id="loc-check" name="indonesia" value="indonesia">
-                    <label for="loc-check" class="text-sm sm:text-base font-encode-sans cursor-pointer text-slate-900">Indonesia</label>
-    
-                <div class="peer-checked:block hidden">
-                    <div class="mt-4">
-                        <div> <label for="provinsi-indo" class="ml-2 text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
-                                (Indonesia)</label>
-                        </div>
-                        <div class="relative border rounded-md">
-                            <select id="provinsi-indo"
-                                class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="propinsi">
-                                <option hidden value="{{ Auth::user()->propinsi }}">{{ Auth::user()->propinsi }}</option>
-                                @foreach ($provinces as $province)
-                                <option value="{{ $province['province_id'] }}">{{ $province['province'] }}</option>
-                                @endforeach
-                            </select>
-                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
-                                aria-hidden="true"></i>
-                        </div>
+                
+            <div class="country" id="showIndonesia">
+                <div class="mt-4">
+                    <div> <label for="provinsi-indo" class="ml-2 text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
+                            (Indonesia)</label>
                     </div>
-                    <div class="mt-4">
-                        <div> <label for="city-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota
-                                (Indonesia)</label>
-                        </div>
-                        <div class="relative border rounded-md">
-                            <select id="city-indo"
-                                class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="kota">
-                                <option hidden value="{{ Auth::user()->kota }}">{{ Auth::user()->kota }}</option>
-                                {{-- @foreach ($cities as $city)
-                                <option value="{{ $province['province'] }}">{{ $province['province'] }}</option>
-                                @endforeach --}}
-                            </select>
-                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
-                                aria-hidden="true"></i>
-                        </div>
+                    <div class="relative border rounded-md">
+                        <select id="provinsi-indo"
+                            class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="propinsi">
+                            <option hidden value="{{ Auth::user()->propinsi }}">{{ Auth::user()->propinsi }}</option>
+                            @foreach ($provinces as $province)
+                            <option value="{{ $province['province_id'] }}">{{ $province['province'] }}</option>
+                            @endforeach
+                        </select>
+                        <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
                     </div>
                 </div>
-    
-                <div class="peer-checked:hidden">
-                    <div class="mt-4">
-                        <div> <label for="provinsi-notindo"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
-                        </div>
-                        <input id="provinsi-notindo" type="text"
-                            class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2"
-                            value="{{ Auth::user()->propinsi }}">
+                <div class="mt-4">
+                    <div> <label for="city-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota
+                            (Indonesia)</label>
                     </div>
-    
-                    <div class="mt-4">
-                        <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota (Selain Indonesia)</label>
-                        </div>
-                        <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
-                            name="kota2" value="{{ Auth::user()->kota }}">
+                    <div class="relative border rounded-md">
+                        <select id="city-indo"
+                            class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="kota">
+                            <option hidden value="{{ Auth::user()->kota }}">{{ Auth::user()->kota }}</option>
+                            {{-- @foreach ($cities as $city)
+                            <option value="{{ $province['province'] }}">{{ $province['province'] }}</option>
+                            @endforeach --}}
+                        </select>
+                        <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
                     </div>
+                </div>
+            </div>
+
+            <div class="country" id="showOther">
+                <div class="mt-4">
+                    <div> <label for="provinsi-notindo"
+                            class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
+                    </div>
+                    <input id="provinsi-notindo" type="text"
+                        class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2"
+                        value="{{ Auth::user()->propinsi }}">
+                </div>
+
+                <div class="mt-4">
+                    <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota (Selain Indonesia)</label>
+                    </div>
+                    <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                        name="kota2" value="{{ Auth::user()->kota }}">
                 </div>
             </div>
             
@@ -419,6 +432,22 @@
     </div>
 
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("div.country").hide();
+        $("#showIndonesia").show();
+        $('#countryselection').on('change', function(){
+            var countryvalue = $(this).val(); 
+            $("div.country").hide();
+            if (countryvalue == "Indonesia") {
+                $("#show"+countryvalue).show();
+            } else {
+                $("#showOther").show();
+            }
+        });
+    });
+    </script>
 
 <script>
     let profileCheck = document.getElementById("profile");

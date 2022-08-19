@@ -145,57 +145,58 @@
                 {{ !empty($request->note) ? $request->note : 'tidak ada catatan tambahan.' }}
             </div>
         </div>
-        <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
-            <h6 class="text-slate-900 font-bold font-encode-sans text-sm sm:text-base">
-                Delivery Cost
-            </h6>
-            <div class="mt-3 px-7">
-                <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
-                    Biaya ongkos kirim akan di informasikan melalui email. <br>
-                    Perhitungan ongkos kirim:
-                </p>
-                <div class="ml-5 flex">
-                    <ul class="text-gray-400 list-disc text-sm sm:text-base">
-                        <li>
-                            Dari
-                        </li>
-                        <li>
-                            Tujuan
-                        </li>
-                        <li>
-                            Berat
-                        </li>
-                        <li>
-                            Ekspedisi
-                        </li>
-                        <li>
-                            Ongkos kirim
-                        </li>
-                    </ul>
-                    <ul class="ml-5">
-                        <li>:</li>
-                        <li>:</li>
-                        <li>:</li>
-                        <li>:</li>
-                        <li>:</li>
-                    </ul>
-                    <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
-                        <li>{{ $gudang }}</li>
-                        <li>{{ $city }}</li>
-                        <li>+- {{ $berat }} kg</li>
-                        <li>{{ $delivery }}</li>
-                        @if ($deliveryCost == -1)
-                            <li>Ongkos kirim akan diinformasikan terpisah</li>
-                        @else
-                            <li>Rp. {{ substr(number_format($deliveryCost, 2, ',', '.'), 0, -3) }}</li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </div>
+        
         <div class="sm:grid sm:grid-cols-2 sm:gap-3">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
-                @if (!empty($request->pengirim_name))
+                <h6 class="text-slate-900 font-bold font-encode-sans text-sm sm:text-base">
+                    Delivery Cost
+                </h6>
+                <div class="mt-3 px-7">
+                    <p class="font-encode-sans text-gray-400 text-sm sm:text-base">
+                        Biaya ongkos kirim akan di informasikan melalui email. <br>
+                        Perhitungan ongkos kirim:
+                    </p>
+                    <div class="ml-5 flex">
+                        <ul class="text-gray-400 list-disc text-sm sm:text-base">
+                            <li>
+                                Dari
+                            </li>
+                            <li>
+                                Tujuan
+                            </li>
+                            <li>
+                                Berat
+                            </li>
+                            <li>
+                                Ekspedisi
+                            </li>
+                            <li>
+                                Ongkos kirim
+                            </li>
+                        </ul>
+                        <ul class="ml-5">
+                            <li>:</li>
+                            <li>:</li>
+                            <li>:</li>
+                            <li>:</li>
+                            <li>:</li>
+                        </ul>
+                        <ul class="font-encode-sans text-slate-900 text-sm sm:text-base ml-2">
+                            <li>{{ $gudang }}</li>
+                            <li>{{ $city }}</li>
+                            <li>+- {{ $berat }} kg</li>
+                            <li>{{ $delivery }}</li>
+                            @if ($deliveryCost == -1)
+                                <li>Ongkos kirim akan diinformasikan terpisah</li>
+                            @else
+                                <li>Rp. {{ substr(number_format($deliveryCost, 2, ',', '.'), 0, -3) }}</li>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
+                @if ($request->dropship == 'yes')
                     
                 <h6 class="font-encode-sans font-bold text-red-500 text-sm sm:text-base">Dropship</h6>
                 <div class="px-7 mt-3 mb-4 flex">
@@ -246,44 +247,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
-                <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Payment</h6>
-                <div class="px-7 mt-3">
-                    <ul class="list-disc space-y-2">
-                        @foreach ($payments as $payment)
-                            
-                        <li>
-                            <div>
-                                <h6 class="text-sm sm:text-base font-bold text-slate-900">
-                                    {{ $payment->info }}
-                                </h6>
-                                <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
-                                    {{ $payment->description }}
-                                </p>
-                            </div>
-                        </li>
-
-                        @endforeach
-                        <li>
-                            <div>
-                                <h6 class="text-sm sm:text-base font-bold text-slate-900">
-                                    Q-Ris
-                                </h6>
-                                <img src="{{ asset('images/payment/qrpayment.jpeg') }}" alt="">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <h6 class="font-bold mt-4 font-encode-sans text-red-500 text-sm sm:text-base">
-                    Penting!
-                </h6>
-                <p class="ml-3 mt-3 font-encode-sans text-gray-400 text-sm sm:text-base">
-                    Sertakan nomor pesanan (invoice number) sebagai berita pada saat Anda melakukan transfer.
-                    Nomor Pesanan akan anda terima melalui email kemudian.
-                </p>
-            </div>
         </div>
-
         <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 py-3 xl:px-4">
             <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Rincian Pembayaran</h6>
             <table class="table-auto w-full mb-5 mt-3">
@@ -321,6 +285,42 @@
                     </tr>
                 </tfoot>
             </table>
+        </div>
+        <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
+            <h6 class="font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Payment</h6>
+            <div class="px-7 mt-3">
+                <ul class="list-disc space-y-2">
+                    @foreach ($payments as $payment)
+                        
+                    <li>
+                        <div>
+                            <h6 class="text-sm sm:text-base font-bold text-slate-900">
+                                {{ $payment->info }}
+                            </h6>
+                            <p class="text-gray-400 font-encode-sans text-sm sm:text-base">
+                                {{ $payment->description }}
+                            </p>
+                        </div>
+                    </li>
+
+                    @endforeach
+                    <li>
+                        <div>
+                            <h6 class="text-sm sm:text-base font-bold text-slate-900">
+                                Q-Ris
+                            </h6>
+                            <img src="{{ asset('images/payment/qrpayment.jpeg') }}" width="300" alt="">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <h6 class="font-bold mt-4 font-encode-sans text-red-500 text-sm sm:text-base">
+                Penting!
+            </h6>
+            <p class="ml-3 mt-3 font-encode-sans text-gray-400 text-sm sm:text-base">
+                Sertakan nomor pesanan (invoice number) sebagai berita pada saat Anda melakukan transfer.
+                Nomor Pesanan akan anda terima melalui email kemudian.
+            </p>
         </div>
 
         <form action="{{ route('user.faktur.store') }}" method="post">

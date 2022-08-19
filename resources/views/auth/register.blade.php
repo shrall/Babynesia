@@ -103,10 +103,10 @@
                     name="kodepos">
             </div>
             <div class="mt-4">
-                <div> <label for="country" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
+                <div> <label for="countryselection" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
                 </div>
                 <div class="relative border rounded-md">
-                    <select id="country" type="text"
+                    <select id="countryselection" type="text"
                         class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="negara">
                         @foreach ($countries as $country)
                         <option value="{{ $country->name }}">{{ $country->name }}</option>
@@ -117,12 +117,8 @@
                 </div>
 
             </div>
-            <div class="mt-4">
-                <input type="checkbox" checked class="peer" id="loc-check" name="indonesia" value="indonesia">
-                <label for="loc-check"
-                    class="text-sm sm:text-base font-encode-sans cursor-pointer text-slate-900">Indonesia</label>
 
-                <div class="peer-checked:block hidden">
+                <div class="country" id="showIndonesia">
                     <div class="mt-4">
                         <div> <label for="provinsi-indo"
                                 class="ml-2 text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
@@ -158,7 +154,7 @@
                     </div>
                 </div>
 
-                <div class="peer-checked:hidden">
+                <div class="country" id="showOther">
                     <div class="mt-4">
                         <div> <label for="provinsi-notindo"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain
@@ -176,7 +172,6 @@
                             name="kota2">
                     </div>
                 </div>
-            </div>
             <div class="mt-4">
                 <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
                 </div>
@@ -235,7 +230,24 @@
 
 @push('scripts')
 
+<script>
+$(document).ready(function(){
+    $("div.country").hide();
+    $("#showIndonesia").show();
+    $('#countryselection').on('change', function(){
+        var countryvalue = $(this).val(); 
+        $("div.country").hide();
+        if (countryvalue == "Indonesia") {
+            $("#show"+countryvalue).show();
+        } else {
+            $("#showOther").show();
+        }
+    });
+});
+</script>
+
 <script type="text/javascript">
+
     $("#reload").click(function (e) {
         e.preventDefault();
         $.ajax({
