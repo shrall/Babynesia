@@ -223,10 +223,14 @@ function get_shipment(city_id) {
             $('#expedition').html('');
             console.log('arraynya '+data);
             Object.values(data['costs']).forEach((element, index) => {
-                $('#expedition').append('<option value="' + element.service + '|' + element['cost'][0]['value'] +
+                $('#expedition').append('<option value="JNE ' + element.service + '|' + element['cost'][0]['value'] +
                     '"> JNE ' +
                     element.service + ' - ' + 'Rp. ' + rupiah.format(element['cost'][0]['value']) + '</option>')
             });
+
+            $('#expedition').append('<option value="' + "Keep (maxs 3 bln)" + '|' + '0' +
+                    '">' +
+                    "Keep (maxs 3 bln)" + '</option>')
         })
         .fail(function(e) {
             console.log(e);

@@ -11,7 +11,7 @@
                 </p>
             </div>
         @endif
-        <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="customdestroy">@csrf</form>
+        {{-- <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="customdestroy">@csrf</form> --}}
         @csrf
         <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
             <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
@@ -22,13 +22,13 @@
                 <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                     Cart
                 </h1>
-                @if (!empty($carts[0]))
+                {{-- @if (!empty($carts[0]))
                     <button type="submit" form="customdestroy"
                         class="py-1 px-2 rounded-full border-red-500 border-2 text-red-500 text-sm hover:bg-red-500 hover:text-white text-center font-bold font-encode-sans">
                         <i class="fa fa-times" aria-hidden="true"></i>
                         Delete
                     </button>
-                @endif
+                @endif --}}
             </div>
         </div>
 
@@ -41,11 +41,19 @@
         @endif
         @foreach ($carts as $cart)
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-5">
-                <div class="mb-2">
+                {{-- <div class="mb-2">
                     <input type="checkbox" id="select{{ $cart->no_detail_cart }}" name="select[]" class="cursor-pointer"
                         form="customdestroy" value="{{ $cart->no_detail_cart }}">
                     <label for="select{{ $cart->no_detail_cart }}"
                         class="font-encode-sans text-gray-400 text-sm sm:text-base ml-1 cursor-pointer">Select Cart</label>
+                </div> --}}
+                <div class="mb-2 flex justify-end">
+                    <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="destroy-{{ $cart->no_detail_cart }}">@csrf</form>
+                    <input type="hidden" name="iddestroy" value="{{ $cart->no_detail_cart }}" form="destroy-{{ $cart->no_detail_cart }}" id="">
+                    <button form="destroy-{{ $cart->no_detail_cart }}" class="p-1 px-2 rounded-full text-red-500 text-sm sm:text-base font-encode-sans hover:bg-red-500 hover:text-white">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        {{-- Delete --}}
+                    </button>
                 </div>
                 <form action="{{ route('user.detailcart.update', $cart) }}" method="post"
                     id="updatecart{{ $cart->no_detail_cart }}" enctype="multipart/form-data">@csrf
@@ -172,7 +180,7 @@
     
                 <button type="submit" form="checkVoucher"
                     class="ml-2 bg-{{ $color[1] }}-500 hover:bg-{{ $color[1] }}-600 focus:ring-{{ $color[1] }}-300 rounded-full py-1 px-2 text-center text-sm sm:text-base text-white font-encode-sans font-bold">
-                    <p class="font-encode-sans font-bold text-white text-sm">Check</p>
+                    <p class="font-encode-sans font-bold text-white text-sm">Apply</p>
                 </button>    
             </div>
             @if ($textVoucher != "")
@@ -240,9 +248,9 @@
                                 </button>
                             </div>
                             <div class="text-center mt-1">
-                                <a href="{{ route('list_products') }}"
+                                <a href="/"
                                     class="font-encode-sans text-gray-400 text-sm sm:text-base">
-                                    Continue Shopping
+                                    Lanjutkan Belanja
                                 </a>
                             </div>
                         </div>
@@ -256,9 +264,9 @@
                             </button>
                         </div>
                         <div class="text-center mt-4">
-                            <a href="{{ route('list_products') }}"
+                            <a href="/"
                                 class="w-full border-2 border-gray-400 hover:bg-neutral-100 hover:border-gray-300 hover:text-gray-300 bg-white font-bold font-encode-sans text-gray-400 px-4 py-2 rounded-full">
-                                Continue Shopping
+                                Lanjutkan Belanja
                             </a>
                         </div>
                     </div>

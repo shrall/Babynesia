@@ -53,7 +53,7 @@ class DetailCartController extends Controller
 
         $delivery_explode = explode('|', $request->delivery);
         $deliveryCost = (int)$delivery_explode[1];
-        $delivery = 'JNE ' . $delivery_explode[0];
+        $delivery = $delivery_explode[0];
 
         //get city & province yang dipilih
         //cities rajaongkir
@@ -141,16 +141,42 @@ class DetailCartController extends Controller
         // $produk = Produk::where('kode_produk', $request->kode_produk);
         $kode_produk_stok = $request->ukuran;
 
-        //destination city dari profile
+        // check if ada cart yang sama produknya
+        $carts = DetailCart::where('no_user', Auth::id())->get();
+        if (!empty($carts[0])) {
+            $con = false;
+            foreach ($carts as $cart) {
+                if ($cart->kode_produk == $request->kode_produk && $cart->kode_produk_stock == $kode_produk_stok) {
+                    $con = true;
+                    break;
+                }
+            }
 
-        DetailCart::create([
-            'no_user' => Auth::id(),
-            'kode_produk' => $request->kode_produk,
-            'kode_produk_stock' => $kode_produk_stok,
-            'jumlah' => $request->jumlah,
-            'destination_city_id' => 0,
-            // 'note' => $request->note
-        ]);
+            if ($con == true) {
+                $cart->update([
+                    'jumlah' => $cart->jumlah + $request->jumlah
+                ]);
+            } else {
+                DetailCart::create([
+                    'no_user' => Auth::id(),
+                    'kode_produk' => $request->kode_produk,
+                    'kode_produk_stock' => $kode_produk_stok,
+                    'jumlah' => $request->jumlah,
+                    'destination_city_id' => 0,
+                    // 'note' => $request->note
+                ]);
+            }
+        } else {
+            DetailCart::create([
+                'no_user' => Auth::id(),
+                'kode_produk' => $request->kode_produk,
+                'kode_produk_stock' => $kode_produk_stok,
+                'jumlah' => $request->jumlah,
+                'destination_city_id' => 0,
+                // 'note' => $request->note
+            ]);
+        }
+
         return redirect(route('user.cart.index'));
     }
 
@@ -213,12 +239,18 @@ class DetailCartController extends Controller
 
     public function customDestroy(Request $request)
     {
-        if (!empty($request->select)) {
-            foreach ($request->select as $select) {
-                $cart = DetailCart::where('no_detail_cart', $select);
-                $cart->delete();
-            }
-        }
+        // if (!empty($request->select)) {
+        //     foreach ($request->select as $select) {
+        //         $cart = DetailCart::where('no_detail_cart', $select);
+        //         $cart->delete();
+        //     }
+        // }
+
+        // dd($request->iddestroy);
+
+        $cart = DetailCart::where('no_detail_cart', $request->iddestroy);
+        $cart->delete();
+
         return redirect()->route('user.cart.index');
     }
 }
