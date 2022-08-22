@@ -18,7 +18,7 @@ class FakturController extends Controller
      */
     public function index()
     {
-        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(0))->orderBy('no_faktur', 'desc')->get();
+        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
@@ -129,7 +129,7 @@ class FakturController extends Controller
         }
         if ($request->string) {
             $fakturs
-            ->where('no_faktur', intval($request->string))
+            ->where('no_faktur', 'like', '%' . intval($request->string). '%')
             ->orWhere('sender_name', 'like', '%' . $request->string . '%');
             // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
             //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
