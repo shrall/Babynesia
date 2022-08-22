@@ -57,7 +57,7 @@ class UserController extends Controller
         }
         $user = User::create([
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => md5($request->password),
             'name' => $request->name,
             'alamat' => $request->address,
             'kota' => $request->city,
@@ -113,7 +113,7 @@ class UserController extends Controller
             if ($request->password != $request->password_confirmation) {
                 return redirect()->route('adminpage.user.create')->with('wrong', 'Password Konfirmasi Salah!');
             } else {
-                $password = Hash::make($request->password);
+                $password = md5($request->password);
             }
         } else {
             $password = $user->password;
