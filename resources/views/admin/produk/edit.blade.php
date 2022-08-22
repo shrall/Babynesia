@@ -221,7 +221,7 @@
                     <input type="number" name="harga_sale" id="harga_sale" class="admin-input"
                         value="{{ $produk->harga_sale }}" placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                <div class="col-span-3">Produk Pelengkap</div>
+                {{-- <div class="col-span-3">Produk Pelengkap</div>
                 <div class="col-span-9 flex gap-x-2">
                     <select name="complement" id="complement" class="admin-input">
                         @foreach ($products as $product)
@@ -230,7 +230,7 @@
                                 {{ $product->nama_produk }}</option>
                         @endforeach
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="admin-card col-span-2">
                 <div class="grid grid-cols-12 gap-y-1 col-span-12">
