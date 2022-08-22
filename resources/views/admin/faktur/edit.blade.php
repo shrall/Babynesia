@@ -14,6 +14,7 @@
                 <div class="col-span-3 place-self-start">Status</div>
                 @if ($faktur->status != 3 && $faktur->status != 5)
                     <div class="col-span-9">
+                        <span class="font-bold">{{$faktur->fakturstatus->status}}</span>
                         <div class="flex flex-col gap-1">
                             @foreach ($fakturstatuses as $fs)
                                 @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
@@ -68,11 +69,23 @@
                                 <td>{{ $item->jumlah }}</td>
                                 @if ($item->product)
                                     <td>
-                                        <img src="{{ asset('uploads/' . $item->product->image) }}"
-                                            class="h-vh-10 mx-auto">
+                                        <img src="{{ asset('uploads/' . $item->product->image) }}" class="h-vh-10 mx-auto">
                                     </td>
                                     <td> [{{ $item->kode_produk . '-' . $item->kode_produk_stock }}]
-                                        {{ $item->product->nama_produk }}</td>
+                                        {{ $item->product->nama_produk }}<br>
+                                        @if (!empty($item->productstock->size))
+                                            @if (!empty($item->productstock->color))
+                                                ({{ $item->productstock->size }} -
+                                                {{ $item->productstock->color }})
+                                            @else
+                                                ({{ $item->productstock->size }})
+                                            @endif
+                                        @else
+                                            @if (!empty($item->productstock->color))
+                                                ({{ $item->productstock->color }})
+                                            @endif
+                                        @endif
+                                    </td>
                                 @else
                                     <td><img src="{{ asset('svg/images.svg') }}" class="h-vh-10 mx-auto"></td>
                                     <td> [{{ $item->kode_produk . '-' . $item->kode_produk_stock }}]</td>
@@ -146,8 +159,7 @@
                 </div>
                 <div class="col-span-3 place-self-start text-red-500">Catatan Admin</div>
                 <div class="col-span-9">
-                    <textarea type="text" name="admin_note" id="input-content"
-                        class="admin-input">{{ $faktur->admin_note ?? null }}</textarea>
+                    <textarea type="text" name="admin_note" id="input-content" class="admin-input">{{ $faktur->admin_note ?? null }}</textarea>
                 </div>
                 <div class="col-span-12">
                     <button type="submit" class="admin-button">Simpan</button>
@@ -184,4 +196,12 @@
             config.height = '350px';
         };
     </script>
+@endsection
+
+@section('head')
+<style>
+    .ck-editor__editable_inline {
+        min-height: 250px;
+    }
+    </style>
 @endsection
