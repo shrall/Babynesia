@@ -55,8 +55,8 @@ class ReceiverController extends Controller
         ])->get('https://api.rajaongkir.com/starter/city')
             ->json()['rajaongkir']['results'];
         $cities = collect($cities)->where('province_id', $propinsi_id);
-        $cities = collect($cities)->where('city_name', Auth::user()->kota);
-        foreach ($cities as $city) {
+        $directedCity = collect($cities)->where('city_name', Auth::user()->kota);
+        foreach ($directedCity as $city) {
             $kota_id = $city['city_id'];
             break;
         }
@@ -80,7 +80,7 @@ class ReceiverController extends Controller
         // dd($shipments);
 
 
-        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'weight', 'voucher'));
+        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'cities', 'weight', 'voucher'));
     }
 
     /**

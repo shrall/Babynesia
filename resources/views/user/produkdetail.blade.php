@@ -189,7 +189,7 @@
         </div>
 
         {{-- more product --}}
-        @if (!empty($produk->complement))
+        {{-- @if (!empty($produk->complement))
             <div class="mt-5 bg-white rounded-md px-3 py-5 shadow-sm">
                 <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                     Product Suggestions
@@ -237,10 +237,10 @@
                                 </h6>
                             @endif
                         </div>
-                    </a>
+                    </a> --}}
 
                     {{-- manual loop --}}
-                    @if (!empty($produk->complementary->complementary))
+                    {{-- @if (!empty($produk->complementary->complementary))
                         <a href="{{ route('produk.show', $produk->complementary->complementary) }}"
                             class="rounded-lg shadow-sm bg-white">
                             <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->image }}"
@@ -282,9 +282,9 @@
                                 @endif
                             </div>
                         </a>
-                    @endif
+                    @endif --}}
 
-                    @if (!empty($produk->complementary->complementary->complementary))
+                    {{-- @if (!empty($produk->complementary->complementary->complementary))
                         <a href="{{ route('produk.show', $produk->complementary->complementary->complementary) }}"
                             class="rounded-lg shadow-sm bg-white">
                             <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->image }}"
@@ -326,9 +326,9 @@
                                 @endif
                             </div>
                         </a>
-                    @endif
+                    @endif --}}
 
-                    @if (!empty($produk->complementary->complementary->complementary->complementary))
+                    {{-- @if (!empty($produk->complementary->complementary->complementary->complementary))
                         <a href="{{ route('produk.show', $produk->complementary->complementary->complementary->complementary) }}"
                             class="rounded-lg shadow-sm bg-white">
                             <img src="{{ asset('uploads/') . '/' . $produk->complementary->complementary->complementary->complementary->image }}"
@@ -370,10 +370,10 @@
                                 @endif
                             </div>
                         </a>
-                    @endif
-                </div>
+                    @endif --}}
+                {{-- </div>
             </div>
-        @endif
+        @endif --}}
     </div>
 
     <script>
