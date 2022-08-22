@@ -21,7 +21,7 @@ class User
             if (Auth::user()->user_status_id == 1 || Auth::user()->user_status_id == 2) {
                 return $next($request);
             } else {
-                return redirect()->route('adminpage.dashboard');
+                return $next($request);
             }
         } else {
             return redirect()->route('login');

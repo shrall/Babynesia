@@ -40,7 +40,11 @@ class UserController extends Controller
             $page = $checker;
         }
 
-        return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
+        if (Auth::user()->user_status_id == 1 || Auth::user()->user_status_id == 2) {
+            return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
+        } else {
+            return redirect()->route('adminpage.dashboard');
+        }
     }
 
     /**
