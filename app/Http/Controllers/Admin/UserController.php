@@ -47,6 +47,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'email' => 'required|unique:user',
+        ]);
         if ($request->password != $request->password_confirmation) {
             return redirect()->route('adminpage.user.create')->with('wrong', 'Password Konfirmasi Salah!');
         }
