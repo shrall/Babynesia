@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Country;
 use App\Models\Faktur;
-use App\Models\IndonesiaProvince;
-use App\Models\Kategori;
-use App\Models\KategoriChild;
 use App\Models\User;
-use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -22,6 +18,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if (Auth::user()->user_status_id == 1 || Auth::user()->user_status_id == 2) {
+        } else {
+            return redirect()->route('adminpage.dashboard');
+        }
         $fakturs = Faktur::where('kode_user', Auth::id())->orderBy('no_faktur', 'desc')->paginate(10);
         $countries = Country::orderByRaw('name = ? desc', ['Indonesia'])->get();
 
@@ -39,12 +39,7 @@ class UserController extends Controller
         } else {
             $page = $checker;
         }
-
-        if (Auth::user()->user_status_id == 1 || Auth::user()->user_status_id == 2) {
-            return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
-        } else {
-            return redirect()->route('adminpage.dashboard');
-        }
+        return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
     }
 
     /**
