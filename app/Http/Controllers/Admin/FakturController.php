@@ -129,7 +129,7 @@ class FakturController extends Controller
         }
         if ($request->string) {
             $fakturs
-            ->where('no_faktur', intval($request->string))
+            ->where('no_faktur', 'like', '%' . intval($request->string). '%')
             ->orWhere('sender_name', 'like', '%' . $request->string . '%');
             // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
             //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
