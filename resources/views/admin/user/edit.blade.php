@@ -13,7 +13,7 @@
             </div>
             <div class="col-span-3">E-Mail</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="email" name="email" id="email" class="admin-input" value="{{ $user->email }}" required>
+                <input type="email" name="email" id="email" class="admin-input" value="{{ $user->email }}" disabled required>
             </div>
             <div class="col-span-3">Password (Abaikan jika tidak ingin dirubah)</div>
             <div class="col-span-9 flex items-center gap-x-2">
