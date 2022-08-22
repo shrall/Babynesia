@@ -52,7 +52,7 @@
                             <th>Ongkos Kirim</th>
                             <th>Total</th>
                             {{-- @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7) --}}
-                                <th>Voucher</th>
+                            <th>Voucher</th>
                             {{-- @endif --}}
                             <th>Action</th>
                         </tr>
@@ -71,7 +71,7 @@
                                 <td>{{ AppHelper::rp($faktur->deliverycost ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->total_pembayaran ?? 0) }}</td>
                                 {{-- @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7) --}}
-                                    <td>{{ $faktur->voucher_id ? $faktur->voucher->name : '-' }}</td>
+                                <td>{{ $faktur->voucher_id ? $faktur->voucher->name : '-' }}</td>
                                 {{-- @endif --}}
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
@@ -92,7 +92,9 @@
                 </table>
             </div>
         </div>
-        {{ $fakturs->links() }}
+        @if ($fakturs instanceof \Illuminate\Pagination\LengthAwarePaginator)
+            {{ $fakturs->links() }}
+        @endif
     </div>
 @endsection
 
