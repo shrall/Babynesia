@@ -20,9 +20,9 @@
                 </div>
                 <div class="flex items-center flex-wrap">
                     @foreach ($produk->images as $image)
-                        <a href="#n" onclick="switchImg('{{ $image->imageurl }}')">
+                        <a href="#n" onclick="switchImg('{{ asset('uploads/') . '/' . $produk->image }}')">
 
-                            <img src="{{ $image->imageurl }}" alt=""
+                            <img src="{{ asset('uploads/') . '/' . $produk->image }}" alt=""
                                 class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
 
                         </a>
@@ -89,7 +89,7 @@
                         </div>
                         @endforeach
                         </div>
-                        
+
                     @endif
 
                     <div class="mt-4 xl:mt-7 flex items-center justify-between">
