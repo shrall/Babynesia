@@ -26,10 +26,17 @@
                     <div class="flex flex-col">
                         Status:
                         <select name="status" id="status" class="admin-input w-full">
+                            <option value="0">All</option>
                             @foreach ($fakturstatuses as $fakturstatus)
                                 <option value="{{ $fakturstatus->id }}">{{ $fakturstatus->status }}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <div class="flex flex-col">
+                        Search:
+                        <input type="text" name="string" id="string" class="admin-input w-full">
                     </div>
                 </div>
                 <div class="col-span-12">

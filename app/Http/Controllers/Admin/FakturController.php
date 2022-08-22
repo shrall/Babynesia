@@ -8,7 +8,6 @@ use App\Models\FakturStatus;
 use App\Models\ProdukStockHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class FakturController extends Controller
 {
@@ -19,7 +18,7 @@ class FakturController extends Controller
      */
     public function index()
     {
-        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
+        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(0))->orderBy('no_faktur', 'desc')->get();
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
@@ -119,32 +118,30 @@ class FakturController extends Controller
         session()->forget('faktur_date_start');
         session()->forget('faktur_date_end');
         session()->forget('faktur_status');
+        session()->forget('faktur_string');
         session(['faktur_date_start' => $request->date_start]);
         session(['faktur_date_end' => $request->date_end]);
         session(['faktur_status' => $request->status]);
+        session(['faktur_string' => $request->string]);
         $fakturs = Faktur::orderBy('no_faktur', 'desc');
-        $fakturs->where('status', $request->status);
+        if ($request->status != "0") {
+            $fakturs->where('status', $request->status);
+        }
+        if ($request->string) {
+            $fakturs
+            ->where('no_faktur', intval($request->string))
+            ->orWhere('sender_name', 'like', '%' . $request->string . '%');
+            // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
+            //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
+            // });
+        }
         if ($request->date_start) {
             $fakturs->where('tanggal2', '>=', $request->date_start);
         }
         if ($request->date_end) {
             $fakturs->where('tanggal2', '<=', $request->date_end);
         }
-        $fakturs = $fakturs->paginate(15);
-        $fakturstatuses = FakturStatus::all();
-        return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
-    }
-    public function index_filter(Request $request)
-    {
-        $fakturs = Faktur::orderBy('no_faktur', 'desc');
-        $fakturs->where('status', session('faktur_status'));
-        if (session('faktur_date_start')) {
-            $fakturs->where('tanggal2', '>=', session('faktur_date_start'));
-        }
-        if (session('faktur_date_end')) {
-            $fakturs->where('tanggal2', '<=', session('faktur_date_end'));
-        }
-        $fakturs = $fakturs->paginate(15);
+        $fakturs = $fakturs->paginate(100);
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
