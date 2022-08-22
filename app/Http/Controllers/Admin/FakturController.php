@@ -18,7 +18,7 @@ class FakturController extends Controller
      */
     public function index()
     {
-        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(0))->orderBy('no_faktur', 'desc')->get();
+        $fakturs = Faktur::where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
