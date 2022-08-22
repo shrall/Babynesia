@@ -107,12 +107,18 @@
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
                         </div>
                         <div class="relative border rounded-md">
-                            <select name="city" id="cities" {{ $kota_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                            <select name="city" id="cities" {{ $propinsi_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
                                 @if ($kota_id != null)
                                     
                                 <option value="{{ $kota_id }}" hidden>{{ Auth::user()->kota }}</option>
 
                                 @endif
+                                    
+                                @foreach ($cities as $city)
+                                    @if (!empty($city))
+                                    <option value="{{ $city['city_id'] }}" hidden>{{ $city['city_name'] }}</option>
+                                    @endif
+                                @endforeach
 
                             </select>
                             <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
