@@ -83,7 +83,7 @@
                         @endforeach
                         <tr>
                             <td colspan="4" class="text-right font-bold">Subtotal</td>
-                            <td>{{ AppHelper::rp($faktur->total_profit ?? 0) }}</td>
+                            <td>{{ AppHelper::rp(($faktur->total_profit ?? 0) + ($faktur->discount ?? 0)) }}</td>
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right">Ongkos Kirim</td>

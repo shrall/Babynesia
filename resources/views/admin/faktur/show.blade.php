@@ -1156,8 +1156,8 @@
                                     @endforeach
                                     <tr id="chart">
                                         <th colspan="4" align="right"> SUBTOTAL : &nbsp;&nbsp;&nbsp;&nbsp;</th>
-                                        <th>
-                                            {{ AppHelper::rp($faktur->total_profit ?? 0) }}</th>
+                                        <th>{{ AppHelper::rp(($faktur->total_profit ?? 0) + ($faktur->discount ?? 0)) }}
+                                        </th>
                                     </tr>
                                     <tr id="chart">
                                         <th colspan="4" align="right"> Ongkos Kirim : &nbsp;&nbsp;&nbsp;&nbsp;</th>
