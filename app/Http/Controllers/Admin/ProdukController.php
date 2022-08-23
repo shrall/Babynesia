@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Kategori;
+use App\Models\KategoriChild;
 use App\Models\Produk;
 use App\Models\ProdukImage;
 use App\Models\ProdukStatus;
@@ -74,10 +75,11 @@ class ProdukController extends Controller
     public function create()
     {
         $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
-        return view('admin.produk.create', compact('categories', 'brands', 'products', 'produkstatuses'));
+        return view('admin.produk.create', compact('categories', 'brands', 'products', 'produkstatuses', 'subcategories'));
     }
 
     /**
@@ -110,6 +112,7 @@ class ProdukController extends Controller
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
+            'subkategory' => $request->subcategory,
             'brand' => $request->brand,
             'weight' => $request->weight,
             'sort_nr' => $request->order,
@@ -169,10 +172,11 @@ class ProdukController extends Controller
     public function edit(Produk $produk)
     {
         $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
-        return view('admin.produk.edit', compact('produk', 'categories', 'brands', 'products', 'produkstatuses'));
+        return view('admin.produk.edit', compact('produk', 'categories', 'subcategories', 'brands', 'products', 'produkstatuses'));
     }
 
     /**
@@ -227,6 +231,7 @@ class ProdukController extends Controller
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
+            'subkategory' => $request->subcategory,
             'brand' => $request->brand,
             'weight' => $request->weight,
             'sort_nr' => $request->order,

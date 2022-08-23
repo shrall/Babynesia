@@ -4,8 +4,7 @@
     <div class="w-full bg-white mb-2 p-4">
         <span class="font-overpass text-3xl font-bold">Edit Produk</span>
     </div>
-    <form action="{{ route('adminpage.produk.update', $produk->kode_produk) }}" method="post"
-        enctype="multipart/form-data">
+    <form action="{{ route('adminpage.produk.update', $produk->kode_produk) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
@@ -30,8 +29,8 @@
                 </div>
                 <div class="col-span-3">Nama Produk</div>
                 <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="text" name="name" id="name" class="admin-input" value="{{ $produk->nama_produk }}"
-                        required>
+                    <input type="text" name="name" id="name" class="admin-input"
+                        value="{{ $produk->nama_produk }}" required>
                 </div>
                 <div class="col-span-3">Kategori</div>
                 <div class="col-span-9 flex gap-x-2">
@@ -39,6 +38,15 @@
                         @foreach ($categories as $kategori)
                             <option {{ $produk->kategory == $kategori->no_kategori ? 'selected' : '' }}
                                 value="{{ $kategori->no_kategori }}">{{ $kategori->nama_kategori }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-span-3">Subkategori</div>
+                <div class="col-span-9 flex gap-x-2">
+                    <select name="subcategory" id="subcategory" class="admin-input">
+                        @foreach ($subcategories as $subkategori)
+                            <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
+                                value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -63,7 +71,8 @@
                 @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
                     <div class="col-span-3">HPP</div>
                     <div class="col-span-9 flex items-center gap-x-2">
-                        <input type="number" name="hpp" id="hpp" class="admin-input" value="{{ $produk->harga_pokok }}">rupiah
+                        <input type="number" name="hpp" id="hpp" class="admin-input"
+                            value="{{ $produk->harga_pokok }}">rupiah
                     </div>
                 @endif
                 <div class="col-span-3">Harga Web</div>
@@ -106,10 +115,12 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[0]->imageurl }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[0]->imageurl }}"
+                                class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="0" {{$produk->image == $produk->images[0]->imageurl ? "checked" : ""}} id="">
+                            <input type="radio" name="image_primary" value="0"
+                                {{ $produk->image == $produk->images[0]->imageurl ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -124,10 +135,12 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[1]->imageurl }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[1]->imageurl }}"
+                                class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="1" {{$produk->image == $produk->images[1]->imageurl ? "checked" : ""}} id="">
+                            <input type="radio" name="image_primary" value="1"
+                                {{ $produk->image == $produk->images[1]->imageurl ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -142,10 +155,12 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[2]->imageurl }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[2]->imageurl }}"
+                                class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="2" {{$produk->image == $produk->images[2]->imageurl ? "checked" : ""}} id="">
+                            <input type="radio" name="image_primary" value="2"
+                                {{ $produk->image == $produk->images[2]->imageurl ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -160,10 +175,12 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[3]->imageurl }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[3]->imageurl }}"
+                                class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="3" {{$produk->image == $produk->images[3]->imageurl ? "checked" : ""}} id="">
+                            <input type="radio" name="image_primary" value="3"
+                                {{ $produk->image == $produk->images[3]->imageurl ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -178,10 +195,12 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[4]->imageurl }}" class="w-12 h-12 object-cover">
+                            <img src="{{ asset('uploads/') . '/' . $produk->images[4]->imageurl }}"
+                                class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar
-                            <input type="radio" name="image_primary" value="4" {{$produk->image == $produk->images[4]->imageurl ? "checked" : ""}} id="">
+                            <input type="radio" name="image_primary" value="4"
+                                {{ $produk->image == $produk->images[4]->imageurl ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
@@ -252,7 +271,8 @@
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                            <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                            <input type="text" name="stock_color[{{ $loop->iteration }}]"
+                                value="{{ $stok->color }}"
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_left[{{ $loop->iteration }}]"
                                 value="{{ $stok->product_stock }}"
@@ -263,7 +283,8 @@
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
-                            <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                            <input type="text" name="stock_color[{{ $loop->iteration }}]"
+                                value="{{ $stok->color }}"
                                 class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
                             <input type="text" name="stock_left[{{ $loop->iteration }}]"
                                 value="{{ $stok->product_stock }}"
