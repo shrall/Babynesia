@@ -51,9 +51,14 @@ class DetailCartController extends Controller
         // $webconfigs = Webconfig::all();
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
 
-        $delivery_explode = explode('|', $request->delivery);
-        $deliveryCost = (int)$delivery_explode[1];
-        $delivery = $delivery_explode[0];
+        if ($request->deliv_check == "auto") {
+            $delivery_explode = explode('|', $request->delivery);
+            $deliveryCost = (int)$delivery_explode[1];
+            $delivery = $delivery_explode[0];
+        } else {
+            $deliveryCost = $request->harga_ongkir;
+            $delivery =  $request->delivery_manual;
+        }
 
         //get city & province yang dipilih
         //cities rajaongkir
