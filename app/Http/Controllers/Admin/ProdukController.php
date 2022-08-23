@@ -125,7 +125,7 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
-            'complement' => $request->complement
+            // 'complement' => $request->complement
         ]);
         foreach ($images as $key => $value) {
             ProdukImage::create([
@@ -242,7 +242,7 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
-            'complement' => $request->complement
+            // 'complement' => $request->complement
         ]);
         if ($request->image) {
             // dd($images);

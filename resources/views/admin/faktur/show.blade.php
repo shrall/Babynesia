@@ -1097,7 +1097,7 @@
                                     <tr>
                                         <td width="16%" class="boldtext">Name</td>
                                         <td width="3%" align="center">:</td>
-                                        <td width="39%">{{ $faktur->user->name }}</td>
+                                        <td width="39%">{{ $faktur->user->name ?? "" }}</td>
                                     </tr>
                                     <tr>
                                         <td class="boldtext">Email</td>

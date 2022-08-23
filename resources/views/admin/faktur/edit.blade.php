@@ -119,7 +119,7 @@
                 <div class="col-span-3 place-self-start">Pembeli</div>
                 <div class="col-span-9">
                     <div class="flex flex-col">
-                        <span class="font-bold">{{ $faktur->user->name }}</span>
+                        <span class="font-bold">{{ $faktur->user->name ?? "" }}</span>
                         <span>{{ $faktur->user->alamat }}</span>
                         <span>{{ $faktur->user->kota }}</span>
                         <span>{{ $faktur->user->propinsi ?? ' ' }} - {{ $faktur->user->country->name ?? ' ' }}</span>
