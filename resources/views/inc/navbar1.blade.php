@@ -237,7 +237,7 @@
 
                 <form action="{{ route('list_products') }}">
                 <div class="flex justify-between w-full items-center">
-                    <input type="text" placeholder="Search by keyword"
+                    <input type="text" placeholder="Search by keyword" name="keyword"
                     value="{{ !empty($keyword) ? $keyword : ''}}"
                         class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
                     <button type="submit">
