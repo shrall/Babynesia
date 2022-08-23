@@ -115,6 +115,7 @@ class FakturController extends Controller
     }
     public function filter(Request $request)
     {
+        // dd($request);
         session()->forget('faktur_date_start');
         session()->forget('faktur_date_end');
         session()->forget('faktur_status');
@@ -129,8 +130,8 @@ class FakturController extends Controller
         }
         if ($request->string) {
             $fakturs
-            ->where('no_faktur', 'like', '%' . intval($request->string). '%')
-            ->orWhere('sender_name', 'like', '%' . $request->string . '%');
+            ->where('sender_name', 'like', '%' . $request->string . '%')
+            ->orWhere('no_faktur', 'like', '%' . intval($request->string). '%');
             // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
             //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
             // });
