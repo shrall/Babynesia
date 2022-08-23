@@ -125,9 +125,60 @@
                             aria-hidden="true"></i>
                         </div>
                     </div>
+                    @if (Auth::user()->user_status_id != 1 && Auth::user()->user_status_id != 2)
                     <div class="mt-4">
+                        <p class="text-sm sm:text-base font-encode-sans text-slate-900">Pilihan Ongkir</p>
+                        <div class="ml-3">
+                            <input type="radio" id="delivcheck" name="deliv_check" checked value="default" id="">
+                            <label for="delivcheck" class="text-sm ml-2 sm:text-base font-encode-sans text-slate-900">
+                                Input ongkir manual
+                            </label>    
+                        </div>
+
+                        <div class="ml-3">
+                            <input type="radio" id="delivcheck2" name="deliv_check" value="auto" id="">
+                            <label for="delivcheck2" class="text-sm ml-2 sm:text-base font-encode-sans text-slate-900">
+                                Otomatis hitung ongkir
+                            </label>    
+                        </div>
+                    </div>
+
+                    <div class="mt-4 deliver" id="manualdeliver">
+                        <div> <label for="expedition2"
+                            class="text-sm sm:text-base font-encode-sans text-slate-900">Pilihan Ongkir Manual</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select name="delivery_manual" id="expedition2" class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                <option value="J&T">
+                                    J&T
+                                </option>
+                                <option value="J&T Cargo">
+                                    J&T Cargo
+                                </option>
+                                <option value="JNE">
+                                    JNE
+                                </option>
+                                <option value="siCepat">
+                                    siCepat
+                                </option>
+                                <option value="POS">
+                                    POS
+                                </option>
+                            </select>
+                            <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                        <div class="mt-4">
+                            <div> <label for="manual"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Input Harga Ongkir</label>
+                                <input type="number" name="harga_ongkir" id="manual" value="0"
+                                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 deliver" id="autodeliver">
                         <div> <label for="expedition"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">Ekspedisi Delivery</label>
+                            class="text-sm sm:text-base font-encode-sans text-slate-900">Pilihan Ongkir Otomatis</label>
                         </div>
                         <div class="relative border rounded-md">
                             <select name="delivery" id="expedition" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
@@ -145,6 +196,34 @@
                             aria-hidden="true"></i>
                         </div>
                     </div>
+                    @else
+                    <input type="hidden" name="deliv_check" value="auto" id="">
+                    <div class="mt-4" id="autodeliver">
+                        <div> <label for="expedition"
+                            class="text-sm sm:text-base font-encode-sans text-slate-900">Pilihan Ongkir</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select name="delivery" id="expedition" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                {{-- <option value="JNE OKE">
+                                    JNE OKE
+                                </option>
+                                <option value="JNE REG">
+                                    JNE REG
+                                </option>
+                                <option value="JNE YES">
+                                    JNE YES
+                                </option> --}}
+                            </select>
+                            <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    @endif
+
+                    
+
+                    
+
                     <div class="mt-4">
                         <div> <label for="phone"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
@@ -203,6 +282,26 @@
 </div>
 
 @include('inc.footer1')
+
+<script>
+    $(document).ready(function(){
+        $("div.deliver").hide();
+        $("#manualdeliver").show();
+        $('#delivcheck').on('change', function(){
+            $("div.deliver").hide();
+            if (this.checked) {
+                $("#manualdeliver").show();
+            }
+        });
+
+        $('#delivcheck2').on('change', function(){
+            $("div.deliver").hide();
+            if (this.checked) {
+                $("#autodeliver").show();
+            }
+        });
+    });
+    </script>
 
 <script>
 
