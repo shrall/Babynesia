@@ -40,7 +40,7 @@ class ProdukController extends Controller
 
     public function index_restock()
     {
-        $products = Produk::where('stat', 'r')->orderBy('kode_produk', 'desc')->paginate(15);
+        $products = Produk::where('stat', 'r')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Restock';
