@@ -139,7 +139,7 @@ class FakturController extends Controller
             $fakturs->where('tanggal2', '>=', $request->date_start);
         }
         if ($request->date_end) {
-            $fakturs->where('tanggal2', '<=', $request->date_end);
+            $fakturs->where('tanggal2', '<=', date('Y-m-d', strtotime($request->date_end. ' + 1 days')));
         }
         $fakturs = $fakturs->paginate(100);
         $fakturstatuses = FakturStatus::all();
