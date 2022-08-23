@@ -155,6 +155,8 @@ Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpag
 
 Route::post('/getcity', [ReceiverController::class, 'get_city'])->name('getcity');
 
+Route::post('/getsubdistrict', [ReceiverController::class, 'get_subdistrict'])->name('receiver.getsubdistrict');
+
 
 Route::group([
     'as' => 'user.'
@@ -172,6 +174,7 @@ Route::group([
     Route::post('/detailcart/customdestroy', [DetailCartController::class, 'customDestroy'], '_token')->name('detailcart.customdestroy');
     Route::post('receiver/getshipment', [ReceiverController::class, 'get_shipment'])->name('receiver.getshipment');
     Route::post('receiver/getcity', [ReceiverController::class, 'get_city'])->name('receiver.getcity');
+    Route::post('receiver/getsubdistrict', [ReceiverController::class, 'get_subdistrict'])->name('receiver.getsubdistrict');
 
     Route::resource('admin', AdminController::class);
     Route::resource('adminstatus', AdminStatusController::class);

@@ -37,7 +37,7 @@ class ReceiverController extends Controller
         //province rajaongkir
         $provinces = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/province')
+        ])->get('https://pro.rajaongkir.com/api/province')
             ->json()['rajaongkir']['results'];
 
         // dd($provinces);
@@ -52,7 +52,7 @@ class ReceiverController extends Controller
         $kota_id = null;
         $cities = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/city')
+        ])->get('https://pro.rajaongkir.com/api/city')
             ->json()['rajaongkir']['results'];
         $cities = collect($cities)->where('province_id', $propinsi_id);
         $directedCity = collect($cities)->where('city_name', Auth::user()->kota);
@@ -61,11 +61,22 @@ class ReceiverController extends Controller
             break;
         }
 
+        $subdistricts = null;
+        if ($kota_id != null) {
+            $subdistricts = Http::withHeaders([
+                'key' => config('services.rajaongkir.token'),
+            ])->get('https://pro.rajaongkir.com/api/subdistrict', [
+                'city' => $kota_id
+            ])
+                ->json()['rajaongkir']['results'];
+        }
+
         $note = $request->note;
         $weight = 0;
         foreach ($carts as $cart) {
             $weight += $cart->produk->weight * $cart->jumlah;
         }
+
 
         //temp
         // $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
@@ -79,8 +90,10 @@ class ReceiverController extends Controller
         // ])->json()['rajaongkir']['results'][0];
         // dd($shipments);
 
+        // dd($subdistricts);
 
-        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'cities', 'weight', 'voucher'));
+
+        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'cities', 'subdistricts', 'weight', 'voucher'));
     }
 
     /**
@@ -144,9 +157,11 @@ class ReceiverController extends Controller
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
         $shipments = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->post('https://api.rajaongkir.com/starter/cost', [
+        ])->post('https://pro.rajaongkir.com/api/cost', [
             'origin' => $webconfig->content, //@marshall ini perlu dirubah ke asal pengirim
-            'destination' => $request->city_id,
+            "originType" => "city",
+            'destination' => $request->subdistrict_id,
+            "destinationType" => "subdistrict",
             'weight' => $request->weight,
             'courier' => 'jne',
         ])->json()['rajaongkir']['results'][0];
@@ -158,10 +173,22 @@ class ReceiverController extends Controller
     {
         $cities = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/city')
+        ])->get('https://pro.rajaongkir.com/api/city')
             ->json()['rajaongkir']['results'];
         $cities = collect($cities)->where('province_id', $request->province);
 
         return $cities;
+    }
+
+    public function get_subdistrict(Request $request)
+    {
+        $subdistricts = Http::withHeaders([
+            'key' => config('services.rajaongkir.token'),
+        ])->get('https://pro.rajaongkir.com/api/subdistrict', [
+            'city' => $request->city,
+        ])
+            ->json()['rajaongkir']['results'];
+
+        return $subdistricts;
     }
 }
