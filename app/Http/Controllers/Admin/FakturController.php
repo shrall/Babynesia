@@ -130,8 +130,11 @@ class FakturController extends Controller
         }
         if ($request->string) {
             $fakturs
-            ->where('sender_name', 'like', '%' . $request->string . '%')
-            ->orWhere('no_faktur', 'like', '%' . intval($request->string). '%');
+                ->where('sender_name', 'like', '%' . $request->string . '%');
+            if (intval($request->string) != 0) {
+                $fakturs
+                    ->orWhere('no_faktur', 'like', '%' . intval($request->string) . '%');
+            }
             // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
             //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
             // });
@@ -140,7 +143,7 @@ class FakturController extends Controller
             $fakturs->where('tanggal2', '>=', $request->date_start);
         }
         if ($request->date_end) {
-            $fakturs->where('tanggal2', '<=', date('Y-m-d', strtotime($request->date_end. ' + 1 days')));
+            $fakturs->where('tanggal2', '<=', date('Y-m-d', strtotime($request->date_end . ' + 1 days')));
         }
         $fakturs = $fakturs->paginate(100);
         $fakturstatuses = FakturStatus::all();
