@@ -123,8 +123,27 @@ class PageController extends Controller
             if (!empty($keyword)) {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12)
-                    : Produk::where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12);
+                })->where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12)
+                    : Produk::where('disable', '!=', 1)
+                    ->where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12);
             } else if (!empty($filteredproduct)) {
                 if ($filteredproduct != 'featured') {
                     //new product
@@ -183,8 +202,28 @@ class PageController extends Controller
             if (!empty($keyword)) {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12)
-                    : Produk::where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12);
+                })->where('disable', '!=', 1)->where('image', '!=', null)
+                    ->where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12)
+                    : Produk::where('disable', '!=', 1)->where('image', '!=', null)
+                    ->where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12);
             } else if (!empty($filteredproduct)) {
 
                 if ($filteredproduct != 'featured') {
@@ -270,8 +309,26 @@ class PageController extends Controller
             if (!empty($keyword)) {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12)
-                    : Produk::where('disable', '!=', 1)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12);
+                })->where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12)
+                    : Produk::where('disable', '!=', 1)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12);
             } else if (!empty($filteredproduct)) {
                 if ($filteredproduct != 'featured') {
                     //new product
@@ -326,8 +383,26 @@ class PageController extends Controller
             if (!empty($keyword)) {
                 $produks = $this->isHiddenSold != 1 ? Produk::whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12)
-                    : Produk::where('disable', '!=', 1)->where('image', '!=', null)->where('nama_produk', 'LIKE', '%' . $keyword . '%')->paginate(12);
+                })->where('disable', '!=', 1)->where('image', '!=', null)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12)
+                    : Produk::where('disable', '!=', 1)->where('image', '!=', null)
+                    ->where(function ($query) use ($keyword) {
+                        $query->where('nama_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('kode_produk', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
+                            ->orWhereHas('brand', function (Builder $query) use ($keyword) {
+                                $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                            });
+                    })
+                    ->paginate(12);
             } else if (!empty($filteredproduct)) {
 
                 if ($filteredproduct != 'featured') {
