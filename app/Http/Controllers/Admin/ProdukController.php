@@ -22,7 +22,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = Produk::where('disable', 0)->orderBy('kode_produk', 'desc')->paginate(15);
+        $products = Produk::where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = ' ';
@@ -31,7 +31,7 @@ class ProdukController extends Controller
 
     public function index_promo()
     {
-        $products = Produk::where('stat', 'd')->orderBy('kode_produk', 'desc')->paginate(15);
+        $products = Produk::where('stat', 'd')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Promo';
