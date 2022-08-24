@@ -135,15 +135,36 @@ class FakturController extends Controller
                 $fakturs
                     ->orWhere('no_faktur', 'like', '%' . intval($request->string) . '%');
             }
-            // ->orWhereHas('receiver', function (Builder $query)  use ($request) {
-            //     $query->where('receiver_name', 'like', '%' . $request->string . '%');
-            // });
         }
         if ($request->date_start) {
             $fakturs->where('tanggal2', '>=', $request->date_start);
         }
         if ($request->date_end) {
             $fakturs->where('tanggal2', '<=', date('Y-m-d', strtotime($request->date_end . ' + 1 days')));
+        }
+        $fakturs = $fakturs->paginate(100);
+        $fakturstatuses = FakturStatus::all();
+        return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
+    }
+    public function index_filter(Request $request)
+    {
+        $fakturs = Faktur::orderBy('no_faktur', 'desc');
+        if (session('faktur_status') != "0") {
+            $fakturs->where('status', session('faktur_status'));
+        }
+        if (session('faktur_string')) {
+            $fakturs
+                ->where('sender_name', 'like', '%' . session('faktur_string') . '%');
+            if (intval(session('faktur_string')) != 0) {
+                $fakturs
+                    ->orWhere('no_faktur', 'like', '%' . intval(session('faktur_string')) . '%');
+            }
+        }
+        if (session('faktur_date_start')) {
+            $fakturs->where('tanggal2', '>=', session('faktur_date_start'));
+        }
+        if (session('faktur_date_end')) {
+            $fakturs->where('tanggal2', '<=', session('faktur_date_end'));
         }
         $fakturs = $fakturs->paginate(100);
         $fakturstatuses = FakturStatus::all();

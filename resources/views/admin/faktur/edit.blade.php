@@ -14,7 +14,7 @@
                 <div class="col-span-3 place-self-start">Status</div>
                 @if ($faktur->status != 3 && $faktur->status != 5)
                     <div class="col-span-9">
-                        <span class="font-bold">{{$faktur->fakturstatus->status}}</span>
+                        <span class="font-bold">{{ $faktur->fakturstatus->status }}</span>
                         <div class="flex flex-col gap-1">
                             @foreach ($fakturstatuses as $fs)
                                 @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
@@ -44,6 +44,16 @@
                                             <label for="radio-fs-{{ $fs->id }}"
                                                 style="color: {{ $fs->color }};">{{ $fs->status }}</label>
                                         </div>
+                                    @elseif($faktur->status == 6 || $faktur->status == 7)
+                                        @if ($fs->id == 5)
+                                            <div class="flex items-center gap-2">
+                                                <input type="radio" name="faktur_status" value="{{ $fs->id }}"
+                                                    {{ $fs->id == $faktur->status ? 'checked' : '' }}
+                                                    id="radio-fs-{{ $fs->id }}">
+                                                <label for="radio-fs-{{ $fs->id }}"
+                                                    style="color: {{ $fs->color }};">{{ $fs->status }}</label>
+                                            </div>
+                                        @endif
                                     @endif
                                 @endif
                             @endforeach
@@ -119,7 +129,7 @@
                 <div class="col-span-3 place-self-start">Pembeli</div>
                 <div class="col-span-9">
                     <div class="flex flex-col">
-                        <span class="font-bold">{{ $faktur->user->name ?? "" }}</span>
+                        <span class="font-bold">{{ $faktur->user->name ?? '' }}</span>
                         <span>{{ $faktur->user->alamat }}</span>
                         <span>{{ $faktur->user->kota }}</span>
                         <span>{{ $faktur->user->propinsi ?? ' ' }} - {{ $faktur->user->country->name ?? ' ' }}</span>
@@ -199,9 +209,9 @@
 @endsection
 
 @section('head')
-<style>
-    .ck-editor__editable_inline {
-        min-height: 250px;
-    }
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 250px;
+        }
     </style>
 @endsection
