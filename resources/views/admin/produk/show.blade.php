@@ -34,6 +34,8 @@
             <div class="col-span-9">{{ $produk->disable == 1 ? 'Aktif' : 'Tidak Aktif' }}</div>
             <div class="col-span-3">Kategori</div>
             <div class="col-span-9"> {{ $produk->category->nama_kategori ?? '-' }}</div>
+            <div class="col-span-3">Subkategori</div>
+            <div class="col-span-9"> {{ $produk->subcategory->child_name ?? '-' }}</div>
             <div class="col-span-3">Merk</div>
             <div class="col-span-9"> {{ $produk->brand->nama_brand ?? '-' }}</div>
             <div class="col-span-3 place-self-start">Keterangan</div>
@@ -59,14 +61,14 @@
             @endif
             <div class="col-span-3">Harga Web</div>
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga)) }}</div>
-            <div class="col-span-3">Harga Toko</div>
-            <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_toko)) }}</div>
+            {{-- <div class="col-span-3">Harga Toko</div>
+            <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_toko)) }}</div> --}}
             {{-- <div class="col-span-3">Harga Grosir</div>
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_grosir)) }}</div> --}}
             <hr class="col-span-12">
             <div class="col-span-12 font-bold">Status</div>
             <div class="col-span-3">Status</div>
-            <div class="col-span-9">{{ ($produk->stat == 'd' ? 'Promo' : $produk->stat == 'r') ? 'Restock' : '-' }}
+            <div class="col-span-9">{{ $produk->status->name }}
             </div>
             <div class="col-span-3">Harga Promo</div>
             <div class="col-span-9">{{ AppHelper::rp(intval($produk->harga_sale)) }}</div>
