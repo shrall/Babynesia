@@ -10,6 +10,8 @@ use App\Models\Produk;
 use App\Models\ProdukImage;
 use App\Models\ProdukStatus;
 use App\Models\ProdukStock;
+use App\Models\ProdukStockHistory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -59,9 +61,9 @@ class ProdukController extends Controller
     public function index_soldout()
     {
         $products = Produk::with('stocks')->orderBy('kode_produk', 'desc')
-        ->where('disable', 0)
-        ->whereRelation('stocks', 'product_stock', 0)
-        ->get();
+            ->where('disable', 0)
+            ->whereRelation('stocks', 'product_stock', 0)
+            ->get();
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
@@ -140,13 +142,21 @@ class ProdukController extends Controller
         }
         if ($request->stock_type) {
             foreach ($request->stock_type as $key => $types) {
-                ProdukStock::create([
+                $item = ProdukStock::create([
                     'produk_id' => $product->kode_produk,
                     'produk_id_alias' => $product->kode_alias,
                     'type' => $request->stock_type[$key],
                     'size' => $request->stock_size[$key],
                     'color' => $request->stock_color[$key],
                     'product_stock' => $request->stock_left[$key] ?? 0,
+                ]);
+                ProdukStockHistory::create([
+                    'trxdate' => Carbon::now(),
+                    'admin' => 'Admin',
+                    'product_id' => $item->produk_id,
+                    'amount' => $item->product_stock,
+                    'faktur_id' => 0,
+                    'notes' => 'Produk baru - ' . $item->type . ' ' . $item->size . ' ', $item->color
                 ]);
             }
         }
@@ -272,6 +282,7 @@ class ProdukController extends Controller
         foreach ($kodeprodstok as $key => $value) {
             if (array_key_exists($key + 1, $request->stock_code)) {
                 if (in_array($request->stock_code[$key + 1], $kodeprodstok)) {
+                    $oldstock = $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->product_stock;
                     $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->update([
                         'produk_id' => $produk->kode_produk,
                         'produk_id_alias' => $request->alias_code,
@@ -280,22 +291,56 @@ class ProdukController extends Controller
                         'type' => $request->stock_type[$key + 1],
                         'product_stock' => $request->stock_left[$key + 1] ?? 0,
                     ]);
+                    ProdukStockHistory::create([
+                        'trxdate' => Carbon::now(),
+                        'admin' => 'Admin',
+                        'product_id' => $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->produk_id,
+                        'amount' => $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->product_stock - $oldstock,
+                        'faktur_id' => 0,
+                        'notes' => 'Edit Stock'
+                    ]);
                 } else {
+                    $oldstock = $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->product_stock;
                     $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->delete();
+                    ProdukStockHistory::create([
+                        'trxdate' => Carbon::now(),
+                        'admin' => 'Admin',
+                        'product_id' => $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->produk_id,
+                        'amount' => -1 * abs($oldstock),
+                        'faktur_id' => 0,
+                        'notes' => 'Edit Stock'
+                    ]);
                 }
             } else {
+                $oldstock = $produk->stocks->where('id', $kodeprodstok[$key])->first()->product_stock;
                 $produk->stocks->where('id', $kodeprodstok[$key])->first()->delete();
+                ProdukStockHistory::create([
+                    'trxdate' => Carbon::now(),
+                    'admin' => 'Admin',
+                    'product_id' => $produk->stocks->where('id', $kodeprodstok[$key])->first()->produk_id,
+                    'amount' => -1 * abs($oldstock),
+                    'faktur_id' => 0,
+                    'notes' => 'Edit Stock'
+                ]);
             }
         };
         foreach ($request->stock_code as $key => $value) {
             if ($value == null) {
-                ProdukStock::create([
+                $item = ProdukStock::create([
                     'produk_id' => $produk->kode_produk,
                     'produk_id_alias' => $request->alias_code,
                     'size' => $request->stock_size[$key],
                     'color' => $request->stock_color[$key],
                     'type' => $request->stock_type[$key],
                     'product_stock' => $request->stock_left[$key] ?? 0,
+                ]);
+                ProdukStockHistory::create([
+                    'trxdate' => Carbon::now(),
+                    'admin' => 'Admin',
+                    'product_id' => $item->produk_id,
+                    'amount' => $item->product_stock,
+                    'faktur_id' => 0,
+                    'notes' => 'Tambah jenis baru - ' . $item->type . ' ' . $item->size . ' ', $item->color
                 ]);
             }
         }

@@ -55,12 +55,22 @@
                     }
                 @endphp
                 <div class="col-span-3">HPP</div>
-                <div class="col-span-9">
-                    {{ AppHelper::rp(intval($produk->harga_pokok)) .' (' .getDiscPercent(intval($produk->harga), intval($produk->harga_pokok)) .'%)' }}
-                </div>
+                @if ($produk->harga != 0)
+                    <div class="col-span-9">
+                        {{ AppHelper::rp(intval($produk->harga_pokok)) . ' (' . getDiscPercent(intval($produk->harga), intval($produk->harga_pokok)) . '%)' }}
+                    </div>
+                @else
+                    <div class="col-span-9">
+                        {{ AppHelper::rp(intval($produk->harga_pokok)) . ' (0%)' }}
+                    </div>
+                @endif
             @endif
             <div class="col-span-3">Harga Web</div>
-            <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga)) }}</div>
+            @if ($produk->harga != 0)
+                <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga)) }}</div>
+            @else
+                <div class="col-span-9">-</div>
+            @endif
             {{-- <div class="col-span-3">Harga Toko</div>
             <div class="col-span-9"> {{ AppHelper::rp(intval($produk->harga_toko)) }}</div> --}}
             {{-- <div class="col-span-3">Harga Grosir</div>
@@ -81,6 +91,7 @@
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Tanggal</th>
                             <th>Admin</th>
                             <th>Invoice</th>
@@ -98,12 +109,17 @@
                                 $stock += $history->amount;
                             @endphp
                             <tr>
+                                <td>{{ $history->id }}</td>
                                 <td>{{ $history->trxdate }}</td>
                                 <td>{{ $history->admin }}</td>
-                                <td><a class="underline text-blue-400" target="popup"
-                                        href="{{ route('adminpage.faktur.show', $history->faktur_id) }}"
-                                        onclick="window.open('{{ route('adminpage.faktur.show', $history->faktur_id) }}','name','width=700,height=550')">{{ $history->faktur_id }}</a>
-                                </td>
+                                @if ($history->faktur_id != 0)
+                                    <td><a class="underline text-blue-400" target="popup"
+                                            href="{{ route('adminpage.faktur.show', $history->faktur_id) }}"
+                                            onclick="window.open('{{ route('adminpage.faktur.show', $history->faktur_id) }}','name','width=700,height=550')">{{ $history->faktur_id }}</a>
+                                    </td>
+                                @else
+                                    <td>-</td>
+                                @endif
                                 <td>{{ $history->notes }}</td>
                                 <td>{{ $history->amount }}</td>
                                 <td>{{ $stock }}</td>
