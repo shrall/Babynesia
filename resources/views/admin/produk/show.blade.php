@@ -84,6 +84,55 @@
             <div class="col-span-9">{{ AppHelper::rp(intval($produk->harga_sale)) }}</div>
         </div>
         <div class="admin-card col-span-2">
+            <div class="grid grid-cols-12 gap-y-1 col-span-12">
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Kode Stok</div>
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Type</div>
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Ukuran</div>
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Warna</div>
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Stok Sisa</div>
+                <div class="bg-slate-800 text-white flex p-4 col-span-2">Stok Dipesan</div>
+            </div>
+            <div class="grid grid-cols-12 gap-2 justify-items-center col-span-12" id="product-stock-field">
+                @foreach ($produk->stocks as $key => $stok)
+                    <input type="text" name="stock_code[{{ $loop->iteration }}]" value="{{ $stok->id }}" readonly
+                        class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                    @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                        {{-- ini tampil kalau bukan staff --}}
+                        <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_left[{{ $loop->iteration }}]" value="{{ $stok->product_stock }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                    @else
+                        {{-- ini tampil kalau staff --}}
+                        <input type="text" name="stock_type[{{ $loop->iteration }}]" value="{{ $stok->type }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_size[{{ $loop->iteration }}]" value="{{ $stok->size }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_color[{{ $loop->iteration }}]" value="{{ $stok->color }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                        <input type="text" name="stock_left[{{ $loop->iteration }}]" value="{{ $stok->product_stock }}"
+                            readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}" readonly>
+                    @endif
+                    @php
+                        $orderedstock = 0;
+                    @endphp
+                    @foreach ($stok->fakturs as $detfaktur)
+                        @if ($detfaktur->faktur->status != 3 && $detfaktur->faktur->status != 5)
+                            @php
+                                $orderedstock += $detfaktur->jumlah;
+                            @endphp
+                        @endif
+                    @endforeach
+                    <input type="text" name="stock_ordered[{{ $loop->iteration }}]" value="{{ $orderedstock }}"
+                        readonly class="admin-input-full col-span-2 stock-input-{{ $loop->iteration }}">
+                @endforeach
+            </div>
+        </div>
+        <div class="admin-card col-span-2">
             <div class="col-span-12">
                 <div class="text-xl font-bold">Riwayat Stok produk</div>
             </div>
