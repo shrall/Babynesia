@@ -42,8 +42,8 @@
             <div class="col-span-9" id="keterangan"></div>
             <div class="col-span-3">Berat</div>
             <div class="col-span-9">{{ $produk->weight }} gram</div>
-            <div class="col-span-3">No. Urut</div>
-            <div class="col-span-9"> {{ $produk->sort_nr }}</div>
+            {{-- <div class="col-span-3">No. Urut</div>
+            <div class="col-span-9"> {{ $produk->sort_nr }}</div> --}}
             <hr class="col-span-12">
             @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
                 @php

@@ -44,6 +44,7 @@
                 <div class="col-span-3">Subkategori</div>
                 <div class="col-span-9 flex gap-x-2">
                     <select name="subcategory" id="subcategory" class="admin-input">
+                        <option value="">-</option>
                         @foreach ($subcategories as $subkategori)
                             <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
                                 value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
