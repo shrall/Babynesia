@@ -129,9 +129,9 @@
                                 @php
                                     $stock = 0;
                                 @endphp
-                                @foreach ($produk->stockhistory as $history)
+                                @foreach ($produk->stocks as $prodstock)
                                     @php
-                                        $stock += $history->amount;
+                                        $stock += $prodstock->product_stock;
                                     @endphp
                                 @endforeach
                                 <td>{{ $stock }}</td>

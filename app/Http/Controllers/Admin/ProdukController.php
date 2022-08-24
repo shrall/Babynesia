@@ -58,13 +58,14 @@ class ProdukController extends Controller
 
     public function index_soldout()
     {
-        $products = Produk::whereHas('stocks', function (Builder $query) {
-            $query->where('product_stock', 0);
-        })->orderBy('kode_produk', 'desc')->paginate(15);
+        $products = Produk::with('stocks')->orderBy('kode_produk', 'desc')
+        ->where('disable', 0)
+        ->whereRelation('stocks', 'product_stock', 0)
+        ->get();
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.soldout', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
 
     /**
@@ -253,7 +254,7 @@ class ProdukController extends Controller
             // dd($images);
             $oldImages = ProdukImage::where("produk_id", $produk->kode_produk)->get();
             // dd($oldImages);
-            foreach ($oldImages as $key => $oldimage){
+            foreach ($oldImages as $key => $oldimage) {
                 $oldimage->delete();
             }
             foreach ($images as $key => $value) {
