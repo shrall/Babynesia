@@ -234,13 +234,18 @@
         </div>
         <div class="mt-3">
             <div class="py-2 px-4 rounded-full bg-white w-full">
+
+                <form action="{{ route('list_products') }}">
                 <div class="flex justify-between w-full items-center">
-                    <input type="text" placeholder="Search by keyword"
+                    <input type="text" placeholder="Search by keyword" name="keyword"
+                    value="{{ !empty($keyword) ? $keyword : ''}}"
                         class="w-full mr-3 appearance-none font-encode-sans bg-white outline-none text-gray-400">
                     <button type="submit">
                         <i class="fas fa-search text-gray-400"></i>
                     </button>
                 </div>
+
+            </form>
             </div>
         </div>
     </div>

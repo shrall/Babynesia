@@ -80,7 +80,7 @@
                     
                     <div class="mt-4">
                         <div> <label for="provinces"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">Province</label>
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi</label>
                         </div>
                         <div class="border relative rounded-md">
                             <select name="province" id="provinces" class="bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
@@ -104,19 +104,19 @@
                     </div>
                     <div class="mt-4">
                         <div> <label for="cities"
-                                class="text-sm sm:text-base font-encode-sans text-slate-900">City</label>
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Kota</label>
                         </div>
                         <div class="relative border rounded-md">
                             <select name="city" id="cities" {{ $propinsi_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
                                 @if ($kota_id != null)
                                     
                                 <option value="{{ $kota_id }}" hidden>{{ Auth::user()->kota }}</option>
-
+                                
                                 @endif
                                     
                                 @foreach ($cities as $city)
                                     @if (!empty($city))
-                                    <option value="{{ $city['city_id'] }}" hidden>{{ $city['city_name'] }}</option>
+                                    <option value="{{ $city['city_id'] }}">{{ $city['city_name'] }}</option>
                                     @endif
                                 @endforeach
 
@@ -125,6 +125,24 @@
                             aria-hidden="true"></i>
                         </div>
                     </div>
+
+                    <div class="mt-4">
+                        <div> <label for="subdistricts"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Kecamatan</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select name="subdistrict" id="subdistricts" {{ $kota_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                @if (!empty($subdistricts))
+                                @foreach ($subdistricts as $subdistrict)
+                                <option value="{{ $subdistrict['subdistrict_id'] }}">{{ $subdistrict['subdistrict_name'] }}</option>
+                                @endforeach
+                                @endif
+                            </select>
+                            <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                    </div>
+
                     @if (Auth::user()->user_status_id != 1 && Auth::user()->user_status_id != 2)
                     <div class="mt-4">
                         <p class="text-sm sm:text-base font-encode-sans text-slate-900">Pilihan Ongkir</p>
@@ -307,7 +325,7 @@
 
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
-function get_shipment(city_id) {
+function get_shipment(subdistrict_id) {
     var hostname = "{{ request()->getHost() }}"
     var url = ""
     if (hostname.includes('www')) {
@@ -318,7 +336,7 @@ function get_shipment(city_id) {
     $.post(url + "/receiver/getshipment", {
             _token: CSRF_TOKEN,
             weight: {{ $weight }},
-            city_id: city_id,
+            subdistrict_id: subdistrict_id,
         })
         .done(function(data) {
             // $('#container-shipment').html(data);
@@ -343,7 +361,7 @@ function get_shipment(city_id) {
 }
 
 function runShipment () {
-    get_shipment($('#cities').val());
+    get_shipment($('#subdistricts').val());
 };
 runShipment();
 
@@ -368,7 +386,7 @@ $('#provinces').on('change', function(e) {
             console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
                 if (index == 0) {
-                    get_shipment(element.city_id);
+                    runDistrict(element.city_id);
                 }
                 $('#cities').append('<option value="' + element.city_id +
                     '">' +
@@ -381,7 +399,73 @@ $('#provinces').on('change', function(e) {
 });
 
 $('#cities').on('change', function(e) {
-    get_shipment($('#cities').val())
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+
+    $.post(url + "/receiver/getsubdistrict", {
+            _token: CSRF_TOKEN,
+            city: $('#cities').val(),
+        })
+        .done(function(data) {
+            // $('.tempprovince').remove();
+            $('#subdistricts').prop("disabled", false);
+            // $('#expedition').prop("disabled", false);
+            $('#subdistricts').html('');
+            console.log('arraynya '+data);
+            Object.values(data).forEach((element, index) => {
+                if (index == 0) {
+                    get_shipment(element.subdistrict_id);
+                }
+                $('#subdistricts').append('<option value="' + element.subdistrict_id +
+                    '">' +
+                    element.subdistrict_name + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+});
+
+function runDistrict (city_id) {
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+
+    $.post(url + "/receiver/getsubdistrict", {
+            _token: CSRF_TOKEN,
+            city: city_id,
+        })
+        .done(function(data) {
+            // $('.tempprovince').remove();
+            $('#subdistricts').prop("disabled", false);
+            // $('#expedition').prop("disabled", false);
+            $('#subdistricts').html('');
+            console.log('arraynya '+data);
+            Object.values(data).forEach((element, index) => {
+                if (index == 0) {
+                    get_shipment(element.subdistrict_id);
+                }
+                $('#subdistricts').append('<option value="' + element.subdistrict_id +
+                    '">' +
+                    element.subdistrict_name + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+}
+
+$('#subdistricts').on('change', function(e) {
+    get_shipment($('#subdistricts').val())
 });
 
 </script>
