@@ -174,7 +174,7 @@ class FakturController extends Controller
             //kurangin produk stock
 
             $cart->produkstock->update([
-                'produk_stock' => $cart->produkstock->produk_stock - $cart->jumlah
+                'produk_stock' => $cart->produkstock->product_stock - $cart->jumlah
             ]);
         }
 
