@@ -146,13 +146,11 @@
                                 <td>{{ $orderedstock }}</td>
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
-                                        <a target="blank"
-                                            href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
+                                        <a target="blank" href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
                                             class="admin-action-button-info cursor-pointer">
                                             <span class="fa fa-fw fa-eye"></span>
                                         </a>
-                                        <a target="blank"
-                                            href="{{ route('adminpage.produk.edit', $produk->kode_produk) }}"
+                                        <a target="blank" href="{{ route('adminpage.produk.edit', $produk->kode_produk) }}"
                                             class="admin-action-button-warning cursor-pointer">
                                             <span class="fa fa-fw fa-edit"></span>
                                         </a>

@@ -80,11 +80,11 @@
                     <input type="number" name="harga" id="harga" class="admin-input" value="{{ $produk->harga }}"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                <div class="col-span-3">Harga Toko</div>
+                {{-- <div class="col-span-3">Harga Toko</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
                         value="{{ $produk->harga_toko }}" placeholder="*Bila 0, tidak ditampilkan">rupiah
-                </div>
+                </div> --}}
                 {{-- <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input"
@@ -293,10 +293,10 @@
                         @php
                             $orderedstock = 0;
                         @endphp
-                        @foreach ($stok->fakturs as $faktur)
-                            @php
-                                $orderedstock += $faktur->jumlah;
-                            @endphp
+                        @foreach ($stok->carts as $cart)
+                        @php
+                            $orderedstock += $cart->jumlah;
+                        @endphp
                         @endforeach
                         <input type="text" name="stock_ordered[{{ $loop->iteration }}]" value="{{ $orderedstock }}"
                             readonly class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">

@@ -19,4 +19,12 @@ class ProdukStock extends Model
     {
         return $this->hasMany(DetailFaktur::class, 'kode_produk_stock', 'id');
     }
+    public function product()
+    {
+        return $this->belongsTo(Produk::class, 'produk_id', 'kode_produk');
+    }
+    public function carts()
+    {
+        return $this->hasMany(DetailCart::class, 'kode_produk_stock', 'id');
+    }
 }

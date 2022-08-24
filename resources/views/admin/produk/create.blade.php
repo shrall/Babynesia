@@ -69,11 +69,11 @@
                     <input type="number" name="harga" id="harga" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                <div class="col-span-3">Harga Toko</div>
+                {{-- <div class="col-span-3">Harga Toko</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
-                </div>
+                </div> --}}
                 {{-- <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input" required>rupiah
@@ -254,21 +254,19 @@
             refresh_type();
         }
 
-        function deleteType(index) {
-            types.splice(index, 1);
-            typescounter--;
-            refresh_type();
+        function deleteType(order) {
+            $('.stock-input-' + order).remove();
         }
 
         function refresh_type() {
-            console.log(url)
             $('#product-types').val(typescounter);
             $.post(url + "/adminpage/produk/add_type", {
                     _token: CSRF_TOKEN,
-                    types: types
+                    prodstok: typescounter
                 })
                 .done(function(data) {
-                    $('#product-stock-field').html(data);
+                    console.log(data)
+                    $('#product-stock-field').append(data);
                 })
                 .fail(function(error) {
                     console.log(error);
