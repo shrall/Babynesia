@@ -40,7 +40,9 @@
                     <select name="subcategory" id="subcategory" class="admin-input">
                         <option value="">-</option>
                         @foreach ($subcategories as $subkategori)
-                            <option value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @if ($subkategori->kategori_id == $categories->first()->no_kategori)
+                                <option value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -159,9 +161,12 @@
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
-                        @if ($produkstatus->status_code != "grd" && $produkstatus->status_code != "gpo" && $produkstatus->status_code != "po")
+                        @if ($produkstatus->status_code != 'grd' &&
+                            $produkstatus->status_code != 'gpo' &&
+                            $produkstatus->status_code != 'po')
                             <div class="flex items-center gap-2">
-                                <input type="radio" name="stat" {{ $produkstatus->status_code == 0 ? 'checked' : '' }}
+                                <input type="radio" name="stat"
+                                    {{ $produkstatus->status_code == 0 ? 'checked' : '' }}
                                     value="{{ $produkstatus->status_code }}">
                                 <label for="radio-5">{{ $produkstatus->name }}</label>
                             </div>
@@ -270,6 +275,30 @@
                 .done(function(data) {
                     console.log(data)
                     $('#product-stock-field').append(data);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
+        }
+        $('#category').on('change', function() {
+            getsubcategory();
+        });
+
+        function getsubcategory() {
+            $.post(url + "/adminpage/produk/getsubcategory", {
+                    _token: CSRF_TOKEN,
+                    category_id: $('#category').val()
+                })
+                .done(function(data) {
+                    $('#subcategory').html(null)
+                    $('#subcategory').append(
+                        `<option value="">-</option>`
+                    )
+                    data.forEach(element => {
+                        $('#subcategory').append(
+                            `<option value="${element.child_id}">${element.child_name}</option>`
+                        )
+                    });
                 })
                 .fail(function(error) {
                     console.log(error);

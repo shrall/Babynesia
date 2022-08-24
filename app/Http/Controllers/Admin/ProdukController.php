@@ -421,4 +421,9 @@ class ProdukController extends Controller
         $order = $request->prodstok;
         return view('admin.produk.inc.newstockfield', compact('order'));
     }
+
+    public function getsubcategory(Request $request){
+        $subcategories = KategoriChild::where('kategori_id', $request->category_id)->get();
+        return $subcategories;
+    }
 }

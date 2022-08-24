@@ -46,8 +46,10 @@
                     <select name="subcategory" id="subcategory" class="admin-input">
                         <option value="">-</option>
                         @foreach ($subcategories as $subkategori)
-                            <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
-                                value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @if ($subkategori->kategori_id == $produk->kategory)
+                                <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
+                                    value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -385,6 +387,30 @@
                 })
                 .done(function(data) {
                     $('#product-stock-field').append(data);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
+        }
+        $('#category').on('change', function() {
+            getsubcategory();
+        });
+
+        function getsubcategory() {
+            $.post(url + "/adminpage/produk/getsubcategory", {
+                    _token: CSRF_TOKEN,
+                    category_id: $('#category').val()
+                })
+                .done(function(data) {
+                    $('#subcategory').html(null)
+                    $('#subcategory').append(
+                        `<option value="">-</option>`
+                    )
+                    data.forEach(element => {
+                        $('#subcategory').append(
+                            `<option value="${element.child_id}">${element.child_name}</option>`
+                        )
+                    });
                 })
                 .fail(function(error) {
                     console.log(error);
