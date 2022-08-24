@@ -4,6 +4,13 @@
 @include('inc.navbar1')
 
 <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
+    @if (session('alert'))
+            <div class="w-full bg-white mb-3 rounded-md shadow-sm py-2 px-3">
+                <p class="font-encode-sans text-red-500 text-center">
+                    {{ session('alert') }}
+                </p>
+            </div>
+        @endif
     <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
         <p class="text-{{ $color[1] }}-500 text-sm sm:text-base font-encode-sans">
             <a href="#" class="text-gray-400">Cart > </a>
@@ -125,13 +132,18 @@
                             aria-hidden="true"></i>
                         </div>
                     </div>
-
                     <div class="mt-4">
                         <div> <label for="subdistricts"
                                 class="text-sm sm:text-base font-encode-sans text-slate-900">Kecamatan</label>
                         </div>
                         <div class="relative border rounded-md">
                             <select name="subdistrict" id="subdistricts" {{ $kota_id == null ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans" required>
+                                @if ($subdistrict_id != null)
+                                
+                                <option value="{{ $subdistrict_id }}" hidden>{{ Auth::user()->kecamatan }}</option>
+                                
+                                @endif
+                                
                                 @if (!empty($subdistricts))
                                 @foreach ($subdistricts as $subdistrict)
                                 <option value="{{ $subdistrict['subdistrict_id'] }}">{{ $subdistrict['subdistrict_name'] }}</option>

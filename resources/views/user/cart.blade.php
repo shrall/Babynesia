@@ -5,7 +5,7 @@
 
     <div class="container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
         @if (session('alert'))
-            <div class="w-full bg-white rounded-md shadow-sm py-2 px-3">
+            <div class="w-full bg-white mb-3 rounded-md shadow-sm py-2 px-3">
                 <p class="font-encode-sans text-red-500 text-center">
                     {{ session('alert') }}
                 </p>

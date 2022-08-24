@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         @else
-                        <li class="inline-block font-encode-sans text-white">
+                        <li class="inline-block font-encode-sans text-white font-bold">
                             <a href="/" aria-expanded="true">
                                 Home
                             </a>
@@ -74,7 +74,7 @@
 
                         @foreach ($statmenus as $menu)
                         <li
-                            class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white' }}">
+                            class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white font-bold' }}">
                             <form action="{{ route('list_products') }}" id="filtermenu{{ $menu->status_code }}">
 
                             </form>
@@ -83,7 +83,7 @@
                             <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}"
                                 form="filtermenu{{ $menu->status_code }}">
                             <button type="submit" form="filtermenu{{ $menu->status_code }}"
-                                class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : '' }}">
+                                class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : 'font-bold' }}">
                                 {{ $menu->name }}
                             </button>
                         </li>
@@ -91,7 +91,7 @@
 
                         <div class="group inline-block">
 
-                            <li class="peer ml-4 font-encode-sans text-white">
+                            <li class="peer ml-4 font-encode-sans text-white font-bold">
                                 <div class="cursor-pointer">
                                     Products
                                 </div>
@@ -105,7 +105,7 @@
                                         <form action="{{ route('list_products') }}" method="get" id="kategorifilter"></form>
                                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter"
                                             form="kategorifilter">
-                                        <button type="submit" class="text-white font-encode-sans peer" form="kategorifilter"
+                                        <button type="submit" class="text-white font-bold text-left font-encode-sans peer" form="kategorifilter"
                                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                                             {{ $kategori->nama_kategori }}
                                         </button>
@@ -137,7 +137,7 @@
                         @foreach ($navmenus as $menu)
                         @if ($menu->no == 23 || $menu->no == 32)
                         <li
-                            class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white' }}">
+                            class="ml-4 inline-block font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white font-bold' }}">
                             <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
                                 {{ $menu->code }}
                             </a>
@@ -167,7 +167,7 @@
                             </a>
                         </li>
                         @else
-                        <li class="ml-4 inline-block font-encode-sans text-white">
+                        <li class="ml-4 inline-block font-encode-sans text-white font-bold">
                             <a href="{{ route('faq.index') }}" aria-expanded="true">
                                 FAQ
                             </a>
@@ -181,12 +181,12 @@
                             class="inline-block font-encode-sans {{ !empty($page)&&$page == 'profile' ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400' : 'text-white' }}">
                             <form action="{{ route('user.user.index') }}" id="formchecker"></form>
                             <input type="hidden" name="checker" value="profile" form="formchecker">
-                            <button type="submit" form="formchecker" class=" {{ !empty($page)&&$page == 'profile' ? 'font-bold' : '' }}">
+                            <button type="submit" form="formchecker" class=" {{ !empty($page)&&$page == 'profile' ? 'font-bold' : 'font-bold' }}">
                                 Account
                             </button>
                         </li>
                         <li
-                            class="inline-block ml-4 font-encode-sans {{ !empty($page)&&$page == 'history' ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white' }}">
+                            class="inline-block ml-4 font-encode-sans {{ !empty($page)&&$page == 'history' ? 'py-1 px-2 rounded-full bg-white text-'.$color[2].'-400 font-bold' : 'text-white font-bold' }}">
                             <a href="{{ route('user.user.index') }}">
                                 Transaction History
                             </a>
@@ -213,9 +213,9 @@
                     </h6>
                 </label>
             </div>
-            <h1 class="text-3xl font-concert-one text-white">
+            <a href="/" class="text-3xl font-concert-one text-white">
                 {{ config('app.name') }}
-            </h1>
+            </a>
             @if (Auth::check())
             <a href="{{ route('user.cart.index') }}" class="flex items-center">
                 <i class="fas fa-shopping-cart text-2xl text-white"></i>
@@ -311,7 +311,7 @@
                         form="filtermenu1{{ $menu->status_code }}">
 
                     <button type="submit" form="filtermenu1{{ $menu->status_code }}"
-                        class="font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                        class="font-bold font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
                         {{ $menu->name }} Product
                     </button>
                 </li>
@@ -335,7 +335,7 @@
                     <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
                         <button type="submit"
-                            class="{{ !empty($filter)&&$filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500 font-encode-sans"
+                            class="{{ !empty($filter)&&$filter == $kategori->no_kategori ? 'text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500 font-encode-sans font-bold"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -346,9 +346,9 @@
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
                         <ul
-                            class="ml-2 {{ !empty($subfilter)&&$subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                            class="ml-2 {{ !empty($subfilter)&&$subfilter == $sub->child_id ? 'text-'.$color[1].'-500' : 'text-gray-400' }} pt-1 space-y-1 hover:text-{{ $color[1] }}-500 font-bold">
                             <li class="appearance-none block whitespace-no-wrap">
-                                <button type="submit" class="text-left">{{ $sub->child_name }}</button>
+                                <button type="submit" class="text-left font-bold">{{ $sub->child_name }}</button>
                             </li>
                         </ul>
                     </form>

@@ -155,7 +155,7 @@ Route::get('/showpage/{id}', [PageController::class, 'showpage'])->name('showpag
 
 Route::post('/getcity', [ReceiverController::class, 'get_city'])->name('getcity');
 
-Route::post('/getsubdistrict', [ReceiverController::class, 'get_subdistrict'])->name('receiver.getsubdistrict');
+Route::post('/getsubdistrict', [ReceiverController::class, 'get_subdistrict'])->name('getsubdistrict');
 
 
 Route::group([

@@ -25,6 +25,11 @@ class DetailCartController extends Controller
     public function index(Request $request)
     {
 
+        // pengecekan shipment
+        if (empty($request->delivery)) {
+            return redirect()->back()->with('alert', 'Gagal memproses, metode ongkos kirim belum dipilih');
+        }
+
         // $payment = PaymentMethod::where('id', $request->payment)->get()->last();
         $payments = PaymentMethod::all();
 
@@ -64,13 +69,13 @@ class DetailCartController extends Controller
         //cities rajaongkir
         $cities = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/city')
+        ])->get('https://pro.rajaongkir.com/api/city')
             ->json()['rajaongkir']['results'];
 
         //province rajaongkir
         $provinces = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/province')
+        ])->get('https://pro.rajaongkir.com/api/province')
             ->json()['rajaongkir']['results'];
 
 
