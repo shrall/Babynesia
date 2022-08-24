@@ -227,12 +227,16 @@
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
-                        <div class="flex items-center gap-2">
-                            <input type="radio" name="stat"
-                                {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
-                                value="{{ $produkstatus->status_code }}">
-                            <label for="radio-5">{{ $produkstatus->name }}</label>
-                        </div>
+                        @if ($produkstatus->status_code != 'grd' &&
+                            $produkstatus->status_code != 'gpo' &&
+                            $produkstatus->status_code != 'po')
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="stat"
+                                    {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
+                                    value="{{ $produkstatus->status_code }}">
+                                <label for="radio-5">{{ $produkstatus->name }}</label>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
                 <div class="col-span-3">Harga Promo</div>
