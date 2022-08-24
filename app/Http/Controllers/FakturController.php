@@ -162,6 +162,11 @@ class FakturController extends Controller
                 'faktur_id' => $faktur->no_faktur,
             ]);
 
+
+            $cart->produkstock->update([
+                'product_stock' => $cart->produkstock->product_stock - $cart->jumlah
+            ]);
+
             //delete semua cart
             $cart->delete();
 
@@ -173,9 +178,7 @@ class FakturController extends Controller
 
             //kurangin produk stock
 
-            $cart->produkstock->update([
-                'produk_stock' => $cart->produkstock->product_stock - $cart->jumlah
-            ]);
+
         }
 
         return redirect(route('user.faktur.show', $faktur));
