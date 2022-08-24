@@ -100,7 +100,7 @@
                             <th>Harga</th>
                             <th>Promo</th>
                             <th>Stok Sisa</th>
-                            <th>Stok Dipesan</th>
+                            {{-- <th>Stok Dipesan</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -129,13 +129,13 @@
                                 @php
                                     $stock = 0;
                                 @endphp
-                                @foreach ($produk->stockhistory as $history)
+                                @foreach ($produk->stocks as $prodstok)
                                     @php
-                                        $stock += $history->amount;
+                                        $stock += $prodstok->product_stock;
                                     @endphp
                                 @endforeach
                                 <td>{{ $stock }}</td>
-                                @php
+                                {{-- @php
                                     $orderedstock = 0;
                                 @endphp
                                 @foreach ($produk->carts as $cart)
@@ -143,7 +143,7 @@
                                         $orderedstock += $cart->jumlah;
                                     @endphp
                                 @endforeach
-                                <td>{{ $orderedstock }}</td>
+                                <td>{{ $orderedstock }}</td> --}}
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"

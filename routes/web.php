@@ -260,6 +260,7 @@ Route::group([
     Route::get('/produk/search', [AdminProdukController::class, 'index_search'])->name('produk.search.index');
     Route::post('/produk/search', [AdminProdukController::class, 'search'])->name('produk.search');
     Route::post('/produk/add_type', [AdminProdukController::class, 'add_type'])->name('produk.addtype');
+    Route::post('/produk/getsubcategory', [AdminProdukController::class, 'getsubcategory'])->name('produk.getsubcategory');
     Route::get('/produk/promo', [AdminProdukController::class, 'index_promo'])->name('produk.index.promo');
     Route::get('/produk/restock', [AdminProdukController::class, 'index_restock'])->name('produk.index.restock');
     Route::get('/produk/disabled', [AdminProdukController::class, 'index_disabled'])->name('produk.index.disabled');

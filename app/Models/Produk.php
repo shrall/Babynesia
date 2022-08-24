@@ -20,6 +20,10 @@ class Produk extends Model
     {
         return $this->belongsTo(Kategori::class, 'kategory', 'no_kategori');
     }
+    public function subcategory()
+    {
+        return $this->belongsTo(KategoriChild::class, 'subkategory', 'child_id');
+    }
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_produk', 'no_brand');

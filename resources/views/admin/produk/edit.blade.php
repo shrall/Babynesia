@@ -44,9 +44,12 @@
                 <div class="col-span-3">Subkategori</div>
                 <div class="col-span-9 flex gap-x-2">
                     <select name="subcategory" id="subcategory" class="admin-input">
+                        <option value="">-</option>
                         @foreach ($subcategories as $subkategori)
-                            <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
-                                value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @if ($subkategori->kategori_id == $produk->kategory)
+                                <option {{ $produk->subkategory == $subkategori->child_id ? 'selected' : '' }}
+                                    value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
@@ -227,12 +230,16 @@
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
-                        <div class="flex items-center gap-2">
-                            <input type="radio" name="stat"
-                                {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
-                                value="{{ $produkstatus->status_code }}">
-                            <label for="radio-5">{{ $produkstatus->name }}</label>
-                        </div>
+                        @if ($produkstatus->status_code != 'grd' &&
+                            $produkstatus->status_code != 'gpo' &&
+                            $produkstatus->status_code != 'po')
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="stat"
+                                    {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
+                                    value="{{ $produkstatus->status_code }}">
+                                <label for="radio-5">{{ $produkstatus->name }}</label>
+                            </div>
+                        @endif
                     @endforeach
                 </div>
                 <div class="col-span-3">Harga Promo</div>
@@ -293,10 +300,12 @@
                         @php
                             $orderedstock = 0;
                         @endphp
-                        @foreach ($stok->carts as $cart)
-                        @php
-                            $orderedstock += $cart->jumlah;
-                        @endphp
+                        @foreach ($stok->fakturs as $detfaktur)
+                            @if ($detfaktur->faktur->status != 3 && $detfaktur->faktur->status != 5)
+                                @php
+                                    $orderedstock += $detfaktur->jumlah;
+                                @endphp
+                            @endif
                         @endforeach
                         <input type="text" name="stock_ordered[{{ $loop->iteration }}]" value="{{ $orderedstock }}"
                             readonly class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">
@@ -378,6 +387,30 @@
                 })
                 .done(function(data) {
                     $('#product-stock-field').append(data);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
+        }
+        $('#category').on('change', function() {
+            getsubcategory();
+        });
+
+        function getsubcategory() {
+            $.post(url + "/adminpage/produk/getsubcategory", {
+                    _token: CSRF_TOKEN,
+                    category_id: $('#category').val()
+                })
+                .done(function(data) {
+                    $('#subcategory').html(null)
+                    $('#subcategory').append(
+                        `<option value="">-</option>`
+                    )
+                    data.forEach(element => {
+                        $('#subcategory').append(
+                            `<option value="${element.child_id}">${element.child_name}</option>`
+                        )
+                    });
                 })
                 .fail(function(error) {
                     console.log(error);
