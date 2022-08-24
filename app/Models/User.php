@@ -17,7 +17,7 @@ class User extends Authenticatable
     public $timestamps = false;
     protected $table = 'user';
     protected $fillable = [
-        'no_user', 'email', 'password', 'name', 'lastname', 'alamat', 'kota', 'propinsi', 'negara', 'kodepos', 'telp', 'hp', 'birthday', 'gender', 'noKTP', 'stat', 'tgl_gabung', 'conf', 'user_status_id'
+        'no_user', 'email', 'password', 'name', 'lastname', 'alamat', 'kota', 'propinsi', 'negara', 'kodepos', 'telp', 'hp', 'birthday', 'gender', 'noKTP', 'stat', 'tgl_gabung', 'conf', 'user_status_id', 'kecamatan'
     ];
     protected $primaryKey = 'no_user';
     // public $incrementing = false;
