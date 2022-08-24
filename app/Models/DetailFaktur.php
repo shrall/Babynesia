@@ -24,4 +24,8 @@ class DetailFaktur extends Model
     {
         return $this->belongsTo(ProdukStock::class, 'kode_produk_stock', 'id');
     }
+    public function faktur()
+    {
+        return $this->belongsTo(Faktur::class, 'no_faktur', 'no_faktur');
+    }
 }

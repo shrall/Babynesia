@@ -293,10 +293,10 @@
                         @php
                             $orderedstock = 0;
                         @endphp
-                        @foreach ($stok->fakturs as $faktur)
-                            @php
-                                $orderedstock += $faktur->jumlah;
-                            @endphp
+                        @foreach ($stok->product->carts as $cart)
+                        @php
+                            $orderedstock += $cart->jumlah;
+                        @endphp
                         @endforeach
                         <input type="text" name="stock_ordered[{{ $loop->iteration }}]" value="{{ $orderedstock }}"
                             readonly class="admin-input-full col-span-1 stock-input-{{ $loop->iteration }}">

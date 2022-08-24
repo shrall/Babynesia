@@ -22,7 +22,7 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = Produk::where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
+        $products = Produk::with('stocks')->where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::all();
         $brands = Brand::all();
         $tipeproduk = ' ';
