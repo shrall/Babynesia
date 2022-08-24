@@ -192,6 +192,7 @@
     <script>
         $(document).ready(function() {
             var table = $('#example').DataTable({
+                "pageLength": 500,
                 scrollX: true,
                 "order": [
                     [0, "desc"]
