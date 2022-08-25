@@ -101,7 +101,7 @@
                     <td class="py-3">Rp.
                         {{ substr(number_format($subtotal, 2, ',', '.'), 0, -3) }}</td>
                 </tr>
-                
+
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 text-left">Ongkos kirim ({{ $faktur->deliveryExpedition }})</td>
@@ -109,7 +109,7 @@
                         {{ substr(number_format($faktur->deliverycost, 2, ',', '.'), 0, -3) }}</td>
                 </tr>
                 @if ($faktur->voucher != null)
-                    
+
                 <tr>
                     <td colspan="3" class="py-3">&nbsp;</td>
                     <td class="py-3 text-left">Potongan Voucher ({{ $faktur->voucher->vouchertype_id == 1 ? $faktur->voucher->amount."%" : "Rp. ".substr(number_format($faktur->voucher->amount, 2, ',', '.'), 0, -3) }})</td>
@@ -157,12 +157,12 @@
                     <li>:</li>
                 </ul>
                 <ul class="ml-2 font-encode-sans text-gray-400">
-                    <li>{{ $faktur->receiver->receiver_name }}</li>
-                    <li>{{ $faktur->receiver->address }}</li>
-                    <li>{{ $faktur->receiver->city }} - {{$faktur->receiver->postcode}}</li>
+                    <li>{{ ($faktur->receiver->receiver_name ?? "") }}</li>
+                    <li>{{ ($faktur->receiver->address ?? "") }}</li>
+                    <li>{{ ($faktur->receiver->city ?? "") }} - {{($faktur->receiver->postcode ?? "")}}</li>
                     <li>{{ $faktur->receiver->province }}</li>
-                    <li>{{ $faktur->receiver->phone }}</li>
-                    <li>{{ $faktur->receiver->hp }}</li>
+                    <li>{{ ($faktur->receiver->phone ?? "") }}</li>
+                    <li>{{ ($faktur->receiver->hp ?? "") }}</li>
                 </ul>
             </div>
             @if ($faktur->sender_name)

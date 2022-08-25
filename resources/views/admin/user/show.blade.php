@@ -65,7 +65,7 @@
                                 <td style="color: {{ $faktur->fakturstatus->color }};">
                                     {{ $faktur->fakturstatus->status }}</td>
                                 <td>{{ $faktur->tanggal2 }}</td>
-                                <td>{{ $faktur->receiver->receiver_name . ', ' . $faktur->receiver->city }}</td>
+                                <td>{{ ($faktur->receiver->receiver_name ?? "") . ', ' . ($faktur->receiver->city ?? "") }}</td>
                                 <td>{{ AppHelper::rp($faktur->total_profit ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->discount ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->deliverycost ?? 0) }}</td>
