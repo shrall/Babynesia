@@ -53,7 +53,7 @@ class RegisterController extends Controller
 
         $provinces = Http::withHeaders([
             'key' => config('services.rajaongkir.token'),
-        ])->get('https://api.rajaongkir.com/starter/province')
+        ])->get('https://pro.rajaongkir.com/api/province')
             ->json()['rajaongkir']['results'];
 
         return view('auth.register', compact('countries', 'provinces'));
@@ -90,20 +90,26 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+
+
         if ($data['negara'] != "Indonesia") {
             $propinsi = $data['propinsi2'];
             $kota = $data['kota2'];
         } else {
             $cities = Http::withHeaders([
                 'key' => config('services.rajaongkir.token'),
-            ])->get('https://api.rajaongkir.com/starter/city')
+            ])->get('https://pro.rajaongkir.com/api/city')
                 ->json()['rajaongkir']['results'];
-            $cities = collect($cities)->where('province_id', $data['propinsi']);
+            $cities = collect($cities)->where('city_id', $data['kota']);
             foreach ($cities as $city) {
                 $propinsi = $city['province'];
+                $kota = $city['city_name'];
                 break;
             }
-            $kota = $data['kota'];
+
+            if (empty($data['kota'])) {
+                return redirect()->back()->with('alert', 'Gagal register, belum mengisi kolom kota');
+            }
         }
 
         return User::create([
@@ -119,7 +125,8 @@ class RegisterController extends Controller
             'telp' => $data['telp'],
             'hp' => $data['hp'],
             'conf' => 'user',
-            'stat' => 'a'
+            'stat' => 'a',
+            'kecamatan' => !empty($data['subdistrict']) ? $data['subdistrict'] : null
         ]);
     }
 }

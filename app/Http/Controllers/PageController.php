@@ -7,6 +7,7 @@ use App\Models\Guestbook;
 use App\Models\Kategori;
 use App\Models\KategoriChild;
 use App\Models\Produk;
+use App\Models\Hotdeals;
 use App\Models\ProdukStatus;
 use App\Models\Site;
 use App\Models\Webconfig;
@@ -108,6 +109,21 @@ class PageController extends Controller
         // $page = 'home';
 
         // return view('user.landingpage', compact('produks', 'featured', 'filteredproduct', 'page'));
+
+        // hotdeals
+        $hotdeals = Hotdeals::where('status', '!=', 0)->get();
+        $indexdeal = 0;
+        $dt = Carbon::now()->format('Y-m-d');
+        foreach ($hotdeals as $hd) {
+            if ($hd->status == 2) {
+                if ($hd->from_date > $dt) {
+                    unset($hotdeals[$indexdeal]);
+                } else if ($hd->until_date < $dt) {
+                    unset($hotdeals[$indexdeal]);
+                }
+            }
+            $indexdeal++;
+        }
 
         $page = $request->pagehighlight;
 
@@ -290,7 +306,7 @@ class PageController extends Controller
 
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
+        return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
     }
 
     public function list_products(Request $request)

@@ -108,23 +108,33 @@ class UserController extends Controller
         if ($request->negara != "Indonesia") {
             $propinsi = $request->propinsi2;
             $kota = $request->kota2;
+            $kecamatan = null;
         } else {
             $cities = Http::withHeaders([
                 'key' => config('services.rajaongkir.token'),
-            ])->get('https://api.rajaongkir.com/starter/city')
+            ])->get('https://pro.rajaongkir.com/api/city')
                 ->json()['rajaongkir']['results'];
-            $cities = collect($cities)->where('province_id', $request->propinsi);
+            $cities = collect($cities)->where('city_id', $request->kota);
             $propinsi = null;
+            $kota = null;
             foreach ($cities as $city) {
                 $propinsi = $city['province'];
+                $kota = $city['city_name'];
                 break;
+            }
+
+            if (empty($request->subdistrict)) {
+                return redirect()->back();
             }
 
             if ($propinsi == null) {
                 $propinsi = $request->propinsi;
             }
 
-            $kota = $request->kota;
+            if ($kota == null) {
+                $kota = $request->kota;
+            }
+            $kecamatan = $request->subdistrict;
         }
 
 
@@ -140,6 +150,7 @@ class UserController extends Controller
             'kodepos' => $request->kodepos,
             'telp' => $request->telp,
             'hp' => $request->hp,
+            'kecamatan' => $kecamatan
         ]);
 
         return redirect(route('user.user.index'));

@@ -61,6 +61,7 @@ class AppServiceProvider extends ServiceProvider
             $statmenus = ProdukStatus::orderBy('status_code', 'asc')
                 ->where('status_code', '!=', 'grd')
                 ->where('status_code', '!=', 'gpo')
+                ->where('status_code', '!=', 'po')
                 ->where('status_code', '!=', '0')
                 ->get();
         } else {

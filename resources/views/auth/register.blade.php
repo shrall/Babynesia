@@ -152,6 +152,17 @@
                                 aria-hidden="true"></i>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <div> <label for="subdistricts"
+                                class="text-sm sm:text-base font-encode-sans text-slate-900">Kecamatan (Indonesia)</label>
+                        </div>
+                        <div class="relative border rounded-md">
+                            <select name="subdistrict" id="subdistricts" disabled class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
+                            </select>
+                            <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                            aria-hidden="true"></i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="country" id="showOther">
@@ -283,7 +294,10 @@ $(document).ready(function(){
                 $('#city-indo').html('');
                 console.log('arraynya ' + data);
                 Object.values(data).forEach((element, index) => {
-                    $('#city-indo').append('<option value="' + element.city_name +
+                    if (index == 0) {
+                        runDistrict(element.city_id);
+                    }
+                    $('#city-indo').append('<option value="' + element.city_id +
                         '">' +
                         element.city_name + '</option>')
                 });
@@ -292,6 +306,64 @@ $(document).ready(function(){
                 console.log(e);
             });
     });
+
+    $('#city-indo').on('change', function(e) {
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+
+    $.post(url + "/getsubdistrict", {
+            _token: CSRF_TOKEN,
+            city: $('#city-indo').val(),
+        })
+        .done(function(data) {
+            // $('.tempprovince').remove();
+            $('#subdistricts').prop("disabled", false);
+            // $('#expedition').prop("disabled", false);
+            $('#subdistricts').html('');
+            Object.values(data).forEach((element, index) => {
+                $('#subdistricts').append('<option value="' + element.subdistrict_name +
+                    '">' +
+                    element.subdistrict_name + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+});
+
+function runDistrict (city_id) {
+    var hostname = "{{ request()->getHost() }}"
+    var url = ""
+    if (hostname.includes('www')) {
+        url = "https://" + hostname
+    } else {
+        url = "{{ config('app.url') }}"
+    }
+
+    $.post(url + "/getsubdistrict", {
+            _token: CSRF_TOKEN,
+            city: city_id
+        })
+        .done(function(data) {
+            // $('.tempprovince').remove();
+            $('#subdistricts').prop("disabled", false);
+            // $('#expedition').prop("disabled", false);
+            $('#subdistricts').html('');
+            Object.values(data).forEach((element, index) => {
+                $('#subdistricts').append('<option value="' + element.subdistrict_name +
+                    '">' +
+                    element.subdistrict_name + '</option>')
+            });
+        })
+        .fail(function(e) {
+            console.log(e);
+        });
+}
 
 </script>
 
