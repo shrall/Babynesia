@@ -140,10 +140,10 @@
                 <div class="col-span-3 place-self-start">Penerima</div>
                 <div class="col-span-9">
                     <div class="flex flex-col">
-                        <span class="font-bold">{{ $faktur->receiver->receiver_name }}</span>
-                        <span>{{ $faktur->receiver->address }}</span>
-                        <span>{{ $faktur->receiver->city }} - {{ $faktur->receiver->postcode }}</span>
-                        <span>{{ $faktur->receiver->phone . '/' . $faktur->receiver->hp }}</span>
+                        <span class="font-bold">{{ ($faktur->receiver->receiver_name ?? "") }}</span>
+                        <span>{{ ($faktur->receiver->address ?? "") }}</span>
+                        <span>{{ ($faktur->receiver->city ?? "") }} - {{ ($faktur->receiver->postcode ?? "") }}</span>
+                        <span>{{ ($faktur->receiver->phone ?? "") . '/' . ($faktur->receiver->hp ?? "") }}</span>
                     </div>
                 </div>
                 <div class="col-span-3 place-self-start">Dropship</div>

@@ -1200,12 +1200,12 @@
                                     </tr>
                                     <tr>
                                         <td colspan="3">
-                                            <p><b>{{ $faktur->receiver->receiver_name }} </b><br>
-                                                {{ $faktur->receiver->address }}<br>
-                                                {{ $faktur->receiver->city }} - {{$faktur->receiver->postcode}}
+                                            <p><b>{{ ($faktur->receiver->receiver_name ?? "") }} </b><br>
+                                                {{ ($faktur->receiver->address ?? "") }}<br>
+                                                {{ ($faktur->receiver->city ?? "") }} - {{($faktur->receiver->postcode ?? "")}}
                                                 <br> {{ $faktur->receiver->province }}<br> <br> Phone
-                                                : {{ $faktur->receiver->phone }} <br> Mobile :
-                                                {{ $faktur->receiver->hp }}
+                                                : {{ ($faktur->receiver->phone ?? "") }} <br> Mobile :
+                                                {{ ($faktur->receiver->hp ?? "") }}
                                                 <br><br><b>Dropship </b><br>
                                                 @if ($faktur->sender_name)
                                                     Pengirim: {{ $faktur->sender_name }}<br>
