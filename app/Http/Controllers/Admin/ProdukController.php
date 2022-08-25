@@ -434,4 +434,17 @@ class ProdukController extends Controller
         $subcategories = KategoriChild::where('kategori_id', $request->category_id)->get();
         return $subcategories;
     }
+
+    public function getorderedstock(Request $request){
+        $product = Produk::where('kode_produk', $request->id)->first();
+        $orderedstock = 0;
+        foreach ($product->stocks as $key => $produk_stock) {
+            foreach ($produk_stock->fakturs as $key => $detfaktur) {
+                if ($detfaktur->faktur->status != 3 && $detfaktur->faktur->status != 5){
+                    $orderedstock += $detfaktur->jumlah;
+                }
+            }
+        }
+        return $orderedstock;
+    }
 }
