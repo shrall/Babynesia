@@ -364,9 +364,13 @@ class ProdukController extends Controller
 
     public function index_search(Request $request)
     {
-        $products = Produk::where('disable', session('product_search_status'));
+        $products = Produk::where('disable', intval(session('product_search_status')));
         if (session('product_search_search')) {
-            $products = Produk::where('nama_produk', 'like', '%' . session('product_search_search') . '%');
+            $products->where('nama_produk', 'like', '%' . session('product_search_search') . '%')->where('disable', intval(session('product_search_status')));
+            if (intval(session('product_search_search')) != 0) {
+                $products
+                    ->orWhere('kode_produk', 'like', '%' . session('product_search_search') . '%')->where('disable', intval(session('product_search_status')));
+            }
         }
         if (session('product_search_category') != 'no') {
             $products->where('kategory', session('product_search_category'));
@@ -395,9 +399,13 @@ class ProdukController extends Controller
         session(['product_search_category' => $request->category]);
         session(['product_search_brand' => $request->brand]);
         session(['product_search_rule' => $request->rule]);
-        $products = Produk::where('disable', $request->status);
+        $products = Produk::where('disable', intval($request->status));
         if ($request->search) {
-            $products = Produk::where('nama_produk', 'like', '%' . $request->search . '%');
+            $products->where('nama_produk', 'like', '%' . $request->search . '%')->where('disable', intval($request->status));
+            if (intval($request->search) != 0) {
+                $products
+                    ->orWhere('kode_produk', 'like', '%' . intval($request->search) . '%')->where('disable', intval($request->status));
+            }
         }
         if ($request->category != 'no') {
             $products->where('kategory', $request->category);
