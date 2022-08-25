@@ -25,11 +25,6 @@ class DetailCartController extends Controller
     public function index(Request $request)
     {
 
-        // pengecekan shipment
-        if (empty($request->delivery)) {
-            return redirect()->back()->with('alert', 'Gagal memproses, metode ongkos kirim belum dipilih');
-        }
-
         // $payment = PaymentMethod::where('id', $request->payment)->get()->last();
         $payments = PaymentMethod::all();
 
@@ -57,6 +52,11 @@ class DetailCartController extends Controller
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
 
         if ($request->deliv_check == "auto") {
+            // pengecekan shipment
+            if (empty($request->delivery)) {
+                return redirect()->back()->with('alert', 'Gagal memproses, metode ongkos kirim belum dipilih');
+            }
+
             $delivery_explode = explode('|', $request->delivery);
             $deliveryCost = (int)$delivery_explode[1];
             $delivery = $delivery_explode[0];
