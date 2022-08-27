@@ -38,7 +38,7 @@
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
                     <span class="fa fa-fw fa-user-circle text-3xl"></span>
-                    <span class="font-medium">{{Auth::user()->name}}</span>
+                    <span class="font-medium">{{ Auth::user()->name }}</span>
                 </span>
                 <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</div>
@@ -61,6 +61,13 @@
             <span>SUPPORT: <a href="mailto:hello@babaweb.biz">hello@babaweb.biz</a></span>
         </div>
     </div>
+    @if (!env('APP_DEBUG'))
+        <script>
+            if (location.protocol !== 'https:') {
+                location.replace(`https:${location.href.substring(location.protocol.length)}`);
+            }
+        </script>
+    @endif
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     @yield('scripts')
     <script>

@@ -33,19 +33,6 @@
                                 @foreach ($categories as $kategori)
                                     <option value="{{ $kategori->no_kategori }}">{{ $kategori->nama_kategori }}</option>
                                 @endforeach
-                                {{-- @foreach ($categories as $kategori)
-                                @if ($kategori->subcategories->count() == 0)
-                                    <option value="{{ $kategori->no_kategori }}">
-                                        {{ $kategori->nama_kategori }}</option>
-                                @else
-                                    @foreach ($kategori->subcategories as $kategorichild)
-                                        <option value="{{ $kategorichild->child_id }}">
-                                            {{ $kategorichild->category->nama_kategori }} -
-                                            {{ $kategorichild->child_name }}
-                                        </option>
-                                    @endforeach
-                                @endif
-                            @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -100,7 +87,7 @@
                             <th>Harga</th>
                             <th>Promo</th>
                             <th>Stok Sisa</th>
-                            {{-- <th>Stok Dipesan</th> --}}
+                            <th>Stok Dipesan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -135,15 +122,9 @@
                                     @endphp
                                 @endforeach
                                 <td>{{ $stock }}</td>
-                                {{-- @php
-                                    $orderedstock = 0;
-                                @endphp
-                                @foreach ($produk->carts as $cart)
-                                    @php
-                                        $orderedstock += $cart->jumlah;
-                                    @endphp
-                                @endforeach
-                                <td>{{ $orderedstock }}</td> --}}
+                                <td id="ordered-stock-{{$produk->kode_produk}}">
+                                    <span class="fa fa-fw fa-circle-notch animate-spin"></span>
+                                </td>
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
@@ -181,6 +162,30 @@
                 "info": false,
                 "ordering": false
             });
+        });
+    </script>
+    <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var hostname = "{{ request()->getHost() }}"
+        var url = ""
+        if (hostname.includes('www')) {
+            url = "https://" + hostname
+        } else {
+            url = "{{ config('app.url') }}"
+        }
+
+        var products = @json($products);
+        products.data.forEach(element => {
+            $.post(url + "/adminpage/produk/getorderedstock", {
+                    _token: CSRF_TOKEN,
+                    id: element.kode_produk
+                })
+                .done(function(data) {
+                    $(`#ordered-stock-${element.kode_produk}`).html(data);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
         });
     </script>
 @endsection
