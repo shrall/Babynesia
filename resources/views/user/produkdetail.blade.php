@@ -8,23 +8,18 @@
             <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
                 {{ $hideconfig[0] != 1 ? '[' . $produk->kode_produk . ']' : '' }} {{ $produk->nama_produk }}
             </h1>
-            {{-- <p class="text-gray-400 text-sm sm:text-base font-encode-sans">
-            {!! $produk->ket !!}
-        </p> --}}
         </div>
         <div class="xl:grid xl:grid-cols-2 xl:gap-3">
             <div class="mt-3">
                 <div class="mb-3">
-                    <img src="{{ asset('uploads/') . '/' . $produk->image }}" alt="" id="productimg"
+                    <img src="{{ asset('public/uploads/') . '/' . $produk->image }}" alt="" id="productimg"
                         class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
                 </div>
                 <div class="flex items-center flex-wrap">
                     @foreach ($produk->images as $image)
-                        <a href="#n" onclick="switchImg('{{ asset('uploads/') . '/' . $produk->image }}')">
-
-                            <img src="{{ asset('uploads/') . '/' . $produk->image }}" alt=""
+                        <a href="#n" onclick="switchImg('{{ asset('public/uploads/') . '/' . $image->imageurl }}')">
+                            <img src="{{ asset('public/uploads/') . '/' . $image->imageurl }}" alt=""
                                 class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
-
                         </a>
                     @endforeach
                 </div>
@@ -34,11 +29,15 @@
                     <h1 class="font-concert-one text-{{ $color[1] }}-500 xl:text-4xl">
                         {{ $hideconfig[0] != 1 ? '[' . $produk->kode_produk . ']' : '' }} {{ $produk->nama_produk }}
                     </h1>
-                    {{-- <p class="text-gray-400 font-encode-sans">
-                    {!! $produk->ket !!}
-                </p> --}}
+                    <div class="text-gray-400 text-sm sm:text-base font-encode-sans">
+                        {!! $produk->ket !!}
+                    </div>
                 </div>
-                <div class="flex xl:mt-6">
+                <div class="text-gray-400 xl:hidden text-sm sm:text-base font-encode-sans">
+                    {{-- @dd($produk->ket) --}}
+                    {!! $produk->ket !!}
+                </div>
+                <div class="flex xl:mt-6 mt-3">
                     <p class="text-sm sm:text-base text-gray-400 font-encode-sans leading-7">
                         Category <br>
                         Brand/Produsen <br>
