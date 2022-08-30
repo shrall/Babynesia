@@ -111,7 +111,7 @@ class ProdukController extends Controller
             return redirect()->route('adminpage.produk.create')->with('image', 'Gambar Utama Tidak Boleh Kosong!');;
         }
         $product = Produk::create([
-            'kode_alias' => $request->alias_code,
+            'kode_alias' => $request->alias_code ?? 0,
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
@@ -131,6 +131,7 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
+            'disable' => $request->status
             // 'complement' => $request->complement
         ]);
         foreach ($images as $key => $value) {
@@ -200,13 +201,6 @@ class ProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         $imagecount = $produk->images->count();
-        if ($request->deleteimg) {
-            if (count($request->deleteimg) == $imagecount) {
-                if ($request->image == null) {
-                    return redirect()->route('adminpage.produk.edit', $produk->kode_produk)->with('image', 'Foto Tidak Boleh Kosong!');
-                }
-            }
-        }
         $images = [];
         $keys = [];
         foreach ($produk->images as $key => $value) {
@@ -216,13 +210,16 @@ class ProdukController extends Controller
         }
         if ($request->deleteimg) {
             foreach ($request->deleteimg as $key => $value) {
+                if ($produk->images[$key]->imageurl != "noimage.png") {
+                    unlink(storage_path('../public/uploads/' . $produk->images[$key]->imageurl));
+                }
                 $produk->images[$key]->delete();
                 array_splice($images, $key, 1);
                 array_splice($keys, $key, 1);
             }
         }
         $loope = 0;
-        $truekey = $request->image_primary;
+        $truekey = $request->image_primary ?? 0;
         if ($request->image) {
             foreach ($request->image as $key => $value) {
                 $loope++;
@@ -238,7 +235,7 @@ class ProdukController extends Controller
             }
         }
         $produk->update([
-            'kode_alias' => $request->alias_code,
+            'kode_alias' => $request->alias_code ?? 0,
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
@@ -258,13 +255,31 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
+            'disable' => $request->status
             // 'complement' => $request->complement
         ]);
+        if ($request->deleteimg) {
+            if (count($request->deleteimg) == $imagecount) {
+                if ($request->image == null) {
+                    ProdukImage::create([
+                        'produk_id' => $produk->kode_produk,
+                        'produk_id_alias' => $produk->kode_alias,
+                        'imageurl' => "noimage.png"
+                    ]);
+                    $produk->update([
+                        'image' => "noimage.png"
+                    ]);
+                }
+            }
+        }
         if ($request->image) {
             // dd($images);
             $oldImages = ProdukImage::where("produk_id", $produk->kode_produk)->get();
             // dd($oldImages);
             foreach ($oldImages as $key => $oldimage) {
+                if ($oldimage->imageurl != "noimage.png") {
+                    unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
+                }
                 $oldimage->delete();
             }
             foreach ($images as $key => $value) {
@@ -285,7 +300,7 @@ class ProdukController extends Controller
                     $oldstock = $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->product_stock;
                     $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->update([
                         'produk_id' => $produk->kode_produk,
-                        'produk_id_alias' => $request->alias_code,
+                        'produk_id_alias' => $request->alias_code ?? 0,
                         'size' => $request->stock_size[$key + 1],
                         'color' => $request->stock_color[$key + 1],
                         'type' => $request->stock_type[$key + 1],
@@ -328,7 +343,7 @@ class ProdukController extends Controller
             if ($value == null) {
                 $item = ProdukStock::create([
                     'produk_id' => $produk->kode_produk,
-                    'produk_id_alias' => $request->alias_code,
+                    'produk_id_alias' => $request->alias_code ?? 0,
                     'size' => $request->stock_size[$key],
                     'color' => $request->stock_color[$key],
                     'type' => $request->stock_type[$key],
@@ -430,17 +445,19 @@ class ProdukController extends Controller
         return view('admin.produk.inc.newstockfield', compact('order'));
     }
 
-    public function getsubcategory(Request $request){
+    public function getsubcategory(Request $request)
+    {
         $subcategories = KategoriChild::where('kategori_id', $request->category_id)->get();
         return $subcategories;
     }
 
-    public function getorderedstock(Request $request){
+    public function getorderedstock(Request $request)
+    {
         $product = Produk::where('kode_produk', $request->id)->first();
         $orderedstock = 0;
         foreach ($product->stocks as $key => $produk_stock) {
             foreach ($produk_stock->fakturs as $key => $detfaktur) {
-                if ($detfaktur->faktur->status != 3 && $detfaktur->faktur->status != 5){
+                if ($detfaktur->faktur->status != 3 && $detfaktur->faktur->status != 5) {
                     $orderedstock += $detfaktur->jumlah;
                 }
             }

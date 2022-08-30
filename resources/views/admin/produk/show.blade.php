@@ -26,8 +26,8 @@
         <div class="admin-card">
             <div class="col-span-3">Kode</div>
             <div class="col-span-9">{{ $produk->kode_produk }}</div>
-            <div class="col-span-3">Kode Alias</div>
-            <div class="col-span-9">{{ $produk->kode_alias }}</div>
+            {{-- <div class="col-span-3">Kode Alias</div>
+            <div class="col-span-9">{{ $produk->kode_alias }}</div> --}}
             <div class="col-span-3">Nama</div>
             <div class="col-span-9">{{ $produk->nama_produk }}</div>
             <div class="col-span-3">Status</div>

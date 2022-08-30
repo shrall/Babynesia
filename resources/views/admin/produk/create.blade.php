@@ -8,10 +8,10 @@
         @csrf
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
             <div class="admin-card">
-                <div class="col-span-3">Kode Alias</div>
+                {{-- <div class="col-span-3">Kode Alias</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="alias_code" id="alias_code" class="admin-input">
-                </div>
+                </div> --}}
                 <div class="col-span-3">Status</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
