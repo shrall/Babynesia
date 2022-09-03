@@ -16,18 +16,27 @@
                     </div>
                 </form>
             </div>
+            @if (Auth::check())
+            <form action="{{ route('user.user.index') }}" id="formcheckernav"></form>
+            <input type="hidden" name="checker" value="profile" form="formcheckernav">
+            <button type="submit" form="formcheckernav" class=" ml-8 flex items-center text-slate-900 hover:text-{{ $color[1] }}-600">
+                <i class="bx bx-user-circle size text-3xl"></i>
+                <div class="mx-3 font-encode-sans font-bold">{{ Auth::user()->name }}</div>
+            </button>
+            @else
             <div>
-                <a href="" class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 font-bold">
-                    Login
+                <a href="{{ route('login') }}" class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 font-bold">
+                    Log In
                 </a>
             </div>
             <div>
-                <a href="" class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 font-bold">
+                <a href="{{ route('register') }}" class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 font-bold">
                     Daftar
                 </a>
             </div>
+            @endif
             <div>
-                <a href="">
+                <a href="{{ route('user.cart.index') }}">
                     <i class='bx bx-cart text-3xl text-slate-900 hover:text-{{ $color[1] }}-600' ></i>
                 </a>
             </div>
@@ -44,29 +53,14 @@
                 <form action="{{ route('list_products') }}" id="filtermenu{{ $menu->status_code }}"></form>
                 <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu{{ $menu->status_code }}">
                 <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu{{ $menu->status_code }}">
-                <button type="submit" form="filtermenu{{ $menu->status_code }}" class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : '' }}">
+                <button type="submit" form="filtermenu{{ $menu->status_code }}" class="appearance-none {{ !empty($page)&&$page == $menu->name ? 'font-bold' : 'font-bold' }}">
                     {{ $menu->name }}
                 </button>
             </li>
             @endforeach
-            @foreach ($navmenus as $menu)
-            @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4)
-            <li class="{{ !empty($page)&&$page == "$menu->code" ? 'text-'.$color[1].'-600' : 'text-slate-900' }} hover:text-{{ $color[1] }}-600">
-                <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
-                    {{ $menu->code }}
-                </a>
-            </li>
-
-            @endif
-            @endforeach
-            <li class="{{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-600 font-bold' : 'text-slate-900' }} hover:text-{{ $color[1] }}-600">
-                <a href="{{ route('faq.index') }}" aria-expanded="true">
-                    FAQ
-                </a>
-            </li>
             <div class="group inline-block">
 
-                <li class="peer ml-4 font-encode-sans text-slate-900">
+                <li class="peer ml-4 font-encode-sans font-bold text-slate-900">
                     <div class="cursor-pointer">
                         Products
                     </div>
@@ -80,7 +74,7 @@
                             <form action="{{ route('list_products') }}" method="get" id="kategorifilter"></form>
                             <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter"
                                 form="kategorifilter">
-                            <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-600 font-encode-sans peer" form="kategorifilter"
+                            <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-600 font-bold font-encode-sans peer" form="kategorifilter"
                                 {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                                 {{ $kategori->nama_kategori }}
                             </button>
@@ -105,6 +99,38 @@
                     </ul>
                 </div>
             </div>
+            @foreach ($navmenus as $menu)
+            @if ($menu->no == 24 || $menu->no == 32)
+            <li class="{{ !empty($page)&&$page == "$menu->code" ? 'text-'.$color[1].'-600 font-bold' : 'font-bold text-slate-900' }} hover:text-{{ $color[1] }}-600">
+                <a href="{{ route('showpage', $menu->no) }}" aria-expanded="true">
+                    {{ $menu->code }}
+                </a>
+            </li>
+
+            @endif
+            @endforeach
+
+            <li class="{{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-600 font-bold' : 'font-bold text-slate-900' }} hover:text-{{ $color[1] }}-600">
+                <a href="{{ route('faq.index') }}" aria-expanded="true">
+                    FAQ
+                </a>
+            </li>
+
+            <li
+                class="{{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-600 font-bold' : 'text-slate-900' }} font-bold hover:text-{{ $color[1] }}-600">
+                <form action="{{ route('user.user.index') }}" id="formchecker"></form>
+                <input type="hidden" name="checker" value="profile" form="formchecker">
+                <button type="submit" form="formchecker" class=" {{ !empty($page)&&$page == 'profile' ? 'font-bold' : 'font-bold' }}">
+                    Account
+                </button>
+            </li>
+            <li
+                class="{{ !empty($page)&&$page == "faq" ? 'text-'.$color[1].'-600 font-bold' : 'text-slate-900' }} font-bold hover:text-{{ $color[1] }}-600">
+                <a href="{{ route('user.user.index') }}">
+                    Transaction History
+                </a>
+            </li>
+            
         </ul>
     </div>
 
@@ -143,31 +169,26 @@
 </div>
 <div class="transition-all duration-300 menulist xl:hidden z-50 sm:w-3/4 w-5/6 h-screen fixed -left-full top-0">
     <div class="bg-white py-4 w-full">
-        <div class="flex justify-between px-4">
+        <div class="flex justify-between px-4 items-center">
+            <label for="menu" class="flex items-center cursor-pointer">
+                <i class="bx bx-x sm:text-4xl text-3xl text-slate-900"></i>
+            </label>
             <div class="flex items-center">
-                <label for="menu" class="flex items-center cursor-pointer">
-                    <i class="bx bx-x sm:text-4xl text-3xl text-slate-900"></i>
-                </label>
                 @if (Auth::checK())
-                <a href="{{ route('user.user.index') }}" class="ml-5 flex items-center">
-                    <i class="bx bxs-user-circle size sm:text-4xl text-3xl text-{{ $color[1] }}-600"></i>
-                    <div class="mx-3 font-encode-sans font-bold text-slate-900 text-sm sm:text-base">
+                <a href="{{ route('user.user.index') }}" class="flex items-center text-slate-900 hover:text-{{ $color[1] }}-600">
+                    <i class="bx bx-user-circle size sm:text-4xl text-3xl"></i>
+                    <div class="mx-2 font-encode-sans font-bold text-sm sm:text-base">
                         {{ Auth::user()->name }}
                     </div>
                 </a>
                 @else
-                <a href="{{ route('login') }}" class="ml-5 flex items-center">
-                    <i class="bx bxs-user-circle size sm:text-4xl text-3xl text-{{ $color[1] }}-600"></i>
-                    <div class="mx-3 font-encode-sans font-bold text-slate-900 text-sm sm:text-base">Log In</div>
+                <a href="{{ route('login') }}" class="">
+                    <div class="mx-3 font-encode-sans font-bold text-slate-900 text-sm hover:text-{{ $color[1] }}-600 sm:text-base">Log In</div>
                 </a>
+                <a href="{{ route('register') }}"
+                    class="text-slate-900 font-bold font-encode-sans text-sm hover:text-{{ $color[1] }}-600 sm:text-base">Daftar</a>
                 @endif
             </div>
-            @if (Auth::checK())
-
-            @else
-            <a href="{{ route('register') }}"
-                class="text-slate-900 font-bold font-encode-sans text-sm sm:text-base">Daftar</a>
-            @endif
         </div>
     </div>
     <div class="bg-white py-4 px-4 h-full overflow-y-auto">
@@ -184,7 +205,7 @@
             <input type="hidden" name="pagehighlight" value="{{ $menu->name }}" form="filtermenu1{{ $menu->status_code }}">
             <input type="hidden" name="filterproduct" value="{{ $menu->status_code }}" form="filtermenu1{{ $menu->status_code }}">
 
-            <button type="submit" form="filtermenu1{{ $menu->status_code }}" class="my-3 font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+            <button type="submit" form="filtermenu1{{ $menu->status_code }}" class="my-3 font-encode-sans {{ !empty($page)&&$page == $menu->name ? 'font-bold text-'.$color[1].'-500' : 'font-bold text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 {{ $menu->name }}
             </button>
             <hr>
@@ -194,7 +215,7 @@
             @if ($menu->no == 23 || $menu->no == 32 || $menu->no == 4)
 
             <a href="{{ route('showpage', $menu->no) }}">
-                <div class="my-3 font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+                <div class="my-3 font-encode-sans {{ !empty($page)&&$page == $menu->code ? 'font-bold text-'.$color[1].'-500' : 'font-bold text-slate-900' }} hover:text-{{ $color[1] }}-500">
                     {{ $menu->code }}
                 </div>
             </a>
@@ -204,13 +225,13 @@
             @endforeach
 
         <a href="{{ route('faq.index') }}">
-            <div class="my-3 font-encode-sans {{ !empty($page)&&$page == "faq" ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+            <div class="my-3 font-encode-sans {{ !empty($page)&&$page == "faq" ? 'font-bold text-'.$color[1].'-500' : 'font-bold text-slate-900' }} hover:text-{{ $color[1] }}-500">
                 FAQ
             </div>
         </a>
         <hr>
         <a href="">
-            <div class="my-3 font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-500">
+            <div class="my-3 font-encode-sans font-bold text-slate-900 hover:text-{{ $color[1] }}-500">
                 Products
             </div>
         </a>
@@ -220,7 +241,7 @@
                 <li class="my-1">
                     <form action="{{ route('list_products') }}" method="get">
                         <input type="hidden" value="{{ $kategori->no_kategori }}" name="filter">
-                        <button type="submit" class="text-slate-900 hover:text-{{ $color[1] }}-500 font-encode-sans"
+                        <button type="submit" class="text-slate-900 font-bold hover:text-{{ $color[1] }}-500 font-encode-sans"
                             {{ !empty($kategori->subcategories[0]) ? 'disabled' : '' }}>
                             {{ $kategori->nama_kategori }}
                         </button>
@@ -230,7 +251,7 @@
                     <form action="{{ route('list_products') }}" method="">
                         <input type="hidden" name="subfilter" value="{{ $sub->child_id }}">
                         <input type="hidden" name="filter" value="{{ $kategori->no_kategori }}">
-                        <ul class="ml-2 text-gray-400 pt-1 space-y-1 hover:text-{{ $color[1] }}-500">
+                        <ul class="ml-2 text-gray-400 pt-1 font-bold space-y-1 hover:text-{{ $color[1] }}-500">
                             <li class="appearance-none block whitespace-no-wrap">
                                 <button type="submit" class="text-left">{{ $sub->child_name }}</button>
                             </li>

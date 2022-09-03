@@ -3,11 +3,11 @@
         <ul class="">
             <li
                 class="font-encode-sans font-bold mb-2 text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
-                Babynesia
+                {{ config('app.name') }}
             </li>
 
             @foreach ($navmenus as $menu)
-            @if ($menu->no == 24 || $menu->no == 32 || $menu->no == 4 || $menu->no == 17)
+            @if ($menu->no == 24 || $menu->no == 32)
 
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <a href="{{ route('showpage', $menu->no) }}">
@@ -29,15 +29,16 @@
                 Account Details
             </li>
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
-                <a href="{{ route('user.user.index') }}">
-                    account
-                </a> </li>
-            <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <form action="{{ route('user.user.index') }}" id="formchecker"></form>
-                <input type="hidden" name="checker" value="history" form="formchecker">
+                <input type="hidden" name="checker" value="profile" form="formchecker">
                 <button type="submit" form="formchecker">
-                    transaction history
+                    Account
                 </button>
+            </li>
+            <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
+                <a href="{{ route('user.user.index') }}">
+                    transaction history
+                </a> 
             </li>
         </ul>
         <ul>
@@ -46,25 +47,25 @@
             </li>
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <a href="{{ route('faq.index') }}">
-                    faq
+                    Faq
                 </a> </li>
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <a href="">
-                    chat us
+                    Chat us
                 </a> </li>
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <a href="{{ route('user.cart.index') }}">
-                    cart
+                    Cart
                 </a> </li>
         </ul>
     </div>
     <div class="xl:mt-10 mt-5 pb-10 container mx-auto xl:px-32 px-3 flex">
         <div class="flex items-end">
             <h1 class="text-{{ $color[1] }}-600 text-4xl font-concert-one">
-                Babynesia
+                {{ config('app.name') }}
             </h1>
             <p class="ml-2 font-encode-sans text-slate-900 text-sm sm:text-base">
-                Copyright © 2021. <span class="font-bold">Babynesia</span>
+                Copyright © 2021. <span class="font-bold">{{ config('app.name') }}</span>
             </p>
         </div>
 

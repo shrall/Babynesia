@@ -334,9 +334,9 @@ class PageController extends Controller
 
 
         // if tbf
-        return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
+        // return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
         // else bbn
-        // return view('user.bbn.landingpage', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
+        return view('user.bbn.landingpage', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
     }
 
     public function list_products(Request $request)
