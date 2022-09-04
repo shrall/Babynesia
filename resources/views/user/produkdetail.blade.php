@@ -15,11 +15,11 @@
                     <img src="{{ asset('public/uploads/') . '/' . $produk->image }}" alt="" id="productimg"
                         class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
                 </div>
-                <div class="flex items-center flex-wrap">
+                <div class="flex items-center gap-3 flex-wrap">
                     @foreach ($produk->images as $image)
-                        <a href="#n" onclick="switchImg('{{ asset('public/uploads/') . '/' . $image->imageurl }}')">
+                        <a href="#n" class="w-1/4" onclick="switchImg('{{ asset('public/uploads/') . '/' . $image->imageurl }}')">
                             <img src="{{ asset('public/uploads/') . '/' . $image->imageurl }}" alt=""
-                                class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
+                                class="aspect-square bg-gray-400 w-full rounded-lg object-cover mr-3">
                         </a>
                     @endforeach
                 </div>

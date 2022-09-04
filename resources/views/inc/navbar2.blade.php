@@ -2,7 +2,7 @@
     <div class="container mx-auto xl:px-32 hidden xl:block">
         <div class="flex justify-between items-center">
             <h1 class="text-{{ $color[1] }}-600 text-4xl font-concert-one">
-                Babynesia
+                {{ config('app.name') }}
             </h1>
             <div class="rounded-md py-2 px-4 bg-neutral-100 w-136">
                 <form action="{{ route('list_products') }}">
@@ -117,7 +117,7 @@
                 </label>
             </div>
             <h1 class="text-3xl font-concert-one text-{{ $color[1] }}-600">
-                Babynesia
+                {{ config('app.name') }}
             </h1>
             <a href="{{ Auth::check() ? route('user.cart.index') : route('login') }}" class="cursor-pointer">
                 <i class="bx bx-cart text-3xl text-slate-900"></i>
