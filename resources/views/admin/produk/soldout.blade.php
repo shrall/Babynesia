@@ -9,10 +9,68 @@
             <a href="{{ route('adminpage.produk.create') }}" class="admin-button">Tambah Produk</a>
         </div>
     </div>
-    <div class="w-full h-vh-90 flex items-center justify-center show-first">
-        <img src="{{ asset('svg/loading.svg') }}" class="animate-spin mb-24">
-    </div>
-    <div class="w-full flex flex-col gap-y-4 p-4 hide-first invisible">
+    <div class="w-full flex flex-col gap-y-4 p-4">
+        @if ($tipeproduk == ' ')
+            <form action="{{ route('adminpage.produk.search') }}" method="post">
+                @csrf
+                <div class="admin-card">
+                    <div class="col-span-12">
+                        <div class="text-xl font-bold">Silahkan pilih kategori dan produsen dari produk yang ingin anda
+                            tampilkan.
+                        </div>
+                    </div>
+                    <div class="col-span-7">
+                        <div class="flex flex-col">
+                            Cari:
+                            <input type="text" name="search" id="search" class="admin-input w-full">
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col">
+                            Kategori:
+                            <select name="category" id="category" class="admin-input w-full">
+                                <option value="no">-</option>
+                                @foreach ($categories as $kategori)
+                                    <option value="{{ $kategori->no_kategori }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col">
+                            Merk:
+                            <select name="brand" id="brand" class="admin-input w-full">
+                                <option value="no">-</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->no_brand }}">{{ $brand->nama_brand }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col">
+                            Status:
+                            <select name="status" id="status" class="admin-input w-full">
+                                <option value="0">Aktif</option>
+                                <option value="1">Tidak Aktif</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col">
+                            Syarat:
+                            <select name="rule" id="rule" class="admin-input w-full">
+                                <option value="1">-</option>
+                                <option value="2">Tidak ada gambar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-span-12">
+                        <button type="submit" class="admin-button">Tampilkan</button>
+                    </div>
+                </div>
+            </form>
+        @endif
         <div class="admin-card">
             <div class="col-span-12">
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
@@ -34,6 +92,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $produks = [];
+                        @endphp
                         @foreach ($products as $produk)
                             @php
                                 $stock = 0;
@@ -44,6 +105,9 @@
                                 @endphp
                             @endforeach
                             @if ($stock == 0)
+                                @php
+                                    array_push($produks, $produk->kode_produk);
+                                @endphp
                                 <tr>
                                     <td>{{ $produk->kode_produk }}<br><span
                                             class="text-gray-400">{{ $produk->kode_alias }}</span></td>
@@ -64,16 +128,18 @@
                                     @endif
                                     <td>{{ AppHelper::rp(intval($produk->harga)) }}</td>
                                     <td>{{ AppHelper::rp(intval($produk->harga_sale)) }}</td>
-                                    <td>{{ $stock }}</td>
                                     @php
-                                        $orderedstock = 0;
+                                        $stock = 0;
                                     @endphp
-                                    @foreach ($produk->carts as $cart)
+                                    @foreach ($produk->stocks as $prodstok)
                                         @php
-                                            $orderedstock += $cart->jumlah;
+                                            $stock += $prodstok->product_stock;
                                         @endphp
                                     @endforeach
-                                    <td>{{ $orderedstock }}</td>
+                                    <td>{{ $stock }}</td>
+                                    <td id="ordered-stock-{{ $produk->kode_produk }}">
+                                        <span class="fa fa-fw fa-circle-notch animate-spin"></span>
+                                    </td>
                                     <td>
                                         <div class="flex items-center justify-center gap-2">
                                             <a target="blank"
@@ -99,7 +165,6 @@
                 </table>
             </div>
         </div>
-        {{-- {{ $products->links() }} --}}
     </div>
 @endsection
 
@@ -108,12 +173,39 @@
         $(document).ready(function() {
             var table = $('#example').DataTable({
                 scrollX: true,
-                "ordering": false,
-                "drawCallback": function(settings) {
-                    $('.hide-first').removeClass('invisible');
-                    $('.show-first').removeClass('flex').addClass('hidden');
-                }
+                "paging": false,
+                "searching": false,
+                "lengthChange": false,
+                "info": false,
+                "ordering": false
             });
+        });
+    </script>
+    <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var hostname = "{{ request()->getHost() }}"
+        var url = ""
+        if (hostname.includes('www')) {
+            url = "https://" + hostname
+        } else {
+            url = "{{ config('app.url') }}"
+        }
+
+        var products = @json($produks);
+        console.log(products)
+        products.forEach(element => {
+            console.log(element)
+            $.post(url + "/adminpage/produk/getorderedstock", {
+                    _token: CSRF_TOKEN,
+                    id: element
+                })
+                .done(function(data) {
+                    console.log(data)
+                    $(`#ordered-stock-${element}`).html(data);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                });
         });
     </script>
 @endsection
