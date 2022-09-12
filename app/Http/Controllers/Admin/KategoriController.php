@@ -15,7 +15,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $categories = Kategori::all();
+        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
         return view('admin.kategori.index', compact('categories'));
     }
 
@@ -38,7 +38,8 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         Kategori::create([
-            'nama_kategori' => $request->name
+            'nama_kategori' => $request->name,
+            'app_type' => env('APP_TYPE')
         ]);
         return redirect()->route('adminpage.kategori.index');
     }
