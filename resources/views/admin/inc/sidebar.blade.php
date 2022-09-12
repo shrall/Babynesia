@@ -28,7 +28,9 @@
             <a href="{{ route('adminpage.produk.index.fav') }}" class="hover:text-white">Produk FAV</a>
         @endif
         {{-- <a href="#" class="hover:text-white">Produk Pelengkap</a> --}}
-        <a href="{{ route('adminpage.voucher.index') }}" class="hover:text-white">Voucher Diskon</a>
+        @if (env('APP_TYPE') == 1)
+            <a href="{{ route('adminpage.voucher.index') }}" class="hover:text-white">Voucher Diskon</a>
+        @endif
         <a href="{{ route('adminpage.faktur.index') }}" class="hover:text-white">Laporan Penjualan</a>
         @if (Auth::user()->user_status_id == 3)
             {{-- <a href="{{ route('adminpage.profit') }}" class="hover:text-white">Laporan Keuntungan</a> --}}
