@@ -51,6 +51,7 @@
                         <tr>
                             <th>No</th>
                             <th>Status</th>
+                            <th>Dropship</th>
                             <th>Tanggal</th>
                             <th>Pembeli</th>
                             <th>Penerima</th>
@@ -70,9 +71,16 @@
                                 <td>{{ $faktur->no_faktur }}</td>
                                 <td style="color: {{ $faktur->fakturstatus->color }};">
                                     {{ $faktur->fakturstatus->status }}</td>
+                                <td><span
+                                        class="fa fa-fw fa-circle {{ $faktur->sender_name == null ? 'text-red-500' : 'text-green-500' }}"></span>
+                                </td>
                                 <td>{{ $faktur->tanggal2 }}</td>
-                                <td>{{ $faktur->user->name ?? '' }}</td>
-                                <td>{{ (($faktur->receiver->receiver_name ?? "") ?? '') . ', ' . (($faktur->receiver->city ?? "") ?? '') }}
+                                @if ($faktur->sender_name)
+                                    <td>{{ $faktur->sender_name ?? '' }}</td>
+                                @else
+                                    <td>{{ $faktur->user->name ?? '' }}</td>
+                                @endif
+                                <td>{{ ($faktur->receiver->receiver_name ?? ('' ?? '')) . ', ' . ($faktur->receiver->city ?? ('' ?? '')) }}
                                 </td>
                                 <td>{{ AppHelper::rp($faktur->total_profit ?? 0) }}</td>
                                 <td>{{ AppHelper::rp($faktur->discount ?? 0) }}</td>
