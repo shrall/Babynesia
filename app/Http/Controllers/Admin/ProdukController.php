@@ -58,6 +58,15 @@ class ProdukController extends Controller
         return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
     }
 
+    public function index_fav()
+    {
+        $products = Produk::where('app_type', 2)->orderBy('kode_produk', 'desc')->paginate(15);
+        $categories = Kategori::all();
+        $brands = Brand::all();
+        $tipeproduk = 'FAV';
+        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+    }
+
     public function index_soldout()
     {
         $products = Produk::with('stocks')->orderBy('kode_produk', 'desc')
@@ -93,6 +102,11 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+        if (env("APP_TYPE") == 2) {
+            $request->validate([
+                'kode_alias' => 'required|unique:produk',
+            ]);
+        }
         $images = [];
         $keys = [];
         $key_doesnt_exist = false;
@@ -131,7 +145,8 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
-            'disable' => $request->status
+            'disable' => $request->status,
+            'app_type' => env('APP_TYPE')
             // 'complement' => $request->complement
         ]);
         foreach ($images as $key => $value) {
@@ -211,7 +226,9 @@ class ProdukController extends Controller
         if ($request->deleteimg) {
             foreach ($request->deleteimg as $key => $value) {
                 if ($produk->images[$key]->imageurl != "noimage.png") {
-                    unlink(storage_path('../public/uploads/' . $produk->images[$key]->imageurl));
+                    if(file_exists(storage_path('../public/uploads/' . $produk->images[$key]->imageurl))){
+                        unlink(storage_path('../public/uploads/' . $produk->images[$key]->imageurl));
+                    }
                 }
                 $produk->images[$key]->delete();
                 array_splice($images, $key, 1);
@@ -278,7 +295,9 @@ class ProdukController extends Controller
             // dd($oldImages);
             foreach ($oldImages as $key => $oldimage) {
                 if ($oldimage->imageurl != "noimage.png") {
-                    unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
+                    if(file_exists(storage_path('../public/uploads/' . $oldimage->imageurl))){
+                        unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
+                    }
                 }
                 $oldimage->delete();
             }

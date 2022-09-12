@@ -9,11 +9,13 @@
         @method('PATCH')
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
             <div class="admin-card">
-                {{-- <div class="col-span-3">Kode Alias</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="text" name="alias_code" id="alias_code" class="admin-input"
-                        value="{{ $produk->kode_alias }}">
-                </div> --}}
+                @if (env('APP_TYPE') == 2)
+                    <div class="col-span-3">Kode Alias</div>
+                    <div class="col-span-9 flex items-center gap-x-2">
+                        <input type="text" name="alias_code" id="alias_code" class="admin-input"
+                            value="{{ $produk->kode_alias }}">
+                    </div>
+                @endif
                 <div class="col-span-3">Kode</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="kode_produk" id="kode_produk" class="admin-input" disabled

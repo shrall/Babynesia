@@ -76,7 +76,11 @@
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em; padding-bottom: 1em;">
                     <thead>
                         <tr>
-                            <th>Kode / Kode Alias</th>
+                            @if (env('APP_TYPE') == 1)
+                                <th>Kode</th>
+                            @else
+                                <th>Kode / Kode Alias</th>
+                            @endif
                             <th>Gambar</th>
                             <th>Nama</th>
                             <th>Kategori</th>
@@ -93,55 +97,63 @@
                     </thead>
                     <tbody>
                         @foreach ($products as $produk)
-                            <tr>
-                                <td>{{ $produk->kode_produk }}<br><span
-                                        class="text-gray-400">{{ $produk->kode_alias }}</span></td>
-                                <td>
-                                    <img src="{{ asset('uploads/') . '/' . $produk->image }}" class="h-24">
-                                </td>
-                                <td class="text-center">
-                                    <div class="flex flex-col items-center gap-1">
-                                        {{ $produk->nama_produk ?? '-' }}
-                                        <span
-                                            class="fa fa-fw fa-circle {{ $produk->disable == 1 ? 'text-red-500' : 'text-green-500' }}"></span>
-                                    </div>
-                                </td>
-                                <td>{{ $produk->category->nama_kategori ?? '-' }}</td>
-                                <td>{{ $produk->brand->nama_brand ?? '-' }}</td>
-                                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                                    <td>{{ AppHelper::rp(intval($produk->harga_pokok)) }}</td>
-                                @endif
-                                <td>{{ AppHelper::rp(intval($produk->harga)) }}</td>
-                                <td>{{ AppHelper::rp(intval($produk->harga_sale)) }}</td>
-                                @php
-                                    $stock = 0;
-                                @endphp
-                                @foreach ($produk->stocks as $prodstok)
+                            @if ($produk->app_type <= env('APP_TYPE'))
+                                <tr>
+                                    <td>{{ $produk->kode_produk }}
+                                        @if (env('APP_TYPE') == 2)
+                                            <br>
+                                            <span class="text-gray-400">{{ $produk->kode_alias }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <img src="{{ asset('uploads/') . '/' . $produk->image }}" class="h-24">
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="flex flex-col items-center gap-1">
+                                            {{ $produk->nama_produk ?? '-' }}
+                                            <span
+                                                class="fa fa-fw fa-circle {{ $produk->disable == 1 ? 'text-red-500' : 'text-green-500' }}"></span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $produk->category->nama_kategori ?? '-' }}</td>
+                                    <td>{{ $produk->brand->nama_brand ?? '-' }}</td>
+                                    @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                                        <td>{{ AppHelper::rp(intval($produk->harga_pokok)) }}</td>
+                                    @endif
+                                    <td>{{ AppHelper::rp(intval($produk->harga)) }}</td>
+                                    <td>{{ AppHelper::rp(intval($produk->harga_sale)) }}</td>
                                     @php
-                                        $stock += $prodstok->product_stock;
+                                        $stock = 0;
                                     @endphp
-                                @endforeach
-                                <td>{{ $stock }}</td>
-                                <td id="ordered-stock-{{$produk->kode_produk}}">
-                                    <span class="fa fa-fw fa-circle-notch animate-spin"></span>
-                                </td>
-                                <td>
-                                    <div class="flex items-center justify-center gap-2">
-                                        <a target="blank" href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
-                                            class="admin-action-button-info cursor-pointer">
-                                            <span class="fa fa-fw fa-eye"></span>
-                                        </a>
-                                        <a target="blank" href="{{ route('adminpage.produk.edit', $produk->kode_produk) }}"
-                                            class="admin-action-button-warning cursor-pointer">
-                                            <span class="fa fa-fw fa-edit"></span>
-                                        </a>
-                                        <a onclick="openModal('delete-{{ $produk->kode_produk }}')"
-                                            class="admin-action-button-danger cursor-pointer">
-                                            <span class="fa fa-fw fa-times"></span>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                                    @foreach ($produk->stocks as $prodstok)
+                                        @php
+                                            $stock += $prodstok->product_stock;
+                                        @endphp
+                                    @endforeach
+                                    <td>{{ $stock }}</td>
+                                    <td id="ordered-stock-{{ $produk->kode_produk }}">
+                                        <span class="fa fa-fw fa-circle-notch animate-spin"></span>
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center justify-center gap-2">
+                                            <a target="blank"
+                                                href="{{ route('adminpage.produk.show', $produk->kode_produk) }}"
+                                                class="admin-action-button-info cursor-pointer">
+                                                <span class="fa fa-fw fa-eye"></span>
+                                            </a>
+                                            <a target="blank"
+                                                href="{{ route('adminpage.produk.edit', $produk->kode_produk) }}"
+                                                class="admin-action-button-warning cursor-pointer">
+                                                <span class="fa fa-fw fa-edit"></span>
+                                            </a>
+                                            <a onclick="openModal('delete-{{ $produk->kode_produk }}')"
+                                                class="admin-action-button-danger cursor-pointer">
+                                                <span class="fa fa-fw fa-times"></span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

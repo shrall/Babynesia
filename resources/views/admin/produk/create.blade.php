@@ -8,10 +8,12 @@
         @csrf
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
             <div class="admin-card">
-                {{-- <div class="col-span-3">Kode Alias</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="text" name="alias_code" id="alias_code" class="admin-input">
-                </div> --}}
+                @if (env('APP_TYPE') == 2)
+                    <div class="col-span-3">Kode Alias</div>
+                    <div class="col-span-9 flex items-center gap-x-2">
+                        <input type="text" name="alias_code" id="alias_code" class="admin-input">
+                    </div>
+                @endif
                 <div class="col-span-3">Status</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <div class="flex items-center gap-2">
@@ -67,33 +69,22 @@
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="hpp" id="hpp" class="admin-input">rupiah
                 </div>
+                {{-- harga jual di tbf --}}
                 <div class="col-span-3">Harga Web</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga" id="harga" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
-                {{-- <div class="col-span-3">Harga Toko</div>
+                {{-- harga jual di bbn --}}
+                {{-- <div class="col-span-3">Harga FAV</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div> --}}
-                {{-- <div class="col-span-3">Harga Grosir</div>
+                <div class="col-span-3">Harga Grosir</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input" required>rupiah
-                </div> --}}
-                {{-- <div class="col-span-3">Diskon 1</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="number" name="disc1" id="disc1" class="admin-input">%
                 </div>
-                <div class="col-span-3">Diskon 2</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="number" name="disc2" id="disc2" class="admin-input">%
-                </div>
-                <div class="col-span-3">Diskon 3</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <input type="number" name="disc3" id="disc3" class="admin-input">%
-                </div> --}}
-
             </div>
             <div class="admin-card">
                 @if (session('image'))
@@ -147,23 +138,21 @@
                         Gambar Utama
                     </div>
                 </div>
-                {{-- <div class="col-span-3">Featured Product</div>
-                <div class="col-span-9 flex items-center gap-x-2">
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="featured" value="0" checked id="radio-3">
-                        <label for="radio-3">Normal</label>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <input type="radio" name="featured" value="1" id="radio-4">
-                        <label for="radio-4">Featured</label>
-                    </div>
-                </div> --}}
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
-                        @if ($produkstatus->status_code != 'grd' &&
-                            $produkstatus->status_code != 'gpo' &&
-                            $produkstatus->status_code != 'po')
+                        @if (env('APP_TYPE') == 1)
+                            @if ($produkstatus->status_code != 'grd' &&
+                                $produkstatus->status_code != 'gpo' &&
+                                $produkstatus->status_code != 'po')
+                                <div class="flex items-center gap-2">
+                                    <input type="radio" name="stat"
+                                        {{ $produkstatus->status_code == 0 ? 'checked' : '' }}
+                                        value="{{ $produkstatus->status_code }}">
+                                    <label for="radio-5">{{ $produkstatus->name }}</label>
+                                </div>
+                            @endif
+                        @else
                             <div class="flex items-center gap-2">
                                 <input type="radio" name="stat"
                                     {{ $produkstatus->status_code == 0 ? 'checked' : '' }}

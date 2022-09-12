@@ -105,6 +105,7 @@ class FakturController extends Controller
             'total_weight' => $request->berat,
             'voucher_id' => $voucher != null ? $voucher->id : null,
             'discount' => $potongan,
+            'app_type' => env('APP_TYPE')
         ]);
 
         if (!empty($request->pengirim_name)) {
