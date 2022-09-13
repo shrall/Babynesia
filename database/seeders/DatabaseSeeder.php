@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(PaymentMethodSeeder::class);
         $this->call(WebconfigSeeder::class);
+        $this->call(ProdukStatusSeeder::class);
         $this->call(UserStatusSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(ProdukStatusSeeder::class);
         $this->call(VoucherTypeSeeder::class);
     }
 }
