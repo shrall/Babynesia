@@ -203,7 +203,11 @@ class FakturController extends Controller
         }
         $payments = PaymentMethod::all();
 
-        return view('user.invoice', compact('faktur', 'payments', 'subtotal'));
+        if (config('services.app.type') == 1) {
+            return view('user.invoice', compact('faktur', 'payments', 'subtotal'));
+        } else {
+            return view('user.bbn.invoice', compact('faktur', 'payments', 'subtotal'));
+        }
     }
 
     public function showDetail(Faktur $faktur)
@@ -218,7 +222,12 @@ class FakturController extends Controller
             $subtotal += $temp;
         }
         $payments = PaymentMethod::all();
-        return view('user.detailinvoice', compact('faktur', 'payments', 'subtotal'));
+
+        if (config('services.app.type') == 1) {
+            return view('user.detailinvoice', compact('faktur', 'payments', 'subtotal'));
+        } else {
+            return view('user.bbn.detailinvoice', compact('faktur', 'payments', 'subtotal'));
+        }
     }
 
     public function showFaktur(Faktur $faktur)

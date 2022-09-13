@@ -3,63 +3,7 @@
 
 @include('inc.navbar2')
 
-{{-- THUMBNAIL --}}
-<div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
-    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        {{-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button> --}}
-    </div>
-    <div class="carousel-inner relative w-full overflow-hidden">
-        {{-- looping goes here --}}
-        <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('public/uploads/'.$head_img["content"]) }}"
-                class="block w-full xl:h-vh-50 sm:h-vh-40 h-vh-25 object-cover bg-gray-400" alt="..." />
-            {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
-            </div> --}}
-        </div>
-        {{-- <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
-        {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div> --}}
-        {{-- </div>
-        <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
-        {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div> --}}
-        {{-- </div> --}}
-    </div>
-    {{-- <button
-        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button> --}}
-</div>
-<div class="container mx-auto xl:px-20 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
-    <div>
-        <div class="mb-6 flex flex-wrap gap-3 justify-center">
-            @foreach ($hotdeals as $hd)
-                <img src="{{ asset('public/uploads/' . $hd->image) }}" class="w-100 h-vh-40 object-cover" alt="">
-            @endforeach
-        </div>
-    </div>
-    
+<div class="container mx-auto xl:px-20 px-3 xl:pb-10 pt-6 pb-5">
     <div class="xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
         <div class="hidden xl:block">
             <div class="bg-white rounded-t-md border-b px-4 py-3">

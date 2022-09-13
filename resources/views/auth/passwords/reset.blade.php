@@ -2,7 +2,15 @@
 
 @section('content')
 
+@section('content')
+@if (config('services.app.type') == 1)
 @include('inc.navbar1')
+@else
+@include('inc.navbar2')
+@endif
+
+@if (config('services.app.type') == 1)
+
 <div class="sm:flex sm:justify-center px-3 pt-8 pb-14">
     <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
         <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-500">{{ __('Reset Password') }}</h1>
@@ -60,8 +68,65 @@
     </div>
 </div>
 
+@else
 
+<div class="sm:flex sm:justify-center px-3 pt-8 pb-14">
+    <div class="bg-white rounded-lg sm:w-vw-70 xl:w-vw-50 shadow-md sm:py-5 sm:px-8 px-3 py-4">
+        <h1 class="font-concert-one text-3xl sm:text-4xl text-center text-{{ $color[1] }}-600">{{ __('Reset Password') }}</h1>
+
+        <form method="POST" action="{{ route('password.update') }}" class="mt-7">
+            @csrf
+            <input type="hidden" name="token" value="{{ $token }}">
+            <div class="">
+
+                <input id="email" type="email" placeholder="Email Address"
+                    class="appearance-none border-b-2 p-1 w-full @error('email') is-invalid @enderror"
+                    name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+
+                @error('email')
+                <span class="invalid-feedback font-encode-sans font-normal text-red-500 text-sm sm:text-base" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+
+            <div class="mt-6">
+                <input id="password" type="password" placeholder="Password"
+                    class="appearance-none border-b-2 w-full @error('password') is-invalid @enderror"
+                    name="password" required autocomplete="new-password">
+
+                @error('password')
+                <span class="invalid-feedback font-encode-sans font-normal text-red-500 text-sm sm:text-base" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+
+            </div>
+
+            <div class="mt-6">
+                <input id="password-confirm" type="password-confirmation" placeholder="Confirm Password"
+                    class="appearance-none border-b-2 w-full @error('password-confirmation') is-invalid @enderror"
+                    name="password-confirm" required autocomplete="new-password">
+
+            </div>
+
+            <div class="mt-7 text-center">
+                <button type="submit"
+                    class="bg-{{ $color[2] }}-400 font-bold w-full font-encode-sans hover:bg-{{ $color[2] }}-500 text-white px-8 py-3 rounded-full">
+                    {{ __('Reset Password') }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@endif
+
+@if (config('services.app.type') == 1)
 @include('inc.footer1')
+@else
+@include('inc.footer2')
+@endif
 @endsection
 
 

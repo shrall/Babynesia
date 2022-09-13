@@ -83,8 +83,11 @@ class ReceiverController extends Controller
             $weight += $cart->produk->weight * $cart->jumlah;
         }
 
-
-        return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'subdistrict_id', 'cities', 'subdistricts', 'weight', 'voucher'));
+        if (config('services.app.type') == 1) {
+            return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'subdistrict_id', 'cities', 'subdistricts', 'weight', 'voucher'));
+        } else {
+            return view('user.bbn.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'subdistrict_id', 'cities', 'subdistricts', 'weight', 'voucher'));
+        }
     }
 
     /**

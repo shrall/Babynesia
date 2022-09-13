@@ -1,5 +1,5 @@
 <footer class="bg-white border-t shadow-sm xl:pt-10 pt-8">
-    <div class="container mx-auto xl:px-32 px-3 xl:flex xl:justify-between space-y-3 xl:space-y-0">
+    <div class="container mx-auto xl:px-20 px-3 xl:flex xl:justify-between space-y-3 xl:space-y-0">
         <ul class="">
             <li
                 class="font-encode-sans font-bold mb-2 text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
@@ -37,7 +37,7 @@
             </li>
             <li class="font-encode-sans text-slate-900 hover:text-{{ $color[1] }}-600 text-sm sm:text-base">
                 <a href="{{ route('user.user.index') }}">
-                    transaction history
+                    Transaction history
                 </a> 
             </li>
         </ul>
@@ -59,7 +59,7 @@
                 </a> </li>
         </ul>
     </div>
-    <div class="xl:mt-10 mt-5 pb-10 container mx-auto xl:px-32 px-3 flex">
+    <div class="xl:mt-10 mt-5 pb-10 container mx-auto xl:px-20 px-3 flex">
         <div class="flex items-end">
             <h1 class="text-{{ $color[1] }}-600 text-4xl font-concert-one">
                 {{ config('app.name') }}

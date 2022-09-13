@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-@include('inc.navbar1')
+@include('inc.navbar2')
 
 <div
     class="xl:grid xl:grid-cols-4 xl:grid-flow-row-dense xl:gap-3 container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
@@ -52,15 +52,15 @@
 
     <div id="profile_info"
         class="hidden w-full mt-3 xl:mt-0 xl:col-span-3 bg-white rounded-md shadow-sm pt-3 pb-7 px-3">
-        <h1 class="font-concert-one text-{{ $color[1] }}-500 text-3xl sm:text-4xl">
+        <h1 class="font-concert-one text-{{ $color[1] }}-600 text-3xl sm:text-4xl">
             Profile Info
         </h1>
         <hr class="my-3">
         <div class="flex">
-            <i class="fa fa-user-circle size sm:text-8xl text-6xl text-{{ $color[1] }}-500"></i>
+            <i class="bx bx-user-circle size sm:text-8xl text-6xl text-slate-900"></i>
             <div class="ml-4">
                 <div class="sm:mt-4">
-                    <h1 class="font-concert-one text-{{ $color[2] }}-400 text-3xl sm:text-4xl">
+                    <h1 class="font-concert-one text-{{ $color[1] }}-600 text-3xl sm:text-4xl">
                         {{ Auth::user()->name . " " . Auth::user()->lastname }}
                     </h1>
                     <p class="mt-1 font-encode-sans text-gray-400 text-sm sm:text-base">
@@ -148,40 +148,40 @@
 
             <div class="mt-4 grid grid-cols-2 gap-3">
                 <div class="w-full">
-                    <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">Name</label>
+                    <div> <label for="name" class="text-sm font-encode-sans text-gray-400">Name</label>
                     </div>
-                    <input id="name" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                    <input id="name" type="text" placeholder="Masukkan nama" class="appearance-none border-b-2 p-1 w-full"
                         name="name" value="{{ Auth::user()->name }}" required>
 
                 </div>
                 <div class="w-full">
-                    <div> <label for="last-name" class="text-sm sm:text-base font-encode-sans text-slate-900">Last
+                    <div> <label for="last-name" class="text-sm font-encode-sans text-gray-400">Last
                             Name</label>
                     </div>
-                    <input id="last-name" type="text"
-                        class="appearance-none border p-1 w-full rounded-md bg-neutral-100" required
+                    <input id="last-name" type="text" placeholder="Last name"
+                        class="appearance-none border-b-2 p-1 w-full" required
                         value="{{ Auth::user()->lastname }}" name="lastname">
                 </div>
             </div>
             <div class="mt-4">
-                <div> <label for="address" class="text-sm sm:text-base font-encode-sans text-slate-900">Address</label>
+                <div> <label for="address" class="text-sm font-encode-sans text-gray-400">Address</label>
                 </div>
-                <textarea id="address" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                <textarea id="address" type="text" class="appearance-none border-2 p-1 w-full"
                     name="alamat" required>{{ Auth::user()->alamat }}</textarea>
             </div>
             <div class="mt-4">
                 <div> <label for="postcode"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">Postcode</label>
+                        class="text-sm font-encode-sans text-gray-400">Postcode</label>
                 </div>
-                <input id="postcode" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                <input id="postcode" type="text" class="appearance-none border-b-2 p-1 w-full"
                     name="kodepos" required value="{{ Auth::user()->kodepos }}">
             </div>
             <div class="mt-4">
-                <div> <label for="countryselection" class="text-sm sm:text-base font-encode-sans text-slate-900">Country</label>
+                <div> <label for="countryselection" class="text-sm font-encode-sans text-gray-400">Country</label>
                 </div>
-                <div class="relative border rounded-md">
+                <div class="relative border-2">
                     <select id="countryselection" type="text"
-                        class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="negara">
+                        class="appearance-none cursor-pointer p-1 w-full" name="negara">
                         @if (Auth::user()->negara != "Indonesia")
                         <option hidden value="{{ Auth::user()->negara }}">{{ Auth::user()->negara }}</option>
                         @endif
@@ -189,53 +189,53 @@
                         <option value="{{ $country->name }}">{{ $country->name }}</option>
                         @endforeach
                     </select>
-                    <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                    <i class="bx bx-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                         aria-hidden="true"></i>
                 </div>
             </div>
                 
             <div class="country" id="showIndonesia">
                 <div class="mt-4">
-                    <div> <label for="provinsi-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi
+                    <div> <label for="provinsi-indo" class="text-sm font-encode-sans text-gray-400">Provinsi
                             (Indonesia)</label>
                     </div>
-                    <div class="relative border rounded-md">
+                    <div class="relative border-2">
                         <select id="provinsi-indo"
-                            class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="propinsi">
+                            class="appearance-none cursor-pointer p-1 w-full" name="propinsi">
                             <option hidden value="{{ Auth::user()->propinsi }}">{{ Auth::user()->propinsi }}</option>
                             @foreach ($provinces as $province)
                             <option value="{{ $province['province_id'] }}">{{ $province['province'] }}</option>
                             @endforeach
                         </select>
-                        <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        <i class="bx bx-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="mt-4">
-                    <div> <label for="city-indo" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota
+                    <div> <label for="city-indo" class="text-sm font-encode-sans text-gray-400">Kota
                             (Indonesia)</label>
                     </div>
-                    <div class="relative border rounded-md">
+                    <div class="relative border-2">
                         <select id="city-indo"
-                            class="appearance-none cursor-pointer p-1 w-full rounded-md bg-neutral-100" name="kota">
+                            class="appearance-none cursor-pointer p-1 w-full" name="kota">
                             <option hidden value="{{ Auth::user()->kota }}">{{ Auth::user()->kota }}</option>
                             {{-- @foreach ($cities as $city)
                             <option value="{{ $province['province'] }}">{{ $province['province'] }}</option>
                             @endforeach --}}
                         </select>
-                        <i class="fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        <i class="bx bx-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                             aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="mt-4">
                     <div> <label for="subdistricts"
-                            class="text-sm sm:text-base font-encode-sans text-slate-900">Kecamatan (Indonesia)</label>
+                            class="text-sm font-encode-sans text-gray-400">Kecamatan (Indonesia)</label>
                     </div>
-                    <div class="relative border rounded-md">
-                        <select name="subdistrict" id="subdistricts" {{ empty(Auth::user()->kecamatan) ? 'disabled' : '' }} class="peer disabled:bg-neutral-300 bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
+                    <div class="relative border-2">
+                        <select name="subdistrict" id="subdistricts" {{ empty(Auth::user()->kecamatan) ? 'disabled' : '' }} class="peer disabled:bg-neutral-100 appearance-none cursor-pointer p-1 w-full font-encode-sans">
                             <option hidden value="{{ Auth::user()->kecamatan }}">{{ Auth::user()->kecamatan }}</option>
                         </select>
-                        <i class="peer-disabled:hidden fa fa-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
+                        <i class="peer-disabled:hidden bx bx-chevron-down absolute text-gray-400 right-2 top-1/2 -translate-y-1/2 m-auto"
                         aria-hidden="true"></i>
                     </div>
                 </div>
@@ -244,32 +244,32 @@
             <div class="country" id="showOther">
                 <div class="mt-4">
                     <div> <label for="provinsi-notindo"
-                            class="text-sm sm:text-base font-encode-sans text-slate-900">Provinsi (Selain Indonesia)</label>
+                            class="text-sm font-encode-sans text-gray-400">Provinsi (Selain Indonesia)</label>
                     </div>
-                    <input id="provinsi-notindo" type="text"
-                        class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="propinsi2"
+                    <input id="provinsi-notindo" type="text" placeholder="Masukkan nama provinsi"
+                        class="appearance-none border-b-2 p-1 w-full" name="propinsi2"
                         value="{{ Auth::user()->propinsi }}">
                 </div>
 
                 <div class="mt-4">
-                    <div> <label for="city" class="text-sm sm:text-base font-encode-sans text-slate-900">Kota (Selain Indonesia)</label>
+                    <div> <label for="city" class="text-sm font-encode-sans text-gray-400">Kota (Selain Indonesia)</label>
                     </div>
-                    <input id="city" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                    <input id="city" type="text" class="appearance-none border-b-2 p-1 w-full" placeholder="Masukkan nama kota"
                         name="kota2" value="{{ Auth::user()->kota }}">
                 </div>
             </div>
             
 
             <div class="mt-4">
-                <div> <label for="phone" class="text-sm sm:text-base font-encode-sans text-slate-900">Phone</label>
+                <div> <label for="phone" class="text-sm font-encode-sans text-gray-400">Phone</label>
                 </div>
-                <input id="phone" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                <input id="phone" type="text" class="appearance-none border-b-2 p-1 w-full"
                     name="telp" required value="{{ Auth::user()->telp }}">
             </div>
             <div class="mt-4">
-                <div> <label for="mobile" class="text-sm sm:text-base font-encode-sans text-slate-900">Mobile</label>
+                <div> <label for="mobile" class="text-sm font-encode-sans text-gray-400">Mobile</label>
                 </div>
-                <input id="mobile" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                <input id="mobile" type="text" class="appearance-none border-b-2 p-1 w-full"
                     name="hp" required value="{{ Auth::user()->hp }}">
             </div>
             <h6 class="mt-7 font-encode-sans font-bold text-slate-900">
@@ -278,11 +278,11 @@
             <div class="mt-4">
                 <div>
                     <label for="email"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Email Address') }}</label>
+                        class="text-sm font-encode-sans text-gray-400">{{ __('Email Address') }}</label>
                 </div>
 
-                <input id="email" type="email"
-                    class="appearance-none border p-1 rounded-md w-full bg-neutral-100 disabled:bg-neutral-300 disabled:border-gray-400 @error('email') is-invalid @enderror"
+                <input id="email" type="email" placeholder="Email"
+                    class="appearance-none border-b-2 p-1 rounded-md w-full disabled:bg-neutral-100 @error('email') is-invalid @enderror"
                     name="email" required autocomplete="email" autofocus
                     value="{{ Auth::user()->email }}" disabled>
 
@@ -295,10 +295,10 @@
             </div>
             <div class="mt-4">
                 <div> <label for="old-password"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Old Password') }}</label>
+                        class="text-sm font-encode-sans text-gray-400">{{ __('Old Password') }}</label>
                 </div>
-                <input id="old-password" type="password"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
+                <input id="old-password" type="password" placeholder="Masukkan password lama"
+                    class="appearance-none border-b-2 p-1 w-full @error('password') is-invalid @enderror"
                     name="old-password" autocomplete="new-password">
 
                 @error('password')
@@ -310,10 +310,10 @@
             </div>
             <div class="mt-4">
                 <div> <label for="password"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('New Password') }}</label>
+                        class="text-sm font-encode-sans text-gray-400">{{ __('New Password') }}</label>
                 </div>
-                <input id="password" type="password"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
+                <input id="password" type="password" placeholder="Masukkan password baru"
+                    class="appearance-none border-b-2 p-1 w-full @error('password') is-invalid @enderror"
                     name="password" autocomplete="new-password">
 
                 @error('password')
@@ -326,10 +326,10 @@
 
             <div class="mt-4">
                 <div> <label for="password-confirm"
-                        class="text-sm sm:text-base font-encode-sans text-slate-900">{{ __('Confirm Password') }}</label>
+                        class="text-sm font-encode-sans text-gray-400">{{ __('Confirm Password') }}</label>
                 </div>
-                <input id="password-confirm" type="password"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100 @error('password') is-invalid @enderror"
+                <input id="password-confirm" type="password" placeholder="Konfirmasi password baru"
+                    class="appearance-none border-b-2 p-1 w-full @error('password') is-invalid @enderror"
                     name="password_confirmation" autocomplete="new-password">
 
                 @error('password')
@@ -342,7 +342,7 @@
 
             <div class="mt-7 text-center">
                 <button type="submit"
-                    class="border-2 border-{{ $color[2] }}-400 hover:text-white hover:bg-{{ $color[2] }}-400 font-bold font-encode-sans text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
+                    class="text-white hover:bg-{{ $color[2] }}-500 bg-{{ $color[2] }}-400 font-bold font-encode-sans px-8 py-2 rounded-full">
                     Simpan
                 </button>
             </div>
@@ -351,7 +351,7 @@
 
     <div id="profile_history" class="w-full hidden mt-3 xl:mt-0 xl:col-span-3">
         <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-3 px-3">
-            <h1 class="font-concert-one text-{{ $color[1] }}-500 text-3xl sm:text-4xl">
+            <h1 class="font-concert-one text-{{ $color[1] }}-600 text-3xl sm:text-4xl">
                 History Transaksi
             </h1>
         </div>
@@ -382,14 +382,14 @@
                                 aria-hidden="true"></i>
                         </a> --}}
                     </p>
-                    <p class="my-2 py-1 px-2 w-fit rounded-md font-encode-sans text-sm text-white font-bold" style="background-color: {{ $faktur->fakturstatus->color }}">
+                    <p class="my-2 py-1 px-2 w-fit font-encode-sans text-sm text-white font-bold" style="background-color: {{ $faktur->fakturstatus->color }}">
                         {{ $faktur->fakturstatus->status }}
                     </p>
                     <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
                         {{ count($faktur->items) }} barang
                     </p>
                     <p class="font-encode-sans mt-1 text-sm text-gray-400 sm:text-base">
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <i class="bx bx-calendar" aria-hidden="true"></i>
                         {{ $faktur->tanggal }}
                     </p>
 
@@ -408,7 +408,7 @@
                     </div>
                     <div class="mt-8">
                         <a href="{{ route('user.faktur.showdetail', $faktur) }}"
-                            class="appearance-none xl:mt-8 py-2 px-3 border-2 border-{{ $color[2] }}-400 text-{{ $color[2] }}-400 rounded-md hover:bg-{{ $color[2] }}-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            class="appearance-none xl:mt-8 py-2 px-3 text-white rounded-full hover:bg-{{ $color[2] }}-500 bg-{{ $color[2] }}-400 font-bold font-encode-sans text-sm sm:text-base">
                             Lihat Detail
                         </a>
                     </div>
@@ -426,7 +426,7 @@
                     </div>
                     <div class="">
                         <a href="{{ route('user.faktur.showdetail', $faktur) }}"
-                            class="appearance-none py-2 px-3 border-2 border-{{ $color[2] }}-400 text-{{ $color[2] }}-400 rounded-md hover:bg-{{ $color[2] }}-400 hover:text-white font-bold font-encode-sans text-sm sm:text-base">
+                            class="appearance-none py-2 px-3 text-white rounded-full hover:bg-{{ $color[2] }}-500 bg-{{ $color[2] }}-400 font-bold font-encode-sans text-sm sm:text-base">
                             Lihat Detail
                         </a>
                     </div>
@@ -438,7 +438,7 @@
         @endforeach
 
         <div class="mt-3">
-            {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
+            {{ $fakturs->onEachSide(1)->links('vendor.pagination.custom-2', compact('color')) }}
         </div>
 
     </div>
@@ -599,5 +599,5 @@ function runDistrict (city_id) {
 
 </script>
 
-@include('inc.footer1')
+@include('inc.footer2')
 @endsection
