@@ -333,10 +333,14 @@ class PageController extends Controller
         $produks->appends($request->all());
 
 
-        // if tbf
-        return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
-        // else bbn
-        // return view('user.bbn.landingpage', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
+
+        if (config('services.app.type') == 1) {
+            // TBF
+            return view('user.landingpage2', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
+        } else {
+            //BBN
+            return view('user.bbn.landingpage', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page', 'hotdeals'));
+        }
     }
 
     public function list_products(Request $request)
@@ -534,7 +538,14 @@ class PageController extends Controller
 
         $produks->withPath('listproducts');
         $produks->appends($request->all());
-        return view('user.listproducts', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
+
+        if (config('services.app.type') == 1) {
+            // TBF
+            return view('user.listproducts', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
+        } else {
+            //BBN
+            return view('user.bbn.listproducts', compact('produks', 'keyword', 'filter', 'subfilter', 'subsname', 'filteredproduct', 'page'));
+        }
     }
 
 
@@ -553,7 +564,13 @@ class PageController extends Controller
             $values = null;
         }
 
-        return view('user.' . strtolower($sites->code), compact('page', 'sites', 'values'));
+        if (config('services.app.type') == 1) {
+            // TBF
+            return view('user.' . strtolower($sites->code), compact('page', 'sites', 'values'));
+        } else {
+            //BBN
+            return view('user.bbn.' . strtolower($sites->code), compact('page', 'sites', 'values'));
+        }
     }
 
     public function list_articles()

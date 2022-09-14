@@ -127,7 +127,11 @@ class DetailCartController extends Controller
         //berat dalam kg
         $berat = $berat / 1000;
 
-        return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payments', 'gudang', 'voucher', 'potongan'));
+        if (config('services.app.type') == 1) {
+            return view('user.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payments', 'gudang', 'voucher', 'potongan'));
+        } else {
+            return view('user.bbn.confirmation', compact('request', 'carts', 'total', 'berat', 'jumlahCart', 'delivery', 'deliveryCost', 'city', 'province', 'payments', 'gudang', 'voucher', 'potongan'));
+        }
     }
 
     /**

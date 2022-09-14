@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-@include('inc.navbar1')
+@include('inc.navbar2')
 
 <div class="xl:grid xl:grid-cols-3 xl:gap-3 container mx-auto xl:px-32 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
     <div class="w-full bg-white rounded-md shadow-sm pt-3 pb-7 px-3 h-fit">
@@ -68,36 +68,36 @@
         <form action="{{ route('contact.store') }}" method="post">
             @csrf
             <div class="mt-4">
-                <div> <label for="name" class="text-sm sm:text-base font-encode-sans text-slate-900">
+                <div> <label for="name" class="text-sm font-encode-sans text-gray-400">
                         Name</label>
                 </div>
-                <input id="name" type="text"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="name">
+                <input id="name" type="text" placeholder="Masukkan nama"
+                    class="appearance-none border-b-2 p-1 w-full" name="name">
             </div>
             <div class="mt-4">
-                <div> <label for="email" class="text-sm sm:text-base font-encode-sans text-slate-900">
+                <div> <label for="email" class="text-sm font-encode-sans text-gray-400">
                         Email</label>
                 </div>
-                <input id="email" type="text"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="email">
+                <input id="email" type="text" placeholder="Masukkan email"
+                    class="appearance-none border-b-2 p-1 w-full" name="email">
             </div>
             <div class="mt-4">
-                <div> <label for="subject" class="text-sm sm:text-base font-encode-sans text-slate-900">
+                <div> <label for="subject" class="text-sm font-encode-sans text-gray-400">
                         Subject</label>
                 </div>
-                <input id="subject" type="text"
-                    class="appearance-none border p-1 w-full rounded-md bg-neutral-100" name="subject">
+                <input id="subject" type="text" placeholder="Masukkan subject"
+                    class="appearance-none border-b-2 p-1 w-full" name="subject">
             </div>
             <div class="mt-4">
-                <div> <label for="message" class="text-sm sm:text-base font-encode-sans text-slate-900">Message</label>
+                <div> <label for="message" class="text-sm font-encode-sans text-gray-400">Message</label>
                 </div>
-                <textarea id="message" type="text" class="appearance-none border p-1 w-full rounded-md bg-neutral-100"
+                <textarea placeholder="Masukkan pesan" id="message" type="text" class="appearance-none border-2 p-1 w-full"
                     name="message"></textarea>
             </div>
             <input type="hidden" value="{{ $sites->no }}" name="nosites">
             <div class="mt-5 text-center">
                 <button type="submit"
-                    class="border-2 border-{{ $color[2] }}-400 font-bold font-encode-sans hover:bg-{{ $color[2] }}-400 hover:text-white focus:ring-{{ $color[2] }}-200 focus:ring-2 text-{{ $color[2] }}-400 px-8 py-2 rounded-full">
+                    class="text-white hover:bg-{{ $color[2] }}-500 bg-{{ $color[2] }}-400 font-bold font-encode-sans px-8 py-2 rounded-full">
                     Send
                 </button>
             </div>
@@ -105,5 +105,5 @@
     </div>
 </div>
 
-@include('inc.footer1')
+@include('inc.footer2')
 @endsection

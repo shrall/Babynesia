@@ -51,7 +51,11 @@ class ProdukController extends Controller
     {
         $stocks = $produk->stocks->where('product_stock', '!=', 0);
 
-        return view('user.produkdetail', compact('produk', 'stocks'));
+        if (config('services.app.type') == 1) {
+            return view('user.produkdetail', compact('produk', 'stocks'));
+        } else {
+            return view('user.bbn.produkdetail', compact('produk', 'stocks'));
+        }
     }
 
     /**
