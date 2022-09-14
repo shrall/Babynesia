@@ -157,8 +157,14 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
+
                     : Produk::where('disable', 0)->where('disable', '!=', 1)
                     ->where('disable', '!=', 1)
                     ->where(function ($query) use ($searchValue) {
@@ -171,6 +177,11 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
@@ -180,10 +191,20 @@ class PageController extends Controller
                         $query->where('product_stock', '!=', 0);
                     })->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -193,10 +214,20 @@ class PageController extends Controller
                     })->where('featured', 1)
                         ->where('disable', '!=', 1)
                         ->orderBy('kode_produk', 'desc')
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('featured', 1)
                         ->where('disable', '!=', 1)
                         ->orderBy('kode_produk', 'desc')
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->paginate(12);
                 }
             } else if (!empty($filter)) {
@@ -205,23 +236,63 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->orderBy('kode_produk', 'desc')
                     ->where('stat', '0')
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
                     : Produk::where('disable', 0)->orderBy('kode_produk', 'desc')
                     ->where('stat', '0')
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
@@ -248,6 +319,10 @@ class PageController extends Controller
                     ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                    })->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
                     })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
@@ -262,6 +337,10 @@ class PageController extends Controller
                     ->orWhere('ket', 'LIKE', '%' . $keyword . '%')
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
+                    })->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
                     })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
@@ -274,11 +353,21 @@ class PageController extends Controller
                     })->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -287,13 +376,23 @@ class PageController extends Controller
                         $query->where('product_stock', '!=', 0);
                     })->where('featured', 1)
                         ->where('disable', '!=', 1)
-                        ->orderBy('kode_produk', 'desc')
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('featured', 1)
                         ->where('disable', '!=', 1)
-                        ->orderBy('kode_produk', 'desc')
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 }
             } else if (!empty($filter)) {
@@ -302,25 +401,63 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')
                     ->where('stat', '0')
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
                     : Produk::where('disable', 0)->where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')
                     ->where('stat', '0')
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
@@ -376,6 +513,11 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
                     : Produk::where('disable', 0)->where('disable', '!=', 1)
@@ -389,6 +531,11 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
@@ -398,10 +545,20 @@ class PageController extends Controller
                         $query->where('product_stock', '!=', 0);
                     })->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -410,10 +567,20 @@ class PageController extends Controller
                         $query->where('product_stock', '!=', 0);
                     })->where('featured', 1)
                         ->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('featured', 1)
                         ->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 }
@@ -423,20 +590,61 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
-                })->orderBy('kode_produk', 'desc')->paginate(12)
-                    : Produk::where('disable', 0)->orderBy('kode_produk', 'desc')->paginate(12);
+                })->where(function ($query) {
+                    if (config('services.app.type') == 1) {
+                        $query->where('app_type', '==', config('services.app.type'));
+                    }
+                })
+                    ->orderBy('kode_produk', 'desc')
+                    ->paginate(12)
+                    : Produk::where('disable', 0)
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
+                    ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         } else {
@@ -462,6 +670,11 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12)
                     : Produk::where('disable', 0)->where('disable', '!=', 1)->where('image', '!=', null)
@@ -475,6 +688,11 @@ class PageController extends Controller
                     ->orWhereHas('brand', function (Builder $query) use ($keyword) {
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
@@ -486,11 +704,21 @@ class PageController extends Controller
                     })->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('disable', '!=', 1)
                         ->where('stat', $filteredproduct)
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -499,13 +727,23 @@ class PageController extends Controller
                         $query->where('product_stock', '!=', 0);
                     })->where('featured', 1)
                         ->where('disable', '!=', 1)
-                        ->orderBy('kode_produk', 'desc')
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
                         ->paginate(12)
                         : Produk::where('disable', 0)->where('featured', 1)
                         ->where('disable', '!=', 1)
-                        ->orderBy('kode_produk', 'desc')
                         ->where('image', '!=', null)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 }
             } else if (!empty($filter)) {
@@ -514,22 +752,62 @@ class PageController extends Controller
                     $subs = KategoriChild::where('child_id', $subfilter)->get()->first;
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                     $subsname = $subs->child_name->child_name;
                 } else {
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
-                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12)
-                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)->orderBy('kode_produk', 'desc')->paginate(12);
+                    })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12)
+                        : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
+                        ->where(function ($query) {
+                            if (config('services.app.type') == 1) {
+                                $query->where('app_type', '==', config('services.app.type'));
+                            }
+                        })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
                 }
             } else {
                 $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                     $query->where('product_stock', '!=', 0);
                 })->where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')->paginate(12)
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
+                    ->paginate(12)
                     : Produk::where('disable', 0)->where('image', '!=', null)
-                    ->orderBy('kode_produk', 'desc')->paginate(12);
+                    ->where(function ($query) {
+                        if (config('services.app.type') == 1) {
+                            $query->where('app_type', '==', config('services.app.type'));
+                        }
+                    })
+                    ->orderBy('kode_produk', 'desc')
+                    ->paginate(12);
                 $filteredproduct = 'allproduct';
             }
         }
