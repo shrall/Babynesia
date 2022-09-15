@@ -110,9 +110,17 @@ class FakturController extends Controller
 
         if (!empty($request->pengirim_name)) {
             $faktur->update([
-                'sender_name' => $request->pengirim_name,
+                'sender_name' => config('services.app.type') == 2 ? 'FAV - ' . $request->pengirim_name : $request->pengirim_name,
                 'sender_phone' => $request->pengirim_hp,
                 'sender_address' => $request->pengirim_address
+            ]);
+        }
+        // if bbn always dropship
+        else if (config('services.app.type') == 2) {
+            $faktur->update([
+                'sender_name' => 'FAV',
+                'sender_phone' => 'FAV',
+                'sender_address' => 'FAV'
             ]);
         }
 

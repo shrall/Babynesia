@@ -30,7 +30,7 @@
                 <h6 class="mt-4 font-encode-sans font-bold text-slate-900">Opsi Dropship</h6>
                 <div class="px-4 mt-3">
                     <div class="">
-                        <input type="checkbox" {{ config('services.app.type') != 1 ? 'checked' : '' }} name="dropship" id="dropship" class="peer cursor-pointer" value="yes">
+                        <input type="checkbox" name="dropship" id="dropship" class="peer cursor-pointer" value="yes">
                         <label for="dropship"
                             class="ml-1 text-sm sm:text-base font-encode-sans text-slate-900 cursor-pointer">Dropship (Opsional)</label>
                         <div class="mt-3 peer-checked:block hidden">
