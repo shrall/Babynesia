@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img->content) ? "background: url('uploads/'".asset($bg_img->content).")" : "" }}">
+    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img->content) ? "background: url(".asset('public/uploads/'.$bg_img->content).")" : "" }}">
         @yield('content')
     </div>
     @if (!env('APP_DEBUG'))
