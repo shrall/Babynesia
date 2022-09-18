@@ -117,10 +117,13 @@ class FakturController extends Controller
         }
         // if bbn always dropship
         else if (config('services.app.type') == 2) {
+            $senderFav = Webconfig::where('name', 'nama_pengirim_fav')->get()->last()->content;
+            $phoneFav = Webconfig::where('name', 'telepon_pengirim_fav')->get()->last()->content;
+            $addressFav = Webconfig::where('name', 'alamat_pengirim_fav')->get()->last()->content;
             $faktur->update([
-                'sender_name' => 'FAV',
-                'sender_phone' => 'FAV',
-                'sender_address' => 'FAV'
+                'sender_name' => $senderFav,
+                'sender_phone' => $phoneFav,
+                'sender_address' => $addressFav
             ]);
         }
 
