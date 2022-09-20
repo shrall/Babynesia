@@ -40,6 +40,11 @@ class WebconfigSeeder extends Seeder
         $status->showed_name = 'ID Kota Pengirim dari API Rajaongkir';
         $status->save();
         $status = new Webconfig();
+        $status->name = 'kota_pengirim_fav';
+        $status->content = 444;
+        $status->showed_name = 'ID Kota Pengirim dari API Rajaongkir Website Fav';
+        $status->save();
+        $status = new Webconfig();
         $status->name = 'hide_product_non_img';
         $status->showed_name = 'Sembunyikan Produk Tanpa Gambar';
         $status->save();
