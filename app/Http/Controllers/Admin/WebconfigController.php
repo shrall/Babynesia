@@ -85,7 +85,11 @@ class WebconfigController extends Controller
             $webconfig->update([
                 'content' => $request->wait_time
             ]);
-            $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+            if (env('APP_TYPE') == 1) {
+                $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+            } elseif (env('APP_TYPE') == 2) {
+                $webconfig = Webconfig::where('name', 'kota_pengirim_fav')->first();
+            }
             $webconfig->update([
                 'content' => $request->kota_pengirim
             ]);
