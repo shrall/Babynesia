@@ -33,12 +33,12 @@ class AppServiceProvider extends ServiceProvider
 
         $allkategoris = Kategori::where(function ($query) {
             if (config('services.app.type') == 1) {
-                $query->where('app_type', '==', config('services.app.type'));
+                $query->where('app_type', config('services.app.type'));
             }
         })->orderBy('no_kategori', 'desc')->get();
         $subkategoris = KategoriChild::where(function ($query) {
             if (config('services.app.type') == 1) {
-                $query->where('app_type', '==', config('services.app.type'));
+                $query->where('app_type', config('services.app.type'));
             }
         })->get();
 

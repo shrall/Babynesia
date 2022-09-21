@@ -159,7 +159,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -179,7 +179,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -193,7 +193,7 @@ class PageController extends Controller
                         ->where('stat', $filteredproduct)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -202,7 +202,7 @@ class PageController extends Controller
                         ->where('stat', $filteredproduct)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -216,7 +216,7 @@ class PageController extends Controller
                         ->orderBy('kode_produk', 'desc')
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->paginate(12)
@@ -225,7 +225,7 @@ class PageController extends Controller
                         ->orderBy('kode_produk', 'desc')
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->paginate(12);
@@ -239,7 +239,7 @@ class PageController extends Controller
                     })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -247,7 +247,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -259,7 +259,7 @@ class PageController extends Controller
                     })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -267,7 +267,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -280,7 +280,7 @@ class PageController extends Controller
                     ->where('stat', '0')
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -289,7 +289,7 @@ class PageController extends Controller
                     ->where('stat', '0')
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -321,7 +321,7 @@ class PageController extends Controller
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -339,7 +339,7 @@ class PageController extends Controller
                         $query->where('nama_brand', 'LIKE', '%' . $keyword . '%');
                     })->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -355,7 +355,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -365,7 +365,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -379,7 +379,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -389,7 +389,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -404,7 +404,7 @@ class PageController extends Controller
                     })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -412,7 +412,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -424,7 +424,7 @@ class PageController extends Controller
                     })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -432,7 +432,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -445,7 +445,7 @@ class PageController extends Controller
                     ->where('stat', '0')
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -454,7 +454,7 @@ class PageController extends Controller
                     ->where('stat', '0')
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -515,7 +515,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -533,7 +533,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -547,7 +547,7 @@ class PageController extends Controller
                         ->where('stat', $filteredproduct)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -556,7 +556,7 @@ class PageController extends Controller
                         ->where('stat', $filteredproduct)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -569,7 +569,7 @@ class PageController extends Controller
                         ->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -578,7 +578,7 @@ class PageController extends Controller
                         ->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -593,7 +593,7 @@ class PageController extends Controller
                     })->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -601,7 +601,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -613,7 +613,7 @@ class PageController extends Controller
                     })->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -621,7 +621,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -632,7 +632,7 @@ class PageController extends Controller
                     $query->where('product_stock', '!=', 0);
                 })->where(function ($query) {
                     if (config('services.app.type') == 1) {
-                        $query->where('app_type', '==', config('services.app.type'));
+                        $query->where('app_type', config('services.app.type'));
                     }
                 })
                     ->orderBy('kode_produk', 'desc')
@@ -640,7 +640,7 @@ class PageController extends Controller
                     : Produk::where('disable', 0)
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -672,7 +672,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -690,7 +690,7 @@ class PageController extends Controller
                     })
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -706,7 +706,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -716,7 +716,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -730,7 +730,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -740,7 +740,7 @@ class PageController extends Controller
                         ->where('image', '!=', null)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -755,7 +755,7 @@ class PageController extends Controller
                     })->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -763,7 +763,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('subkategory', $subs->child_name->child_id)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -775,7 +775,7 @@ class PageController extends Controller
                     })->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -783,7 +783,7 @@ class PageController extends Controller
                         : Produk::where('disable', 0)->where('kategory', $kategori->no_kategori)->where('image', '!=', null)->where('disable', '!=', 1)
                         ->where(function ($query) {
                             if (config('services.app.type') == 1) {
-                                $query->where('app_type', '==', config('services.app.type'));
+                                $query->where('app_type', config('services.app.type'));
                             }
                         })
                         ->orderBy('kode_produk', 'desc')
@@ -795,7 +795,7 @@ class PageController extends Controller
                 })->where('image', '!=', null)
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')
@@ -803,7 +803,7 @@ class PageController extends Controller
                     : Produk::where('disable', 0)->where('image', '!=', null)
                     ->where(function ($query) {
                         if (config('services.app.type') == 1) {
-                            $query->where('app_type', '==', config('services.app.type'));
+                            $query->where('app_type', config('services.app.type'));
                         }
                     })
                     ->orderBy('kode_produk', 'desc')

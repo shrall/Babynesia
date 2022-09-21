@@ -154,31 +154,36 @@ class DetailCartController extends Controller
     {
         // $produk = Produk::where('kode_produk', $request->kode_produk);
         $kode_produk_stok = $request->ukuran;
+        $produk = Produk::findOrFail($request->kode_produk);
 
         // check if ada cart yang sama produknya
         $carts = DetailCart::where('no_user', Auth::id())->get();
         if (!empty($carts[0])) {
-            $con = false;
-            foreach ($carts as $cart) {
-                if ($cart->kode_produk == $request->kode_produk && $cart->kode_produk_stock == $kode_produk_stok) {
-                    $con = true;
-                    break;
+            if ($carts[0]->produk->app_type == $produk->app_type) {
+                $con = false;
+                foreach ($carts as $cart) {
+                    if ($cart->kode_produk == $request->kode_produk && $cart->kode_produk_stock == $kode_produk_stok) {
+                        $con = true;
+                        break;
+                    }
                 }
-            }
 
-            if ($con == true) {
-                $cart->update([
-                    'jumlah' => $cart->jumlah + $request->jumlah
-                ]);
+                if ($con == true) {
+                    $cart->update([
+                        'jumlah' => $cart->jumlah + $request->jumlah
+                    ]);
+                } else {
+                    DetailCart::create([
+                        'no_user' => Auth::id(),
+                        'kode_produk' => $request->kode_produk,
+                        'kode_produk_stock' => $kode_produk_stok,
+                        'jumlah' => $request->jumlah,
+                        'destination_city_id' => 0,
+                        // 'note' => $request->note
+                    ]);
+                }
             } else {
-                DetailCart::create([
-                    'no_user' => Auth::id(),
-                    'kode_produk' => $request->kode_produk,
-                    'kode_produk_stock' => $kode_produk_stok,
-                    'jumlah' => $request->jumlah,
-                    'destination_city_id' => 0,
-                    // 'note' => $request->note
-                ]);
+                return redirect()->back()->with('alert', 'Mohon selesaikan transaksi yang ada di keranjang terlebih dahulu.');
             }
         } else {
             DetailCart::create([
