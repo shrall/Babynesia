@@ -42,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
             }
         })->get();
 
+        //get whatsapp number
+        $whatsapp_number = Webconfig::where('name', 'customer_mobile')->get()->last();
         //get color webconfig
         $bg_color = Webconfig::where('name', 'bg_color')->get()->last();
         $text_color = Webconfig::where('name', 'text_color')->get()->last();
@@ -88,5 +90,6 @@ class AppServiceProvider extends ServiceProvider
         View::share('hideconfig', $hideconfig);
         View::share('statmenus', $statmenus);
         View::share('navmenus', $navmenus);
+        View::share('whatsapp_number', $whatsapp_number);
     }
 }
