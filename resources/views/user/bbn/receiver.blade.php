@@ -356,11 +356,10 @@ function get_shipment(subdistrict_id) {
             let rupiah = Intl.NumberFormat('id-ID');
             $('#expedition').prop("disabled", false);
             $('#expedition').html('');
-            console.log('arraynya '+data);
-            Object.values(data['costs']).forEach((element, index) => {
-                $('#expedition').append('<option value="JNE ' + element.service + '|' + element['cost'][0]['value'] +
-                    '"> JNE ' +
-                    element.service + ' - ' + 'Rp. ' + rupiah.format(element['cost'][0]['value']) + '</option>')
+            Object.values(data).forEach((element, index) => {
+                $('#expedition').append('<option value="' + element[0] +
+                    '">' +
+                    element[1] + '</option>')
             });
 
             $('#expedition').append('<option value="' + "Keep (maxs 3 bln)" + '|' + '0' +
@@ -395,7 +394,6 @@ $('#provinces').on('change', function(e) {
             $('#cities').prop("disabled", false);
             // $('#expedition').prop("disabled", false);
             $('#cities').html('');
-            console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
                 if (index == 0) {
                     runDistrict(element.city_id);
@@ -428,7 +426,6 @@ $('#cities').on('change', function(e) {
             $('#subdistricts').prop("disabled", false);
             // $('#expedition').prop("disabled", false);
             $('#subdistricts').html('');
-            console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
                 if (index == 0) {
                     get_shipment(element.subdistrict_id);
@@ -461,7 +458,6 @@ function runDistrict (city_id) {
             $('#subdistricts').prop("disabled", false);
             // $('#expedition').prop("disabled", false);
             $('#subdistricts').html('');
-            console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
                 if (index == 0) {
                     get_shipment(element.subdistrict_id);

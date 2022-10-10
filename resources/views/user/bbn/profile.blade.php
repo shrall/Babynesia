@@ -523,7 +523,6 @@ $('#provinsi-indo').on('change', function(e) {
             // $('#city-indo').prop("disabled", false);
             // $('#expedition').prop("disabled", false);
             $('#city-indo').html('');
-            console.log('arraynya '+data);
             Object.values(data).forEach((element, index) => {
                 if (index == 0) {
                         runDistrict(element.city_id);

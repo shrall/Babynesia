@@ -83,6 +83,29 @@ class ReceiverController extends Controller
             $weight += $cart->produk->weight * $cart->jumlah;
         }
 
+        // $couriers = ['jne', 'pos', 'sicepat', 'jnt', 'lion', 'anteraja'];
+        // $shipmentss = [];
+        // $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
+        // foreach ($couriers as $courier) {
+        //     $temp = Http::withHeaders([
+        //         'key' => config('services.rajaongkir.token'),
+        //     ])->post('https://pro.rajaongkir.com/api/cost', [
+        //         'origin' => $webconfig->content,
+        //         "originType" => "city",
+        //         'destination' => 1,
+        //         "destinationType" => "subdistrict",
+        //         'weight' => $weight,
+        //         'courier' => $courier,
+        //     ])->json()['rajaongkir']['results'][0];
+        //     // array_push($shipmentss, $temp);
+        //     foreach ($temp['costs'] as $element) {
+        //         $value = $temp['name'] . ' ' . $element['service'] . '|' . $element['cost'][0]['value'];
+        //         $text = $temp['name'] . ' ' . $element['service'] . ' - Rp. ' . substr(number_format($element['cost'][0]['value'], 2, ',', '.'), 0, -3);
+        //         array_push($shipmentss, [$value, $text]);
+        //     }
+        // }
+        // dd($shipmentss);
+
         if (config('services.app.type') == 1) {
             return view('user.receiver', compact('note', 'provinces', 'propinsi_id', 'kota_id', 'subdistrict_id', 'cities', 'subdistricts', 'weight', 'voucher'));
         } else {
@@ -148,18 +171,39 @@ class ReceiverController extends Controller
 
     public function get_shipment(Request $request)
     {
+        $couriers = ['jne', 'pos', 'sicepat', 'jnt', 'lion', 'anteraja'];
         $webconfig = Webconfig::where('name', 'kota_pengirim')->first();
-        $shipments = Http::withHeaders([
-            'key' => config('services.rajaongkir.token'),
-        ])->post('https://pro.rajaongkir.com/api/cost', [
-            'origin' => $webconfig->content, //@marshall ini perlu dirubah ke asal pengirim
-            "originType" => "city",
-            'destination' => $request->subdistrict_id,
-            "destinationType" => "subdistrict",
-            'weight' => $request->weight,
-            'courier' => 'jne',
-        ])->json()['rajaongkir']['results'][0];
-        // return view('inc.shipment_list', compact('shipments'));
+        $shipments = [];
+        foreach ($couriers as $courier) {
+            $temp = Http::withHeaders([
+                'key' => config('services.rajaongkir.token'),
+            ])->post('https://pro.rajaongkir.com/api/cost', [
+                'origin' => $webconfig->content, //@marshall ini perlu dirubah ke asal pengirim
+                "originType" => "city",
+                'destination' => $request->subdistrict_id,
+                "destinationType" => "subdistrict",
+                'weight' => $request->weight,
+                'courier' => $courier,
+            ])->json()['rajaongkir']['results'][0];
+
+            foreach ($temp['costs'] as $element) {
+                $value = $temp['name'] . ' ' . $element['service'] . '|' . $element['cost'][0]['value'];
+                $text = $temp['name'] . ' ' . $element['service'] . ' - Rp. ' . substr(number_format($element['cost'][0]['value'], 2, ',', '.'), 0, -3);
+                array_push($shipments, [$value, $text]);
+            }
+        }
+
+        // $shipments = Http::withHeaders([
+        //     'key' => config('services.rajaongkir.token'),
+        // ])->post('https://pro.rajaongkir.com/api/cost', [
+        //     'origin' => $webconfig->content,
+        //     "originType" => "city",
+        //     'destination' => $request->subdistrict_id,
+        //     "destinationType" => "subdistrict",
+        //     'weight' => $request->weight,
+        //     'courier' => 'pos',
+        // ])->json()['rajaongkir']['results'][0];
+
         return $shipments;
     }
 
