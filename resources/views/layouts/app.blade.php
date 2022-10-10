@@ -47,8 +47,8 @@
         style="{{ !empty($bg_img->content) ? 'background: url(' . asset('public/uploads/' . $bg_img->content) . ')' : '' }}">
         @yield('content')
         <a id="wa-link" target="blank">
-            <div class="fab fa-whatsapp-square text-6xl fixed z-50 bottom-0 right-4 cursor-pointer hover:opacity-50 bg-white px-2 rounded-lg"
-                style="color: #25D366;"></div>
+            <img class="fixed z-50 bottom-0 right-4 cursor-pointer hover:opacity-80 w-1/2 xl:w-1/6"
+                src="{{ asset('images/chat-wa.png') }}" alt="" srcset="">
         </a>
     </div>
     @if (!env('APP_DEBUG'))
