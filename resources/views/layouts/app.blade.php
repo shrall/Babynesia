@@ -43,8 +43,13 @@
 </head>
 
 <body>
-    <div id="app" class="bg-neutral-100" style="{{ !empty($bg_img->content) ? "background: url(".asset('public/uploads/'.$bg_img->content).")" : "" }}">
+    <div id="app" class="bg-neutral-100 relative"
+        style="{{ !empty($bg_img->content) ? 'background: url(' . asset('public/uploads/' . $bg_img->content) . ')' : '' }}">
         @yield('content')
+        <a id="wa-link" target="blank">
+            <img class="fixed z-50 bottom-0 right-4 cursor-pointer hover:opacity-80 w-1/2 xl:w-1/6"
+                src="{{ asset('images/chat-wa.png') }}" alt="" srcset="">
+        </a>
     </div>
     @if (!env('APP_DEBUG'))
         <script>
@@ -53,6 +58,11 @@
             }
         </script>
     @endif
+    <script>
+        var scrt_var =
+            `https://wa.me/${@json($whatsapp_number->content)}?text=Halo%20${@json(env('APP_NAME'))}%20perkenalkan%20saya`;
+        document.getElementById("wa-link").setAttribute("href", scrt_var);
+    </script>
     {{-- FLOWBITE --}}
     {{-- <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script> --}}
     <script src="{{ asset('flowbite/dist/flowbite.js') }}"></script>

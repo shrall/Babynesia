@@ -44,12 +44,6 @@
                         value="{{
                         array_values($webconfigs->where("name", "customer_address")->toArray())[0]["content"] }}">
                 </div>
-                <div class="col-span-5">Handphone Klien</div>
-                <div class="col-span-7 flex items-center gap-x-2">
-                    <input type="text" name="client_hp" id="client_hp" class="admin-input"
-                        value="{{
-                        array_values($webconfigs->where("name", "customer_mobile")->toArray())[0]["content"] }}">
-                </div>
                 <div class="col-span-5">Telepon Klien</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="text" name="client_phone" id="client_phone" class="admin-input"
@@ -69,6 +63,12 @@
                         value="{{
                         array_values($webconfigs->where("name", "tagline")->toArray())[0]["content"] }}">
                 </div> --}}
+                <div class="col-span-5">Nomor Whatsapp</div>
+                <div class="col-span-7 flex items-center gap-x-2">
+                    <input type="text" name="client_hp" id="client_hp" class="admin-input"
+                        placeholder="WAJIB DALAM FORMAT 62XXXXXXXXX"
+                        value="{{ array_values($webconfigs->where('name', 'customer_mobile')->toArray())[0]['content'] }}">
+                </div>
                 <div class="col-span-5">E-Mail Utama</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="text" name="main_email" id="main_email" class="admin-input"

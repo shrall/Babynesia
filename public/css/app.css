@@ -3482,6 +3482,9 @@ textarea.form-control.is-invalid{
 .-left-full{
   left: -100%;
 }
+.right-4{
+  right: 1rem;
+}
 .-bottom-full{
   bottom: -100%;
 }
@@ -3493,9 +3496,6 @@ textarea.form-control.is-invalid{
 }
 .top-4{
   top: 1rem;
-}
-.right-4{
-  right: 1rem;
 }
 .z-50{
   z-index: 50;
@@ -3748,11 +3748,11 @@ textarea.form-control.is-invalid{
 .h-24{
   height: 6rem;
 }
-.h-vh-90{
-  height: 90vh;
-}
 .h-4{
   height: 1rem;
+}
+.h-vh-90{
+  height: 90vh;
 }
 .max-h-128{
   max-height: 36rem;
@@ -3792,6 +3792,9 @@ textarea.form-control.is-invalid{
 }
 .w-screen{
   width: 100vw;
+}
+.w-1\/2{
+  width: 50%;
 }
 .w-24{
   width: 6rem;
@@ -3839,9 +3842,6 @@ textarea.form-control.is-invalid{
 }
 .w-6{
   width: 1.5rem;
-}
-.w-10{
-  width: 2.5rem;
 }
 .max-w-6xl{
   max-width: 72rem;
@@ -6082,6 +6082,10 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
           text-decoration-line: none;
 }
 
+.hover\:opacity-80:hover{
+  opacity: 0.8;
+}
+
 .hover\:outline-none:hover{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -6888,6 +6892,9 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
   }
   .xl\:w-vw-50{
     width: 50vw;
+  }
+  .xl\:w-1\/6{
+    width: 16.666667%;
   }
   .xl\:w-8\/10{
     width: 80%;
