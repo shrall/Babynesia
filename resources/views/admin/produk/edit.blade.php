@@ -125,12 +125,12 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[0]->imageurl }}"
+                            <img src="{{ asset('uploads/') . '/' . $produk->image }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
                             <input type="radio" name="image_primary" value="0"
-                                {{ $produk->image == $produk->images[0]->imageurl ? 'checked' : '' }} id="">
+                                {{ $produk->image == $produk->image ? 'checked' : '' }} id="">
                             Gambar Utama
                         </div>
                     @else
