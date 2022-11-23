@@ -19,10 +19,21 @@
                             tampilkan.
                         </div>
                     </div>
-                    <div class="col-span-7">
+                    <div class="col-span-6">
                         <div class="flex flex-col">
                             Cari:
                             <input type="text" name="search" id="search" class="admin-input w-full">
+                        </div>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col">
+                            Merk:
+                            <select name="brand" id="brand" class="admin-input w-full">
+                                <option value="no">-</option>
+                                @foreach ($brands as $brand)
+                                    <option value="{{ $brand->no_brand }}">{{ $brand->nama_brand }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-span-6">
@@ -38,11 +49,11 @@
                     </div>
                     <div class="col-span-6">
                         <div class="flex flex-col">
-                            Merk:
-                            <select name="brand" id="brand" class="admin-input w-full">
+                            Subkategori:
+                            <select name="subcategory" id="subcategory" class="admin-input w-full">
                                 <option value="no">-</option>
-                                @foreach ($brands as $brand)
-                                    <option value="{{ $brand->no_brand }}">{{ $brand->nama_brand }}</option>
+                                @foreach ($subcategories as $subkategori)
+                                    <option value="{{ $subkategori->child_id }}">{{ $subkategori->child_name }}</option>
                                 @endforeach
                             </select>
                         </div>

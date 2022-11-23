@@ -26,45 +26,50 @@ class ProdukController extends Controller
     {
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->with('stocks')->where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = ' ';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function index_promo()
     {
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('stat', 'd')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'Promo';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function index_restock()
     {
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('stat', 'r')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'Restock';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function index_disabled()
     {
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', 1)->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'Non-Aktif';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function index_fav()
     {
         $products = Produk::where('app_type', 2)->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'FAV';
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function index_soldout()
@@ -74,9 +79,10 @@ class ProdukController extends Controller
             ->whereRelation('stocks', 'product_stock', 0)
             ->get();
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
-        return view('admin.produk.soldout', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     /**
@@ -409,6 +415,9 @@ class ProdukController extends Controller
         if (session('product_search_category') != 'no') {
             $products->where('kategory', session('product_search_category'));
         }
+        if (session('product_search_subcategory') != 'no') {
+            $products->where('subkategory', session('product_search_subcategory'));
+        }
         if (session('product_search_brand') != 'no') {
             $products->where('brand_produk', session('product_search_brand'));
         }
@@ -417,9 +426,10 @@ class ProdukController extends Controller
         }
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = " ";
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
     public function search(Request $request)
     {
@@ -431,6 +441,7 @@ class ProdukController extends Controller
         session(['product_search_status' => $request->status]);
         session(['product_search_search' => $request->search]);
         session(['product_search_category' => $request->category]);
+        session(['product_search_subcategory' => $request->subcategory]);
         session(['product_search_brand' => $request->brand]);
         session(['product_search_rule' => $request->rule]);
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', intval($request->status));
@@ -444,6 +455,9 @@ class ProdukController extends Controller
         if ($request->category != 'no') {
             $products->where('kategory', $request->category);
         }
+        if ($request->subcategory != 'no') {
+            $products->where('subkategory', $request->subcategory);
+        }
         if ($request->brand != 'no') {
             $products->where('brand_produk', $request->brand);
         }
@@ -453,9 +467,10 @@ class ProdukController extends Controller
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
 
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
+        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = " ";
-        return view('admin.produk.index', compact('products', 'categories', 'brands', 'tipeproduk'));
+        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     public function add_type(Request $request)
