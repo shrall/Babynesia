@@ -47,13 +47,27 @@
                     <label for="select{{ $cart->no_detail_cart }}"
                         class="font-encode-sans text-gray-400 text-sm sm:text-base ml-1 cursor-pointer">Select Cart</label>
                 </div> --}}
-                <div class="mb-2 flex justify-end">
-                    <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="destroy-{{ $cart->no_detail_cart }}">@csrf</form>
-                    <input type="hidden" name="iddestroy" value="{{ $cart->no_detail_cart }}" form="destroy-{{ $cart->no_detail_cart }}" id="">
-                    <button form="destroy-{{ $cart->no_detail_cart }}" class="px-1 text-red-500 text-sm sm:text-base font-encode-sans hover:bg-red-500 hover:text-white">
-                        <i class="bx bx-x text-2xl" aria-hidden="true"></i>
-                        {{-- Delete --}}
-                    </button>
+                <div class="mb-2 flex justify-between">
+                    <div>
+                        @if (!empty(Session::get('lack_products')))
+                        @foreach (Session::get('lack_products') as $lack_id)
+                        @if ($lack_id == $cart->kode_produk)
+                        <p class="font-encode-sans text-red-500 text-center">
+                            Stok produk ini tidak cukup.
+                        </p>
+                        @break
+                        @endif
+                        @endforeach
+                        @endif
+                    </div>
+                    <div>
+                        <form action="{{ route('user.detailcart.customdestroy') }}" method="post" id="destroy-{{ $cart->no_detail_cart }}">@csrf</form>
+                        <input type="hidden" name="iddestroy" value="{{ $cart->no_detail_cart }}" form="destroy-{{ $cart->no_detail_cart }}" id="">
+                        <button form="destroy-{{ $cart->no_detail_cart }}" class="px-1 text-red-500 text-sm sm:text-base font-encode-sans hover:bg-red-500 hover:text-white">
+                            <i class="bx bx-x text-2xl" aria-hidden="true"></i>
+                            {{-- Delete --}}
+                        </button>
+                    </div>
                 </div>
                 <form action="{{ route('user.detailcart.update', $cart) }}" method="post"
                     id="updatecart{{ $cart->no_detail_cart }}" enctype="multipart/form-data">@csrf

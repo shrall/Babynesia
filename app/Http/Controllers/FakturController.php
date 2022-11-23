@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
+use function PHPUnit\Framework\isEmpty;
+
 class FakturController extends Controller
 {
     /**
@@ -52,11 +54,17 @@ class FakturController extends Controller
         $carts = unserialize(base64_decode($request->carts));
 
         //pengecekan stock
+        $lack_products = [];
         foreach ($carts as $cart) {
             if ($cart->produkstock->product_stock < $cart->jumlah) {
                 // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
-                return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk ' . $cart->produk->nama_produk . ' tidak cukup.');
+
+                // return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk ' . $cart->produk->nama_produk . ' tidak cukup.');
+                array_push($lack_products, $cart->kode_produk);
             }
+        }
+        if (!empty($lack_products)) {
+            return redirect(route('user.cart.index'))->with(['lack_products' => $lack_products]);
         }
 
         $voucher = null;
