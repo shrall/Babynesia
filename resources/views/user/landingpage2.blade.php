@@ -168,7 +168,7 @@
                             class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                         <div class="p-3 pb-5">
                             <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
-                                {{ $produk->disable }} {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
+                                {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
                             </h6>
                             <div class="flex justify-between items-center sm:my-3 my-2">
     

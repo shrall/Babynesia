@@ -55,7 +55,7 @@ class FakturController extends Controller
         foreach ($carts as $cart) {
             if ($cart->produkstock->product_stock < $cart->jumlah) {
                 // return redirect()->back()->with('alert', 'Stock produk ' . $cart->produk->nama_produk . ' tidak tersedia.');
-                return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk tidak cukup.');
+                return redirect(route('user.cart.index'))->with('alert', 'Maaf, pesanan tidak bisa diproses, stok produk ' . $cart->produk->nama_produk . ' tidak cukup.');
             }
         }
 
