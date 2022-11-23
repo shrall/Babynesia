@@ -150,7 +150,7 @@ class FakturController extends Controller
         if ($request->date_end) {
             $fakturs->where('tanggal2', '<=', date('Y-m-d', strtotime($request->date_end . ' + 1 days')));
         }
-        $fakturs = $fakturs->paginate(100);
+        $fakturs = $fakturs->paginate(500);
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
@@ -178,7 +178,7 @@ class FakturController extends Controller
         if (session('faktur_date_end')) {
             $fakturs->where('tanggal2', '<=', session('faktur_date_end'));
         }
-        $fakturs = $fakturs->paginate(100);
+        $fakturs = $fakturs->paginate(500);
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
     }
