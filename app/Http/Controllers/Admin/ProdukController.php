@@ -82,7 +82,7 @@ class ProdukController extends Controller
         $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
-        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
+        return view('admin.produk.soldout', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
     /**
@@ -232,7 +232,7 @@ class ProdukController extends Controller
         if ($request->deleteimg) {
             foreach ($request->deleteimg as $key => $value) {
                 if ($produk->images[$key]->imageurl != "noimage.png") {
-                    if(file_exists(storage_path('../public/uploads/' . $produk->images[$key]->imageurl))){
+                    if (file_exists(storage_path('../public/uploads/' . $produk->images[$key]->imageurl))) {
                         unlink(storage_path('../public/uploads/' . $produk->images[$key]->imageurl));
                     }
                 }
@@ -301,7 +301,7 @@ class ProdukController extends Controller
             // dd($oldImages);
             foreach ($oldImages as $key => $oldimage) {
                 if ($oldimage->imageurl != "noimage.png") {
-                    if(file_exists(storage_path('../public/uploads/' . $oldimage->imageurl))){
+                    if (file_exists(storage_path('../public/uploads/' . $oldimage->imageurl))) {
                         unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
                     }
                 }
