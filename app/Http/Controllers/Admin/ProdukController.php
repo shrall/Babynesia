@@ -424,6 +424,21 @@ class ProdukController extends Controller
         if (session('product_search_rule') == '2') {
             $products->whereNotNull('image');
         }
+        if (session('product_search_type') == 'Promo') {
+            $products->where('stat', 'd');
+        }
+        if (session('product_search_type') == 'Restock') {
+            $products->where('stat', 'r');
+        }
+        if (session('product_search_type') == 'FAV') {
+            $products->where('app_type', 2);
+        }
+        if (session('product_search_type') == 'Sold Out') {
+            $products
+                ->with('stocks')
+                ->where('disable', 0)
+                ->whereRelation('stocks', 'product_stock', 0);
+        }
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
         $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
         $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
@@ -438,12 +453,14 @@ class ProdukController extends Controller
         session()->forget('product_search_category');
         session()->forget('product_search_brand');
         session()->forget('product_search_rule');
+        session()->forget('product_search_type');
         session(['product_search_status' => $request->status]);
         session(['product_search_search' => $request->search]);
         session(['product_search_category' => $request->category]);
         session(['product_search_subcategory' => $request->subcategory]);
         session(['product_search_brand' => $request->brand]);
         session(['product_search_rule' => $request->rule]);
+        session(['product_search_type' => $request->tipeproduk]);
         $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', intval($request->status));
         if ($request->search) {
             $products->where('nama_produk', 'like', '%' . $request->search . '%')->where('disable', intval($request->status));
@@ -463,6 +480,21 @@ class ProdukController extends Controller
         }
         if ($request->rule == '2') {
             $products->whereNotNull('image');
+        }
+        if ($request->tipeproduk == 'Promo') {
+            $products->where('stat', 'd');
+        }
+        if ($request->tipeproduk == 'Restock') {
+            $products->where('stat', 'r');
+        }
+        if ($request->tipeproduk == 'FAV') {
+            $products->where('app_type', 2);
+        }
+        if ($request->tipeproduk == 'Sold Out') {
+            $products
+                ->with('stocks')
+                ->where('disable', 0)
+                ->whereRelation('stocks', 'product_stock', 0);
         }
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
 
