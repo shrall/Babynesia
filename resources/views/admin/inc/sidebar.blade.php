@@ -11,7 +11,7 @@
         @endif
         {{-- <a href="{{ route('adminpage.sidearea') }}" class="hover:text-white">Halaman Samping</a> --}}
         {{-- <a href="{{ route('adminpage.news.index') }}" class="hover:text-white">Berita / Artikel</a> --}}
-        {{-- <a href="{{ route('adminpage.guestbook.index') }}" class="hover:text-white">Buku Tamu</a> --}}
+        <!--<a href="{{ route('adminpage.guestbook.index') }}" class="hover:text-white">Buku Tamu</a>-->
         <a href="{{ route('adminpage.faq.index') }}" class="hover:text-white">FAQ</a>
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-shopping-cart"></span>Toko</div>
@@ -24,16 +24,11 @@
         <a href="{{ route('adminpage.produk.index.restock') }}" class="hover:text-white">Produk Restock</a>
         <a href="{{ route('adminpage.produk.index.soldout') }}" class="hover:text-white">Produk Sold Out</a>
         <a href="{{ route('adminpage.produk.index.disabled') }}" class="hover:text-white">Produk Non-Aktif</a>
-        @if (env('APP_TYPE') == 2)
-            <a href="{{ route('adminpage.produk.index.fav') }}" class="hover:text-white">Produk FAV</a>
-        @endif
         {{-- <a href="#" class="hover:text-white">Produk Pelengkap</a> --}}
-        @if (env('APP_TYPE') == 1)
-            <a href="{{ route('adminpage.voucher.index') }}" class="hover:text-white">Voucher Diskon</a>
-        @endif
+        <a href="{{route('adminpage.voucher.index')}}" class="hover:text-white">Voucher Diskon</a>
         <a href="{{ route('adminpage.faktur.index') }}" class="hover:text-white">Laporan Penjualan</a>
         @if (Auth::user()->user_status_id == 3)
-            {{-- <a href="{{ route('adminpage.profit') }}" class="hover:text-white">Laporan Keuntungan</a> --}}
+            <!--<a href="{{ route('adminpage.profit') }}" class="hover:text-white">Laporan Keuntungan</a>-->
         @endif
     </div>
     <div class="flex items-center gap-x-2"><span class="fa fa-fw fa-gear"></span>Pengaturan & Laporan</div>

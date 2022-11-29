@@ -53,12 +53,7 @@ class CartController extends Controller
                 $total += $temp;
             }
 
-
-            if (config('services.app.type') == 1) {
-                return view('user.cart', compact('carts', 'total', 'textVoucher', 'voucher'));
-            } else {
-                return view('user.bbn.cart', compact('carts', 'total', 'textVoucher', 'voucher'));
-            }
+            return view('user.cart', compact('carts', 'total', 'textVoucher', 'voucher'));
         }
 
         return redirect()->route('login');

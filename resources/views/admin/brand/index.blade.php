@@ -28,7 +28,7 @@
                                 <td class="">
                                     {{ $brand->nama_brand }}
                                 </td>
-                                <td><img src="{{ asset('uploads/' . $brand->gambar) }}" class="h-12"></td>
+                                <td><img src="{{ asset('public/uploads/' . $brand->gambar) }}" class="h-12"></td>
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.brand.edit', $brand->no_brand) }}"

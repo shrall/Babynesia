@@ -12,8 +12,8 @@
                 <div class="col-span-12 flex flex-col gap-y-2">
                     <div class="text-xl font-bold">Gambar Header</div>
                     <div class="flex">
-                        <img @if ( array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"] == null) src="{{ asset('svg/images.svg') }}"
-                            @else src="{{ asset('uploads/' .  array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"]) }}" @endif
+                        <img @if ( array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"] == null) src="{{ asset('public/svg/images.svg') }}"
+                            @else src="{{ asset('public/uploads/' .  array_values($webconfigs->where("name", "header_image")->toArray())[0]["content"]) }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-header-image">
                         <input type="file" name="header" id="header-image" class="invisible w-2"
                             onchange="loadFile(event, 'header-image')" accept="image/*">
@@ -27,8 +27,8 @@
                 <div class="col-span-12 flex flex-col gap-y-2">
                     <div class="text-xl font-bold">Gambar Background</div>
                     <div class="flex">
-                        <img @if ( array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"] == null) src="{{ asset('svg/images.svg') }}"
-                            @else src="{{ asset('uploads/' .  array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"]) }}" @endif
+                        <img @if ( array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"] == null) src="{{ asset('public/svg/images.svg') }}"
+                            @else src="{{ asset('public/uploads/' .  array_values($webconfigs->where("name", "bg_img")->toArray())[0]["content"]) }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-bg-image">
                         <input type="file" name="bg" id="bg-image" class="invisible w-2"
                             onchange="loadFile(event, 'bg-image')" accept="image/*">
@@ -43,7 +43,7 @@
                     <div class="text-xl font-bold">Layout Halaman</div>
                 </div>
                 <div class="col-span-6 flex flex-col items-center justify-center gap-2 px-12">
-                    <img src="{{ asset('svg/images.svg') }}">
+                    <img src="{{ asset('public/svg/images.svg') }}">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="web_layout" value="1" id="layout-1"
                             {{  array_values($webconfigs->where("name", "web_layout")->toArray())[0]["content"] == '1' ? 'checked' : '' }}>
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-span-6 flex flex-col items-center justify-center gap-2 px-12">
-                    <img src="{{ asset('svg/images.svg') }}">
+                    <img src="{{ asset('public/svg/images.svg') }}">
                     <div class="flex items-center gap-2">
                         <input type="radio" name="web_layout" value="2" id="layout-2"
                             {{  array_values($webconfigs->where("name", "web_layout")->toArray())[0]["content"] == '2' ? 'checked' : '' }}>

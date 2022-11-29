@@ -12,7 +12,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -23,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('user_status_id', '<=', '2')->where('app_type', env('APP_TYPE'))->get();
+        $users = User::where('user_status_id', '<=', '2')->get();
         return view('admin.user.index', compact('users'));
     }
 
@@ -49,9 +48,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'email' => ['required', Rule::unique('user')->where(function ($query) {
-                return $query->where('app_type', env('APP_TYPE'));
-            })]
+            'email' => 'required|unique:user',
         ]);
         if ($request->password != $request->password_confirmation) {
             return redirect()->route('adminpage.user.create')->with('wrong', 'Password Konfirmasi Salah!');
@@ -73,8 +70,7 @@ class UserController extends Controller
             'hp' => $request->handphone,
             'telp' => $request->telephone ?? 0,
             'tgl_gabung' => Carbon::now(),
-            'user_status_id' => $request->status,
-            'app_type' => env('APP_TYPE')
+            'user_status_id' => $request->status
         ]);
         return redirect()->route('adminpage.user.show', $user->no_user);
     }
@@ -131,7 +127,6 @@ class UserController extends Controller
             $prv = $request->province;
         }
         $user->update([
-            'email' => $request->email,
             'password' => $password,
             'name' => $request->name,
             'alamat' => $request->address,
@@ -155,9 +150,9 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $redirect = null;
-        if ($user->user_status_id <= 2) {
+        if($user->user_status_id <= 2){
             $redirect = redirect()->route('adminpage.user.index');
-        } else {
+        }else{
             $redirect = redirect()->route('adminpage.administrator');
         }
         $user->delete();

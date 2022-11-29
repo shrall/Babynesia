@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Faktur;
 use App\Models\User;
-use App\Models\Webconfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -40,12 +39,7 @@ class UserController extends Controller
         } else {
             $page = $checker;
         }
-
-        if (config('services.app.type') == 1) {
-            return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
-        } else {
-            return view('user.bbn.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
-        }
+        return view('user.profile', compact('fakturs', 'countries', 'provinces', 'checker', 'page'));
     }
 
     /**

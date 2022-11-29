@@ -24,9 +24,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->with('stocks')->where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $products = Produk::with('stocks')->where('disable', 0)->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = ' ';
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
@@ -34,9 +34,9 @@ class ProdukController extends Controller
 
     public function index_promo()
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('stat', 'd')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $products = Produk::where('stat', 'd')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = 'Promo';
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
@@ -44,9 +44,9 @@ class ProdukController extends Controller
 
     public function index_restock()
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('stat', 'r')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $products = Produk::where('stat', 'r')->orderBy('kode_produk', 'desc')->where('disable', 0)->paginate(15);
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = 'Restock';
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
@@ -54,32 +54,21 @@ class ProdukController extends Controller
 
     public function index_disabled()
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', 1)->orderBy('kode_produk', 'desc')->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $products = Produk::where('disable', 1)->orderBy('kode_produk', 'desc')->paginate(15);
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = 'Non-Aktif';
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
     }
 
-    public function index_fav()
-    {
-        $products = Produk::where('app_type', 2)->orderBy('kode_produk', 'desc')->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
-        $brands = Brand::all();
-        $tipeproduk = 'FAV';
-        return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
-    }
-
     public function index_soldout()
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->with('stocks')->orderBy('kode_produk', 'desc')
+        $products = Produk::with('stocks')->orderBy('kode_produk', 'desc')
             ->where('disable', 0)
-            ->whereRelation('stocks', 'product_stock', 0)
-            ->get();
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+            ->whereRelation('stocks', 'product_stock', 0)->get();
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = 'Sold Out';
         return view('admin.produk.soldout', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
@@ -92,10 +81,10 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
+        $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
         return view('admin.produk.create', compact('categories', 'brands', 'products', 'produkstatuses', 'subcategories'));
     }
@@ -108,11 +97,6 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        if (env("APP_TYPE") == 2) {
-            $request->validate([
-                'kode_alias' => 'required|unique:produk',
-            ]);
-        }
         $images = [];
         $keys = [];
         $key_doesnt_exist = false;
@@ -151,8 +135,7 @@ class ProdukController extends Controller
             'stat' => $request->stat,
             'harga_sale' => $request->harga_sale,
             'ket' => $request->content,
-            'disable' => $request->status,
-            'app_type' => env('APP_TYPE')
+            'disable' => $request->status
             // 'complement' => $request->complement
         ]);
         foreach ($images as $key => $value) {
@@ -204,10 +187,10 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
+        $products = Produk::where('disable', 0)->where('nama_produk', '!=', ' ')->orderBy('nama_produk', 'asc')->get();
         $produkstatuses = ProdukStatus::all();
         return view('admin.produk.edit', compact('produk', 'categories', 'subcategories', 'brands', 'products', 'produkstatuses'));
     }
@@ -232,7 +215,7 @@ class ProdukController extends Controller
         if ($request->deleteimg) {
             foreach ($request->deleteimg as $key => $value) {
                 if ($produk->images[$key]->imageurl != "noimage.png") {
-                    if (file_exists(storage_path('../public/uploads/' . $produk->images[$key]->imageurl))) {
+                    if(file_exists(storage_path('../public/uploads/' . $produk->images[$key]->imageurl))){
                         unlink(storage_path('../public/uploads/' . $produk->images[$key]->imageurl));
                     }
                 }
@@ -301,8 +284,8 @@ class ProdukController extends Controller
             // dd($oldImages);
             foreach ($oldImages as $key => $oldimage) {
                 if ($oldimage->imageurl != "noimage.png") {
-                    if (file_exists(storage_path('../public/uploads/' . $oldimage->imageurl))) {
-                        unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
+                    if(file_exists(storage_path('../public/uploads/' . $oldimage->imageurl))){
+                    unlink(storage_path('../public/uploads/' . $oldimage->imageurl));
                     }
                 }
                 $oldimage->delete();
@@ -404,7 +387,7 @@ class ProdukController extends Controller
 
     public function index_search(Request $request)
     {
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', intval(session('product_search_status')));
+        $products = Produk::where('disable', intval(session('product_search_status')));
         if (session('product_search_search')) {
             $products->where('nama_produk', 'like', '%' . session('product_search_search') . '%')->where('disable', intval(session('product_search_status')));
             if (intval(session('product_search_search')) != 0) {
@@ -440,8 +423,8 @@ class ProdukController extends Controller
                 ->whereRelation('stocks', 'product_stock', 0);
         }
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = " ";
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));
@@ -461,7 +444,7 @@ class ProdukController extends Controller
         session(['product_search_brand' => $request->brand]);
         session(['product_search_rule' => $request->rule]);
         session(['product_search_type' => $request->tipeproduk]);
-        $products = Produk::where('app_type', '<=', env('APP_TYPE'))->where('disable', intval($request->status));
+        $products = Produk::where('disable', intval($request->status));
         if ($request->search) {
             $products->where('nama_produk', 'like', '%' . $request->search . '%')->where('disable', intval($request->status));
             if (intval($request->search) != 0) {
@@ -498,8 +481,8 @@ class ProdukController extends Controller
         }
         $products = $products->orderBy('kode_produk', 'desc')->paginate(15);
 
-        $categories = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
-        $subcategories = KategoriChild::where('app_type', '<=', env('APP_TYPE'))->get();
+        $categories = Kategori::all();
+        $subcategories = KategoriChild::all();
         $brands = Brand::all();
         $tipeproduk = " ";
         return view('admin.produk.index', compact('products', 'categories', 'subcategories', 'brands', 'tipeproduk'));

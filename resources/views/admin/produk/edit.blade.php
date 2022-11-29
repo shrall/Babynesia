@@ -9,13 +9,6 @@
         @method('PATCH')
         <div class="grid grid-cols-2 gap-x-8 gap-y-2">
             <div class="admin-card">
-                @if (env('APP_TYPE') == 2)
-                    <div class="col-span-3">Kode Alias</div>
-                    <div class="col-span-9 flex items-center gap-x-2">
-                        <input type="text" name="alias_code" id="alias_code" class="admin-input"
-                            value="{{ $produk->kode_alias }}">
-                    </div>
-                @endif
                 <div class="col-span-3">Kode</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="text" name="kode_produk" id="kode_produk" class="admin-input" disabled
@@ -125,7 +118,7 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->image }}"
+                            <img src="{{ asset('public/uploads/') . '/' . $produk->image }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
@@ -145,7 +138,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[1]->imageurl }}"
+                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[1]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
@@ -165,7 +158,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[2]->imageurl }}"
+                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[2]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
@@ -185,7 +178,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[3]->imageurl }}"
+                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[3]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
@@ -205,7 +198,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('uploads/') . '/' . $produk->images[4]->imageurl }}"
+                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[4]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar

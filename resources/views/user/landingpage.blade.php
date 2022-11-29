@@ -16,7 +16,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         {{-- looping goes here --}}
         <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('uploads/'.$head_img["content"]) }}"
+            <img src="{{ asset('public/uploads/'.$head_img["content"]) }}"
                 class="block w-full h-vh-50 object-cover" alt="..." />
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">First slide label</h5>
@@ -81,7 +81,7 @@
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
             @foreach ($produks as $produk)
             <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="{{ asset('uploads/') . '/' . $produk->image }}"
+                <img src="{{ asset('public/uploads/') . '/' . $produk->image }}"
                     class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                 <div class="p-4 pb-6">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
@@ -132,7 +132,7 @@
         <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 mb-7 xl:mx-auto">
             @foreach ($featured as $produk)
             <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                <img src="{{ asset('uploads/') . '/' . $produk->image }}"
+                <img src="{{ asset('public/uploads/') . '/' . $produk->image }}"
                     class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                 <div class="p-4 pb-6">
                     <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">

@@ -34,7 +34,9 @@
             <div class="col-span-9 flex items-center gap-x-2">
                 <select name="status" id="status" class="admin-input" required>
                     @foreach ($statuses as $status)
+                        @if($status->id != 5 && $status->id !=7 && $status->id != 2)
                         <option value="{{ $status->id }}">{{ $status->user_status }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

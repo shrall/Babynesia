@@ -34,41 +34,15 @@
             <div class="col-span-3">Status</div>
             <div class="col-span-9 flex items-center gap-x-2">
                 @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
-                    @if ($user->user_status_id == 1 || $user->user_status_id == 2)
                         <select name="status" id="status" class="admin-input" required>
                             @foreach ($statuses as $status)
-                                @if ($status->id == 1 || $status->id == 2)
-                                    <option value="{{ $status->id }}"
-                                        {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                        {{ $status->user_status }}</option>
-                                @endif
+                                    @if ($status->id != 3 && $status->id != 5 && $status->id != 7 && $status->id != 2)
+                                        <option value="{{ $status->id }}"
+                                            {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
+                                            {{ $status->user_status }}</option>
+                                    @endif
                             @endforeach
                         </select>
-                    @else
-                        <select name="status" id="status" class="admin-input" required>
-                            @foreach ($statuses as $status)
-                                @if (Auth::user()->user_status_id == 4)
-                                    @if ($status->id == 4 || $status->id == 6)
-                                        <option value="{{ $status->id }}"
-                                            {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                            {{ $status->user_status }}</option>
-                                    @endif
-                                @elseif (Auth::user()->user_status_id == 5)
-                                    @if ($status->id == 5 || $status->id == 7)
-                                        <option value="{{ $status->id }}"
-                                            {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                            {{ $status->user_status }}</option>
-                                    @endif
-                                @else
-                                    @if ($status->id != 1 && $status->id != 2)
-                                        <option value="{{ $status->id }}"
-                                            {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                            {{ $status->user_status }}</option>
-                                    @endif
-                                @endif
-                            @endforeach
-                        </select>
-                    @endif
                 @else
                     <select name="status" id="status" class="admin-input" required disabled>
                         @foreach ($statuses as $status)

@@ -14,7 +14,7 @@
             <div class="col-span-3">Gambar</div>
             <div class="col-span-9 flex flex-col gap-2">
                 <div class="flex gap-2">
-                    : <img src="{{ asset('svg/images.svg') }}" class="px-4 h-vh-20 bg-gray-300" id="preview-gallery-image">
+                    : <img src="{{ asset('public/svg/images.svg') }}" class="px-4 h-vh-20 bg-gray-300" id="preview-gallery-image">
                     <input type="file" name="" id="gallery-image" class="invisible w-2"
                         onchange="loadFile(event, 'gallery-image')" accept="image/*" required>
                 </div>
@@ -34,7 +34,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/ckeditor.js') }}"></script>
+    <script src="{{ asset('public/js/ckeditor.js') }}"></script>
     <script>
         ClassicEditor.create(document.querySelector('#input-content'), {
                 mediaEmbed: {

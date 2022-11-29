@@ -10,7 +10,7 @@
         @endif
     </div>
     <div class="w-full h-vh-90 flex items-center justify-center show-first">
-        <img src="{{ asset('svg/loading.svg') }}" class="animate-spin mb-24">
+        <img src="{{ asset('public/svg/loading.svg') }}" class="animate-spin mb-24">
     </div>
     <div class="w-full flex flex-col gap-y-4 p-4 hide-first invisible">
         <div class="admin-card">

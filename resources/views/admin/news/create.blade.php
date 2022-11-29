@@ -31,7 +31,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/ckeditor.js') }}"></script>
+    <script src="{{ asset('public/js/ckeditor.js') }}"></script>
     <script>
         ClassicEditor.create(document.querySelector('#input-content'), {
                 simpleUpload: {

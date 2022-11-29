@@ -11,7 +11,7 @@ class KategoriChild extends Model
     public $timestamps = false;
     protected $table = 'kategori_child';
     protected $fillable = [
-        'child_id', 'child_name', 'kategori_id', 'app_type'
+        'child_id', 'child_name', 'kategori_id'
     ];
     protected $primaryKey = 'child_id';
     // public $incrementing = false;

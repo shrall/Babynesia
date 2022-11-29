@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} - Admin</title>
-    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
+    <link rel="icon" href="{{ asset('public/favicon.ico') }}" type="image/x-icon" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -20,7 +20,7 @@
     <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <!--Responsive Extension Datatables CSS-->
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
 
     {{-- Javascript --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -38,7 +38,7 @@
             <div class="flex items-center justify-evenly gap-x-4">
                 <span class="flex items-center gap-x-2">
                     <span class="fa fa-fw fa-user-circle text-3xl"></span>
-                    <span class="font-medium">{{ Auth::user()->name }}</span>
+                    <span class="font-medium">{{Auth::user()->name}}</span>
                 </span>
                 <div class="px-4 py-1 rounded-full text-red-600 bg-white hover:bg-gray-100 cursor-pointer"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</div>

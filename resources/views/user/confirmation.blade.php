@@ -24,7 +24,7 @@
                     <div class="sm:grid sm:grid-cols-4">
                         <div class="flex sm:col-span-3">
                             <div class="w-20 sm:w-28">
-                                <img src="{{ asset('uploads/') . '/' . $cart->produk->image }}" alt=""
+                                <img src="{{ asset('public/uploads/') . '/' . $cart->produk->image }}" alt=""
                                     class="aspect-square w-full rounded-md object-cover bg-gray-400">
                             </div>
                             <div class="ml-2 sm:w-vw-30">
@@ -145,7 +145,7 @@
                 {{ !empty($request->note) ? $request->note : 'tidak ada catatan tambahan.' }}
             </div>
         </div>
-        
+
         <div class="sm:grid sm:grid-cols-2 sm:gap-3">
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
                 <h6 class="text-slate-900 font-bold font-encode-sans text-sm sm:text-base">
@@ -197,7 +197,7 @@
             </div>
             <div class="w-full bg-white rounded-md shadow-sm mt-3 px-3 pt-3 pb-7 xl:px-4">
                 @if ($request->dropship == 'yes')
-                    
+
                 <h6 class="font-encode-sans font-bold text-red-500 text-sm sm:text-base">Dropship</h6>
                 <div class="px-7 mt-3 mb-4 flex">
                     <ul class="font-encode-sans text-gray-400 text-sm sm:text-base">
@@ -263,7 +263,7 @@
                         <td class="py-3">Rp. {{ substr(number_format($total, 2, ',', '.'), 0, -3) }}</td>
                     </tr>
                     @if (!empty ($voucher))
-                        
+
                     <tr>
                         <td class="py-3 ml-3">&nbsp;&nbsp;&nbsp;Potongan Voucher ({{ $voucher->vouchertype_id == 1 ? $voucher->amount."%" : "Rp. ".substr(number_format($voucher->amount, 2, ',', '.'), 0, -3) }})</td>
                         <td class="py-3">- Rp. {{ substr(number_format($potongan, 2, ',', '.'), 0, -3) }}</td>
@@ -279,8 +279,8 @@
                     <tr>
                         <td class="py-3 text-left">&nbsp;&nbsp;&nbsp;Total</td>
                         <td class="py-3">Rp.
-                            {{ substr(number_format(empty ($voucher) 
-                            ? $total + $deliveryCost 
+                            {{ substr(number_format(empty ($voucher)
+                            ? $total + $deliveryCost
                             : $total + $deliveryCost - $potongan, 2, ',', '.'), 0, -3) }}</td>
                     </tr>
                 </tfoot>
@@ -291,7 +291,7 @@
             <div class="px-7 mt-3">
                 <ul class="list-disc space-y-2">
                     @foreach ($payments as $payment)
-                        
+
                     <li>
                         <div>
                             <h6 class="text-sm sm:text-base font-bold text-slate-900">
@@ -309,7 +309,7 @@
                             <h6 class="text-sm sm:text-base font-bold text-slate-900">
                                 Q-Ris
                             </h6>
-                            <img src="{{ asset('images/payment/qrpayment.jpeg') }}" width="300" alt="">
+                            <img src="{{ asset('public/images/payment/qrpayment.jpeg') }}" width="300" alt="">
                         </div>
                     </li>
                 </ul>

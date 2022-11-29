@@ -63,7 +63,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="" class="">Gambar</label>
                     <div class="flex items-end">
-                        <img @if ($hotdeals->image != 'Video') src="{{ asset('uploads/' . $hotdeals->image) }}" @else src="{{ asset('svg/images.svg') }}" @endif
+                        <img @if ($hotdeals->image != 'Video') src="{{ asset('public/uploads/' . $hotdeals->image) }}" @else src="{{ asset('public/svg/images.svg') }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-ad-image">
                         <input type="file" name="image" id="ad-image" class="invisible w-2"
                             onchange="loadFile(event, 'ad-image')" accept="image/*">

@@ -59,6 +59,10 @@ use App\Http\Controllers\Admin\WebLayoutController as AdminWebLayoutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminStatusController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CaptchaController;
 use App\Http\Controllers\CartController;
@@ -87,6 +91,7 @@ use App\Http\Controllers\KategoriParentController;
 use App\Http\Controllers\KlasController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\LinkLocationController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\PaymentArtController;
@@ -261,7 +266,6 @@ Route::group([
     Route::get('/produk/restock', [AdminProdukController::class, 'index_restock'])->name('produk.index.restock');
     Route::get('/produk/disabled', [AdminProdukController::class, 'index_disabled'])->name('produk.index.disabled');
     Route::get('/produk/soldout', [AdminProdukController::class, 'index_soldout'])->name('produk.index.soldout');
-    Route::get('/produk/fav', [AdminProdukController::class, 'index_fav'])->name('produk.index.fav');
 
     Route::post('news/uploadphoto', [AdminNewsController::class, 'upload_photo'])->name('news.uploadphoto');
 

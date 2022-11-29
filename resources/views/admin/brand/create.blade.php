@@ -15,7 +15,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="" class="">Gambar</label>
                     <div class="flex items-end">
-                        <img src="{{ asset('svg/images.svg') }}" class="w-48 h-48 bg-gray-300"
+                        <img src="{{ asset('public/svg/images.svg') }}" class="w-48 h-48 bg-gray-300"
                             id="preview-ad-image">
                         <input type="file" name="image" id="ad-image" class="invisible w-2"
                             onchange="loadFile(event, 'ad-image')" accept="image/*" required>

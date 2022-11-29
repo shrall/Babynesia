@@ -79,7 +79,7 @@
                                 <td>{{ $item->jumlah }}</td>
                                 @if ($item->product)
                                     <td>
-                                        <img src="{{ asset('uploads/' . $item->product->image) }}" class="h-vh-10 mx-auto">
+                                        <img src="{{ asset('public/uploads/' . $item->product->image) }}" class="h-vh-10 mx-auto">
                                     </td>
                                     <td> [{{ $item->kode_produk . '-' . $item->kode_produk_stock }}]
                                         {{ $item->product->nama_produk }}<br>
