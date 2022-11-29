@@ -26,7 +26,7 @@ class KategoriChildController extends Controller
      */
     public function create()
     {
-        $kategoris = Kategori::all();
+        $kategoris = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
         return view('admin.kategorichild.create', compact('kategoris'));
     }
 
@@ -64,7 +64,7 @@ class KategoriChildController extends Controller
      */
     public function edit(KategoriChild $kategoriChild)
     {
-        $kategoris = Kategori::all();
+        $kategoris = Kategori::where('app_type', '<=', env('APP_TYPE'))->get();
         return view('admin.kategorichild.edit', compact('kategoriChild', 'kategoris'));
     }
 
