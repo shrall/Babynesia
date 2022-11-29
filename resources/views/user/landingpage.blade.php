@@ -16,7 +16,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         {{-- looping goes here --}}
         <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('public/uploads/'.$head_img["content"]) }}"
+            <img src="{{ asset('uploads/'.$head_img["content"]) }}"
                 class="block w-full h-vh-50 object-cover" alt="..." />
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">First slide label</h5>
