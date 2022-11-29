@@ -20,7 +20,13 @@ class FaqController extends Controller
         $page = 'faq';
         $faqs = Faq::all();
 
-        return view('user.faq', compact('page', 'faqs'));
+        if (config('services.app.type') == 1) {
+            // TBF
+            return view('user.faq', compact('page', 'faqs'));
+        } else {
+            //BBN
+            return view('user.bbn.faq', compact('page', 'faqs'));
+        }
     }
 
     /**
