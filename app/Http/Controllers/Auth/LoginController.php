@@ -60,7 +60,7 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)
             ->where('password', md5($request->password))
             ->first();
-        if ($user) {
+        if ($user && $user->app_type == config('services.app.type')) {
             Auth::login($user);
         } else {
             return redirect()->route('login');

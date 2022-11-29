@@ -126,7 +126,8 @@ class RegisterController extends Controller
             'hp' => $data['hp'],
             'conf' => 'user',
             'stat' => 'a',
-            'kecamatan' => !empty($data['subdistrict']) ? $data['subdistrict'] : null
+            'kecamatan' => !empty($data['subdistrict']) ? $data['subdistrict'] : null,
+            'app_type' => config('services.app.type')
         ]);
     }
 }
