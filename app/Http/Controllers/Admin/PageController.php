@@ -37,7 +37,7 @@ class PageController extends Controller
     }
     public function administrator()
     {
-        $admins = User::where('user_status_id', '>=', '3')->get();
+        $admins = User::where('user_status_id', '>=', '3')->where('app_type', env('APP_TYPE'))->get();
         return view('admin.settings.administrator', compact('admins'));
     }
     public function administratorcreate()
@@ -63,7 +63,7 @@ class PageController extends Controller
     {
         if ($request->type == 'except') {
             $emails = User::select('email')->whereIn('email', $request->user)->get();
-        }else{
+        } else {
             $emails = User::select('email')->get();
         }
         // dd($emails);
