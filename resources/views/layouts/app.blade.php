@@ -44,7 +44,7 @@
 
 <body>
     <div id="app" class="bg-neutral-100 relative"
-        style="{{ !empty($bg_img->content) ? 'background: url(' . asset('public/uploads/' . $bg_img->content) . ')' : '' }}">
+        style="{{ !empty($bg_img->content) ? 'background: url(' . 'https://tokobayifiv.com/public/' . $bg_img->content . ')' : '' }}">
         @yield('content')
         <a id="wa-link" target="blank">
             <img class="fixed z-50 bottom-0 right-4 cursor-pointer hover:opacity-80 w-1/2 xl:w-1/6"

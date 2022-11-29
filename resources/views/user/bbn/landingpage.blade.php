@@ -16,7 +16,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         {{-- looping goes here --}}
         <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('public/uploads/'.$head_img["content"]) }}"
+            <img src="{{ 'https://tokobayifiv.com/public/uploads/'.$head_img["content"] }}"
                 class="block w-full xl:h-vh-50 sm:h-vh-40 h-vh-25 object-cover bg-gray-400" alt="..." />
             {{-- <div class="carousel-caption hidden md:block absolute text-center">
                 <h5 class="text-xl">First slide label</h5>
@@ -55,7 +55,7 @@
     <div>
         <div class="mb-6 flex flex-wrap gap-3 justify-center">
             @foreach ($hotdeals as $hd)
-                <img src="{{ asset('public/uploads/' . $hd->image) }}" class="w-100 h-vh-40 object-cover" alt="">
+                <img src="{{ 'https://tokobayifiv.com/public/uploads/'.$hd->image }}" class="w-100 h-vh-40 object-cover" alt="">
             @endforeach
         </div>
     </div>
