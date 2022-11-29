@@ -15,16 +15,14 @@
         <div class="xl:grid xl:grid-cols-2 xl:gap-3">
             <div class="mt-3">
                 <div class="mb-3">
-                    <img src="{{ asset('uploads/') . '/' . $produk->image }}" alt="" id="productimg"
-                        class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
+                    <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}" alt="" id="productimg"
+                        class="aspect-square bg-gray-400 w-full object-cover">
                 </div>
                 <div class="flex items-center flex-wrap">
                     @foreach ($produk->images as $image)
-                        <a href="#n" onclick="switchImg('{{ $image->imageurl }}')">
-
-                            <img src="{{ $image->imageurl }}" alt=""
-                                class="aspect-square w-1/4 bg-gray-400 rounded-lg object-cover mr-3">
-
+                        <a href="#n" class="w-1/4" onclick="switchImg('{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $image->imageurl : 'https://babynesia.com/public/uploads/' . $image->imageurl }}')">
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $image->imageurl : 'https://babynesia.com/public/uploads/' . $image->imageurl }}" alt=""
+                                class="aspect-square bg-gray-400 w-full object-cover mr-3">
                         </a>
                     @endforeach
                 </div>

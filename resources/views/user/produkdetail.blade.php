@@ -12,13 +12,13 @@
         <div class="xl:grid xl:grid-cols-2 xl:gap-3">
             <div class="mt-3">
                 <div class="mb-3">
-                    <img src="{{ asset('public/uploads/') . '/' . $produk->image }}" alt="" id="productimg"
+                    <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}" alt="" id="productimg"
                         class="aspect-square bg-gray-400 w-full rounded-lg object-cover">
                 </div>
                 <div class="flex items-center gap-3 flex-wrap">
                     @foreach ($produk->images as $image)
-                        <a href="#n" class="w-1/4" onclick="switchImg('{{ asset('public/uploads/') . '/' . $image->imageurl }}')">
-                            <img src="{{ asset('public/uploads/') . '/' . $image->imageurl }}" alt=""
+                        <a href="#n" class="w-1/4" onclick="switchImg({{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $image->imageurl : 'https://babynesia.com/public/uploads/' . $image->imageurl }})">
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $image->imageurl : 'https://babynesia.com/public/uploads/' . $image->imageurl }}" alt=""
                                 class="aspect-square bg-gray-400 w-full rounded-lg object-cover mr-3">
                         </a>
                     @endforeach

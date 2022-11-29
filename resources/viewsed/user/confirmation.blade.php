@@ -24,8 +24,8 @@
                     <div class="sm:grid sm:grid-cols-4">
                         <div class="flex sm:col-span-3">
                             <div class="w-20 sm:w-28">
-                                <img src="{{ asset('uploads/') . '/' . $cart->produk->image }}" alt=""
-                                    class="aspect-square w-full rounded-md object-cover bg-gray-400">
+                                <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $cart->produk->image : 'https://babynesia.com/public/uploads/' . $cart->produk->image }}" alt=""
+                                    class="aspect-square w-full object-cover bg-gray-400">
                             </div>
                             <div class="ml-2 sm:w-vw-30">
                                 <h6 class="font-bold font-encode-sans text-base sm:text-lg text-clip text-slate-900">

@@ -1,73 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-@include('inc.navbar1')
+@include('inc.navbar2')
 
-{{-- THUMBNAIL --}}
-<div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
-    <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-            aria-current="true" aria-label="Slide 1"></button>
-        {{-- <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-            aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-            aria-label="Slide 3"></button> --}}
-    </div>
-    <div class="carousel-inner relative w-full overflow-hidden">
-        {{-- looping goes here --}}
-        <div class="carousel-item active relative float-left w-full">
-            <img src="{{ asset('public/uploads/' . $head_img["content"]) }}"
-                class="block w-full xl:h-vh-50 sm:h-vh-40 h-vh-25 object-cover bg-gray-400" alt="..." />
-            {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">First slide label</h5>
-                <p>Some representative placeholder content for the first slide.</p>
-            </div> --}}
-        </div>
-        {{-- <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
-        {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">Second slide label</h5>
-                <p>Some representative placeholder content for the second slide.</p>
-            </div> --}}
-        {{-- </div>
-        <div class="carousel-item relative float-left w-full">
-            <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg" class="block w-full h-vh-50 object-cover" alt="..." /> --}}
-        {{-- <div class="carousel-caption hidden md:block absolute text-center">
-                <h5 class="text-xl">Third slide label</h5>
-                <p>Some representative placeholder content for the third slide.</p>
-            </div> --}}
-        {{-- </div> --}}
-    </div>
-    {{-- <button
-        class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-        class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-        type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-        <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button> --}}
-</div>
-<div class="container mx-auto xl:px-20 px-3 xl:pt-6 xl:pb-10 pt-3 pb-5">
-    <div>
-        <div class="mb-6 flex flex-wrap gap-3 justify-center">
-            @foreach ($hotdeals as $hd)
-                <img src="{{ asset('public/uploads/' . $hd->image) }}" class="w-100 h-vh-40 object-cover" alt="">
-            @endforeach
-        </div>
-    </div>
-    
+<div class="container mx-auto xl:px-20 px-3 xl:pb-10 pt-6 pb-5">
     <div class="xl:grid xl:grid-cols-4 gap-4 xl:auto-cols-min">
         <div class="hidden xl:block">
-            <div class="bg-{{ $color[0] }}-300 rounded-t-lg px-4 py-3">
-                <h6 class="font-encode-sans text-white text-sm font-bold">
+            <div class="bg-white rounded-t-md border-b px-4 py-3">
+                <h6 class="font-encode-sans text-{{ $color[1] }}-600 font-bold">
                     Our Products
                 </h6>
             </div>
-            <div class="bg-white rounded-b-lg shadow-sm px-3 py-3">
+            <div class="bg-white rounded-b-md shadow-sm px-3 py-3">
                 <ul class="mt-3">
                     @foreach ($statmenus as $status)
                     <li class="my-1">
@@ -127,11 +71,11 @@
         <div class="col-span-3">
             <div class="bg-white rounded-md px-3 py-5 flex justify-between items-center shadow-sm">
                 @if (!empty($keyword))
-                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
                     "{{ $keyword }}"
                 </h1>
                 @elseif (!empty($filteredproduct))
-                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
                     @if($filteredproduct != 'featured' && !empty($produks[0]->status->name))
                     {{ $produks[0]->status->name == 'Promo' ? "SALE !!" : $produks[0]->status->name." Product" }}
                     @elseif ($filteredproduct == 'featured')
@@ -141,21 +85,22 @@
                     @endif
                 </h1>
                 @elseif (!empty($subfilter))
-                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
                     {{ $subsname }}
                 </h1>
                 @elseif (!empty($filter) && !empty($produks[0]->category->nama_kategori))
-                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
                     {{ $produks[0]->category->nama_kategori }}
                 </h1>
                 @else
-                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-500 xl:text-4xl">
+                <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
                     Product Not Found
                 </h1>
                 @endif
                 <input type="checkbox" name="bottomclick" id="bottomclick" hidden>
                 <label for="bottomclick"
-                    class="rounded-full px-4 py-2 bg-{{ $color[1] }}-500 cursor-pointer hover:bg-{{ $color[1] }}-600 text-white text-sm font-bold xl:hidden font-encode-sans">
+                    class="rounded-md px-4 cursor-pointer hover:text-{{ $color[1] }}-600 text-{{ $color[0] }}-500 text-sm font-bold xl:hidden font-encode-sans flex items-center">
+                    <i class="bx bx-filter text-3xl"></i>
                     Filter
                 </label>
             </div>
@@ -163,9 +108,9 @@
                 <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 xl:mx-auto">
     
                     @foreach ($produks as $produk)
-                    <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
+                    <a href="{{ route('produk.show', $produk) }}" class="shadow-sm bg-white">
                         <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
-                            class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
+                            class="aspect-square w-full bg-gray-400 object-cover" alt="">
                         <div class="p-3 pb-5">
                             <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
                                 {{ $hideconfig[0] != 1 ? '['. $produk->kode_produk .']' : '' }} {{ $produk->nama_produk }}
@@ -186,7 +131,7 @@
                                     @if($hideconfig[1] == 1)
                                     @if($produk->countStock($produk) == 0)
                                     <h6
-                                        class="py-1 px-2 rounded-md bg-red-500 text-white font-encode-sans font-bold text-sm sm:text-base">
+                                        class="py-1 px-2 text-red-500 font-encode-sans font-bold text-sm sm:text-base">
                                         Sold
                                     </h6>
                                     @endif
@@ -203,23 +148,7 @@
                     @endforeach
                 </div>
             </div>
-            {{ $produks->onEachSide(1)->links('vendor.pagination.custom-1', compact('color')) }}
-            {{-- <div class="bg-white rounded-md px-3 py-3 flex justify-center items-center shadow-sm">
-                <a href="">
-                    <i class="fa fa-chevron-left mx-2" aria-hidden="true"></i>
-                </a>
-                <a href="" class="p-2 bg-{{ $color[0] }}-300 text-sm font-bold font-encode-sans mx-2 rounded-md
-            text-white">1</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">2</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">3</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">4</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">5</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">...</a>
-            <a href="" class="text-sm xl:text-base mx-2 sm:mx-3">32</a>
-            <a href="">
-                <i class="fa fa-chevron-right mx-2" aria-hidden="true"></i>
-            </a>
-        </div> --}}
+            {{ $produks->onEachSide(1)->links('vendor.pagination.custom-2', compact('color')) }}
     </div>
     </div>
 </div>
@@ -229,8 +158,8 @@
     <label for="bottomclick" class="inline-block w-full h-full"></label>
 </div>
 <div class="transition-all duration-300 bottomfilterlist xl:hidden w-full fixed -bottom-full -translate-x-1/2 left-1/2" style="z-index: 5002">
-    <div class="bg-{{ $color[0] }}-300 px-3 py-3 w-full rounded-t-lg">
-        <h6 class="font-encode-sans text-white font-bold">
+    <div class="px-3 py-3 w-full rounded-t-lg bg-white border-b">
+        <h6 class="font-encode-sans text-slate-900 font-bold">
             Filter
         </h6>
     </div>
@@ -321,6 +250,6 @@
 
 </script>
 
-@include('inc.footer1')
+@include('inc.footer2')
 
 @endsection
