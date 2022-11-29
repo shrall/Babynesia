@@ -2,9 +2,11 @@
     <nav class="border-b bg-white shadow-sm py-6 fixed w-full" style="z-index: 5000">
         <div class="container mx-auto xl:px-20 hidden xl:block">
             <div class="flex justify-between items-center">
-                <h1 class="text-{{ $color[1] }}-600 text-4xl font-concert-one">
-                    {{ config('app.name') }}
-                </h1>
+                <a href="/">
+                    <h1 class="text-{{ $color[1] }}-600 text-4xl font-concert-one">
+                        {{ config('app.name') }}
+                    </h1>
+                </a>
                 <div class="rounded-md py-2 px-4 bg-neutral-100 w-136">
                     <form action="{{ route('list_products') }}">
                         <div class="flex justify-between w-full items-center">
@@ -143,9 +145,11 @@
                         <i class="bx bx-menu text-3xl text-slate-900"></i>
                     </label>
                 </div>
-                <h1 class="text-3xl font-concert-one text-{{ $color[1] }}-600">
-                    {{ config('app.name') }}
-                </h1>
+                <a href="/">
+                    <h1 class="text-3xl font-concert-one text-{{ $color[1] }}-600">
+                        {{ config('app.name') }}
+                    </h1>
+                </a>
                 <a href="{{ Auth::check() ? route('user.cart.index') : route('login') }}" class="cursor-pointer">
                     <i class="bx bx-cart text-3xl text-slate-900"></i>
                 </a>
@@ -196,7 +200,7 @@
     </div>
     <div class="bg-white py-4 px-4 h-full overflow-y-auto">
         <a href="/">
-            <div class="my-3 font-encode-sans {{ !empty($page)&&$page == "home" ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900' }} hover:text-{{ $color[1] }}-500">
+            <div class="my-3 font-encode-sans {{ !empty($page)&&$page == "home" ? 'font-bold text-'.$color[1].'-500' : 'text-slate-900 font-bold' }} hover:text-{{ $color[1] }}-500">
                 Home
             </div>
         </a>

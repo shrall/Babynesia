@@ -107,7 +107,7 @@
 
                 @foreach ($produks as $produk)
                 <a href="{{ route('produk.show', $produk) }}" class="rounded-lg shadow-sm bg-white">
-                    <img src="{{ asset('uploads/') . '/' . $produk->image }}"
+                    <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
                         class="aspect-square w-full bg-gray-400 rounded-t-lg object-cover" alt="">
                     <div class="p-3 pb-5">
                         <h6 class="font-encode-sans font-bold sm:text-base text-sm text-clip">
