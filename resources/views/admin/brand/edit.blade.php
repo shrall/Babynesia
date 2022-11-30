@@ -16,7 +16,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="" class="text-xl">Gambar</label>
                     <div class="flex items-end">
-                        <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $brand->gambar : 'https://babynesia.com/public/uploads/' . $brand->gambar }}" class="w-48 h-48 bg-gray-300"
+                        <img src="{{ $brand->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $brand->gambar : 'https://babynesia.com/public/uploads/' . $brand->gambar }}" class="w-48 h-48 bg-gray-300"
                             id="preview-ad-image">
                         <input type="file" name="image" id="ad-image" class="invisible w-2"
                             onchange="loadFile(event, 'ad-image')" accept="image/*" required>

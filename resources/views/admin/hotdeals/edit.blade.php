@@ -21,8 +21,8 @@
             <div class="col-span-9">
                 <select name="status" id="status" class="admin-input">
                     @foreach ($hotdeals_status as $hd_status)
-                        <option {{ $hotdeals->status == $hd_status->id ? 'selected' : null }}
-                            value="{{ $hd_status->id }}">{{ $hd_status->status }}</option>
+                        <option {{ $hotdeals->status == $hd_status->id ? 'selected' : null }} value="{{ $hd_status->id }}">
+                            {{ $hd_status->status }}</option>
                     @endforeach
                 </select>
             </div>
@@ -63,7 +63,7 @@
                 <div class="flex flex-col gap-2">
                     <label for="" class="">Gambar</label>
                     <div class="flex items-end">
-                        <img @if ($hotdeals->image != 'Video') src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $hotdeals->image : 'https://babynesia.com/public/uploads/' . $hotdeals->image }}" @else src="{{ asset('public/svg/images.svg') }}" @endif
+                        <img @if ($hotdeals->image != 'Video') src="{{ 'https://tokobayifiv.com/public/uploads/' . $hotdeals->image }}" @else src="{{ asset('public/svg/images.svg') }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-ad-image">
                         <input type="file" name="image" id="ad-image" class="invisible w-2"
                             onchange="loadFile(event, 'ad-image')" accept="image/*">

@@ -112,7 +112,7 @@
                                     <td>{{ $produk->kode_produk }}<br><span
                                             class="text-gray-400">{{ $produk->kode_alias }}</span></td>
                                     <td>
-                                        <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"class="h-24">
+                                        <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"class="h-24">
                                     </td>
                                     <td class="text-center">
                                         <div class="flex flex-col items-center gap-1">

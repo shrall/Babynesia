@@ -13,7 +13,7 @@
                     <div class="text-xl font-bold">Gambar Header</div>
                     <div class="flex">
                         <img @if (array_values($webconfigs->where('name', 'header_image')->toArray())[0]['content'] == null) src="{{ asset('public/svg/images.svg') }}"
-                            @else src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . array_values($webconfigs->where('name', 'header_image')->toArray())[0]['content'] : 'https://babynesia.com/public/uploads/' . array_values($webconfigs->where('name', 'header_image')->toArray())[0]['content'] }}" @endif
+                            @else src="{{ 'https://tokobayifiv.com/public/uploads/' . array_values($webconfigs->where('name', 'header_image')->toArray())[0]['content']  }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-header-image">
                         <input type="file" name="header" id="header-image" class="invisible w-2"
                             onchange="loadFile(event, 'header-image')" accept="image/*">
@@ -28,7 +28,7 @@
                     <div class="text-xl font-bold">Gambar Background</div>
                     <div class="flex">
                         <img @if (array_values($webconfigs->where('name', 'bg_img')->toArray())[0]['content'] == null) src="{{ asset('public/svg/images.svg') }}"
-                            @else src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . array_values($webconfigs->where('name', 'bg_img')->toArray())[0]['content'] : 'https://babynesia.com/public/uploads/' . array_values($webconfigs->where('name', 'bg_img')->toArray())[0]['content'] }}" @endif
+                            @else src="{{ 'https://tokobayifiv.com/public/uploads/' . array_values($webconfigs->where('name', 'bg_img')->toArray())[0]['content']  }}" @endif
                             class="w-vw-50 h-vh-20 bg-gray-300" id="preview-bg-image">
                         <input type="file" name="bg" id="bg-image" class="invisible w-2"
                             onchange="loadFile(event, 'bg-image')" accept="image/*">

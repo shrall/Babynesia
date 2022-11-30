@@ -79,7 +79,7 @@
                                 <td>{{ $item->jumlah }}</td>
                                 @if ($item->product)
                                     <td>
-                                        <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $item->product->image : 'https://babynesia.com/public/uploads/' . $item->product->image }}" class="h-vh-10 mx-auto">
+                                        <img src="{{ $item->product == 1 ? 'https://tokobayifiv.com/public/uploads/'. $item->product->image : 'https://babynesia.com/public/uploads/' . $item->product->image }}" class="h-vh-10 mx-auto">
                                     </td>
                                     <td> [{{ $item->kode_produk . '-' . $item->kode_produk_stock }}]
                                         {{ $item->product->nama_produk }}<br>

@@ -28,7 +28,7 @@
                                 <td class="">
                                     {{ $brand->nama_brand }}
                                 </td>
-                                <td><img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $brand->gambar : 'https://babynesia.com/public/uploads/' . $brand->gambar }}" class="h-12"></td>
+                                <td><img src="{{ $brand->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $brand->gambar : 'https://babynesia.com/public/uploads/' . $brand->gambar }}" class="h-12"></td>
                                 <td>
                                     <div class="flex items-center justify-center gap-2">
                                         <a target="blank" href="{{ route('adminpage.brand.edit', $brand->no_brand) }}"
