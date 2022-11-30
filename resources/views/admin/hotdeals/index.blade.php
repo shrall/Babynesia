@@ -38,7 +38,7 @@
                                 {{-- <td>{{ $hd->type }}</td> --}}
                                 @if ($hd->type == 'Gambar')
                                     <td>
-                                        <img src="{{ asset('public/uploads/' . $hd->image) }}" class="h-vh-20 mx-auto">
+                                        <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $hd->image : 'https://babynesia.com/public/uploads/' . $hd->image }}" class="h-vh-20 mx-auto">
                                     </td>
                                 @else
                                     <td>{{ $hd->link }}</td>

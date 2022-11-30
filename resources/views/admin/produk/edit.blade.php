@@ -125,7 +125,7 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('public/uploads/') . '/' . $produk->image }}"
+                            <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
@@ -145,7 +145,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[1]->imageurl }}"
+                            <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[1]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[1]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
@@ -165,7 +165,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[2]->imageurl }}"
+                            <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[2]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[2]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
@@ -185,7 +185,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[3]->imageurl }}"
+                            <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[3]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[3]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
@@ -205,7 +205,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ asset('public/uploads/') . '/' . $produk->images[4]->imageurl }}"
+                            <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[4]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[4]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar

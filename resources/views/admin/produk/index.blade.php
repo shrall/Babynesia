@@ -123,7 +123,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <img src="{{ asset('public/uploads/') . '/' . $produk->image }}" class="h-24">
+                                        <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
+                                            class="h-24">
                                     </td>
                                     <td class="text-center">
                                         <div class="flex flex-col items-center gap-1">

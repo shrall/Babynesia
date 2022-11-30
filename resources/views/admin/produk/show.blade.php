@@ -9,7 +9,7 @@
     <div class="grid grid-cols-2 gap-x-8 gap-y-2">
         <div class="admin-card items-center justify-center">
             <div class="col-span-12">
-                <img src="{{ asset('public/uploads/') . '/' . $produk->image }}" alt="" srcset="">
+                <img src="{{ $cart->produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}" alt="" srcset="">
             </div>
             <div class="col-span-12">
                 <div class="flex items-center justify-center gap-2">
