@@ -108,11 +108,7 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        if (env("APP_TYPE") == 2) {
-            $request->validate([
-                'kode_alias' => 'required|unique:produk',
-            ]);
-        }
+        $lastproduct = Produk::where('app_type', 2)->orderBy('kode_produk', 'desc')->first();
         $images = [];
         $keys = [];
         $key_doesnt_exist = false;
@@ -131,7 +127,7 @@ class ProdukController extends Controller
             return redirect()->route('adminpage.produk.create')->with('image', 'Gambar Utama Tidak Boleh Kosong!');;
         }
         $product = Produk::create([
-            'kode_alias' => $request->alias_code ?? 0,
+            'kode_alias' => $lastproduct->kode_alias + 1,
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
@@ -258,7 +254,6 @@ class ProdukController extends Controller
             }
         }
         $produk->update([
-            'kode_alias' => $request->alias_code ?? 0,
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
@@ -325,7 +320,7 @@ class ProdukController extends Controller
                     $oldstock = $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->product_stock;
                     $produk->stocks->where('id', $request->stock_code[$key + 1])->first()->update([
                         'produk_id' => $produk->kode_produk,
-                        'produk_id_alias' => $request->alias_code ?? 0,
+                        'produk_id_alias' => $produk->kode_alias,
                         'size' => $request->stock_size[$key + 1],
                         'color' => $request->stock_color[$key + 1],
                         'type' => $request->stock_type[$key + 1],
@@ -368,7 +363,7 @@ class ProdukController extends Controller
             if ($value == null) {
                 $item = ProdukStock::create([
                     'produk_id' => $produk->kode_produk,
-                    'produk_id_alias' => $request->alias_code ?? 0,
+                    'produk_id_alias' => $produk->kode_alias ?? 0,
                     'size' => $request->stock_size[$key],
                     'color' => $request->stock_color[$key],
                     'type' => $request->stock_type[$key],

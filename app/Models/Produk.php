@@ -12,7 +12,7 @@ class Produk extends Model
     protected $table = 'produk';
     protected $fillable = [
         'kode_produk', 'kode_alias', 'kategory', 'subkategory', 'nama_produk', 'brand_produk', 'ket', 'harga', 'harga_sale', 'stat', 'complement', 'image', 'promo',
-        'harga_pokok', 'hpp_sale', 'ket2', 'ket3', 'ket4', 'stock', 'sort_nr', 'max_buy_amount', 'disable', 'weight', 'featured', 'harga_grosir', 'harga_toko', 'disc1', 'disc2', 'disc3'
+        'harga_pokok', 'hpp_sale', 'ket2', 'ket3', 'ket4', 'stock', 'sort_nr', 'max_buy_amount', 'disable', 'weight', 'featured', 'harga_grosir', 'harga_toko', 'disc1', 'disc2', 'disc3', 'app_type'
     ];
     protected $primaryKey = 'kode_produk';
     // public $incrementing = false;

@@ -11,7 +11,7 @@ class Kategori extends Model
     public $timestamps = false;
     protected $table = 'kategori';
     protected $fillable = [
-        'no_kategori', 'nama_kategori', 'parent', 'urutan', 'image'
+        'no_kategori', 'nama_kategori', 'parent', 'urutan', 'image', 'app_type'
     ];
     protected $primaryKey = 'no_kategori';
     // public $incrementing = false;

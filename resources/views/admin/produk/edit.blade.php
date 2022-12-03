@@ -12,7 +12,7 @@
                 @if (env('APP_TYPE') == 2)
                     <div class="col-span-3">Kode Alias</div>
                     <div class="col-span-9 flex items-center gap-x-2">
-                        <input type="text" name="alias_code" id="alias_code" class="admin-input"
+                        <input type="text" name="alias_code" id="alias_code" class="admin-input" disabled
                             value="{{ $produk->kode_alias }}">
                     </div>
                 @endif
@@ -125,7 +125,7 @@
                 <div class="col-span-9">
                     @if ($produk->image)
                         <div class="flex items-center gap-2">
-                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->image : 'https://babynesia.com/public/uploads/' . $produk->image }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[0]">
                             Hapus Gambar
@@ -145,7 +145,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 2)
                         <div class="flex items-center gap-2">
-                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[1]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[1]->imageurl }}"
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->images[1]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[1]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[1]">
                             Hapus Gambar
@@ -165,7 +165,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 3)
                         <div class="flex items-center gap-2">
-                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[2]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[2]->imageurl }}"
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->images[2]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[2]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[2]">
                             Hapus Gambar
@@ -185,7 +185,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 4)
                         <div class="flex items-center gap-2">
-                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[3]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[3]->imageurl }}"
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->images[3]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[3]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[3]">
                             Hapus Gambar
@@ -205,7 +205,7 @@
                 <div class="col-span-9">
                     @if ($produk->images->count() >= 5)
                         <div class="flex items-center gap-2">
-                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/'. $produk->images[4]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[4]->imageurl }}"
+                            <img src="{{ $produk->app_type == 1 ? 'https://tokobayifiv.com/public/uploads/' . $produk->images[4]->imageurl : 'https://babynesia.com/public/uploads/' . $produk->images[4]->imageurl }}"
                                 class="w-12 h-12 object-cover">
                             <input type="checkbox" name="deleteimg[4]">
                             Hapus Gambar
@@ -237,12 +237,23 @@
                 <div class="col-span-3">Status Promo</div>
                 <div class="col-span-12 grid grid-cols-3 items-center gap-x-2">
                     @foreach ($produkstatuses as $produkstatus)
-                        @if ($produkstatus->status_code != 'grd' &&
-                            $produkstatus->status_code != 'gpo' &&
-                            $produkstatus->status_code != 'po')
+                        @if (env('APP_TYPE') == 1)
+                            @if ($produkstatus->status_code != 'grd' &&
+                                $produkstatus->status_code != 'gpo' &&
+                                $produkstatus->status_code != 'po')
+                                <div class="flex items-center gap-2">
+                                    <input type="radio" name="stat"
+                                        {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
+                                        {{ $produkstatus->status_code == 0 ? 'checked' : '' }}
+                                        value="{{ $produkstatus->status_code }}">
+                                    <label for="radio-5">{{ $produkstatus->name }}</label>
+                                </div>
+                            @endif
+                        @else
                             <div class="flex items-center gap-2">
                                 <input type="radio" name="stat"
                                     {{ $produk->stat == $produkstatus->status_code ? 'checked' : '' }}
+                                    {{ $produkstatus->status_code == 0 ? 'checked' : '' }}
                                     value="{{ $produkstatus->status_code }}">
                                 <label for="radio-5">{{ $produkstatus->name }}</label>
                             </div>

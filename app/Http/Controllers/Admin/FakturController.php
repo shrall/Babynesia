@@ -21,7 +21,7 @@ class FakturController extends Controller
         if (env('APP_TYPE') == 1) {
             $fakturs = Faktur::where('product_type', 1)->where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
         } elseif (env('APP_TYPE') == 2) {
-            $fakturs = Faktur::where('app_type', 1)->where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
+            $fakturs = Faktur::where('app_type', 2)->where('tanggal2', '>', Carbon::now()->subDays(3))->orderBy('no_faktur', 'desc')->get();
         }
         $fakturstatuses = FakturStatus::all();
         return view('admin.faktur.index', compact('fakturs', 'fakturstatuses'));
@@ -119,7 +119,6 @@ class FakturController extends Controller
     }
     public function filter(Request $request)
     {
-        // dd($request);
         session()->forget('faktur_date_start');
         session()->forget('faktur_date_end');
         session()->forget('faktur_status');
@@ -131,7 +130,7 @@ class FakturController extends Controller
         if (env('APP_TYPE') == 1) {
             $fakturs = Faktur::where('product_type', 1)->orderBy('no_faktur', 'desc');
         } elseif (env('APP_TYPE') == 2) {
-            $fakturs = Faktur::where('app_type', 1)->orderBy('no_faktur', 'desc');
+            $fakturs = Faktur::where('app_type', 2)->orderBy('no_faktur', 'desc');
         }
         if ($request->status != "0") {
             $fakturs->where('status', $request->status);
@@ -159,7 +158,7 @@ class FakturController extends Controller
         if (env('APP_TYPE') == 1) {
             $fakturs = Faktur::where('product_type', 1)->orderBy('no_faktur', 'desc');
         } elseif (env('APP_TYPE') == 2) {
-            $fakturs = Faktur::where('app_type', 1)->orderBy('no_faktur', 'desc');
+            $fakturs = Faktur::where('app_type', 2)->orderBy('no_faktur', 'desc');
         }
         if (session('faktur_status') != "0") {
             $fakturs->where('status', session('faktur_status'));

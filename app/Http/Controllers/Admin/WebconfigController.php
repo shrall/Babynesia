@@ -107,44 +107,85 @@ class WebconfigController extends Controller
             ]);
             return redirect()->route('adminpage.configuration');
         } else if ($request->type == 'design') {
-            if ($request->header) {
-                $imageh = 'header-' . time() . '-' . $request['header']->getClientOriginalName();
-                $request->header->move(public_path('uploads/'), $imageh);
-            } else {
+            if (env('APP_TYPE') == 1) {
+                if ($request->header) {
+                    $imageh = 'header-' . time() . '-' . $request['header']->getClientOriginalName();
+                    $request->header->move(public_path('uploads/'), $imageh);
+                } else {
+                    $webconfig = Webconfig::where('name', 'header_image')->first();
+                    $imageh = $webconfig["content"];
+                }
+                if ($request->bg) {
+                    $imagebg = 'bg-' . time() . '-' . $request['bg']->getClientOriginalName();
+                    $request->bg->move(public_path('uploads/'), $imagebg);
+                } else {
+                    $webconfig = Webconfig::where('name', 'bg_img')->first();
+                    $imagebg = $webconfig["content"];
+                }
                 $webconfig = Webconfig::where('name', 'header_image')->first();
-                $imageh = $webconfig["content"];
-            }
-            if ($request->bg) {
-                $imagebg = 'bg-' . time() . '-' . $request['bg']->getClientOriginalName();
-                $request->bg->move(public_path('uploads/'), $imagebg);
-            } else {
+                $webconfig->update([
+                    'content' => $imageh
+                ]);
                 $webconfig = Webconfig::where('name', 'bg_img')->first();
-                $imagebg = $webconfig["content"];
+                $webconfig->update([
+                    'content' => $imagebg
+                ]);
+                $webconfig = Webconfig::where('name', 'bg_color')->first();
+                $webconfig->update([
+                    'content' => $request->bg_color
+                ]);
+                $webconfig = Webconfig::where('name', 'text_color')->first();
+                $webconfig->update([
+                    'content' => $request->text_color
+                ]);
+                $webconfig = Webconfig::where('name', 'button_color')->first();
+                $webconfig->update([
+                    'content' => $request->button_color
+                ]);
+                $webconfig = Webconfig::where('name', 'web_layout')->first();
+                $webconfig->update([
+                    'content' => $request->web_layout
+                ]);
+            } elseif (env('APP_TYPE') == 2) {
+                if ($request->header) {
+                    $imageh = 'header-' . time() . '-' . $request['header']->getClientOriginalName();
+                    $request->header->move(public_path('uploads/'), $imageh);
+                } else {
+                    $webconfig = Webconfig::where('name', 'header_image_fav')->first();
+                    $imageh = $webconfig["content"];
+                }
+                if ($request->bg) {
+                    $imagebg = 'bg-' . time() . '-' . $request['bg']->getClientOriginalName();
+                    $request->bg->move(public_path('uploads/'), $imagebg);
+                } else {
+                    $webconfig = Webconfig::where('name', 'bg_img_fav')->first();
+                    $imagebg = $webconfig["content"];
+                }
+                $webconfig = Webconfig::where('name', 'header_image_fav')->first();
+                $webconfig->update([
+                    'content' => $imageh
+                ]);
+                $webconfig = Webconfig::where('name', 'bg_img_fav')->first();
+                $webconfig->update([
+                    'content' => $imagebg
+                ]);
+                $webconfig = Webconfig::where('name', 'bg_color_fav')->first();
+                $webconfig->update([
+                    'content' => $request->bg_color
+                ]);
+                $webconfig = Webconfig::where('name', 'text_color_fav')->first();
+                $webconfig->update([
+                    'content' => $request->text_color
+                ]);
+                $webconfig = Webconfig::where('name', 'button_color_fav')->first();
+                $webconfig->update([
+                    'content' => $request->button_color
+                ]);
+                $webconfig = Webconfig::where('name', 'web_layout_fav')->first();
+                $webconfig->update([
+                    'content' => $request->web_layout
+                ]);
             }
-            $webconfig = Webconfig::where('name', 'header_image')->first();
-            $webconfig->update([
-                'content' => $imageh
-            ]);
-            $webconfig = Webconfig::where('name', 'bg_img')->first();
-            $webconfig->update([
-                'content' => $imagebg
-            ]);
-            $webconfig = Webconfig::where('name', 'bg_color')->first();
-            $webconfig->update([
-                'content' => $request->bg_color
-            ]);
-            $webconfig = Webconfig::where('name', 'text_color')->first();
-            $webconfig->update([
-                'content' => $request->text_color
-            ]);
-            $webconfig = Webconfig::where('name', 'button_color')->first();
-            $webconfig->update([
-                'content' => $request->button_color
-            ]);
-            $webconfig = Webconfig::where('name', 'web_layout')->first();
-            $webconfig->update([
-                'content' => $request->web_layout
-            ]);
             return redirect()->route('adminpage.layoutdesign');
         }
     }

@@ -13,7 +13,8 @@
             </div>
             <div class="col-span-3">E-Mail</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="email" name="email" id="email" class="admin-input" value="{{ $user->email }}" disabled required>
+                <input type="email" name="email" id="email" class="admin-input" value="{{ $user->email }}" disabled
+                    required>
             </div>
             <div class="col-span-3">Password (Abaikan jika tidak ingin dirubah)</div>
             <div class="col-span-9 flex items-center gap-x-2">
@@ -33,29 +34,52 @@
             </div>
             <div class="col-span-3">Status</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                @if (env('APP_TYPE') == 1)
+                    @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
                         <select name="status" id="status" class="admin-input" required>
                             @foreach ($statuses as $status)
-                                    @if ($status->id != 3 && $status->id != 5 && $status->id != 7 && $status->id != 2)
-                                        <option value="{{ $status->id }}"
-                                            {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                            {{ $status->user_status }}</option>
-                                    @endif
+                                @if ($status->id != 3 && $status->id != 5 && $status->id != 7 && $status->id != 2)
+                                    <option value="{{ $status->id }}"
+                                        {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
+                                        {{ $status->user_status }}</option>
+                                @endif
                             @endforeach
                         </select>
+                    @else
+                        <select name="status" id="status" class="admin-input" required disabled>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}"
+                                    {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
+                                    {{ $status->user_status }}</option>
+                            @endforeach
+                        </select>
+                    @endif
                 @else
-                    <select name="status" id="status" class="admin-input" required disabled>
-                        @foreach ($statuses as $status)
-                            <option value="{{ $status->id }}"
-                                {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
-                                {{ $status->user_status }}</option>
-                        @endforeach
-                    </select>
+                    @if (Auth::user()->user_status_id != 6 && Auth::user()->user_status_id != 7)
+                        <select name="status" id="status" class="admin-input" required>
+                            @foreach ($statuses as $status)
+                                @if ($status->id != 3 && $status->id != 4 && $status->id != 6 && $status->id != 2)
+                                    <option value="{{ $status->id }}"
+                                        {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
+                                        {{ $status->user_status }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    @else
+                        <select name="status" id="status" class="admin-input" required disabled>
+                            @foreach ($statuses as $status)
+                                <option value="{{ $status->id }}"
+                                    {{ $user->user_status_id == $status->id ? 'selected' : '' }}>
+                                    {{ $status->user_status }}</option>
+                            @endforeach
+                        </select>
+                    @endif
                 @endif
             </div>
             <div class="col-span-3">Nama</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="text" name="name" id="name" class="admin-input" value="{{ $user->name }}" required>
+                <input type="text" name="name" id="name" class="admin-input" value="{{ $user->name }}"
+                    required>
             </div>
             <div class="col-span-3">Alamat</div>
             <div class="col-span-9 flex items-center gap-x-2">
@@ -64,12 +88,13 @@
             </div>
             <div class="col-span-3">Kota</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="text" name="city" id="city" class="admin-input" value="{{ $user->kota }}" required>
+                <input type="text" name="city" id="city" class="admin-input" value="{{ $user->kota }}"
+                    required>
             </div>
             <div class="col-span-3">Kode Pos</div>
             <div class="col-span-9 flex items-center gap-x-2">
-                <input type="text" name="postal_code" id="postal_code" class="admin-input"
-                    value="{{ $user->kodepos }}" required>
+                <input type="text" name="postal_code" id="postal_code" class="admin-input" value="{{ $user->kodepos }}"
+                    required>
             </div>
             <div class="col-span-3">Negara</div>
             <div class="col-span-9 flex items-center gap-x-2">

@@ -41,7 +41,8 @@ class BrandController extends Controller
         $request->image->move(public_path('uploads/'), $image);
         Brand::create([
             'nama_brand' => $request->name,
-            'gambar' => $image
+            'gambar' => $image,
+            'app_type' => env('APP_TYPE')
         ]);
         return redirect()->route('adminpage.brand.index');
     }
