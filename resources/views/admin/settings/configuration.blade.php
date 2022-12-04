@@ -88,6 +88,23 @@
                         </select>
                     </div>
                 @endif
+                @if (env('APP_TYPE') == 2)
+                    <div class="col-span-5">Nama Pengirim FAV</div>
+                    <div class="col-span-7 flex items-center gap-x-2">
+                        <input type="text" name="nama_pengirim_fav" id="nama_pengirim_fav" class="admin-input"
+                            value="{{ array_values($webconfigs->where('name', 'nama_pengirim_fav')->toArray())[0]['content'] }}">
+                    </div>
+                    <div class="col-span-5">Telepon Pengirim FAV</div>
+                    <div class="col-span-7 flex items-center gap-x-2">
+                        <input type="text" name="telepon_pengirim_fav" id="telepon_pengirim_fav" class="admin-input"
+                            value="{{ array_values($webconfigs->where('name', 'telepon_pengirim_fav')->toArray())[0]['content'] }}">
+                    </div>
+                    <div class="col-span-5">Alamat Pengirim FAV</div>
+                    <div class="col-span-7 flex items-center gap-x-2">
+                        <input type="text" name="alamat_pengirim_fav" id="alamat_pengirim_fav" class="admin-input"
+                            value="{{ array_values($webconfigs->where('name', 'alamat_pengirim_fav')->toArray())[0]['content'] }}">
+                    </div>
+                @endif
                 {{-- <div class="col-span-5">Catatan Ongkos Kirim</div>
                 <div class="col-span-7 flex items-center gap-x-2">
                     <input type="text" name="ongkir_note" id="ongkir_note" class="admin-input"

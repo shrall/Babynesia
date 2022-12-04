@@ -93,6 +93,20 @@ class WebconfigController extends Controller
             $webconfig->update([
                 'content' => $request->kota_pengirim
             ]);
+            if (env('APP_TYPE') == 2) {
+                $webconfig = Webconfig::where('name', 'nama_pengirim_fav')->first();
+                $webconfig->update([
+                    'content' => $request->nama_pengirim_fav
+                ]);
+                $webconfig = Webconfig::where('name', 'alamat_pengirim_fav')->first();
+                $webconfig->update([
+                    'content' => $request->alamat_pengirim_fav
+                ]);
+                $webconfig = Webconfig::where('name', 'telepon_pengirim_fav')->first();
+                $webconfig->update([
+                    'content' => $request->telepon_pengirim_fav
+                ]);
+            }
             $webconfig = Webconfig::where('name', 'hide_product_code')->first();
             $webconfig->update([
                 'isHidden' => $request->hide_code == 'on' ? 1 : 0
