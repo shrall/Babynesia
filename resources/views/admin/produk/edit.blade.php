@@ -90,6 +90,19 @@
                     <input type="number" name="harga" id="harga" class="admin-input" value="{{ $produk->harga }}"
                         placeholder="*Bila 0, tidak ditampilkan">rupiah
                 </div>
+                @if (env('APP_TYPE') == 2)
+                    {{-- harga jual di bbn --}}
+                    <div class="col-span-3">Harga FAV</div>
+                    <div class="col-span-9 flex items-center gap-x-2">
+                        <input type="number" name="harga_toko" id="harga_toko" class="admin-input"
+                            value="{{ $produk->harga_toko }}" placeholder="*Bila 0, tidak ditampilkan">rupiah
+                    </div>
+                    <div class="col-span-3">Harga Grosir</div>
+                    <div class="col-span-9 flex items-center gap-x-2">
+                        <input type="number" name="harga_grosir" id="harga_grosir" class="admin-input"
+                            value="{{ $produk->harga_grosir }}">rupiah
+                    </div>
+                @endif
                 {{-- <div class="col-span-3">Harga Toko</div>
                 <div class="col-span-9 flex items-center gap-x-2">
                     <input type="number" name="harga_toko" id="harga_toko" class="admin-input"

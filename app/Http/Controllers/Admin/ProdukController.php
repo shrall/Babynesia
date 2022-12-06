@@ -127,7 +127,7 @@ class ProdukController extends Controller
             return redirect()->route('adminpage.produk.create')->with('image', 'Gambar Utama Tidak Boleh Kosong!');;
         }
         $product = Produk::create([
-            'kode_alias' => $lastproduct->kode_alias + 1,
+            'kode_alias' => $lastproduct ? $lastproduct->kode_alias + 1 : 0,
             'stat' => $request->status,
             'nama_produk' => $request->name,
             'kategory' => $request->category,
@@ -138,7 +138,7 @@ class ProdukController extends Controller
             'harga_pokok' => $request->hpp,
             'harga' => $request->harga,
             'harga_toko' => $request->harga_toko,
-            // 'harga_grosir' => $request->harga_grosir,
+            'harga_grosir' => $request->harga_grosir,
             // 'disc1' => $request->disc1,
             // 'disc2' => $request->disc2,
             // 'disc3' => $request->disc3,
@@ -264,7 +264,7 @@ class ProdukController extends Controller
             'harga_pokok' => $request->hpp,
             'harga' => $request->harga,
             'harga_toko' => $request->harga_toko,
-            // 'harga_grosir' => $request->harga_grosir,
+            'harga_grosir' => $request->harga_grosir,
             // 'disc1' => $request->disc1,
             // 'disc2' => $request->disc2,
             // 'disc3' => $request->disc3,
