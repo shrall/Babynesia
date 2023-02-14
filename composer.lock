@@ -1877,16 +1877,16 @@
         },
         {
             "name": "mews/captcha",
-            "version": "3.2.7",
+            "version": "v3.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mewebstudio/captcha.git",
-                "reference": "c4dec4963ea19a89aaf679fac1921323dd7decd8"
+                "reference": "68e35397f9d511e91ac67499e1baf53829571dca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/c4dec4963ea19a89aaf679fac1921323dd7decd8",
-                "reference": "c4dec4963ea19a89aaf679fac1921323dd7decd8",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/68e35397f9d511e91ac67499e1baf53829571dca",
+                "reference": "68e35397f9d511e91ac67499e1baf53829571dca",
                 "shasum": ""
             },
             "require": {
@@ -1944,9 +1944,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mewebstudio/captcha/issues",
-                "source": "https://github.com/mewebstudio/captcha/tree/3.2.7"
+                "source": "https://github.com/mewebstudio/captcha/tree/v3.2.9"
             },
-            "time": "2022-02-12T15:58:32+00:00"
+            "time": "2022-09-22T17:21:47+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -8263,5 +8263,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
