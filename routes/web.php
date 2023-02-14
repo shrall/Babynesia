@@ -266,6 +266,7 @@ Route::group([
     Route::get('/produk/restock', [AdminProdukController::class, 'index_restock'])->name('produk.index.restock');
     Route::get('/produk/disabled', [AdminProdukController::class, 'index_disabled'])->name('produk.index.disabled');
     Route::get('/produk/soldout', [AdminProdukController::class, 'index_soldout'])->name('produk.index.soldout');
+    Route::get('/produk/fav', [AdminProdukController::class, 'index_fav'])->name('produk.index.fav');
 
     Route::post('news/uploadphoto', [AdminNewsController::class, 'upload_photo'])->name('news.uploadphoto');
 

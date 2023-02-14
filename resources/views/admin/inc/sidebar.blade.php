@@ -24,7 +24,7 @@
         <a href="{{ route('adminpage.produk.index.restock') }}" class="hover:text-white">Produk Restock</a>
         <a href="{{ route('adminpage.produk.index.soldout') }}" class="hover:text-white">Produk Sold Out</a>
         <a href="{{ route('adminpage.produk.index.disabled') }}" class="hover:text-white">Produk Non-Aktif</a>
-        {{-- <a href="#" class="hover:text-white">Produk Pelengkap</a> --}}
+        <a href="{{route('adminpage.produk.index.fav')}}" class="hover:text-white">Produk FAV</a>
         <a href="{{route('adminpage.voucher.index')}}" class="hover:text-white">Voucher Diskon</a>
         <a href="{{ route('adminpage.faktur.index') }}" class="hover:text-white">Laporan Penjualan</a>
         @if (Auth::user()->user_status_id == 3)
