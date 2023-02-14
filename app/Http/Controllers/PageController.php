@@ -36,7 +36,7 @@ class PageController extends Controller
                 'unregistered' => 1,
                 'total' => 1
             ]);
-        };
+        }
 
         $hide_product_sold = Webconfig::where('name', 'hide_sold_product')->get()->last();
         $hide_product_non_img = Webconfig::where('name', 'hide_product_non_img')->get()->last();
@@ -187,7 +187,7 @@ class PageController extends Controller
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
-                if ($filteredproduct != 'featured') {
+                if ($filteredproduct != 'featured' && $filteredproduct != 'fav') {
                     //new product
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
@@ -207,6 +207,20 @@ class PageController extends Controller
                                 $query->where('app_type', config('services.app.type'));
                             }
                         })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
+                } else if ($filteredproduct == 'fav') {
+                    // fav product
+                    $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('app_type', config('services.app.type'))
+                        ->paginate(12)
+                        : Produk::where('disable', 0)
+                        ->where('app_type', config('services.app.type'))
+                        ->where('disable', '!=', 1)
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -357,7 +371,7 @@ class PageController extends Controller
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
 
-                if ($filteredproduct != 'featured') {
+                if ($filteredproduct != 'featured' && $filteredproduct != 'fav') {
                     //new product
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
@@ -379,6 +393,21 @@ class PageController extends Controller
                                 $query->where('app_type', config('services.app.type'));
                             }
                         })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
+                } else if ($filteredproduct == 'fav') {
+                    // fav product
+                    $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('image', '!=', null)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('app_type', config('services.app.type'))
+                        ->paginate(12)
+                        : Produk::where('disable', 0)
+                        ->where('app_type', config('services.app.type'))
+                        ->where('disable', '!=', 1)
+                        ->where('image', '!=', null)
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -559,7 +588,7 @@ class PageController extends Controller
                     ->orderBy('kode_produk', 'desc')
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
-                if ($filteredproduct != 'featured') {
+                if ($filteredproduct != 'featured' && $filteredproduct != 'fav') {
                     //new product
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
@@ -579,6 +608,20 @@ class PageController extends Controller
                                 $query->where('app_type', config('services.app.type'));
                             }
                         })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
+                } else if ($filteredproduct == 'fav') {
+                    // fav product
+                    $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('app_type', config('services.app.type'))
+                        ->paginate(12)
+                        : Produk::where('disable', 0)
+                        ->where('app_type', config('services.app.type'))
+                        ->where('disable', '!=', 1)
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
@@ -728,7 +771,7 @@ class PageController extends Controller
                     ->paginate(12);
             } else if (!empty($filteredproduct)) {
 
-                if ($filteredproduct != 'featured') {
+                if ($filteredproduct != 'featured' && $filteredproduct != 'fav') {
                     //new product
                     $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
                         $query->where('product_stock', '!=', 0);
@@ -750,6 +793,21 @@ class PageController extends Controller
                                 $query->where('app_type', config('services.app.type'));
                             }
                         })
+                        ->orderBy('kode_produk', 'desc')
+                        ->paginate(12);
+                } else if ($filteredproduct == 'fav') {
+                    // fav product
+                    $produks = $this->isHiddenSold != 1 ? Produk::where('disable', 0)->whereHas('stocks', function (Builder $query) {
+                        $query->where('product_stock', '!=', 0);
+                    })->where('image', '!=', null)
+                        ->where('disable', '!=', 1)
+                        ->orderBy('kode_produk', 'desc')
+                        ->where('app_type', config('services.app.type'))
+                        ->paginate(12)
+                        : Produk::where('disable', 0)
+                        ->where('app_type', config('services.app.type'))
+                        ->where('disable', '!=', 1)
+                        ->where('image', '!=', null)
                         ->orderBy('kode_produk', 'desc')
                         ->paginate(12);
                 } else {
