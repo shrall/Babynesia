@@ -146,7 +146,7 @@
                         </h1>
                     @elseif (!empty($filteredproduct))
                         <h1 class="font-concert-one text-3xl text-{{ $color[1] }}-600 xl:text-4xl">
-                            @if ($filteredproduct != 'featured' && $filteredproduct == 'fav' && !empty($produks[0]->status->name))
+                            @if ($filteredproduct != 'featured' && $filteredproduct != 'fav' && !empty($produks[0]->status->name))
                                 {{ $produks[0]->status->name == 'Promo' ? 'SALE !!' : $produks[0]->status->name . ' Product' }}
                             @elseif ($filteredproduct == 'featured')
                                 Featured Product
